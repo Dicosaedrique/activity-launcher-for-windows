@@ -15,3 +15,9 @@ The application would be developped using the [.NET MAUI](https://learn.microsof
 
 ## Project
 This is a small project to try a first app using [.NET MAUI](https://learn.microsoft.com/en-us/dotnet/maui/what-is-maui) and is not intended to be really complex nor long term maintained. The project is open source and free to use, feel free to download and use it or to fork it and develop it on your own. If you feel like it, you can also open a pull request to add new features that you'd like to see in it.
+
+## Todo List
+- [ ] Setup project with MAUI and Blazor
+- [ ] Add MudBlazor to the project
+- [ ] Publish the application
+- [ ] Statically start the app when clicking on a button
