@@ -1,0 +1,14 @@
+* text eol=crlf
+
+*.razor text
+*.resx text
+*.cs text
+*.css text
+*.js text
+*.html text
+*.json text
+*.yml text
+*.bicep text
+*.md text
+
+*.ico binary
