@@ -1,3 +1,27 @@
-﻿@attribute [Route(Routes.HomePage)]
+﻿@using System.Diagnostics;
+@using System.Management.Automation;
+@attribute [Route(Routes.HomePage)]
 
 <h1>Hello, world!</h1>
+
+<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="OnOpenTaskManager">Open Task Manager</MudButton>
+
+<p>@error</p>
+<p>@result</p>
+
+@code {
+    private string error;
+    private string result;
+
+    private async Task OnOpenTaskManager()
+    {
+        var powershell = PowerShell.Create().AddScript("Start-Process notepad++; Start-Process firefox; Start-Process -FilePath \"C:\\Users\\AntoineBouabana\\AppData\\Local\\Fork\\Fork.exe\";");
+        var scriptResult = powershell.Invoke();
+        error = string.Join(" | ", powershell.Streams.Error.Select(x => x.ToString()));
+        result = string.Join(" | ", scriptResult.Select(x => x.ToString()));
+    }
+}
+
+
+
+    
