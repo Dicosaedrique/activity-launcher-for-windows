@@ -4,13 +4,13 @@ namespace FastWorkspace.Domain.Jobs;
 
 public class VSCodeJob : BaseJob
 {
-    public string FolderPath { get; set; } = string.Empty;
+    public string DirectoryPath { get; set; } = string.Empty;
 
     public override string GetScript()
     {
-        if (PathHelper.IsValidPath(FolderPath))
+        if (PathHelper.IsValidPath(DirectoryPath))
         {
-            return $"code \"{FolderPath}\"";
+            return $"code \"{DirectoryPath}\"";
         }
 
         return string.Empty;

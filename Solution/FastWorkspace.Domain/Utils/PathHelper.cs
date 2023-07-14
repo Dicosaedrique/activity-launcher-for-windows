@@ -4,7 +4,7 @@ public static class PathHelper
 {
     public static bool IsValidPath(string path)
     {
-        return true; // todo: add validation
+        return !string.IsNullOrWhiteSpace(path); // todo: add validation
     }
 
     public static string SanatizePath(string path)

@@ -1,5 +1,5 @@
-﻿@using System.Diagnostics;
-@using System.Management.Automation;
+﻿@using System.Management.Automation;
+@using FastWorkspace.Domain.Common;
 @using FastWorkspace.Domain.Jobs;
 
 @inject IWorkspaceStore WorkspaceStore
@@ -17,7 +17,7 @@
 
     <div class="mb-6">
         <MudText Typo="Typo.h5">Workspaces</MudText>
-        @if (_workspaces != null)
+        @if (_workspaces != null && _workspaces.Any())
         {
             <MudList Clickable>
                 @foreach (var workspace in _workspaces)
@@ -28,7 +28,7 @@
         }
         else
         {
-            @("No workspaces found!")
+            <MudText Typo="Typo.body1">No workspaces found!</MudText>
         }
     </div>
     
@@ -56,7 +56,7 @@
 </div>
 
 @code {
-    private IEnumerable<Workspace> _workspaces = null;
+    private IEnumerable<Workspace> _workspaces;
 
     private string _errors;
     private string _script;
@@ -70,7 +70,6 @@
     {
         var result = await WorkspaceStore.GetAllAsync();
         _workspaces = result.Content;
-        _script = null;
     }
 
     private async Task CreateWorkspace()
@@ -78,15 +77,87 @@
         var workspace = new Workspace()
         {
             Name = $"Demo {_workspaces.Count() + 1}",
-            Description = "Test for the first time!",
+            Description = "A nice script that does a lot of things",
             Enabled = true,
         };
+
+        workspace.AddJob(new BrowserTabsJob()
+        {
+            Name = "Open browser",
+            Description = "Open all my favorite tabs",
+            Enabled = true,
+        });
 
         workspace.AddJob(new ExplorerFolderJob()
         {
             Name = "Project",
             Description = "Open project directory",
-            FolderPath = "C:\\Users\\aboua\\Downloads\\temp",
+            DirectoryPath = "C:\\Users\\aboua\\Downloads\\temp",
+            Enabled = true,
+        });
+
+        workspace.AddJob(new ProgramFileJob()
+        {
+            Name = "Open Teams",
+            ProgramFilePath = "C:\\Users\\AntoineBouabana\\AppData\\Local\\Microsoft\\Teams\\Update.exe",
+            ArgumentList = "--processStart Teams.exe",
+            Enabled = true,
+        });
+
+        workspace.AddJob(new ProgramJob()
+        {
+            Name = "Open NotePad ++",
+            ProgramName = "notepad++",
+            Enabled = true,
+        });
+
+        workspace.AddJob(new ScriptJob()
+        {
+            Name = "Custom script",
+            Script="# A little script (test)",
+            Enabled = true,
+        });
+
+        workspace.AddJob(new TerminalJob()
+        {
+            Name = "Terminal",
+            TerminalTab = new TerminalTab(),
+            Enabled = true,
+        });
+
+        workspace.AddJob(new TerminalTabsJob()
+        {
+            Name = "Project commands",
+            Description = "Open multiple terminal tabs let's gooo!!!!",
+            TerminalTabs = new List<TerminalTab>()
+            {
+                new TerminalTab()
+                {
+                    Title = "Ls master",
+                    Command = "ls",
+                    LocationPath = "C:\\Users\\aboua\\Git\\fast-workspace",
+                    Color = "#eb4034",
+                },
+                new TerminalTab()
+                {
+                    Title = "Something else",
+                    Color = "#e813cc",
+                },
+            },
+            Enabled = true,
+        });
+
+        workspace.AddJob(new VSCodeJob()
+        {
+            Name = "Open VS Code",
+            DirectoryPath = "C:\\Users\\aboua\\Git\\fast-workspace",
+            Enabled = true,
+        });
+
+        workspace.AddJob(new VSSolutionJob()
+        {
+            Name = "Open solution project (client)",
+            SolutionFilePath = "C:\\Users\\aboua\\Git\\fast-workspace\\Solution\\FastWorkspace.sln",
             Enabled = true,
         });
 

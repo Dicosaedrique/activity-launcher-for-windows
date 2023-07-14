@@ -1,5 +1,5 @@
-﻿using FastWorkspace.Domain.Utils;
-using System.Text;
+﻿using System.Text;
+using FastWorkspace.Domain.Utils;
 
 namespace FastWorkspace.Domain.Jobs;
 
@@ -23,6 +23,6 @@ public class ProgramFileJob : BaseJob
             builder.Append($" -ArgumentList \"{ArgumentList}\"");
         }
 
-        return string.Empty;
+        return builder.ToString();
     }
 }

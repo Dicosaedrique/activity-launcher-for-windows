@@ -1,5 +1,5 @@
 ﻿using FastWorkspace.Domain.Utils;
-using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace FastWorkspace.Domain.Services;
 
@@ -31,7 +31,7 @@ public class DataFileStore : IFileStorage
 
             if (result.Success)
             {
-                return new ResultWithContent<TResult>(JsonSerializer.Deserialize<TResult>(result.Content!)!);
+                return new ResultWithContent<TResult>(JsonConvert.DeserializeObject<TResult>(result.Content!)!);
             }
             else
             {
@@ -68,7 +68,7 @@ public class DataFileStore : IFileStorage
     {
         try
         {
-            return await WriteTextToFileAsync(filePath, JsonSerializer.Serialize(content));
+            return await WriteTextToFileAsync(filePath, JsonConvert.SerializeObject(content, Formatting.Indented));
         }
         catch (Exception exception)
         {

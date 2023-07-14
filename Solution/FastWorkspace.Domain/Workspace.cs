@@ -1,8 +1,12 @@
-﻿using FastWorkspace.Domain.Interfaces;
-using System.Text;
+﻿using System.Text;
+using FastWorkspace.Domain.Converters;
+using FastWorkspace.Domain.Interfaces;
+using Newtonsoft.Json;
 
 namespace FastWorkspace.Domain;
 
+// todo: manage null and whitespace for names and description
+[JsonConverter(typeof(WorkspaceConverter))]
 public class Workspace : IScriptable
 {
     public Guid Id { get; init; } = Guid.NewGuid();
@@ -17,9 +21,25 @@ public class Workspace : IScriptable
 
     public DateTime LastModifiedDate { get; set; } = DateTime.Now;
 
-    public IEnumerable<IJob> Jobs => _jobs.OrderBy(x => x.Sequence);
+    public IEnumerable<IJob> Jobs => _jobs.AsEnumerable();
+
+    public IEnumerable<IJob> SortedJobs => _jobs.OrderBy(x => x.Sequence);
 
     private readonly List<IJob> _jobs = new();
+
+    public Workspace() { }
+
+    public Workspace(Guid id, string name, string? description, bool enabled, DateTime creationDate, DateTime lastModifiedDate, IEnumerable<IJob> jobs)
+    {
+        Id = id;
+        Name = name;
+        Description = description;
+        Enabled = enabled;
+        CreationDate = creationDate;
+        LastModifiedDate = lastModifiedDate;
+        _jobs = jobs.OrderBy(x => x.Sequence).ToList();
+        UpdateJobSequences();
+    }
 
     public void AddJob(IJob job)
     {
@@ -65,13 +85,13 @@ public class Workspace : IScriptable
 
     private string GetJobScript(IJob job)
     {
-        const string template = "###################################\n# Job {0} - {1} ({2})\n\n{3}\n\n\n";
-        return string.Format(template, job.Sequence, job.Name, job.Description, job.GetScript());
+        const string template = "###################################\n# Job {0} - {1}\n# Description: {2}\n\n{3}\n\n\n";
+        return string.Format(template, job.Sequence + 1, job.Name, job.Description, job.GetScript());
     }
 
     private string GetScriptFooter()
     {
-        const string template = "#endregion JOBS\n\n# Script generated the {0:d} at {0:t}\n\n# Thanks for using Fast Workspace!";
+        const string template = "#endregion JOBS\n\n# Script generated the {0:d} at {0:t}\n# Thanks for using Fast Workspace!";
         return string.Format(template, DateTime.Now);
     }
 

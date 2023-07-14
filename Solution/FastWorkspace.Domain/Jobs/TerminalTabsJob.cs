@@ -1,5 +1,5 @@
-﻿using FastWorkspace.Domain.Common;
-using System.Text;
+﻿using System.Text;
+using FastWorkspace.Domain.Common;
 
 namespace FastWorkspace.Domain.Jobs;
 
@@ -21,7 +21,7 @@ public class TerminalTabsJob : BaseJob
 
             if (i != TerminalTabs.Count - 1)
             {
-                builder.Append(" ``; new-tab");
+                builder.Append(" `; new-tab");
             }
         }
 

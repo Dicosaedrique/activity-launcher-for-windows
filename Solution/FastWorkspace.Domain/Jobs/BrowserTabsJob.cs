@@ -1,12 +1,12 @@
 ﻿namespace FastWorkspace.Domain.Jobs;
 
-// todo: in the future (DO NOT USE!!!)
+// todo: implement in the future
 public class BrowserTabsJob : BaseJob
 {
     public ICollection<string> Tabs { get; set; } = new List<string>();
 
     public override string GetScript()
     {
-        throw new NotImplementedException();
+        return "# Sorry this feature is not available yet!";
     }
 }

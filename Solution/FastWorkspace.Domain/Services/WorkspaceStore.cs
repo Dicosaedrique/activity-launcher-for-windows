@@ -5,7 +5,7 @@ namespace FastWorkspace.Domain.Services;
 
 public class WorkspaceStore : IWorkspaceStore
 {
-    private const string WorkspaceDirectory = "Workspaces"; // todo: create the folder if doesn't exist
+    private const string WorkspaceDirectory = "Workspaces"; // todo: create the directory if doesn't exist
 
     private readonly IFileStorage _fileStorage;
 

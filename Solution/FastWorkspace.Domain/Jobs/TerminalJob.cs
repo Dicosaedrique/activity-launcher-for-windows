@@ -1,5 +1,5 @@
-﻿using FastWorkspace.Domain.Common;
-using System.Text;
+﻿using System.Text;
+using FastWorkspace.Domain.Common;
 
 namespace FastWorkspace.Domain.Jobs;
 

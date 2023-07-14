@@ -4,13 +4,13 @@ namespace FastWorkspace.Domain.Jobs;
 
 public class ExplorerFolderJob : BaseJob
 {
-    public string FolderPath { get; set; } = string.Empty;
+    public string DirectoryPath { get; set; } = string.Empty;
 
     public override string GetScript()
     {
-        if (PathHelper.IsValidPath(FolderPath))
+        if (PathHelper.IsValidPath(DirectoryPath))
         {
-            return $"Start-Process -FilePath {PathHelper.SanatizePath(FolderPath)}";
+            return $"Start-Process -FilePath {PathHelper.SanatizePath(DirectoryPath)}";
         }
 
         return string.Empty;

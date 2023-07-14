@@ -4,13 +4,13 @@ namespace FastWorkspace.Domain.Jobs;
 
 public class VSSolutionJob : BaseJob
 {
-    public string SolutionPath { get; set; } = string.Empty;
+    public string SolutionFilePath { get; set; } = string.Empty;
 
     public override string GetScript()
     {
-        if (PathHelper.IsValidPath(SolutionPath))
+        if (PathHelper.IsValidPath(SolutionFilePath))
         {
-            return $"Start-Process -FilePath \"{SolutionPath}\"";
+            return $"Start-Process -FilePath \"{SolutionFilePath}\"";
         }
 
         return string.Empty;
