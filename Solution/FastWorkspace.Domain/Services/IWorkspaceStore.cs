@@ -11,4 +11,6 @@ public interface IWorkspaceStore
     public Task<Result> AddOrUpdateAsync(Workspace workspace);
 
     public Task<Result> DeleteAsync(Workspace workspace);
+
+    public void SetupStore();
 }

@@ -5,7 +5,12 @@ namespace FastWorkspace.Domain.Services;
 
 public class DataFileStore : IFileStorage
 {
-    private const string DataFilePath = "C:\\Users\\aboua\\Downloads\\temp"; // todo: this should be choosen by the user
+    private readonly IAppConfiguration _configuration;
+
+    public DataFileStore(IAppConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
 
     public async Task<ResultWithContent<string>> ReadFileTextAsync(string filePath)
     {
@@ -98,9 +103,19 @@ public class DataFileStore : IFileStorage
 
     public string GetStorageFilePath(params string[] relativePaths)
     {
-        var paths = new List<string>() { DataFilePath };
+        var paths = new List<string>() { _configuration.GetFileStorageDirectoryPath()! };
         paths.AddRange(relativePaths);
 
         return Path.Combine(paths.ToArray());
+    }
+
+    public void CreateDirectoryIfNotExists(string directory)
+    {
+        var path = GetStorageFilePath(directory);
+
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
     }
 }

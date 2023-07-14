@@ -17,4 +17,6 @@ public interface IFileStorage
     public IEnumerable<string> GetFiles(string path, string searchPattern = "*");
 
     public string GetStorageFilePath(params string[] relativePaths);
+
+    public void CreateDirectoryIfNotExists(string directory);
 }

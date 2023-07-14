@@ -1,4 +1,5 @@
-﻿using FastWorkspace.Domain.Services;
+﻿using FastWorkspace.Client.Common.Services;
+using FastWorkspace.Domain.Services;
 using Microsoft.Extensions.Logging;
 using MudBlazor.Services;
 
@@ -15,6 +16,7 @@ public static class MauiProgram
 
         builder.Services.AddMudServices();
 
+        builder.Services.AddSingleton<IAppConfiguration, AppConfiguration>();
         builder.Services.AddSingleton<IFileStorage, DataFileStore>();
         builder.Services.AddSingleton<IWorkspaceStore, WorkspaceStore>();
 

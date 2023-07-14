@@ -5,7 +5,7 @@ namespace FastWorkspace.Domain.Services;
 
 public class WorkspaceStore : IWorkspaceStore
 {
-    private const string WorkspaceDirectory = "Workspaces"; // todo: create the directory if doesn't exist
+    private const string WorkspaceDirectory = "Workspaces";
 
     private readonly IFileStorage _fileStorage;
 
@@ -57,23 +57,28 @@ public class WorkspaceStore : IWorkspaceStore
         return Task.FromResult(_fileStorage.DeleteFile(GetWorkspaceFilePath(workspace)));
     }
 
-    private string GetWorkspacePath()
+    public string GetWorkspaceStorageDirectoryPath()
     {
         return _fileStorage.GetStorageFilePath(WorkspaceDirectory);
     }
 
     private IEnumerable<string> GetWorkspaceFilePaths()
     {
-        return _fileStorage.GetFiles(GetWorkspacePath(), "*.json");
+        return _fileStorage.GetFiles(GetWorkspaceStorageDirectoryPath(), "*.json");
     }
 
     private string GetWorkspaceFilePath(Workspace workspace)
     {
-        return Path.Combine(GetWorkspacePath(), workspace.GetFileName());
+        return Path.Combine(GetWorkspaceStorageDirectoryPath(), workspace.GetFileName());
     }
 
     private string GetWorkspaceFilePathById(Guid id)
     {
-        return Path.Combine(GetWorkspacePath(), WorkspaceExtensions.GetWorkspaceFileNameById(id));
+        return Path.Combine(GetWorkspaceStorageDirectoryPath(), WorkspaceExtensions.GetWorkspaceFileNameById(id));
+    }
+
+    public void SetupStore()
+    {
+        _fileStorage.CreateDirectoryIfNotExists(WorkspaceDirectory);
     }
 }

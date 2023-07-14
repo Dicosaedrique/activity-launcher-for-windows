@@ -3,63 +3,76 @@
 @using FastWorkspace.Domain.Jobs;
 
 @inject IWorkspaceStore WorkspaceStore
+@inject IAppConfiguration AppConfiguration
 
 @attribute [Route(Routes.HomePage)]
 
-<MudText Typo="Typo.h2" Class="mb-8">Welcome to Fast Workspace!</MudText>
+<MudText Typo="Typo.h3" Align="Align.Center" Class="mb-8">Welcome to Fast Workspace!</MudText>
 
-<div class="mx-16">
-    <MudButtonGroup Color="Color.Primary" Variant="Variant.Filled" Class="mb-6">
-        <MudButton OnClick="Refresh">Refresh</MudButton>
-        <MudButton OnClick="CreateWorkspace">Create workspace</MudButton>
-        <MudButton OnClick="ExecuteScript">Execute script</MudButton>
-    </MudButtonGroup>
-
-    <div class="mb-6">
-        <MudText Typo="Typo.h5">Workspaces</MudText>
-        @if (_workspaces != null && _workspaces.Any())
-        {
-            <MudList Clickable>
-                @foreach (var workspace in _workspaces)
-                {
-                    <MudListItem OnClick="args => SetScript(workspace)" Text="@workspace.Name" />
-                }
-            </MudList>
-        }
-        else
-        {
-            <MudText Typo="Typo.body1">No workspaces found!</MudText>
-        }
+<div>
+    <div class="mb-6" style="width: 25%">
+        <MudText Typo="Typo.h5">Data storage path</MudText>
+        <MudText Typo="Typo.body1"><b>Hint:</b> C:\Users\aboua\Downloads\demo</MudText>
+        <MudTextField Value="AppConfiguration.GetFileStorageDirectoryPath()" ValueChanged="EventCallback.Factory.Create<string?>(this, OnFileStorageDirectoryPathChanged)" Variant="Variant.Outlined"></MudTextField>
     </div>
-    
-    <div class="mb-4">
-        <MudText Typo="Typo.h5">Script</MudText>
-        <MudText Typo="Typo.body1">
-            @if (string.IsNullOrEmpty(_script))
+
+    @if (AppReady)
+    {
+        <div class="mb-6 mx-auto" style="width: 100%">
+            <MudButtonGroup Color="Color.Primary" Variant="Variant.Filled">
+                <MudButton OnClick="Refresh">Refresh</MudButton>
+                <MudButton OnClick="CreateWorkspace">Create workspace</MudButton>
+                <MudButton OnClick="ExecuteScript">Execute script</MudButton>
+            </MudButtonGroup>
+        </div>
+        
+        <div class="mb-6">
+            <MudText Typo="Typo.h5">Workspaces</MudText>
+            @if (_workspaces != null && _workspaces.Any())
             {
-                @("Please select a script")
+                <MudList Clickable>
+                    @foreach (var workspace in _workspaces)
+                    {
+                        <MudListItem OnClick="args => SetScript(workspace)" Text="@workspace.Name" />
+                    }
+                </MudList>
             }
             else
             {
-                @(new MarkupString(_script.Replace("\n", "<br />")))
+                <MudText Typo="Typo.body1">No workspaces found!</MudText>
             }
-        </MudText>
-    </div>
+        </div>
 
+        <div class="mb-4">
+            <MudText Typo="Typo.h5">Script</MudText>
+            <MudText Typo="Typo.body1">
+                @if (string.IsNullOrEmpty(_script))
+                {
+                    @("Please select a script")
+                }
+                else
+                {
+                    @(new MarkupString(_script.Replace("\n", "<br />")))
+                }
+            </MudText>
+        </div>
+    }
     @if (!string.IsNullOrEmpty(_errors))
     {
         <div>
             <MudText Typo="Typo.h5">Errors</MudText>
-            <MudText Typo="Typo.body1">@(new MarkupString(_errors))</MudText>
+            <MudText Typo="Typo.body1" Class="red-text">@(new MarkupString(_errors))</MudText>
         </div>
     }
 </div>
 
 @code {
-    private IEnumerable<Workspace> _workspaces;
+    private IEnumerable<Workspace>? _workspaces;
 
-    private string _errors;
-    private string _script;
+    private string? _errors;
+    private string? _script;
+
+    private bool AppReady => AppConfiguration.IsAppReady();
 
     protected override Task OnInitializedAsync()
     {
@@ -68,15 +81,32 @@
 
     private async Task Refresh()
     {
-        var result = await WorkspaceStore.GetAllAsync();
-        _workspaces = result.Content;
+        if(AppReady)
+        {
+            var result = await WorkspaceStore.GetAllAsync();
+            _workspaces = result.Content;
+        }
+    }
+
+    private async Task OnFileStorageDirectoryPathChanged(string? value)
+    {
+        if (AppConfiguration.SetFileStorageDirectoryPath(value))
+        {
+            WorkspaceStore.SetupStore();
+            _errors = null;
+            await Refresh();
+        }
+        else
+        {
+            _errors = "You must provide an existing path to setup storage for the application!";
+        }
     }
 
     private async Task CreateWorkspace()
     {
         var workspace = new Workspace()
         {
-            Name = $"Demo {_workspaces.Count() + 1}",
+            Name = $"Demo {_workspaces!.Count() + 1}",
             Description = "A nice script that does a lot of things",
             Enabled = true,
         };
