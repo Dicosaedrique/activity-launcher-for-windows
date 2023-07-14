@@ -40,6 +40,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
         <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.3.5" />
         <PackageReference Include="MudBlazor" Version="6.7.0" />

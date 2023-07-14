@@ -1,0 +1,38 @@
+﻿@using CommunityToolkit.Maui.Storage;
+
+<MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Folder" OnClick="PickFolder">
+    Choose a folder
+</MudButton>
+
+@if (!string.IsNullOrWhiteSpace(FolderPath))
+{
+    <MudListItem Icon="@Icons.Material.Filled.Folder">
+        <code>@FolderPath</code>
+    </MudListItem>
+}
+
+@code {
+    [Parameter]
+    public string? FolderPath { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> FolderPathChanged { get; set; }
+
+    private string? _error;
+
+    private async Task PickFolder()
+    {
+        var result = await FolderPicker.PickAsync(CancellationToken.None);
+
+        if (result.IsSuccessful && !string.IsNullOrWhiteSpace(result.Folder.Path))
+        {
+            _error = null;
+            FolderPath = result.Folder.Path;
+            await FolderPathChanged.InvokeAsync(FolderPath);
+        }
+        else
+        {
+            Console.WriteLine(result.Exception);
+        }
+    }
+}

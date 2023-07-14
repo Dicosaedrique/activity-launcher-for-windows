@@ -1,4 +1,5 @@
-﻿using FastWorkspace.Client.Common.Services;
+﻿using CommunityToolkit.Maui;
+using FastWorkspace.Client.Common.Services;
 using FastWorkspace.Domain.Services;
 using Microsoft.Extensions.Logging;
 using MudBlazor.Services;
@@ -11,7 +12,7 @@ public static class MauiProgram
     {
         var builder = MauiApp.CreateBuilder();
 
-        builder.UseMauiApp<App>();
+        builder.UseMauiApp<App>().UseMauiCommunityToolkit();
         builder.Services.AddMauiBlazorWebView();
 
         builder.Services.AddMudServices();

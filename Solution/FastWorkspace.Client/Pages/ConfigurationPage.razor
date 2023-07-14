@@ -1,0 +1,46 @@
+﻿@using System.Management.Automation;
+@using FastWorkspace.Domain.Common;
+@using FastWorkspace.Domain.Jobs;
+
+@inject IWorkspaceStore WorkspaceStore
+@inject IAppConfiguration AppConfiguration
+@inject NavigationManager Navigation
+
+@attribute [Route(Routes.ConfigurationPage)]
+
+<main class="ma-16">
+    <MudText Typo="Typo.h3" Align="Align.Center" Class="mb-8">Welcome to Fast Workspace!</MudText>
+
+    <MudText Typo="Typo.subtitle1">To start using the application you need to choose a directory where to save the application data.</MudText>
+
+    <FolderPickerInput FolderPath="@(AppConfiguration.GetFileStorageDirectoryPath())" FolderPathChanged="OnFileStorageDirectoryPathChanged" />
+
+    @if (!string.IsNullOrWhiteSpace(_error))
+    {
+        <div class="mt-4">
+            <MudText Typo="Typo.h5">Errors</MudText>
+            <MudText Typo="Typo.body1" Class="red-text">@(new MarkupString(_error))</MudText>
+        </div>
+    }
+</main>
+
+@code {
+    private string? _error;
+
+    private void OnFileStorageDirectoryPathChanged(string? value)
+    {
+        if (AppConfiguration.SetFileStorageDirectoryPath(value))
+        {
+            WorkspaceStore.SetupStore();
+            _error = null;
+            Navigation.NavigateTo(Routes.HomePage, replace: true);
+        }
+        else
+        {
+            _error = "You must provide an existing path to setup storage for the application!";
+        }
+    }
+}
+
+
+
