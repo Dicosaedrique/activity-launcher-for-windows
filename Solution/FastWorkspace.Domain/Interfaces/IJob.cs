@@ -1,6 +1,6 @@
 ﻿namespace FastWorkspace.Domain.Interfaces;
 
-public interface IStep : IScriptable
+public interface IJob : IScriptable
 {
     public string Name { get; }
 

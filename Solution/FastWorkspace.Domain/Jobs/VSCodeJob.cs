@@ -1,8 +1,8 @@
 ﻿using FastWorkspace.Domain.Utils;
 
-namespace FastWorkspace.Domain.Steps;
+namespace FastWorkspace.Domain.Jobs;
 
-public class FolderStep : BaseStep
+public class VSCodeJob : BaseJob
 {
     public string FolderPath { get; set; } = string.Empty;
 
@@ -10,7 +10,7 @@ public class FolderStep : BaseStep
     {
         if (PathHelper.IsValidPath(FolderPath))
         {
-            return $"Start-Process -FilePath {PathHelper.SanatizePath(FolderPath)}";
+            return $"code \"{FolderPath}\"";
         }
 
         return string.Empty;

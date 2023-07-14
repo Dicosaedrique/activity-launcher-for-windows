@@ -1,8 +1,8 @@
 ﻿using FastWorkspace.Domain.Utils;
 
-namespace FastWorkspace.Domain.Steps;
+namespace FastWorkspace.Domain.Jobs;
 
-public class VSSolutionStep : BaseStep
+public class VSSolutionJob : BaseJob
 {
     public string SolutionPath { get; set; } = string.Empty;
 

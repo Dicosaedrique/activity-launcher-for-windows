@@ -1,6 +1,6 @@
-﻿namespace FastWorkspace.Domain.Steps;
+﻿namespace FastWorkspace.Domain.Jobs;
 
-public class ScriptStep : BaseStep
+public class ScriptJob : BaseJob
 {
     public string Script { get; set; } = string.Empty;
 

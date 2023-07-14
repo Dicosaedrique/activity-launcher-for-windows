@@ -1,7 +1,7 @@
-﻿namespace FastWorkspace.Domain.Steps;
+﻿namespace FastWorkspace.Domain.Jobs;
 
 // todo: in the future (DO NOT USE!!!)
-public class BrowserTabs : BaseStep
+public class BrowserTabsJob : BaseJob
 {
     public ICollection<string> Tabs { get; set; } = new List<string>();
 

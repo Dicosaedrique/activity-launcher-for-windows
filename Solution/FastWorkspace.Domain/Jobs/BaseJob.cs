@@ -1,8 +1,8 @@
 ﻿using FastWorkspace.Domain.Interfaces;
 
-namespace FastWorkspace.Domain.Steps;
+namespace FastWorkspace.Domain.Jobs;
 
-public abstract class BaseStep : IStep
+public abstract class BaseJob : IJob
 {
     public string Name { get; set; } = string.Empty;
 

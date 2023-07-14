@@ -1,9 +1,9 @@
 ﻿using FastWorkspace.Domain.Utils;
 using System.Text;
 
-namespace FastWorkspace.Domain.Steps;
+namespace FastWorkspace.Domain.Jobs;
 
-public class ProgramFileStep : BaseStep
+public class ProgramFileJob : BaseJob
 {
     public string ProgramFilePath { get; set; } = string.Empty;
 

@@ -1,9 +1,9 @@
 ﻿using FastWorkspace.Domain.Common;
 using System.Text;
 
-namespace FastWorkspace.Domain.Steps;
+namespace FastWorkspace.Domain.Jobs;
 
-public class TerminalStep : BaseStep
+public class TerminalJob : BaseJob
 {
     public TerminalTab TerminalTab { get; set; } = new();
 

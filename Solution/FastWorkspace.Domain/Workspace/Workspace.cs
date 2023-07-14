@@ -17,21 +17,21 @@ public class Workspace : IScriptable
 
     public DateTime LastModifiedDate { get; set; }
 
-    private readonly List<IStep> _steps = new();
+    private readonly List<IJob> _jobs = new();
 
-    public void AddStep(IStep step)
+    public void AddJob(IJob job)
     {
-        _steps.Add(step);
+        _jobs.Add(job);
     }
 
-    public bool RemoveStep(IStep step)
+    public bool RemoveJob(IJob job)
     {
-        return _steps.Remove(step);
+        return _jobs.Remove(job);
     }
 
-    public void ClearSteps()
+    public void ClearJobs()
     {
-        _steps.Clear();
+        _jobs.Clear();
     }
 
     public string GetScript()
@@ -40,9 +40,9 @@ public class Workspace : IScriptable
 
         builder.Append(GetScriptHeader());
 
-        foreach (var step in _steps)
+        foreach (var job in _jobs)
         {
-            builder.Append(GetStepScript(step));
+            builder.Append(GetJobScript(job));
         }
 
         builder.Append(GetScriptFooter());
@@ -52,19 +52,19 @@ public class Workspace : IScriptable
 
     private string GetScriptHeader()
     {
-        const string template = "##################################################################################################\n# Workspace: {0}\n# Description: {1}\n#\n# Script generated with love by Fast Workspace <3\n##################################################################################################\n\n#region STEPS\n\n";
+        const string template = "##################################################################################################\n# Workspace: {0}\n# Description: {1}\n#\n# Script generated with love by Fast Workspace <3\n##################################################################################################\n\n#region JOBS\n\n";
         return string.Format(template, Name, Description);
     }
 
-    private string GetStepScript(IStep step)
+    private string GetJobScript(IJob job)
     {
-        const string template = "###################################\n# Step {0} - {1} ({2})\n\n{5}\n\n\n";
-        return string.Format(template, step.Sequence, step.Name, step.Description, step.GetScript());
+        const string template = "###################################\n# Job {0} - {1} ({2})\n\n{5}\n\n\n";
+        return string.Format(template, job.Sequence, job.Name, job.Description, job.GetScript());
     }
 
     private string GetScriptFooter()
     {
-        const string template = "#endregion STEPS\n\n# Script generated the {0:d} at {0:t}\n\n# Thanks for using Fast Workspace!";
+        const string template = "#endregion JOBS\n\n# Script generated the {0:d} at {0:t}\n\n# Thanks for using Fast Workspace!";
         return string.Format(template, DateTime.Now);
     }
 }
