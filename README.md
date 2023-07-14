@@ -1,30 +1,43 @@
 # :gem: Fast Workspace :gem: 
 
 ## TL;DR
-Launch a group of applications in just one click, create a workspace for each of your projects to be able to switch from one to the other quickly!
+Launch a group of jobs in just one click, or configure it to run at startup. A job can be various things like launching an application, opening a terminal with a command, opening a folder, ... Separate that by workspace so that you can easily switch between projects without the pain of switching everything manually.
 
 ## Goal and motivation :fire:
-A small project that I hope to make available quickly as a personal side project. It's supposed to allow you to manage multiple workspaces, a workspace would be a group of application, software, etc that you would consider as part of a workspace. You would then be able to launch this workspace so that every application and tasks would execute quickly or setting up to launch at startup of your machine.
+A small project that I hope to make available quickly as a personal side project. It's supposed to allow you to manage multiple workspaces, a workspace would be a list of job that you can execute at will or setup to launch at startup. A job could be multiple thing but mostly launching applications or software, opening window terminal tabs, executing PowerShell script, opening Visual Studio Code folders or launching Visual Studio solutions. You can have multiple workspace so that if you switch project during the day you can set up everything on your machine in just one click. The application will be available on Windows as a desktop application and will be open source and free.
 
-------------
-
-The idea behind it is to make it easier to switch between project either personal or professional ones. In my job I often need to open the same things every day (browser, visual studio, studio code, command terminal, ...) and would benefit from having an app that centralize this behavior and make it possible to manage multiple bundle of behavior so that if I need to lunch another project I can just click on button in this app and everything would launch.
+The idea behind it is to make it easier to switch between project on your computer. As a software engineer, we can sometime switch between totally different code base and need to reopen lots of different applications and tools depending on the project. This tool will be made to help you achieve that with hopefully less pain.
 
 ## Technology
-The application would be developped using the [.NET MAUI](https://learn.microsoft.com/en-us/dotnet/maui/what-is-maui) platform. It would be available for Windows and downloadable from this GitHub page.
+The application would be developed using the [.NET MAUI](https://learn.microsoft.com/en-us/dotnet/maui/what-is-maui) Blazor hybrid platform and would be available only on Windows.
 
 ## Project
-This is a small project to try a first app using [.NET MAUI](https://learn.microsoft.com/en-us/dotnet/maui/what-is-maui) and is not intended to be really complex nor long term maintained. The project is open source and free to use, feel free to download and use it or to fork it and develop it on your own. If you feel like it, you can also open a pull request to add new features that you'd like to see in it.
+This is a small project to try a first app using [.NET MAUI](https://learn.microsoft.com/en-us/dotnet/maui/what-is-maui) and is not intended to be really complex nor long term maintained. The project is open source and free to use, feel free to download and use it or to fork it and develop your own features. Every feedback or suggestions of change or feature would be appreciated, feel free to contact me by mail [abouaban2@gmail.com](mailto:abouaban2@gmail.com).
+
+## Concepts
+### Workspaces
+A list of jobs to be executed in a logical context (project, ...).
+
+### Jobs
+A job is a task to execute, like opening a folder or an application etc.
+
+### Behind the scene
+To allow more flexibility, every workspace will compile to a PowerShell script that will be responsible for executing the jobs, it will be invoked when the user executes a workspace job or at startup. This way, a user can use this app only as a startup script generator and fully customized them at will.
+Workspaces will be saved as JSON files and will be loaded when launching the application. Making it also available for customization if needed.
 
 ## Todo
 
 ### Setup
-- [ ] Setup project with MAUI and Blazor
-- [ ] Add MudBlazor to the project
+- [x] Setup project with MAUI and Blazor
+- [x] Add Mud Blazor to the project
 
-### Very Minimum Viable Product
-- [ ] Statically start the app when clicking on a button
+### Minimum Viable Product
+- [ ] Start a hard-coded workspace and make it work
+- [ ] Persist and load the workspaces
+- [ ] Allow the user to create and edit workspaces in the UI
+- [ ] Allow the user to set up the workspace jobs execution at startup
+- [ ] Improve the setup of workspace with helpers in the UX
 
 ### Nice to have
-- [ ] Publish the application
-- [ ] Build the application on new main commit and publish it to GitHub
+- [ ] Publish the application to the public
+- [ ] Build the application on new main commit and publish it to GitHub to make it available for download
