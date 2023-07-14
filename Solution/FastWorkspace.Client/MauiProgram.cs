@@ -5,20 +5,20 @@ namespace FastWorkspace.Client;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
-	{
-		var builder = MauiApp.CreateBuilder();
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
 
-		builder.UseMauiApp<App>();
-		builder.Services.AddMauiBlazorWebView();
+        builder.UseMauiApp<App>();
+        builder.Services.AddMauiBlazorWebView();
 
         builder.Services.AddMudServices();
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
-	}
+        return builder.Build();
+    }
 }
