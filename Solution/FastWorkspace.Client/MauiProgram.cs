@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using FastWorkspace.Domain.Services;
+using Microsoft.Extensions.Logging;
 using MudBlazor.Services;
 
 namespace FastWorkspace.Client;
@@ -13,6 +14,9 @@ public static class MauiProgram
         builder.Services.AddMauiBlazorWebView();
 
         builder.Services.AddMudServices();
+
+        builder.Services.AddSingleton<IFileStorage, DataFileStore>();
+        builder.Services.AddSingleton<IWorkspaceStore, WorkspaceStore>();
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();

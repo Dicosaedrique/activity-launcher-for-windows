@@ -1,24 +1,105 @@
 ﻿@using System.Diagnostics;
 @using System.Management.Automation;
+@using FastWorkspace.Domain.Jobs;
+
+@inject IWorkspaceStore WorkspaceStore
+
 @attribute [Route(Routes.HomePage)]
 
-<h1>Hello, world!</h1>
+<MudText Typo="Typo.h2" Class="mb-8">Welcome to Fast Workspace!</MudText>
 
-<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="OnOpenTaskManager">Open Task Manager</MudButton>
+<article class="mx-16">
+    <MudButtonGroup Color="Color.Primary" Variant="Variant.Filled" Class="mb-6">
+        <MudButton OnClick="Refresh">Refresh</MudButton>
+        <MudButton OnClick="CreateAndSaveWorkspace">Create and save workspace</MudButton>
+        <MudButton OnClick="ExecuteScript">Execute script</MudButton>
+    </MudButtonGroup>
 
-<p>@error</p>
-<p>@result</p>
+    <div class="mb-6">
+        <MudText Typo="Typo.h5">Workspaces</MudText>
+        @if (_workspaces != null)
+        {
+            <MudList Clickable>
+                @foreach (var workspace in _workspaces)
+                {
+                    <MudListItem OnClick="args => SetScript(workspace)" Text="@workspace.Name" />
+                }
+            </MudList>
+        }
+    </div>
+    
+    <div class="mb-4">
+        <MudText Typo="Typo.h5">Script</MudText>
+        <MudText Typo="Typo.body1">
+            @if (string.IsNullOrEmpty(_script))
+            {
+                @("Please select a script")
+            }
+            else
+            {
+                @(new MarkupString(_script.Replace("\n", "<br />")))
+            }
+        </MudText>
+    </div>
 
-@code {
-    private string error;
-    private string result;
+    <div class="mb-4">
+        <MudText Typo="Typo.h5">Errors</MudText>
+        <MudText Typo="Typo.body1">@(string.IsNullOrEmpty(_errors) ? "No errors" : _errors)</MudText>
+    </div>
+</article>
 
-    private async Task OnOpenTaskManager()
+    @code {
+    private IEnumerable<Workspace> _workspaces = null;
+
+    private string _errors;
+    private string _script;
+
+    protected override Task OnInitializedAsync()
     {
-        var powershell = PowerShell.Create().AddScript("Start-Process notepad++; Start-Process firefox; Start-Process -FilePath \"C:\\Users\\AntoineBouabana\\AppData\\Local\\Fork\\Fork.exe\";");
-        var scriptResult = powershell.Invoke();
-        error = string.Join(" | ", powershell.Streams.Error.Select(x => x.ToString()));
-        result = string.Join(" | ", scriptResult.Select(x => x.ToString()));
+        return Refresh();
+    }
+
+    private async Task Refresh()
+    {
+        var result = await WorkspaceStore.GetAllAsync(true);
+        _workspaces = result.Content;
+        _script = null;
+    }
+
+    private async Task CreateAndSaveWorkspace()
+    {
+        var workspace = new Workspace()
+        {
+            Name = $"Demo {_workspaces.Count() + 1}",
+            Description = "Test for the first time!",
+            Enabled = true,
+        };
+
+        workspace.AddJob(new ExplorerFolderJob()
+        {
+            Name = "Project",
+            Description = "Open project directory",
+            FolderPath = "C:\\Users\\aboua\\Downloads\\temp",
+            Enabled = true,
+        });
+
+        await WorkspaceStore.AddOrUpdateAsync(workspace); // todo: ajouter les entités au store
+        await Refresh();
+    }
+
+    private void SetScript(Workspace workspace)
+    {
+        _script = workspace.GetScript();
+    }
+
+    private void ExecuteScript()
+    {
+        if(!string.IsNullOrWhiteSpace(_script))
+        {
+            var powershell = PowerShell.Create().AddScript(_script);
+            var scriptResult = powershell.Invoke();
+            _errors = string.Join(" | ", powershell.Streams.Error.Select(x => x.ToString()));
+        }
     }
 }
 

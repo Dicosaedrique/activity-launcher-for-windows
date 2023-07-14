@@ -2,9 +2,11 @@
 
 public interface IJob : IScriptable
 {
-    public string Name { get; }
+    public string Name { get; set; }
 
-    public string? Description { get; }
+    public string? Description { get; set; }
 
-    public int Sequence { get; }
+    public int Sequence { get; set; }
+
+    public bool Enabled { get; set; }
 }

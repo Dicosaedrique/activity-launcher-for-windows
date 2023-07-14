@@ -1,7 +1,7 @@
 ﻿using FastWorkspace.Domain.Interfaces;
 using System.Text;
 
-namespace FastWorkspace.Domain.Workspace;
+namespace FastWorkspace.Domain;
 
 public class Workspace : IScriptable
 {
@@ -15,18 +15,23 @@ public class Workspace : IScriptable
 
     public DateTime CreationDate { get; init; } = DateTime.Now;
 
-    public DateTime LastModifiedDate { get; set; }
+    public DateTime LastModifiedDate { get; set; } = DateTime.Now;
+
+    public IEnumerable<IJob> Jobs => _jobs.OrderBy(x => x.Sequence);
 
     private readonly List<IJob> _jobs = new();
 
     public void AddJob(IJob job)
     {
         _jobs.Add(job);
+        UpdateJobSequences();
     }
 
     public bool RemoveJob(IJob job)
     {
-        return _jobs.Remove(job);
+        var removed = _jobs.Remove(job);
+        UpdateJobSequences();
+        return removed;
     }
 
     public void ClearJobs()
@@ -40,7 +45,9 @@ public class Workspace : IScriptable
 
         builder.Append(GetScriptHeader());
 
-        foreach (var job in _jobs)
+        var readyJobs = _jobs.Where(x => x.Enabled).OrderBy(x => x.Sequence);
+
+        foreach (var job in readyJobs)
         {
             builder.Append(GetJobScript(job));
         }
@@ -58,7 +65,7 @@ public class Workspace : IScriptable
 
     private string GetJobScript(IJob job)
     {
-        const string template = "###################################\n# Job {0} - {1} ({2})\n\n{5}\n\n\n";
+        const string template = "###################################\n# Job {0} - {1} ({2})\n\n{3}\n\n\n";
         return string.Format(template, job.Sequence, job.Name, job.Description, job.GetScript());
     }
 
@@ -66,5 +73,13 @@ public class Workspace : IScriptable
     {
         const string template = "#endregion JOBS\n\n# Script generated the {0:d} at {0:t}\n\n# Thanks for using Fast Workspace!";
         return string.Format(template, DateTime.Now);
+    }
+
+    private void UpdateJobSequences()
+    {
+        for (var i = 0; i < _jobs.Count; i++)
+        {
+            _jobs[i].Sequence = i;
+        }
     }
 }
