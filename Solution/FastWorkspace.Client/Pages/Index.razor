@@ -8,10 +8,10 @@
 
 <MudText Typo="Typo.h2" Class="mb-8">Welcome to Fast Workspace!</MudText>
 
-<article class="mx-16">
+<div class="mx-16">
     <MudButtonGroup Color="Color.Primary" Variant="Variant.Filled" Class="mb-6">
         <MudButton OnClick="Refresh">Refresh</MudButton>
-        <MudButton OnClick="CreateAndSaveWorkspace">Create and save workspace</MudButton>
+        <MudButton OnClick="CreateWorkspace">Create workspace</MudButton>
         <MudButton OnClick="ExecuteScript">Execute script</MudButton>
     </MudButtonGroup>
 
@@ -25,6 +25,10 @@
                     <MudListItem OnClick="args => SetScript(workspace)" Text="@workspace.Name" />
                 }
             </MudList>
+        }
+        else
+        {
+            @("No workspaces found!")
         }
     </div>
     
@@ -42,13 +46,16 @@
         </MudText>
     </div>
 
-    <div class="mb-4">
-        <MudText Typo="Typo.h5">Errors</MudText>
-        <MudText Typo="Typo.body1">@(string.IsNullOrEmpty(_errors) ? "No errors" : _errors)</MudText>
-    </div>
-</article>
+    @if (!string.IsNullOrEmpty(_errors))
+    {
+        <div>
+            <MudText Typo="Typo.h5">Errors</MudText>
+            <MudText Typo="Typo.body1">@(new MarkupString(_errors))</MudText>
+        </div>
+    }
+</div>
 
-    @code {
+@code {
     private IEnumerable<Workspace> _workspaces = null;
 
     private string _errors;
@@ -61,12 +68,12 @@
 
     private async Task Refresh()
     {
-        var result = await WorkspaceStore.GetAllAsync(true);
+        var result = await WorkspaceStore.GetAllAsync();
         _workspaces = result.Content;
         _script = null;
     }
 
-    private async Task CreateAndSaveWorkspace()
+    private async Task CreateWorkspace()
     {
         var workspace = new Workspace()
         {
@@ -83,7 +90,7 @@
             Enabled = true,
         });
 
-        await WorkspaceStore.AddOrUpdateAsync(workspace); // todo: ajouter les entités au store
+        await WorkspaceStore.AddOrUpdateAsync(workspace);
         await Refresh();
     }
 
@@ -98,7 +105,7 @@
         {
             var powershell = PowerShell.Create().AddScript(_script);
             var scriptResult = powershell.Invoke();
-            _errors = string.Join(" | ", powershell.Streams.Error.Select(x => x.ToString()));
+            _errors = string.Join("<br />", powershell.Streams.Error.Select(x => x.ToString()));
         }
     }
 }

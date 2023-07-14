@@ -4,9 +4,9 @@ namespace FastWorkspace.Domain.Services;
 
 public interface IWorkspaceStore
 {
-    public Task<ResultWithContent<IEnumerable<Workspace>>> GetAllAsync(bool forceRefresh = false);
+    public Task<ResultWithContent<IEnumerable<Workspace>>> GetAllAsync();
 
-    public Task<ResultWithContent<Workspace>> GetByIdAsync(Guid id, bool forceRefresh = false);
+    public Task<ResultWithContent<Workspace>> GetByIdAsync(Guid id);
 
     public Task<Result> AddOrUpdateAsync(Workspace workspace);
 
