@@ -8,4 +8,6 @@ public class ScriptJob : BaseJob
     {
         return Script;
     }
+
+    public override string GetDefaultName() => "Execute Custom PowerShell Script";
 }

@@ -9,4 +9,6 @@ public class BrowserTabsJob : BaseJob
     {
         return "# Sorry this feature is not available yet!";
     }
+
+    public override string GetDefaultName() => "Open Tabs In Browser";
 }

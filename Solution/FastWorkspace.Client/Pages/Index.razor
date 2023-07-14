@@ -120,14 +120,12 @@
 
         workspace.AddJob(new TerminalJob()
         {
-            Name = "Terminal",
             TerminalTab = new TerminalTab(),
             Enabled = true,
         });
 
         workspace.AddJob(new TerminalTabsJob()
         {
-            Name = "Project commands",
             Description = "Open multiple terminal tabs let's gooo!!!!",
             TerminalTabs = new List<TerminalTab>()
             {
@@ -149,7 +147,6 @@
 
         workspace.AddJob(new VSCodeJob()
         {
-            Name = "Open VS Code",
             DirectoryPath = "C:\\Users\\aboua\\Git\\fast-workspace",
             Enabled = true,
         });

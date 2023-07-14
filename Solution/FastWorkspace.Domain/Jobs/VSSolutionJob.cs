@@ -15,4 +15,6 @@ public class VSSolutionJob : BaseJob
 
         return string.Empty;
     }
+
+    public override string GetDefaultName() => "Open Visual Studio Solution";
 }

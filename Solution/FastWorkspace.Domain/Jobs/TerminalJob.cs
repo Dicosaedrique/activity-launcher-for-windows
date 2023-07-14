@@ -17,4 +17,6 @@ public class TerminalJob : BaseJob
 
         return builder.ToString();
     }
+
+    public override string GetDefaultName() => "Open Windows Terminal";
 }

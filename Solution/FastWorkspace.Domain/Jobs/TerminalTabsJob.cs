@@ -27,4 +27,6 @@ public class TerminalTabsJob : BaseJob
 
         return builder.ToString();
     }
+
+    public override string GetDefaultName() => "Open Windows Terminal Tabs";
 }

@@ -25,4 +25,6 @@ public class ProgramFileJob : BaseJob
 
         return builder.ToString();
     }
+
+    public override string GetDefaultName() => "Open Program File";
 }

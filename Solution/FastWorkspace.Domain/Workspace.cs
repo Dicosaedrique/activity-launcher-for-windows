@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 
 namespace FastWorkspace.Domain;
 
-// todo: manage null and whitespace for names and description
 [JsonConverter(typeof(WorkspaceConverter))]
 public class Workspace : IScriptable
 {
@@ -79,14 +78,22 @@ public class Workspace : IScriptable
 
     private string GetScriptHeader()
     {
-        const string template = "##################################################################################################\n# Workspace: {0}\n# Description: {1}\n#\n# Script generated with love by Fast Workspace <3\n##################################################################################################\n\n#region JOBS\n\n";
-        return string.Format(template, Name, Description);
+        const string template = "##################################################################################################\n# Workspace: {0}\n#\n# Script generated with love by Fast Workspace <3\n##################################################################################################\n\n#region JOBS\n\n";
+        const string templateWithDescription = "##################################################################################################\n# Workspace: {0}\n# Description: {1}\n#\n# Script generated with love by Fast Workspace <3\n##################################################################################################\n\n#region JOBS\n\n";
+
+        return string.IsNullOrWhiteSpace(Description)
+            ? string.Format(template, Name)
+            : string.Format(templateWithDescription, Name, Description);
     }
 
     private string GetJobScript(IJob job)
     {
-        const string template = "###################################\n# Job {0} - {1}\n# Description: {2}\n\n{3}\n\n\n";
-        return string.Format(template, job.Sequence + 1, job.Name, job.Description, job.GetScript());
+        const string template = "###################################\n# Job {0} - {1}\n\n{2}\n\n\n";
+        const string templateWithDescription = "###################################\n# Job {0} - {1}\n# Description: {2}\n\n{3}\n\n\n";
+
+        return string.IsNullOrWhiteSpace(job.Description)
+            ? string.Format(template, job.Sequence + 1, job.DisplayName, job.GetScript())
+            : string.Format(templateWithDescription, job.Sequence + 1, job.DisplayName, job.Description, job.GetScript());
     }
 
     private string GetScriptFooter()

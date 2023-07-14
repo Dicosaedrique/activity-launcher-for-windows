@@ -15,4 +15,6 @@ public class ExplorerFolderJob : BaseJob
 
         return string.Empty;
     }
+
+    public override string GetDefaultName() => "Open Explorer Folder";
 }

@@ -13,4 +13,6 @@ public class ProgramJob : BaseJob
 
         return string.Empty;
     }
+
+    public override string GetDefaultName() => "Open Program";
 }

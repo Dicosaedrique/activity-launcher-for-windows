@@ -1,10 +1,14 @@
 ﻿using FastWorkspace.Domain.Interfaces;
+using Newtonsoft.Json;
 
 namespace FastWorkspace.Domain.Jobs;
 
 public abstract class BaseJob : IJob
 {
-    public string Name { get; set; } = string.Empty;
+    [JsonIgnore]
+    public string DisplayName => string.IsNullOrWhiteSpace(Name) ? GetDefaultName() : Name;
+
+    public string? Name { get; set; }
 
     public string? Description { get; set; }
 
@@ -13,4 +17,6 @@ public abstract class BaseJob : IJob
     public bool Enabled { get; set; } = true;
 
     public abstract string GetScript();
+
+    public abstract string GetDefaultName();
 }
