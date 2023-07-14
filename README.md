@@ -32,8 +32,8 @@ Workspaces will be saved as JSON files and will be loaded when launching the app
 - [x] Add Mud Blazor to the project
 
 ### Minimum Viable Product
-- [ ] Start a hard-coded workspace and make it work
-- [ ] Persist and load the workspaces
+- [x] Start a hard-coded workspace and make it work
+- [x] Persist and load the workspaces
 - [ ] Allow the user to create and edit workspaces in the UI
 - [ ] Allow the user to set up the workspace jobs execution at startup
 - [ ] Improve the setup of workspace with helpers in the UX
