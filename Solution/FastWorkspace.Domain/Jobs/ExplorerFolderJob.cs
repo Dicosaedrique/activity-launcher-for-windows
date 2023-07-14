@@ -1,6 +1,4 @@
-﻿using FastWorkspace.Domain.Utils;
-
-namespace FastWorkspace.Domain.Jobs;
+﻿namespace FastWorkspace.Domain.Jobs;
 
 public class ExplorerFolderJob : BaseJob
 {
@@ -8,12 +6,12 @@ public class ExplorerFolderJob : BaseJob
 
     public override string GetScript()
     {
-        if (PathHelper.IsValidPath(DirectoryPath))
+        if (!string.IsNullOrWhiteSpace(DirectoryPath))
         {
-            return $"Start-Process -FilePath {PathHelper.SanatizePath(DirectoryPath)}";
+            return $"Start-Process -FilePath {DirectoryPath}";
         }
 
-        return string.Empty;
+        return "# Invalid directory path, you need to specify one!";
     }
 
     public override string GetDefaultName() => "Open Explorer Folder";

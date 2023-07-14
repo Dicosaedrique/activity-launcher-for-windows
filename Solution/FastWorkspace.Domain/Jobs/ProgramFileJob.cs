@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using FastWorkspace.Domain.Utils;
 
 namespace FastWorkspace.Domain.Jobs;
 
@@ -13,14 +12,18 @@ public class ProgramFileJob : BaseJob
     {
         var builder = new StringBuilder();
 
-        if (PathHelper.IsValidPath(ProgramFilePath))
+        if (!string.IsNullOrWhiteSpace(ProgramFilePath))
         {
-            builder.Append($"Start-Process -FilePath \"{PathHelper.SanatizePath(ProgramFilePath)}\"");
-        }
+            builder.Append($"Start-Process -FilePath \"{ProgramFilePath}\"");
 
-        if (!string.IsNullOrWhiteSpace(ArgumentList))
+            if (!string.IsNullOrWhiteSpace(ArgumentList))
+            {
+                builder.Append($" -ArgumentList \"{ArgumentList}\"");
+            }
+        }
+        else
         {
-            builder.Append($" -ArgumentList \"{ArgumentList}\"");
+            builder.Append("# Invalid program file path, you need to specify one!");
         }
 
         return builder.ToString();

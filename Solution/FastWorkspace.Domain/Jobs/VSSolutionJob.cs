@@ -1,6 +1,4 @@
-﻿using FastWorkspace.Domain.Utils;
-
-namespace FastWorkspace.Domain.Jobs;
+﻿namespace FastWorkspace.Domain.Jobs;
 
 public class VSSolutionJob : BaseJob
 {
@@ -8,12 +6,12 @@ public class VSSolutionJob : BaseJob
 
     public override string GetScript()
     {
-        if (PathHelper.IsValidPath(SolutionFilePath))
+        if (!string.IsNullOrWhiteSpace(SolutionFilePath))
         {
             return $"Start-Process -FilePath \"{SolutionFilePath}\"";
         }
 
-        return string.Empty;
+        return "# Invalid solution file path, you need to specify one!";
     }
 
     public override string GetDefaultName() => "Open Visual Studio Solution";
