@@ -21,6 +21,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<IFileStorage, DataFileStore>();
         builder.Services.AddSingleton<IWorkspaceStore, WorkspaceStore>();
 
+        Preferences.Remove("AppDataDirectoryPathConfigKey"); // temp
+
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();
         builder.Logging.AddDebug();

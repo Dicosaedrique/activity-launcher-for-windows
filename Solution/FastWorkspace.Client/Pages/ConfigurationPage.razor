@@ -8,36 +8,76 @@
 
 @attribute [Route(Routes.ConfigurationPage)]
 
-<main class="ma-16">
-    <MudText Typo="Typo.h3" Align="Align.Center" Class="mb-8">Welcome to Fast Workspace!</MudText>
+<main class="ma-10" style="height: 100%;">
+    <MudText Typo="Typo.h4" Class="mb-2">Configuration</MudText>
 
-    <MudText Typo="Typo.subtitle1">To start using the application you need to choose a directory where to save the application data.</MudText>
-
-    <FolderPickerInput FolderPath="@(AppConfiguration.GetFileStorageDirectoryPath())" FolderPathChanged="OnFileStorageDirectoryPathChanged" />
-
-    @if (!string.IsNullOrWhiteSpace(_error))
+    @if (_firstLaunch)
     {
-        <div class="mt-4">
-            <MudText Typo="Typo.h5">Errors</MudText>
-            <MudText Typo="Typo.body1" Class="red-text">@(new MarkupString(_error))</MudText>
-        </div>
+        @* todo: add a better instruction *@
+        <MudText Typo="Typo.subtitle1" Class="mb-4">Welcome to Fast Workspace! Please configure your app before using it.</MudText>
     }
+
+    <MudStack Spacing="4">
+        <div>
+            <MudText Typo="Typo.h6">Language</MudText>
+            <MudRadioGroup @bind-SelectedOption="_language">
+                <MudRadio Option="Language.English" Color="Color.Primary">English</MudRadio>
+                <MudRadio Option="Language.French" Color="Color.Primary">Français</MudRadio>
+            </MudRadioGroup>
+        </div>
+        <div>
+            <MudText Typo="Typo.h6">Theme</MudText>
+            <MudRadioGroup @bind-SelectedOption="_theme">
+                <MudRadio Option="Theme.Light" Color="Color.Primary">Light</MudRadio>
+                <MudRadio Option="Theme.Dark" Color="Color.Primary">Dark</MudRadio>
+            </MudRadioGroup>
+        </div>
+        <div>
+            <MudText Typo="Typo.h6">Application Data Folder (required)</MudText>
+            <MudText Typo="Typo.body1" Class="mb-2">The application will use the provided folder to save the data (workspaces, ...)</MudText>
+            <FolderPickerInput Label="Select a folder" @bind-FolderPath="_fileStorageDirectoryPath" />
+        </div>
+        <div style="flex: 1;"></div>
+        <div>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="string.IsNullOrWhiteSpace(_fileStorageDirectoryPath)" OnClick="OnSubmit">Save</MudButton>
+            <ErrorText Error="@_error" />
+        </div>
+    </MudStack>
 </main>
 
 @code {
+    private bool _firstLaunch;
+    private Language _language;
+    private Theme _theme;
+    private string? _fileStorageDirectoryPath;
+
     private string? _error;
 
-    private void OnFileStorageDirectoryPathChanged(string? value)
+    protected override void OnInitialized()
     {
-        if (AppConfiguration.SetFileStorageDirectoryPath(value))
+        _language = AppConfiguration.GetLanguage();
+        _theme = AppConfiguration.GetTheme();
+        _fileStorageDirectoryPath = AppConfiguration.GetFileStorageDirectoryPath();
+        _firstLaunch = _fileStorageDirectoryPath == null;
+    }
+
+    private void OnSubmit()
+    {
+        if (string.IsNullOrWhiteSpace(_fileStorageDirectoryPath))
+        {
+            _error = "Please choose a folder for this applications data!";
+        }
+
+        if (AppConfiguration.SetFileStorageDirectoryPath(_fileStorageDirectoryPath))
         {
             WorkspaceStore.SetupStore();
-            _error = null;
+            AppConfiguration.SetLanguage(_language);
+            AppConfiguration.SetTheme(_theme);
             Navigation.NavigateTo(Routes.HomePage, replace: true);
         }
         else
         {
-            _error = "You must provide an existing path to setup storage for the application!";
+            _error = "Please choose an existing folder for this applications data!";
         }
     }
 }

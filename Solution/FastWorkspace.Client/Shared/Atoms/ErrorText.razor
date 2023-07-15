@@ -1,0 +1,9 @@
+﻿@if (!string.IsNullOrWhiteSpace(Error))
+{
+    <MudText Typo="Typo.body2" Class="red-text"><p>@(new MarkupString(Error))</p></MudText>
+}
+
+@code {
+    [Parameter]
+    public string? Error { get; set; }
+}
