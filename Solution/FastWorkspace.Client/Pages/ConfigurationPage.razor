@@ -8,36 +8,83 @@
 
 @attribute [Route(Routes.ConfigurationPage)]
 
-<main class="ma-16">
-    <MudText Typo="Typo.h3" Align="Align.Center" Class="mb-8">Welcome to Fast Workspace!</MudText>
+<h1>Configuration</h1>
 
-    <MudText Typo="Typo.subtitle1">To start using the application you need to choose a directory where to save the application data.</MudText>
+@if (_firstLaunch)
+{
+    @* todo: add a better instruction *@
+    <h3>Welcome to Fast Workspace! Please configure your app before using it.</h3>
+}
 
-    <FolderPickerInput FolderPath="@(AppConfiguration.GetFileStorageDirectoryPath())" FolderPathChanged="OnFileStorageDirectoryPathChanged" />
+<div>
+    <h5>
+        <FluentIcon Name="@FluentIcons.LocalLanguage" Size="@IconSize.Size24" Variant="@IconVariant.Filled" Color="@Color.Neutral" /> Language
+    </h5>
+    <FluentRadioGroup TValue="Language" Name="language" @bind-Value="_language">
+        <FluentRadio Value="Language.English">English</FluentRadio>
+        <FluentRadio Value="Language.French">Français</FluentRadio>
+    </FluentRadioGroup>
+</div>
 
-    @if (!string.IsNullOrWhiteSpace(_error))
+<div>
+    <h5>
+        <FluentIcon Name="@FluentIcons.DarkTheme" Size="@IconSize.Size24" Variant="@IconVariant.Filled" Color="@Color.Neutral" /> Theme
+    </h5>
+    <FluentRadioGroup TValue="Theme" Name="language" @bind-Value="_theme">
+        <FluentRadio Value="Theme.Light">Light</FluentRadio>
+        <FluentRadio Value="Theme.Dark">Dark</FluentRadio>
+    </FluentRadioGroup>
+</div>
+
+<div>
+    <h5>
+        <FluentIcon Name="@FluentIcons.Folder" Size="@IconSize.Size24" Variant="@IconVariant.Filled" Color="@Color.Neutral" /> Application Data Folder (required)
+    </h5>
+    <p>The application will use the provided folder to save the data (workspaces, ...)</p>
+    <FolderPickerInput Label="Select a folder" @bind-FolderPath="_fileStorageDirectoryPath" />
+</div>
+
+<div>
+    <FluentButton Appearance="Appearance.Accent" Disabled="string.IsNullOrWhiteSpace(_fileStorageDirectoryPath)" @onclick="OnSubmit">Save</FluentButton>
+    @if(_error != null)
     {
-        <div class="mt-4">
-            <MudText Typo="Typo.h5">Errors</MudText>
-            <MudText Typo="Typo.body1" Class="red-text">@(new MarkupString(_error))</MudText>
-        </div>
+        <p>@_error</p>
     }
-</main>
+</div>
 
 @code {
+    private bool _firstLaunch;
+    private Language _language;
+    private Theme _theme;
+    private string? _fileStorageDirectoryPath;
+
     private string? _error;
 
-    private void OnFileStorageDirectoryPathChanged(string? value)
+    protected override void OnInitialized()
     {
-        if (AppConfiguration.SetFileStorageDirectoryPath(value))
+        _language = AppConfiguration.GetLanguage();
+        _theme = AppConfiguration.GetTheme();
+        _fileStorageDirectoryPath = AppConfiguration.GetFileStorageDirectoryPath();
+        _firstLaunch = _fileStorageDirectoryPath == null;
+    }
+
+    private void OnSubmit()
+    {
+        if (string.IsNullOrWhiteSpace(_fileStorageDirectoryPath))
+        {
+            _error = "Please choose a folder for this applications data!";
+        }
+
+        if (AppConfiguration.SetFileStorageDirectoryPath(_fileStorageDirectoryPath))
         {
             WorkspaceStore.SetupStore();
-            _error = null;
+            AppConfiguration.SetLanguage(_language);
+            AppConfiguration.SetTheme(_theme);
             Navigation.NavigateTo(Routes.HomePage, replace: true);
         }
         else
         {
-            _error = "You must provide an existing path to setup storage for the application!";
+            _error = "Please choose an existing folder for this applications data!";
         }
     }
 }

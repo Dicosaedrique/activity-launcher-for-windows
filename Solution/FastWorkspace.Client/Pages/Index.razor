@@ -2,11 +2,15 @@
 
 @attribute [Route(Routes.Index)]
 
-@if (AppConfiguration.IsAppReady())
+@if (AppReady)
 {
     <Redirect Url="@Routes.HomePage" />
 }
 else
 {
     <Redirect Url="@Routes.ConfigurationPage" />
+}
+
+@code {
+    private bool AppReady => AppConfiguration.GetFileStorageDirectoryPath() != null;
 }
