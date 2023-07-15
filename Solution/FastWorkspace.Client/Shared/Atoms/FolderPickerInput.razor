@@ -1,11 +1,11 @@
 ﻿@using CommunityToolkit.Maui.Storage;
 
 <div>
-    <MudStack Row>
-        <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Folder" Color="Color.Primary">@Label</MudButton>
+    <MudStack Row AlignItems="AlignItems.Center" Class="mb-1">
+        <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Folder" Color="Color.Info" Size="Size.Small" OnClick="PickFolder">@Label</MudButton>
         @if (!string.IsNullOrWhiteSpace(FolderPath))
         {
-            <code>@FolderPath</code>
+            <code style="font-size: 1rem;">@FolderPath</code>
         }
     </MudStack>
     <ErrorText Error="@_error" />
@@ -39,11 +39,6 @@
             {
                 _error = "You must choose a valid existing folder.";
             }
-        }
-        else
-        {
-            _error = "An error occured while trying to choose a folder.";
-            Console.WriteLine(result.Exception);
         }
     }
 }

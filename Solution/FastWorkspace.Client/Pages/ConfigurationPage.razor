@@ -8,7 +8,7 @@
 
 @attribute [Route(Routes.ConfigurationPage)]
 
-<main class="ma-10" style="height: 100%;">
+<main class="ma-16" style="height: 100%;">
     <MudText Typo="Typo.h4" Class="mb-2">Configuration</MudText>
 
     @if (_firstLaunch)
@@ -37,8 +37,7 @@
             <MudText Typo="Typo.body1" Class="mb-2">The application will use the provided folder to save the data (workspaces, ...)</MudText>
             <FolderPickerInput Label="Select a folder" @bind-FolderPath="_fileStorageDirectoryPath" />
         </div>
-        <div style="flex: 1;"></div>
-        <div>
+        <div class="mt-16">
             <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="string.IsNullOrWhiteSpace(_fileStorageDirectoryPath)" OnClick="OnSubmit">Save</MudButton>
             <ErrorText Error="@_error" />
         </div>
