@@ -1,5 +1,7 @@
 ﻿@using CommunityToolkit.Maui.Storage;
 
+@inject IStringLocalizer<AppLocales> Localize
+
 <div>
     <MudStack Row AlignItems="AlignItems.Center" Class="mb-1">
         <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Folder" Color="Color.Info" Size="Size.Small" OnClick="PickFolder">@Label</MudButton>
@@ -37,7 +39,7 @@
             }
             else
             {
-                _error = "You must choose a valid existing folder.";
+                _error = Localize["Components.FolderPickerInput.Error"];
             }
         }
     }

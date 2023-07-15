@@ -1,4 +1,5 @@
-﻿using FastWorkspace.Domain.Enums;
+﻿using FastWorkspace.Domain.Common.Localization;
+using FastWorkspace.Domain.Enums;
 using FastWorkspace.Domain.Services;
 
 namespace FastWorkspace.Client.Common.Services;
@@ -34,7 +35,7 @@ public class AppConfiguration : IAppConfiguration
             return (Language)intValue;
         }
 
-        return Language.English;
+        return CultureNames.DefaultLanguage;
     }
 
     public void SetLanguage(Language language)

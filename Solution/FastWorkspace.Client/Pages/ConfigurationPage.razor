@@ -5,40 +5,40 @@
 @inject IWorkspaceStore WorkspaceStore
 @inject IAppConfiguration AppConfiguration
 @inject NavigationManager Navigation
+@inject IStringLocalizer<AppLocales> Localize
 
 @attribute [Route(Routes.ConfigurationPage)]
 
 <main class="ma-16" style="height: 100%;">
-    <MudText Typo="Typo.h4" Class="mb-2">Configuration</MudText>
+    <MudText Typo="Typo.h4" Class="mb-2">@Localize["Configuration.Title"]</MudText>
 
     @if (_firstLaunch)
     {
-        @* todo: add a better instruction *@
-        <MudText Typo="Typo.subtitle1" Class="mb-4">Welcome to Fast Workspace! Please configure your app before using it.</MudText>
+        <MudText Typo="Typo.subtitle1" Class="mb-4">@Localize["Configuration.WelcomeMessage"]</MudText>
     }
 
     <MudStack Spacing="4">
         <div>
-            <MudText Typo="Typo.h6">Language</MudText>
+            <MudText Typo="Typo.h6">@Localize["Configuration.Language.Label"]</MudText>
             <MudRadioGroup @bind-SelectedOption="_language">
-                <MudRadio Option="Language.English" Color="Color.Primary">English</MudRadio>
-                <MudRadio Option="Language.French" Color="Color.Primary">Français</MudRadio>
+                <MudRadio Option="Language.English" Color="Color.Primary">@Localize["Configuration.Language.English"]</MudRadio>
+                <MudRadio Option="Language.French" Color="Color.Primary">@Localize["Configuration.Language.French"]</MudRadio>
             </MudRadioGroup>
         </div>
         <div>
-            <MudText Typo="Typo.h6">Theme</MudText>
+            <MudText Typo="Typo.h6">@Localize["Configuration.Theme.Label"]</MudText>
             <MudRadioGroup @bind-SelectedOption="_theme">
-                <MudRadio Option="Theme.Light" Color="Color.Primary">Light</MudRadio>
-                <MudRadio Option="Theme.Dark" Color="Color.Primary">Dark</MudRadio>
+                <MudRadio Option="Theme.Light" Color="Color.Primary">@Localize["Configuration.Theme.Light"]</MudRadio>
+                <MudRadio Option="Theme.Dark" Color="Color.Primary">@Localize["Configuration.Theme.Dark"]</MudRadio>
             </MudRadioGroup>
         </div>
         <div>
-            <MudText Typo="Typo.h6">Application Data Folder (required)</MudText>
-            <MudText Typo="Typo.body1" Class="mb-2">The application will use the provided folder to save the data (workspaces, ...)</MudText>
-            <FolderPickerInput Label="Select a folder" @bind-FolderPath="_fileStorageDirectoryPath" />
+            <MudText Typo="Typo.h6">@Localize["Configuration.FileStorage.Label"]</MudText>
+            <MudText Typo="Typo.body1" Class="mb-2">@Localize["Configuration.FileStorage.Help"]</MudText>
+            <FolderPickerInput Label="@Localize["Configuration.FileStorage.FolderPicker.Label"]" @bind-FolderPath="_fileStorageDirectoryPath" />
         </div>
         <div class="mt-16">
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="string.IsNullOrWhiteSpace(_fileStorageDirectoryPath)" OnClick="OnSubmit">Save</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="string.IsNullOrWhiteSpace(_fileStorageDirectoryPath)" OnClick="OnSubmit">@Localize["Configuration.Save.Button"]</MudButton>
             <ErrorText Error="@_error" />
         </div>
     </MudStack>
@@ -64,7 +64,7 @@
     {
         if (string.IsNullOrWhiteSpace(_fileStorageDirectoryPath))
         {
-            _error = "Please choose a folder for this applications data!";
+            _error = Localize["Configuration.Errors.EmptyFileStorage"];
         }
 
         if (AppConfiguration.SetFileStorageDirectoryPath(_fileStorageDirectoryPath))
@@ -76,7 +76,7 @@
         }
         else
         {
-            _error = "Please choose an existing folder for this applications data!";
+            _error = Localize["Configuration.Errors.InvalidFileStorage"];
         }
     }
 }
