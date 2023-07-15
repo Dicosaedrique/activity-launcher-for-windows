@@ -15,4 +15,6 @@ public interface IAppConfiguration
     public Theme GetTheme();
 
     public void SetTheme(Theme theme);
+
+    public void Reset();
 }

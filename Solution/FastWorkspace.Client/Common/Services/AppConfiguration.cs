@@ -1,4 +1,5 @@
-﻿using FastWorkspace.Domain.Common.Localization;
+﻿using System.Globalization;
+using FastWorkspace.Domain.Common.Localization;
 using FastWorkspace.Domain.Enums;
 using FastWorkspace.Domain.Services;
 
@@ -41,6 +42,10 @@ public class AppConfiguration : IAppConfiguration
     public void SetLanguage(Language language)
     {
         Preferences.Set(LanguageConfigKey, ((int)language).ToString());
+
+        CultureInfo.CurrentCulture = language.GetCulture();
+        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
+        CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CurrentCulture;
     }
 
     public Theme GetTheme()
@@ -58,5 +63,12 @@ public class AppConfiguration : IAppConfiguration
     public void SetTheme(Theme theme)
     {
         Preferences.Set(ThemeConfigKey, ((int)theme).ToString());
+    }
+
+    public void Reset()
+    {
+        Preferences.Remove(AppDataDirectoryPathConfigKey);
+        Preferences.Remove(LanguageConfigKey);
+        Preferences.Remove(ThemeConfigKey);
     }
 }

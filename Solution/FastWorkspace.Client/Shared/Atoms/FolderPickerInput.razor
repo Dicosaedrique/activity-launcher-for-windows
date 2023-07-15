@@ -4,7 +4,7 @@
 
 <div>
     <MudStack Row AlignItems="AlignItems.Center" Class="mb-1">
-        <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Folder" Color="Color.Info" Size="Size.Small" OnClick="PickFolder">@Label</MudButton>
+        <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Folder" Color="Color.Primary" Size="Size.Small" OnClick="PickFolder">@Label</MudButton>
         @if (!string.IsNullOrWhiteSpace(FolderPath))
         {
             <code style="font-size: 1rem;">@FolderPath</code>

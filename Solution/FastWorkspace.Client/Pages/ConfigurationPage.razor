@@ -1,6 +1,7 @@
-﻿@using System.Management.Automation;
-@using FastWorkspace.Domain.Common;
+﻿@using FastWorkspace.Domain.Common;
+@using FastWorkspace.Domain.Common.Localization;
 @using FastWorkspace.Domain.Jobs;
+@using System.Globalization;
 
 @inject IWorkspaceStore WorkspaceStore
 @inject IAppConfiguration AppConfiguration
@@ -72,7 +73,7 @@
             WorkspaceStore.SetupStore();
             AppConfiguration.SetLanguage(_language);
             AppConfiguration.SetTheme(_theme);
-            Navigation.NavigateTo(Routes.HomePage, replace: true);
+            Navigation.NavigateTo(Routes.HomePage, forceLoad: true, replace: true);
         }
         else
         {

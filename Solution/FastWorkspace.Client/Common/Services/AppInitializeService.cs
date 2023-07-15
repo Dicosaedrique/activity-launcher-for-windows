@@ -14,14 +14,14 @@ public class AppInitializeService : IMauiInitializeService
         _appConfiguration = services.GetRequiredService<IAppConfiguration>();
         _workspaceStore = services.GetRequiredService<IWorkspaceStore>();
 
+        _appConfiguration.Reset();
+
         SetupStores();
         SetupAppLanguage();
     }
 
     private void SetupStores()
     {
-        _appConfiguration.SetFileStorageDirectoryPath(null); // temp (to remove path)
-
         if (_appConfiguration.GetFileStorageDirectoryPath() != null)
         {
             _workspaceStore.SetupStore();
@@ -33,7 +33,6 @@ public class AppInitializeService : IMauiInitializeService
         var language = _appConfiguration.GetLanguage();
 
         CultureInfo.CurrentCulture = language.GetCulture();
-
         CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
         CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CurrentCulture;
     }
