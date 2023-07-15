@@ -1,20 +1,17 @@
 ﻿@using CommunityToolkit.Maui.Storage;
 
-<div style="display: flex;">
-    <FluentButton>
-        @Label
-        <FluentIcon Name="@FluentIcons.Folder" Size="@IconSize.Size16" Slot="start" Color="@Color.Accent" />
-    </FluentButton>
-    @if (!string.IsNullOrWhiteSpace(FolderPath))
-    {
+<MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Folder" OnClick="PickFolder">
+    Choose a folder
+</MudButton>
+
+@if (!string.IsNullOrWhiteSpace(FolderPath))
+{
+    <MudListItem Icon="@Icons.Material.Filled.Folder">
         <code>@FolderPath</code>
-    }
-</div>
+    </MudListItem>
+}
 
 @code {
-    [Parameter]
-    public string Label { get; set; } = string.Empty;
-
     [Parameter]
     public string? FolderPath { get; set; }
 
@@ -27,22 +24,14 @@
     {
         var result = await FolderPicker.PickAsync(CancellationToken.None);
 
-        if (result.IsSuccessful)
+        if (result.IsSuccessful && !string.IsNullOrWhiteSpace(result.Folder.Path))
         {
-            if (!string.IsNullOrWhiteSpace(result.Folder.Path) && Directory.Exists(result.Folder.Path))
-            {
-                _error = null;
-                FolderPath = result.Folder.Path;
-                await FolderPathChanged.InvokeAsync(FolderPath);
-            }
-            else
-            {
-                _error = "You must choose a valid existing folder.";
-            }
+            _error = null;
+            FolderPath = result.Folder.Path;
+            await FolderPathChanged.InvokeAsync(FolderPath);
         }
         else
         {
-            _error = "An error occured while trying to choose a folder.";
             Console.WriteLine(result.Exception);
         }
     }

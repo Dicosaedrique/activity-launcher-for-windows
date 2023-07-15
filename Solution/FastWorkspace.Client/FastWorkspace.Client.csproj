@@ -21,11 +21,6 @@
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
     </PropertyGroup>
 
-    <PropertyGroup>
-        <PublishFluentIconAssets>true</PublishFluentIconAssets>
-        <!-- todo: add only specific icon sizes and variant (https://www.fluentui-blazor.net/ProjectSetup) -->
-    </PropertyGroup>
-
     <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -47,8 +42,8 @@
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-        <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="2.4.1" />
         <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.3.5" />
+        <PackageReference Include="MudBlazor" Version="6.7.0" />
     </ItemGroup>
 
     <ItemGroup>
