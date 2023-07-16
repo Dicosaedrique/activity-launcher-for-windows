@@ -1,0 +1,60 @@
+﻿@using FastWorkspace.Domain.Common;
+
+@attribute [Route(Routes.DashboardPage)]
+
+@inject IWorkspaceStore WorkspaceStore
+@inject IStringLocalizer<AppLocales> Localize
+
+<MudContainer MaxWidth="MaxWidth.Large">
+    <MudStack Row Justify="Justify.SpaceBetween" Class="mb-14">
+        <div>
+            <MudText Typo="Typo.h4" Class="mb-4">@Localize["Dashboard.Title"]</MudText>
+            <MudText Typo="Typo.subtitle1">@Localize["Dashboard.Description"]</MudText>
+        </div>
+        <div>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="AddWorkspace">@Localize["Dashboard.AddWorkspaceButton"]</MudButton>
+        </div>
+    </MudStack>
+
+    @if (_workspaces != null)
+    {
+        <div Class="d-flex flex-wrap gap-4 mx-n2">
+            @foreach (var workspace in OrderedWorkspaces)
+            {
+                <WorkspaceCard @key="workspace.Id" Workspace="workspace" />
+            }
+        </div>
+    }
+</MudContainer>
+
+@code {
+    private IEnumerable<Workspace>? _workspaces;
+
+    private IEnumerable<Workspace> OrderedWorkspaces => _workspaces?.OrderBy(x => x.LastModifiedDate) ?? Enumerable.Empty<Workspace>();
+
+    private string? _error;
+    private string? _script;
+
+    protected override Task OnInitializedAsync()
+    {
+        return Refresh();
+    }
+
+    private async Task Refresh()
+    {
+        var result = await WorkspaceStore.GetAllAsync();
+        _workspaces = result.Content;
+    }
+
+    private async Task AddWorkspace()
+    {
+        // todo: ouvrir le modal de création de workspace
+        var workspace = Demo.CreateFakeWorkSpace($"Demo {_workspaces!.Count() + 1}");
+        await WorkspaceStore.AddOrUpdateAsync(workspace);
+        await Refresh();
+    }
+}
+
+
+
+    

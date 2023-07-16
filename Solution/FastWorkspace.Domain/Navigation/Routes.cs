@@ -4,7 +4,9 @@ public static class Routes
 {
     public const string Index = "/";
 
+    public const string DashboardPage = "/dashboard";
+
     public const string ConfigurationPage = "/config";
 
-    public const string HomePage = "/home";
+    public const string DemoPage = "/demo"; // todo: temp
 }

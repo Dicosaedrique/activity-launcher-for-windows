@@ -14,8 +14,6 @@ public class Workspace : IScriptable
 
     public string? Description { get; set; }
 
-    public bool Enabled { get; set; } = true;
-
     public DateTime CreationDate { get; init; } = DateTime.Now;
 
     public DateTime LastModifiedDate { get; set; } = DateTime.Now;
@@ -28,12 +26,11 @@ public class Workspace : IScriptable
 
     public Workspace() { }
 
-    public Workspace(Guid id, string name, string? description, bool enabled, DateTime creationDate, DateTime lastModifiedDate, IEnumerable<IJob> jobs)
+    public Workspace(Guid id, string name, string? description, DateTime creationDate, DateTime lastModifiedDate, IEnumerable<IJob> jobs)
     {
         Id = id;
         Name = name;
         Description = description;
-        Enabled = enabled;
         CreationDate = creationDate;
         LastModifiedDate = lastModifiedDate;
         _jobs = jobs.OrderBy(x => x.Sequence).ToList();

@@ -1,0 +1,41 @@
+﻿<MudCard Elevation="_elevation" onclick="@OnEdit" onmouseover="@OnMouseEnter" onmouseout="@OnMouseLeave">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">@Workspace.Name</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Size="Size.Large" Color="Color.Success" />
+        </CardHeaderActions>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Class="mb-2">@Workspace.Description</MudText>
+    </MudCardContent>
+    <MudCardActions>
+        <MudText Typo="Typo.body2" Class="ml-2" Style="font-size: 0.7rem;">@Workspace.LastModifiedDate.Humanize()</MudText>
+        <div style="flex: 1;" />
+        <MudIconButton Icon="@Icons.Material.Filled.Edit" aria-label="edit"></MudIconButton>
+        <MudIconButton Icon="@Icons.Material.Filled.Delete" aria-label="delete"></MudIconButton>
+    </MudCardActions>
+</MudCard>
+
+@code {
+    [Parameter]
+    public Workspace Workspace { get; set; } = null!;
+
+    private int _elevation = 2;
+
+    public void OnEdit()
+    {
+        Workspace.Name += " (edit)";
+    }
+
+    public void OnMouseEnter()
+    {
+        _elevation = 12;
+    }
+
+    public void OnMouseLeave()
+    {
+        _elevation = 2;
+    }
+}

@@ -4,9 +4,9 @@
 
 @inject IWorkspaceStore WorkspaceStore
 
-@attribute [Route(Routes.HomePage)]
+@attribute [Route(Routes.DemoPage)]
 
-<article>
+<MudContainer MaxWidth="MaxWidth.Medium">
     <MudText Typo="Typo.h3" Align="Align.Center" Class="mb-8">Fast Workspace</MudText>
 
     <div>
@@ -57,7 +57,7 @@
             </div>
         }
     </div>
-</article>
+</MudContainer>
 
 @code {
     private IEnumerable<Workspace>? _workspaces;
@@ -78,11 +78,33 @@
 
     private async Task CreateWorkspace()
     {
+        var workspace = CreateFakeWorkSpace($"Demo {_workspaces!.Count() + 1}");
+
+        await WorkspaceStore.AddOrUpdateAsync(workspace);
+        await Refresh();
+    }
+
+    private void SetScript(Workspace workspace)
+    {
+        _script = workspace.GetScript();
+    }
+
+    private void ExecuteScript()
+    {
+        if(!string.IsNullOrWhiteSpace(_script))
+        {
+            var powershell = PowerShell.Create().AddScript(_script);
+            var scriptResult = powershell.Invoke();
+            _error = string.Join("<br />", powershell.Streams.Error.Select(x => x.ToString()));
+        }
+    }
+
+    public static Workspace CreateFakeWorkSpace(string name)
+    {
         var workspace = new Workspace()
         {
-            Name = $"Demo {_workspaces!.Count() + 1}",
+            Name = name,
             Description = "A nice script that does a lot of things",
-            Enabled = true,
         };
 
         workspace.AddJob(new BrowserTabsJob()
@@ -162,23 +184,7 @@
             Enabled = true,
         });
 
-        await WorkspaceStore.AddOrUpdateAsync(workspace);
-        await Refresh();
-    }
-
-    private void SetScript(Workspace workspace)
-    {
-        _script = workspace.GetScript();
-    }
-
-    private void ExecuteScript()
-    {
-        if(!string.IsNullOrWhiteSpace(_script))
-        {
-            var powershell = PowerShell.Create().AddScript(_script);
-            var scriptResult = powershell.Invoke();
-            _error = string.Join("<br />", powershell.Streams.Error.Select(x => x.ToString()));
-        }
+        return workspace;
     }
 }
 

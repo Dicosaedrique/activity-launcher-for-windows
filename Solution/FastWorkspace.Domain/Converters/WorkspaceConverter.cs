@@ -25,8 +25,6 @@ public class WorkspaceConverter : JsonConverter<Workspace>
 
         public string? Description { get; set; }
 
-        public bool Enabled { get; set; }
-
         public DateTime CreationDate { get; set; }
 
         public DateTime LastModifiedDate { get; set; }
@@ -54,7 +52,6 @@ public class WorkspaceConverter : JsonConverter<Workspace>
             Id = workspace.Id;
             Name = workspace.Name;
             Description = workspace.Description;
-            Enabled = workspace.Enabled;
             CreationDate = workspace.CreationDate;
             LastModifiedDate = workspace.LastModifiedDate;
             InitializeJobs(workspace.Jobs);
@@ -62,7 +59,7 @@ public class WorkspaceConverter : JsonConverter<Workspace>
 
         public Workspace ToWorkspace()
         {
-            return new Workspace(Id, Name, Description, Enabled, CreationDate, LastModifiedDate, GetJobs());
+            return new Workspace(Id, Name, Description, CreationDate, LastModifiedDate, GetJobs());
         }
 
         private void InitializeJobs(IEnumerable<IJob> jobs)

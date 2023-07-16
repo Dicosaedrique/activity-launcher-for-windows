@@ -144,10 +144,7 @@
   <data name="Configuration.Language.Label" xml:space="preserve">
     <value>Langue</value>
   </data>
-  <data name="Configuration.Reset.Button" xml:space="preserve">
-    <value>Réinitialiser</value>
-  </data>
-  <data name="Configuration.Save.Button" xml:space="preserve">
+  <data name="Configuration.SaveButton" xml:space="preserve">
     <value>Enregistrer</value>
   </data>
   <data name="Configuration.Theme.Dark" xml:space="preserve">
@@ -164,6 +161,18 @@
   </data>
   <data name="Configuration.WelcomeMessage" xml:space="preserve">
     <value>Bienvenue dans Fast Workspace ! Veuillez configurer l'application avant de pouvoir mettre en place vos espaces de travail.</value>
+  </data>
+  <data name="ConfigurationReset.Button" xml:space="preserve">
+    <value>Réinitialiser</value>
+  </data>
+  <data name="Dashboard.AddWorkspaceButton" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="Dashboard.Description" xml:space="preserve">
+    <value>Créez et modifiez vos espaces de travail depuis cette page.</value>
+  </data>
+  <data name="Dashboard.Title" xml:space="preserve">
+    <value>Espaces de travail</value>
   </data>
   <data name="Navigation.Configuration" xml:space="preserve">
     <value>Paramètres</value>

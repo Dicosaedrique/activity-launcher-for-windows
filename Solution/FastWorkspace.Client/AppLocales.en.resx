@@ -144,10 +144,10 @@
   <data name="Configuration.Language.Label" xml:space="preserve">
     <value>Language</value>
   </data>
-  <data name="Configuration.Reset.Button" xml:space="preserve">
+  <data name="Configuration.ResetButton" xml:space="preserve">
     <value>Reset</value>
   </data>
-  <data name="Configuration.Save.Button" xml:space="preserve">
+  <data name="Configuration.SaveButton" xml:space="preserve">
     <value>Save</value>
   </data>
   <data name="Configuration.Theme.Dark" xml:space="preserve">
@@ -164,6 +164,15 @@
   </data>
   <data name="Configuration.WelcomeMessage" xml:space="preserve">
     <value>Welcome to Fast Workspace! Please configure your app before seting up your workspaces.</value>
+  </data>
+  <data name="Dashboard.AddWorkspaceButton" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Dashboard.Description" xml:space="preserve">
+    <value>Create and edit your workspaces from this page.</value>
+  </data>
+  <data name="Dashboard.Title" xml:space="preserve">
+    <value>Workspaces</value>
   </data>
   <data name="Navigation.Configuration" xml:space="preserve">
     <value>Configuration</value>

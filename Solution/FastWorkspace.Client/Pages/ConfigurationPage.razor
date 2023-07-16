@@ -15,7 +15,7 @@
 
 @attribute [Route(Routes.ConfigurationPage)]
 
-<article>
+<MudContainer MaxWidth="MaxWidth.Medium">
     <MudText Typo="Typo.h4" Class="mb-8">@Localize["Configuration.Title"]</MudText>
 
     @if (!AppConfiguration.IsAppReady())
@@ -44,12 +44,12 @@
             <FolderPickerInput Label="@Localize["Configuration.FileStorage.FolderPicker.Label"]" @bind-FolderPath="_fileStorageDirectoryPath" />
         </div>
         <div class="mt-16">
-            <MudButton Variant="Variant.Filled" Color="Color.Default" OnClick="OnReset" Class="mr-4">@Localize["Configuration.Reset.Button"]</MudButton>
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="string.IsNullOrWhiteSpace(_fileStorageDirectoryPath)" OnClick="OnSave">@Localize["Configuration.Save.Button"]</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Default" OnClick="OnReset" Class="mr-4">@Localize["Configuration.ResetButton"]</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="string.IsNullOrWhiteSpace(_fileStorageDirectoryPath)" OnClick="OnSave">@Localize["Configuration.SaveButton"]</MudButton>
             <ErrorText Error="@_error" />
         </div>
     </MudStack>
-</article>
+</MudContainer>
 
 @code {
     [CascadingParameter]
@@ -95,7 +95,7 @@
             WorkspaceStore.SetupStore();
             AppConfiguration.SetLanguage(_language);
             AppConfiguration.SetTheme(_theme);
-            Navigation.NavigateTo(Routes.HomePage, replace: true);
+            Navigation.NavigateTo(Routes.DashboardPage, replace: true);
         }
         else
         {
