@@ -14,8 +14,6 @@ public class AppInitializeService : IMauiInitializeService
         _appConfiguration = services.GetRequiredService<IAppConfiguration>();
         _workspaceStore = services.GetRequiredService<IWorkspaceStore>();
 
-        _appConfiguration.Reset();
-
         SetupStores();
         SetupAppLanguage();
     }

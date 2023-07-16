@@ -1,3 +1,17 @@
 ﻿@inherits LayoutComponentBase
 
-@Body
+@inject IAppConfiguration AppConfiguration
+
+<MudLayout>
+    @if (AppConfiguration.IsAppReady())
+    {
+        <MudDrawer Open>
+            <NavMenu />
+        </MudDrawer>
+    }
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Medium">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>

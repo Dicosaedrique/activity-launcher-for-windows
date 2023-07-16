@@ -1,13 +1,12 @@
 ﻿@using System.Management.Automation;
+@using FastWorkspace.Domain.Common;
 
 
 @inject IWorkspaceStore WorkspaceStore
 
 @attribute [Route(Routes.HomePage)]
 
-<main class="ma-16">
-    <MudLink Href="@Routes.ConfigurationPage">Configuration</MudLink>
-
+<article>
     <MudText Typo="Typo.h3" Align="Align.Center" Class="mb-8">Fast Workspace</MudText>
 
     <div>
@@ -58,7 +57,7 @@
             </div>
         }
     </div>
-</main>
+</article>
 
 @code {
     private IEnumerable<Workspace>? _workspaces;

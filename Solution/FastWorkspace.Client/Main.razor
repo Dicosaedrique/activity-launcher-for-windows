@@ -1,18 +1,37 @@
-﻿@inject IAppConfiguration AppConfiguration
+﻿@using FastWorkspace.Client.Common.Theming;
+@using FastWorkspace.Client.Common.Utils;
 
-<MudThemeProvider IsDarkMode="IsDarkMode" />
+@inject IAppConfiguration AppConfiguration
+
+<MudThemeProvider IsDarkMode="_themeSettings.IsDarkMode" Theme="_themeSettings.Theme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-<Router AppAssembly="@typeof(Main).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-    </Found>
-    <NotFound>
-        <Redirect Url="@Routes.Index" />
-    </NotFound>
-</Router>
+<CascadingValue Value="_cascadingThemeSettings">
+    <Router AppAssembly="@typeof(Main).Assembly">
+        <Found Context="routeData">
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        </Found>
+        <NotFound>
+            <Redirect Url="@Routes.Index" />
+        </NotFound>
+    </Router>
+</CascadingValue>
 
 @code {
-    private bool IsDarkMode => AppConfiguration.GetTheme() == Theme.Dark;
+    private ThemeSettings _themeSettings = null!;
+    private ValueHolder<ThemeSettings> _cascadingThemeSettings = null!;
+
+    protected override void OnInitialized()
+    {
+        _themeSettings = new ThemeSettings(new MudTheme(), AppConfiguration.GetTheme() == Theme.Dark);
+
+        _cascadingThemeSettings = new ValueHolder<ThemeSettings>(_themeSettings, OnThemeSettingsChanged);
+    }
+
+    private void OnThemeSettingsChanged(ThemeSettings themeSettings)
+    {
+        _themeSettings = themeSettings;
+        StateHasChanged();
+    }
 }
