@@ -14,7 +14,7 @@
         <MudText Class="mb-2">@Workspace.Description</MudText>
     </MudCardContent>
     <MudCardActions>
-        <MudText Typo="Typo.body2" Class="ml-2" Style="font-size: 0.7rem;">@Workspace.LastModifiedDate.Humanize()</MudText>
+        <MudText Typo="Typo.body2" Class="ml-2" Style="font-size: 0.7rem;">@_humanizedLastModifiedDate</MudText>
         <div style="flex: 1;" />
         <MudIconButton Icon="@Icons.Material.Filled.Code" OnClick="OpenScript" aria-label="see script"></MudIconButton>
         <MudMenu Icon="@Icons.Material.Filled.MoreVert" aria-label="more options menu">
@@ -30,6 +30,13 @@
     public Workspace Workspace { get; set; } = null!;
 
     private int _elevation = 2;
+
+    private string _humanizedLastModifiedDate = string.Empty;
+
+    protected override void OnParametersSet()
+    {
+        _humanizedLastModifiedDate = Workspace.LastModifiedDate.Humanize();
+    }
 
     private void MouseEnter()
     {

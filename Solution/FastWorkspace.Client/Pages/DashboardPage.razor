@@ -41,6 +41,7 @@
     private async Task GetWorkspaces()
     {
         _workspaces = await WorkspaceController.GetWorkspaces();
+        StateHasChanged();
     }
 
     private void OpenCreateWorkspaceDialog()

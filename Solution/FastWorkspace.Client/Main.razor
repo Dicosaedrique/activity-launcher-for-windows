@@ -3,8 +3,9 @@
 
 @inject IAppConfiguration AppConfiguration
 
+<MudThemeProvider IsDarkMode="_themeSettings.IsDarkMode" Theme="_themeSettings.Theme" />
+
 <GlobalErrorBoundary>
-    <MudThemeProvider IsDarkMode="_themeSettings.IsDarkMode" Theme="_themeSettings.Theme" />
     <MudDialogProvider />
     <MudSnackbarProvider />
     <ErrorHandler />

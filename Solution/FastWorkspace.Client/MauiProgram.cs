@@ -16,7 +16,9 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
 
         builder.UseMauiApp<App>().UseMauiCommunityToolkit();
+
         builder.Services.AddMauiBlazorWebView();
+        builder.Services.AddLocalization();
 
         builder.Services.AddMudServices(config =>
         {
@@ -24,16 +26,18 @@ public static class MauiProgram
             config.SnackbarConfiguration.SnackbarVariant = Variant.Filled;
         });
 
+        // add application event
         builder.Services.AddSingleton<ApplicationEventManager>();
-        builder.Services.AddSingleton<IAppConfiguration, AppConfiguration>();
-        builder.Services.AddSingleton<IFileStorage, DataFileStore>();
-        builder.Services.AddSingleton<IWorkspaceStore, WorkspaceStore>();
-        builder.Services.AddSingleton<ApplicationController>();
-        builder.Services.AddSingleton<WorkspaceController>();
 
+        // add services
+        builder.Services.AddTransient<IAppConfiguration, AppConfiguration>();
+        builder.Services.AddTransient<IFileStorage, DataFileStore>();
+        builder.Services.AddTransient<IWorkspaceStore, WorkspaceStore>();
         builder.Services.AddTransient<IMauiInitializeService, ApplicationInitializeService>();
 
-        builder.Services.AddLocalization();
+        // add controllers
+        builder.Services.AddTransient<ApplicationController>();
+        builder.Services.AddTransient<WorkspaceController>();
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();

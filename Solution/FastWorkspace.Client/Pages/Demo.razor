@@ -15,6 +15,7 @@
                 <MudButton OnClick="Refresh">Refresh</MudButton>
                 <MudButton OnClick="CreateWorkspace">Create workspace</MudButton>
                 <MudButton OnClick="ExecuteScript">Execute script</MudButton>
+                <MudButton OnClick="ThrowError">Throw error</MudButton>
             </MudButtonGroup>
         </div>
 
@@ -185,6 +186,11 @@
         });
 
         return workspace;
+    }
+
+    public void ThrowError()
+    {
+        throw new NotImplementedException();
     }
 }
 
