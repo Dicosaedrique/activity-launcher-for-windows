@@ -165,7 +165,7 @@
   <data name="ConfigurationReset.Button" xml:space="preserve">
     <value>Réinitialiser</value>
   </data>
-  <data name="Dashboard.AddWorkspaceButton" xml:space="preserve">
+  <data name="Dashboard.CreateWorkspaceButton" xml:space="preserve">
     <value>Ajouter</value>
   </data>
   <data name="Dashboard.Description" xml:space="preserve">
@@ -174,10 +174,97 @@
   <data name="Dashboard.Title" xml:space="preserve">
     <value>Espaces de travail</value>
   </data>
+  <data name="Errors.CreateWorkspace" xml:space="preserve">
+    <value>Une erreur est survenue lors de la création de l'espace de travail</value>
+  </data>
+  <data name="Errors.DeleteWorkspace" xml:space="preserve">
+    <value>Une erreur est survenue lors de la suppression de l'espace de travail</value>
+  </data>
+  <data name="Errors.DuplicateWorkspace" xml:space="preserve">
+    <value>Une erreur est survenue lors de la duplication de l'espace de travail</value>
+  </data>
+  <data name="Errors.GetWorkspaces" xml:space="preserve">
+    <value>Une erreur est survenue à la récupération des espaces de travail</value>
+  </data>
+  <data name="Errors.UpdateWorkspace" xml:space="preserve">
+    <value>Une erreur est survenue lors de la mise à jour de l'espace de travail</value>
+  </data>
+  <data name="GlobalError.Button" xml:space="preserve">
+    <value>Recharger l'application</value>
+  </data>
+  <data name="GlobalError.Message" xml:space="preserve">
+    <value>Une erreur inconnue est survenue, veuillez réessayer plus tard ou </value>
+  </data>
+  <data name="GlobalError.Message.Link" xml:space="preserve">
+    <value>signaler le bug sur GitHub</value>
+  </data>
+  <data name="GlobalError.Title" xml:space="preserve">
+    <value>Cette application ne se sent pas bien...</value>
+  </data>
   <data name="Navigation.Configuration" xml:space="preserve">
     <value>Paramètres</value>
   </data>
   <data name="Navigation.Dashboards" xml:space="preserve">
     <value>Espaces de travail</value>
+  </data>
+  <data name="Notifications.CreateWorkspace" xml:space="preserve">
+    <value>L'espace de travail a bien été créé</value>
+  </data>
+  <data name="Notifications.DeleteWorkspace" xml:space="preserve">
+    <value>L'espace de travail a bien été supprimé</value>
+  </data>
+  <data name="Notifications.DuplicateWorkspace" xml:space="preserve">
+    <value>L'espace de travail a bien été dupliqué</value>
+  </data>
+  <data name="Notifications.UpdateWorkspace" xml:space="preserve">
+    <value>L'espace de travail a bien été mis à jour</value>
+  </data>
+  <data name="Workspace.Card.DeleteMenu" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Workspace.Card.DuplicateMenu" xml:space="preserve">
+    <value>Dupliquer</value>
+  </data>
+  <data name="Workspace.Card.EditMenu" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="Workspace.Dialog.CancelButton" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Workspace.Dialog.Create.SubmitButton" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="Workspace.Dialog.Create.Title" xml:space="preserve">
+    <value>Créer un nouvel espace de travail</value>
+  </data>
+  <data name="Workspace.Dialog.Delete.CancelButton" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Workspace.Dialog.Delete.ConfirmButton" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Workspace.Dialog.Delete.Message" xml:space="preserve">
+    <value>Voulez-vous vraiment supprimer l'espace de travail "{0}" ? Cette action est définitive.</value>
+  </data>
+  <data name="Workspace.Dialog.Delete.Title" xml:space="preserve">
+    <value>Supprimer l'espace de travail</value>
+  </data>
+  <data name="Workspace.Dialog.Description.Label" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Workspace.Dialog.Edit.SubmitButton" xml:space="preserve">
+    <value>Sauvegarder</value>
+  </data>
+  <data name="Workspace.Dialog.Edit.Title" xml:space="preserve">
+    <value>Modifier l'espace de travail</value>
+  </data>
+  <data name="Workspace.Dialog.Name.Label" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Workspace.Dialog.Name.RequiredError" xml:space="preserve">
+    <value>L'espace de travail doit avoir un nom !</value>
+  </data>
+  <data name="Workspace.Duplicate.Name" xml:space="preserve">
+    <value>Copie de {0}</value>
   </data>
 </root>
