@@ -1,4 +1,6 @@
-﻿namespace FastWorkspace.Domain.Jobs;
+﻿using FastWorkspace.Domain.Interfaces;
+
+namespace FastWorkspace.Domain.Jobs;
 
 public class VSCodeJob : BaseJob
 {
@@ -15,4 +17,16 @@ public class VSCodeJob : BaseJob
     }
 
     public override string GetDefaultName() => "Open Visual Studio Code Directory";
+
+    public override IJob Clone()
+    {
+        return new VSCodeJob()
+        {
+            Name = Name,
+            Description = Description,
+            Sequence = Sequence,
+            Enabled = Enabled,
+            DirectoryPath = DirectoryPath,
+        };
+    }
 }

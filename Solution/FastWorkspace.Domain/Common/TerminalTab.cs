@@ -1,8 +1,9 @@
 ﻿using System.Text;
+using FastWorkspace.Domain.Interfaces;
 
 namespace FastWorkspace.Domain.Common;
 
-public class TerminalTab
+public class TerminalTab : ICloneable<TerminalTab>
 {
     public string? Command { get; set; }
 
@@ -37,5 +38,16 @@ public class TerminalTab
         }
 
         return builder.ToString();
+    }
+
+    public TerminalTab Clone()
+    {
+        return new TerminalTab()
+        {
+            Command = Command,
+            Title = Title,
+            LocationPath = LocationPath,
+            Color = Color,
+        };
     }
 }

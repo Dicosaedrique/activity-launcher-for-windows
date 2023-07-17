@@ -1,6 +1,6 @@
 ﻿namespace FastWorkspace.Domain.Interfaces;
 
-public interface IJob : IScriptable
+public interface IJob : IScriptable, ICloneable<IJob>
 {
     public string DisplayName { get; }
 

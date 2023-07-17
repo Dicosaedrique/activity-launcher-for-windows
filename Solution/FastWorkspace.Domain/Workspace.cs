@@ -6,15 +6,15 @@ using Newtonsoft.Json;
 namespace FastWorkspace.Domain;
 
 [JsonConverter(typeof(WorkspaceConverter))]
-public class Workspace : IScriptable
+public class Workspace : IScriptable, ICloneable<Workspace>
 {
-    public Guid Id { get; init; } = Guid.NewGuid();
+    public Guid Id { get; set; } = Guid.NewGuid();
 
     public string Name { get; set; } = string.Empty;
 
     public string? Description { get; set; }
 
-    public DateTime CreationDate { get; init; } = DateTime.Now;
+    public DateTime CreationDate { get; set; } = DateTime.Now;
 
     public DateTime LastModifiedDate { get; set; } = DateTime.Now;
 
@@ -105,5 +105,10 @@ public class Workspace : IScriptable
         {
             _jobs[i].Sequence = i;
         }
+    }
+
+    public Workspace Clone()
+    {
+        return new Workspace(Id, Name, Description, CreationDate, LastModifiedDate, _jobs.Select(x => x.Clone()));
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using FastWorkspace.Domain.Interfaces;
 
 namespace FastWorkspace.Domain.Jobs;
 
@@ -30,4 +31,17 @@ public class ProgramFileJob : BaseJob
     }
 
     public override string GetDefaultName() => "Open Program File";
+
+    public override IJob Clone()
+    {
+        return new ProgramFileJob()
+        {
+            Name = Name,
+            Description = Description,
+            Sequence = Sequence,
+            Enabled = Enabled,
+            ProgramFilePath = ProgramFilePath,
+            ArgumentList = ArgumentList,
+        };
+    }
 }

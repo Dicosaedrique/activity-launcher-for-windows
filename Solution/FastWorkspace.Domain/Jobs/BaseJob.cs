@@ -19,4 +19,6 @@ public abstract class BaseJob : IJob
     public abstract string GetScript();
 
     public abstract string GetDefaultName();
+
+    public abstract IJob Clone();
 }

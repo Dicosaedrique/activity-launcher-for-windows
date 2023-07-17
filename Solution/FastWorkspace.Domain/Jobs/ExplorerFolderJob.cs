@@ -1,4 +1,6 @@
-﻿namespace FastWorkspace.Domain.Jobs;
+﻿using FastWorkspace.Domain.Interfaces;
+
+namespace FastWorkspace.Domain.Jobs;
 
 public class ExplorerFolderJob : BaseJob
 {
@@ -15,4 +17,16 @@ public class ExplorerFolderJob : BaseJob
     }
 
     public override string GetDefaultName() => "Open Explorer Folder";
+
+    public override IJob Clone()
+    {
+        return new ExplorerFolderJob()
+        {
+            Name = Name,
+            Description = Description,
+            Sequence = Sequence,
+            Enabled = Enabled,
+            DirectoryPath = DirectoryPath,
+        };
+    }
 }

@@ -1,4 +1,6 @@
-﻿namespace FastWorkspace.Domain.Jobs;
+﻿using FastWorkspace.Domain.Interfaces;
+
+namespace FastWorkspace.Domain.Jobs;
 
 public class VSSolutionJob : BaseJob
 {
@@ -15,4 +17,16 @@ public class VSSolutionJob : BaseJob
     }
 
     public override string GetDefaultName() => "Open Visual Studio Solution";
+
+    public override IJob Clone()
+    {
+        return new VSSolutionJob()
+        {
+            Name = Name,
+            Description = Description,
+            Sequence = Sequence,
+            Enabled = Enabled,
+            SolutionFilePath = SolutionFilePath,
+        };
+    }
 }

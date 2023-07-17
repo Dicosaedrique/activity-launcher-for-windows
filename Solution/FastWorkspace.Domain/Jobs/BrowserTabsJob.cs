@@ -1,4 +1,6 @@
-﻿namespace FastWorkspace.Domain.Jobs;
+﻿using FastWorkspace.Domain.Interfaces;
+
+namespace FastWorkspace.Domain.Jobs;
 
 // todo: implement in the future
 public class BrowserTabsJob : BaseJob
@@ -11,4 +13,16 @@ public class BrowserTabsJob : BaseJob
     }
 
     public override string GetDefaultName() => "Open Tabs In Browser";
+
+    public override IJob Clone()
+    {
+        return new BrowserTabsJob()
+        {
+            Name = Name,
+            Description = Description,
+            Sequence = Sequence,
+            Enabled = Enabled,
+            Tabs = new List<string>(Tabs),
+        };
+    }
 }

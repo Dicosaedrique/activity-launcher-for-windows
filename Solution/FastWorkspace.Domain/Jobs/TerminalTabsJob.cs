@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using FastWorkspace.Domain.Common;
+using FastWorkspace.Domain.Interfaces;
 
 namespace FastWorkspace.Domain.Jobs;
 
@@ -29,4 +30,16 @@ public class TerminalTabsJob : BaseJob
     }
 
     public override string GetDefaultName() => "Open Windows Terminal Tabs";
+
+    public override IJob Clone()
+    {
+        return new TerminalTabsJob()
+        {
+            Name = Name,
+            Description = Description,
+            Sequence = Sequence,
+            Enabled = Enabled,
+            TerminalTabs = TerminalTabs.Select(terminalTab => terminalTab.Clone()).ToList(),
+        };
+    }
 }
