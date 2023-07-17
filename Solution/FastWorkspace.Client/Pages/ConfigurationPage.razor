@@ -26,14 +26,14 @@
     <MudStack Spacing="8">
         <div>
             <MudText Typo="Typo.h6">@Localize["Configuration.Language.Label"]</MudText>
-            <MudRadioGroup T="Language" SelectedOption="_language" SelectedOptionChanged="OnLanguageChanged">
+            <MudRadioGroup T="Language" SelectedOption="_language" SelectedOptionChanged="LanguageChange">
                 <MudRadio Option="Language.English" Color="Color.Primary">@Localize["Configuration.Language.English"]</MudRadio>
                 <MudRadio Option="Language.French" Color="Color.Primary">@Localize["Configuration.Language.French"]</MudRadio>
             </MudRadioGroup>
         </div>
         <div>
             <MudText Typo="Typo.h6">@Localize["Configuration.Theme.Label"]</MudText>
-            <MudRadioGroup T="Theme" SelectedOption="_theme" SelectedOptionChanged="OnThemeChanged">
+            <MudRadioGroup T="Theme" SelectedOption="_theme" SelectedOptionChanged="ThemeChange">
                 <MudRadio Option="Theme.Light" Color="Color.Primary">@Localize["Configuration.Theme.Light"]</MudRadio>
                 <MudRadio Option="Theme.Dark" Color="Color.Primary">@Localize["Configuration.Theme.Dark"]</MudRadio>
             </MudRadioGroup>
@@ -44,8 +44,8 @@
             <FolderPickerInput Label="@Localize["Configuration.FileStorage.FolderPicker.Label"]" @bind-FolderPath="_fileStorageDirectoryPath" />
         </div>
         <div class="mt-16">
-            <MudButton Variant="Variant.Filled" Color="Color.Default" OnClick="OnReset" Class="mr-4">@Localize["Configuration.ResetButton"]</MudButton>
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="string.IsNullOrWhiteSpace(_fileStorageDirectoryPath)" OnClick="OnSave">@Localize["Configuration.SaveButton"]</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Default" OnClick="Reset" Class="mr-4">@Localize["Configuration.ResetButton"]</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="string.IsNullOrWhiteSpace(_fileStorageDirectoryPath)" OnClick="Save">@Localize["Configuration.SaveButton"]</MudButton>
             <ErrorText Error="@_error" />
         </div>
     </MudStack>
@@ -68,7 +68,7 @@
         _fileStorageDirectoryPath = AppConfiguration.GetFileStorageDirectoryPath();
     }
 
-    private void OnLanguageChanged(Language language)
+    private void LanguageChange(Language language)
     {
         _language = language;
 
@@ -77,13 +77,13 @@
         CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CurrentCulture;
     }
 
-    private async Task OnThemeChanged(Theme theme)
+    private async Task ThemeChange(Theme theme)
     {
         _theme = theme;
         await ThemeSettingValueHolder.SetValue(new ThemeSettings(ThemeSettingValueHolder.Value.Theme, _theme == Theme.Dark));
     }
 
-    private void OnSave()
+    private void Save()
     {
         if (string.IsNullOrWhiteSpace(_fileStorageDirectoryPath))
         {
@@ -103,7 +103,7 @@
         }
     }
 
-    private void OnReset()
+    private void Reset()
     {
         AppConfiguration.Reset();
         Navigation.NavigateTo(Routes.Index, forceLoad: true, replace: true);
@@ -115,14 +115,14 @@
 
         if (savedLanguage != _language)
         {
-            OnLanguageChanged(savedLanguage);
+            LanguageChange(savedLanguage);
         }
 
         var savedTheme = AppConfiguration.GetTheme();
 
         if (savedTheme != _theme)
         {
-            await OnThemeChanged(savedTheme);
+            await ThemeChange(savedTheme);
         }
     }
 }
