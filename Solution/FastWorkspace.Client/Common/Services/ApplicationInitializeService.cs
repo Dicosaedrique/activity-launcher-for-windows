@@ -4,7 +4,7 @@ using FastWorkspace.Domain.Services;
 
 namespace FastWorkspace.Client.Common.Services;
 
-public class AppInitializeService : IMauiInitializeService
+public class ApplicationInitializeService : IMauiInitializeService
 {
     private IAppConfiguration _appConfiguration = null!;
     private IWorkspaceStore _workspaceStore = null!;
@@ -15,7 +15,7 @@ public class AppInitializeService : IMauiInitializeService
         _workspaceStore = services.GetRequiredService<IWorkspaceStore>();
 
         SetupStores();
-        SetupAppLanguage();
+        SetupApplicationLanguage();
     }
 
     private void SetupStores()
@@ -26,7 +26,7 @@ public class AppInitializeService : IMauiInitializeService
         }
     }
 
-    private void SetupAppLanguage()
+    private void SetupApplicationLanguage()
     {
         var language = _appConfiguration.GetLanguage();
 

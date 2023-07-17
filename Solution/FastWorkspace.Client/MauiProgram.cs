@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using FastWorkspace.Client.Common.Controllers;
 using FastWorkspace.Client.Common.Events;
 using FastWorkspace.Client.Common.Services;
 using FastWorkspace.Domain.Services;
@@ -22,8 +23,10 @@ public static class MauiProgram
         builder.Services.AddSingleton<IAppConfiguration, AppConfiguration>();
         builder.Services.AddSingleton<IFileStorage, DataFileStore>();
         builder.Services.AddSingleton<IWorkspaceStore, WorkspaceStore>();
+        builder.Services.AddSingleton<ApplicationController>();
+        builder.Services.AddSingleton<WorkspaceController>();
 
-        builder.Services.AddTransient<IMauiInitializeService, AppInitializeService>();
+        builder.Services.AddTransient<IMauiInitializeService, ApplicationInitializeService>();
 
         builder.Services.AddLocalization();
 
