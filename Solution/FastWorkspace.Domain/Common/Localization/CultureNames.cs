@@ -11,7 +11,7 @@ public static class CultureNames
     public const string DefaultLang = English;
 
     public const Language DefaultLanguage = Language.English;
-    
+
     public static readonly CultureInfo FrenchCulture = new CultureInfo(French);
     public static readonly CultureInfo EnglishCulture = new CultureInfo(English);
 

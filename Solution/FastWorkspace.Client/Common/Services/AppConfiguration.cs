@@ -10,7 +10,7 @@ public class AppConfiguration : IAppConfiguration
     private const string AppDataDirectoryPathConfigKey = "AppDataDirectoryPathConfigKey";
     private const string LanguageConfigKey = "LanguageConfigKey";
     private const string ThemeConfigKey = "ThemeConfigKey";
-    
+
     public bool IsAppReady()
     {
         return GetFileStorageDirectoryPath() != null;

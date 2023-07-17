@@ -1,5 +1,4 @@
-﻿using FastWorkspace.Domain.Common;
-using FastWorkspace.Domain.Interfaces;
+﻿using FastWorkspace.Domain.Interfaces;
 
 namespace FastWorkspace.Domain.Jobs;
 
