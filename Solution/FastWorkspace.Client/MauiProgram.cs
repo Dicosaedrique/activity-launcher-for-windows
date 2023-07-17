@@ -34,6 +34,8 @@ public static class MauiProgram
         builder.Services.AddTransient<IFileStorage, DataFileStore>();
         builder.Services.AddTransient<IWorkspaceStore, WorkspaceStore>();
         builder.Services.AddTransient<IMauiInitializeService, ApplicationInitializeService>();
+        builder.Services.AddTransient<InteropService>();
+        builder.Services.AddTransient<HighlighterService>();
 
         // add controllers
         builder.Services.AddTransient<ApplicationController>();

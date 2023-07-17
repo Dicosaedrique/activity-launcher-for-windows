@@ -270,4 +270,10 @@
   <data name="Workspace.Script.ExecuteButton" xml:space="preserve">
     <value>Run script</value>
   </data>
+  <data name="Workspace.Script.Highlight.Label" xml:space="preserve">
+    <value>Code Style</value>
+  </data>
+  <data name="Workspace.Script.StartChevron.Label" xml:space="preserve">
+    <value>Chevron on line start</value>
+  </data>
 </root>

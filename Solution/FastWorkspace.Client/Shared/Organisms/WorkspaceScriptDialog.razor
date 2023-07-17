@@ -1,16 +1,25 @@
-﻿@inject WorkspaceController WorkspaceController
+﻿@using Microsoft.JSInterop;
+@using System.Text;
+
+@inject WorkspaceController WorkspaceController
 @inject IStringLocalizer<AppLocales> Localize
+@inject HighlighterService HighlighterService
 
 <MudDialog>
     <DialogContent>
-        <MudStack Spacing="12" Class="mb-16">
-            <div style="width: 100%; text-align: right">
+        <MudStack Row Justify="Justify.SpaceBetween">
+            <div>
+                <MudSwitch T="bool" Checked="_highlight" CheckedChanged="HighlightChange" Label="@Localize["Workspace.Script.Highlight.Label"]" Color="Color.Primary" />
+                <MudSwitch T="bool" Checked="_startChevron" CheckedChanged="StartChevronChange" Label="@Localize["Workspace.Script.StartChevron.Label"]" Color="Color.Primary" />
+            </div>
+            <div>
                 <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="ExecuteScript">@Localize["Workspace.Script.ExecuteButton"]</MudButton>
             </div>
-            <code>
-                @_displayableScript
-            </code>
         </MudStack>
+
+        <div class="mt-6 mb-16">
+            @_displayableScript
+        </div>
     </DialogContent>
 </MudDialog>
 
@@ -21,11 +30,32 @@
     [Parameter]
     public Workspace Workspace { get; set; } = null!;
 
+    private bool _highlight = true;
+    private bool _startChevron = true;
+
     private MarkupString _displayableScript;
 
-    protected override void OnInitialized()
+    protected override async Task OnParametersSetAsync()
     {
-        _displayableScript = new MarkupString(Workspace.GetScript().Replace("\n", "<br />"));
+        await UpdateDisplayableScript();
+    }
+
+    private async Task UpdateDisplayableScript()
+    {
+        if (_highlight) _displayableScript = await HighlighterService.GetHiglightedScript(Workspace, _startChevron);
+        else _displayableScript = HighlighterService.GetDisplayableScript(Workspace, _startChevron);
+    }
+
+    private async Task StartChevronChange(bool startChevron)
+    {
+        _startChevron = startChevron;
+        await UpdateDisplayableScript();
+    }
+
+    private async Task HighlightChange(bool highlight)
+    {
+        _highlight = highlight;
+        await UpdateDisplayableScript();
     }
 
     private async Task ExecuteScript()
