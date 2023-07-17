@@ -4,4 +4,7 @@ public enum ApplicationEventType
 {
     ErrorOccurred,
     ThemeChanged,
+    WorkspaceCreated,
+    WorkspaceUpdated,
+    WorkspaceDeleted,
 }
