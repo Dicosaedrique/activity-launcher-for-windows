@@ -160,8 +160,10 @@ public class WorkspaceController : ApplicationController, IDisposable
 
     public IDialogReference OpenWorkspaceScriptDialog(Workspace workspace)
     {
-        // todo: implémenter l'ouverture du dialogue de lecture de script
-        throw new NotImplementedException();
+        var parameters = new DialogParameters<WorkspaceScriptDialog>();
+        parameters.Add(x => x.Workspace, workspace);
+        var options = new DialogOptions() { CloseButton = true, CloseOnEscapeKey = true, FullWidth = true, MaxWidth = MaxWidth.Large };
+        return _dialogService.Show<WorkspaceScriptDialog>(workspace.Name, parameters, options);
     }
 
     private async Task EventPublish(object sender, ApplicationEvent applicationEvent)

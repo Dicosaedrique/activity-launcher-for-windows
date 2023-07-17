@@ -267,4 +267,7 @@
   <data name="Workspace.Duplicate.Name" xml:space="preserve">
     <value>Copy of {0}</value>
   </data>
+  <data name="Workspace.Script.ExecuteButton" xml:space="preserve">
+    <value>Run script</value>
+  </data>
 </root>

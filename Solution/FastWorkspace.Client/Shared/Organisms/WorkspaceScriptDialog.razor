@@ -1,0 +1,35 @@
+﻿@inject WorkspaceController WorkspaceController
+@inject IStringLocalizer<AppLocales> Localize
+
+<MudDialog>
+    <DialogContent>
+        <MudStack Spacing="12" Class="mb-16">
+            <div style="width: 100%; text-align: right">
+                <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="ExecuteScript">@Localize["Workspace.Script.ExecuteButton"]</MudButton>
+            </div>
+            <code>
+                @_displayableScript
+            </code>
+        </MudStack>
+    </DialogContent>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    public MudDialogInstance MudDialog { get; set; } = null!;
+
+    [Parameter]
+    public Workspace Workspace { get; set; } = null!;
+
+    private MarkupString _displayableScript;
+
+    protected override void OnInitialized()
+    {
+        _displayableScript = new MarkupString(Workspace.GetScript().Replace("\n", "<br />"));
+    }
+
+    private async Task ExecuteScript()
+    {
+        await WorkspaceController.PromptExecuteWorkspaceScript(Workspace);
+    }
+}
