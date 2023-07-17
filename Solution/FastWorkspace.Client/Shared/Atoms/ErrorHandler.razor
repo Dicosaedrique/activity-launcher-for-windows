@@ -1,0 +1,39 @@
+﻿@using Microsoft.Extensions.Logging;
+
+@implements IDisposable
+
+@inject ApplicationEventManager EventManager
+@inject ApplicationController ApplicationController
+@inject ILogger<ErrorHandler> Logger
+
+@code {
+    protected override void OnInitialized()
+    {
+        EventManager.OnEvent += HandleApplicationEvent;
+    }
+
+    private Task HandleApplicationEvent(object sender, ApplicationEvent applicationEvent)
+    {
+        if (applicationEvent.Type is ApplicationEventType.ErrorOccurred)
+        {
+            try
+            {
+                var details = (ErrorEventDetails)applicationEvent.Data!;
+
+                ApplicationController.NotifyError(details.Title);
+                Logger.LogError(details.Exception, $"{details.Title}. {details.Detail}");
+            }
+            catch(Exception exception)
+            {
+                Logger.LogError(exception, "An error occurred while handling the error notification!");
+            }
+        }
+
+        return Task.CompletedTask;
+    }
+
+    public void Dispose()
+    {
+        EventManager.OnEvent -= HandleApplicationEvent;
+    }
+}

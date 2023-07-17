@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+
+@inject IStringLocalizer<AppLocales> Localize
+@inject NavigationManager Navigation
+
+<ErrorBoundary>
+    <ChildContent>
+        @ChildContent
+    </ChildContent>
+    <ErrorContent>
+        <MudContainer MaxWidth="MaxWidth.Medium">
+            <MudText Typo="Typo.h3">@Localize["GlobalError.Title"]</MudText>
+            <MudText Typo="Typo.body1">@Localize["GlobalError.Message"]<MudLink Href="https://github.com/Dicosaedrique/fast-workspace/issues">@Localize["GlobalError.Message.Link"]</MudLink>.</MudText>
+            <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Refresh" Color="Color.Error">@Localize["GlobalError.Button"]</MudButton>
+        </MudContainer>
+    </ErrorContent>
+</ErrorBoundary>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    private void RefreshApp()
+    {
+        Navigation.NavigateTo(Navigation.Uri, forceLoad: true, replace: true);
+    }
+}

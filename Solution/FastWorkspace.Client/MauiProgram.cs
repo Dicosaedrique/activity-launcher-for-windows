@@ -4,6 +4,7 @@ using FastWorkspace.Client.Common.Events;
 using FastWorkspace.Client.Common.Services;
 using FastWorkspace.Domain.Services;
 using Microsoft.Extensions.Logging;
+using MudBlazor;
 using MudBlazor.Services;
 
 namespace FastWorkspace.Client;
@@ -17,7 +18,11 @@ public static class MauiProgram
         builder.UseMauiApp<App>().UseMauiCommunityToolkit();
         builder.Services.AddMauiBlazorWebView();
 
-        builder.Services.AddMudServices();
+        builder.Services.AddMudServices(config =>
+        {
+            config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.TopEnd;
+            config.SnackbarConfiguration.SnackbarVariant = Variant.Filled;
+        });
 
         builder.Services.AddSingleton<ApplicationEventManager>();
         builder.Services.AddSingleton<IAppConfiguration, AppConfiguration>();

@@ -1,6 +1,6 @@
 ﻿@if (!string.IsNullOrWhiteSpace(Error))
 {
-    <MudText Typo="Typo.body2" Class="red-text"><p>@(new MarkupString(Error))</p></MudText>
+    <MudText Typo="Typo.body2" Color="Color.Error">@(new MarkupString(Error))</MudText>
 }
 
 @code {
