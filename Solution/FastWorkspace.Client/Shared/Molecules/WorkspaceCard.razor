@@ -1,10 +1,10 @@
 ﻿@inject IStringLocalizer<AppLocales> Localize
 @inject WorkspaceController WorkspaceController
 
-<MudCard Elevation="_elevation" onclick="@Edit" onmouseover="@MouseEnter" onmouseout="@MouseLeave" Style="cursor: pointer;">
+<MudCard Elevation="_elevation" onclick="@Edit" onmouseover="@MouseEnter" onmouseout="@MouseLeave" Style="cursor: pointer; width: 280px;">
     <MudCardHeader>
         <CardHeaderContent>
-            <MudText Typo="Typo.h6">@Workspace.Name</MudText>
+            <MudText Typo="Typo.h6" Style="font-size: 1.2rem; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; max-width: 195px;" title="@Workspace.Name">@Workspace.Name</MudText>
         </CardHeaderContent>
         <CardHeaderActions>
             <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Size="Size.Large" Color="Color.Success" OnClick="RunScript" aria-label="execute script" />
