@@ -186,6 +186,9 @@
   <data name="Errors.GetWorkspaces" xml:space="preserve">
     <value>Une erreur est survenue à la récupération des espaces de travail</value>
   </data>
+  <data name="Errors.RunWorkspaceScript" xml:space="preserve">
+    <value>Une erreur est survenue à l'exécution du script</value>
+  </data>
   <data name="Errors.UpdateWorkspace" xml:space="preserve">
     <value>Une erreur est survenue lors de la mise à jour de l'espace de travail</value>
   </data>
@@ -215,6 +218,9 @@
   </data>
   <data name="Notifications.DuplicateWorkspace" xml:space="preserve">
     <value>L'espace de travail a bien été dupliqué</value>
+  </data>
+  <data name="Notifications.RunWorkspaceScript" xml:space="preserve">
+    <value>Le script a bien été exécuté</value>
   </data>
   <data name="Notifications.UpdateWorkspace" xml:space="preserve">
     <value>L'espace de travail a bien été mis à jour</value>
@@ -267,7 +273,7 @@
   <data name="Workspace.Duplicate.Name" xml:space="preserve">
     <value>Copie de {0}</value>
   </data>
-  <data name="Workspace.Script.ExecuteButton" xml:space="preserve">
+  <data name="Workspace.Script.RunButton" xml:space="preserve">
     <value>Exécuter le script</value>
   </data>
   <data name="Workspace.Script.Highlight.Label" xml:space="preserve">
@@ -278,5 +284,20 @@
   </data>
   <data name="Workspace.Script.Title" xml:space="preserve">
     <value>Script PowerShell de {0}</value>
+  </data>
+  <data name="Workspace.Dialog.Run.CancelButton" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Workspace.Dialog.Run.ConfirmButton" xml:space="preserve">
+    <value>Exécuter</value>
+  </data>
+  <data name="Workspace.Dialog.Run.Message" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir exécuter le script PowerShell généré ? Aucune vérification automatique n'a été faite, il est donc recommandé de faire une revue manuelle du script avant son exécution afin de s'assurer qu'aucun problème ne puisse survenir à l'exécution.</value>
+  </data>
+  <data name="Workspace.Dialog.Run.ReviewScript" xml:space="preserve">
+    <value>Vérifier le script</value>
+  </data>
+  <data name="Workspace.Dialog.Run.Title" xml:space="preserve">
+    <value>Exécuter le script {0}</value>
   </data>
 </root>

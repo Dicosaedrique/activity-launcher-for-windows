@@ -14,7 +14,7 @@
                     <MudSwitch T="bool" Checked="_startChevron" CheckedChanged="StartChevronChange" Label="@Localize["Workspace.Script.StartChevron.Label"]" Color="Color.Primary" />
                 </div>
                 <div>
-                    <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="ExecuteScript">@Localize["Workspace.Script.ExecuteButton"]</MudButton>
+                    <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="RunScript">@Localize["Workspace.Script.RunButton"]</MudButton>
                 </div>
             </MudStack>
 
@@ -63,9 +63,9 @@
         await UpdateDisplayableScript();
     }
 
-    private async Task ExecuteScript()
+    private async Task RunScript()
     {
-        await WorkspaceController.PromptExecuteWorkspaceScript(Workspace);
+        await WorkspaceController.PromptRunWorkspaceScript(Workspace, false);
     }
 
     // todo: nice to have

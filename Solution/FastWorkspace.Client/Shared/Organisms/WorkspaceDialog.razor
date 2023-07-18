@@ -1,4 +1,6 @@
-﻿@inject WorkspaceController WorkspaceController
+﻿@using FastWorkspace.Domain.Common; @* todo: temp *@
+
+@inject WorkspaceController WorkspaceController
 @inject IStringLocalizer<AppLocales> Localize
 
 <MudDialog>
@@ -52,6 +54,17 @@
 
     private async Task Create()
     {
+        // todo: temp
+        _workspace.AddJob(new TerminalJob()
+        {
+            TerminalTab = new TerminalTab()
+            {
+                Title = "Hello world",
+                Color = "#eb1ea3",
+            },
+            Enabled = true,
+        });
+
         var success = await WorkspaceController.CreateWorkspace(_workspace);
 
         if (success)

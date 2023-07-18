@@ -175,25 +175,28 @@
     <value>Workspaces</value>
   </data>
   <data name="Errors.CreateWorkspace" xml:space="preserve">
-    <value>An error occured while creating the workspace</value>
+    <value>An error occurred while creating the workspace</value>
   </data>
   <data name="Errors.DeleteWorkspace" xml:space="preserve">
-    <value>An error occured while deleting the workspace</value>
+    <value>An error occurred while deleting the workspace</value>
   </data>
   <data name="Errors.DuplicateWorkspace" xml:space="preserve">
-    <value>An error occured while duplicating the workspace</value>
+    <value>An error occurred while duplicating the workspace</value>
   </data>
   <data name="Errors.GetWorkspaces" xml:space="preserve">
-    <value>An error occured while getting the workspaces</value>
+    <value>An error occurred while getting the workspaces</value>
+  </data>
+  <data name="Errors.RunWorkspaceScript" xml:space="preserve">
+    <value>An error occurred while running script</value>
   </data>
   <data name="Errors.UpdateWorkspace" xml:space="preserve">
-    <value>An error occured while updating the workspace</value>
+    <value>An error occurred while updating the workspace</value>
   </data>
   <data name="GlobalError.Button" xml:space="preserve">
     <value>Refresh the application</value>
   </data>
   <data name="GlobalError.Message" xml:space="preserve">
-    <value>An unhandled error occured, please try again or</value>
+    <value>An unhandled error occurred, please try again or</value>
   </data>
   <data name="GlobalError.Message.Link" xml:space="preserve">
     <value>signal the issue on GitHub</value>
@@ -216,6 +219,9 @@
   <data name="Notifications.DuplicateWorkspace" xml:space="preserve">
     <value>The workspace has been duplicated successfully</value>
   </data>
+  <data name="Notifications.RunWorkspaceScript" xml:space="preserve">
+    <value>The script has been run successfully</value>
+  </data>
   <data name="Notifications.UpdateWorkspace" xml:space="preserve">
     <value>The workspace has been updated successfully</value>
   </data>
@@ -235,7 +241,7 @@
     <value>Add</value>
   </data>
   <data name="Workspace.Dialog.Create.Title" xml:space="preserve">
-    <value>Create a new workspace</value>
+    <value>Create a New Workspace</value>
   </data>
   <data name="Workspace.Dialog.Delete.CancelButton" xml:space="preserve">
     <value>Cancel</value>
@@ -247,7 +253,7 @@
     <value>Are you sure you want to delete workspace "{0}"? This action is final.</value>
   </data>
   <data name="Workspace.Dialog.Delete.Title" xml:space="preserve">
-    <value>Delete workspace</value>
+    <value>Delete Workspace</value>
   </data>
   <data name="Workspace.Dialog.Description.Label" xml:space="preserve">
     <value>Description</value>
@@ -256,7 +262,7 @@
     <value>Save</value>
   </data>
   <data name="Workspace.Dialog.Edit.Title" xml:space="preserve">
-    <value>Edit workspace</value>
+    <value>Edit Workspace</value>
   </data>
   <data name="Workspace.Dialog.Name.Label" xml:space="preserve">
     <value>Name</value>
@@ -267,7 +273,7 @@
   <data name="Workspace.Duplicate.Name" xml:space="preserve">
     <value>Copy of {0}</value>
   </data>
-  <data name="Workspace.Script.ExecuteButton" xml:space="preserve">
+  <data name="Workspace.Script.RunButton" xml:space="preserve">
     <value>Run script</value>
   </data>
   <data name="Workspace.Script.Highlight.Label" xml:space="preserve">
@@ -278,5 +284,20 @@
   </data>
   <data name="Workspace.Script.Title" xml:space="preserve">
     <value>PowerShell Script of {0}</value>
+  </data>
+  <data name="Workspace.Dialog.Run.CancelButton" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Workspace.Dialog.Run.ConfirmButton" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="Workspace.Dialog.Run.Message" xml:space="preserve">
+    <value>Are you sure you want to run the generated PowerShell script? No automatic verification has been performed, so we recommend that you manually review the script before executing it, to ensure that no problems occur at runtime.</value>
+  </data>
+  <data name="Workspace.Dialog.Run.ReviewScript" xml:space="preserve">
+    <value>Review Script</value>
+  </data>
+  <data name="Workspace.Dialog.Run.Title" xml:space="preserve">
+    <value>Run Script {0}</value>
   </data>
 </root>

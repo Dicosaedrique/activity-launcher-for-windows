@@ -1,4 +1,6 @@
-﻿using FastWorkspace.Client.Common.Events;
+﻿using System.Management.Automation;
+using FastWorkspace.Client.Common.Events;
+using FastWorkspace.Client.Common.Exceptions;
 using FastWorkspace.Client.Shared.Organisms;
 using FastWorkspace.Domain;
 using FastWorkspace.Domain.Services;
@@ -138,9 +140,10 @@ public class WorkspaceController : ApplicationController, IDisposable
         bool? result = await _dialogService.ShowMessageBox(
             _localize["Workspace.Dialog.Delete.Title"],
             string.Format(_localize["Workspace.Dialog.Delete.Message"], workspace.Name),
-            yesText: _localize["Workspace.Dialog.Delete.ConfirmButton"], cancelText: _localize["Workspace.Dialog.Delete.CancelButton"]);
+            yesText: _localize["Workspace.Dialog.Delete.ConfirmButton"],
+            cancelText: _localize["Workspace.Dialog.Delete.CancelButton"]);
 
-        if (result.HasValue && result.Value == true)
+        if (result.HasValue && result.Value)
         {
             return await DeleteWorkspace(workspace);
         }
@@ -150,12 +153,60 @@ public class WorkspaceController : ApplicationController, IDisposable
         }
     }
 
-    public async Task<bool> PromptExecuteWorkspaceScript(Workspace workspace)
+    public async Task<bool> PromptRunWorkspaceScript(Workspace workspace, bool showReviewScriptOption)
     {
-        // todo: implémenter l'exécution de script
-        // 1. demander confirmation à l'utilisateur
-        // 2. lancer le script
-        return false;
+        bool? result = await _dialogService.ShowMessageBox(
+            string.Format(_localize["Workspace.Dialog.Run.Title"], workspace.Name),
+            string.Format(_localize["Workspace.Dialog.Run.Message"], workspace.Name),
+            yesText: _localize["Workspace.Dialog.Run.ConfirmButton"],
+            noText: showReviewScriptOption ? _localize["Workspace.Dialog.Run.ReviewScript"].Value : null,
+            cancelText: _localize["Workspace.Dialog.Run.CancelButton"]);
+
+        if (result.HasValue && result.Value)
+        {
+            return await RunWorkspaceScript(workspace);
+        }
+        else if(result.HasValue)
+        {
+            OpenWorkspaceScriptDialog(workspace);
+            return false;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public async Task<bool> RunWorkspaceScript(Workspace workspace)
+    {
+        Exception? exception = null;
+
+        try
+        {
+            var powershell = PowerShell.Create().AddScript(workspace.GetScript());
+            await powershell.InvokeAsync();
+            var errors = powershell.Streams.Error.ToList();
+
+            if (errors.Any())
+            {
+                exception = new PowerShellRunException(errors);
+            }
+        }
+        catch (Exception ex)
+        {
+            exception = ex;
+        }
+
+        if (exception == null)
+        {
+            NotifySuccess(_localize["Notifications.RunWorkspaceScript"]);
+            return true;
+        }
+        else
+        {
+            await PublishError(exception.ToErrorEventDetails(_localize["Errors.RunWorkspaceScript"]));
+            return false;
+        }
     }
 
     public IDialogReference OpenWorkspaceScriptDialog(Workspace workspace)

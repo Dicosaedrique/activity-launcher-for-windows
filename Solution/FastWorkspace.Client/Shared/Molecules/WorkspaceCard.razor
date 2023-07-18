@@ -7,11 +7,20 @@
             <MudText Typo="Typo.h6">@Workspace.Name</MudText>
         </CardHeaderContent>
         <CardHeaderActions>
-            <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Size="Size.Large" Color="Color.Success" OnClick="ExecuteScript" aria-label="execute script" />
+            <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Size="Size.Large" Color="Color.Success" OnClick="RunScript" aria-label="execute script" />
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
-        <MudText Class="mb-2">@Workspace.Description</MudText>
+        <MudText Class="mb-2">
+            @if (!string.IsNullOrWhiteSpace(Workspace.Description))
+            {
+                @Workspace.Description
+            }
+            else
+            {
+                <span>&nbsp;</span>
+            }
+            </MudText>
     </MudCardContent>
     <MudCardActions>
         <MudText Typo="Typo.body2" Class="ml-2" Style="font-size: 0.7rem;">@_humanizedLastModifiedDate</MudText>
@@ -48,9 +57,9 @@
         _elevation = 2;
     }
 
-    private async Task ExecuteScript()
+    private async Task RunScript()
     {
-        await WorkspaceController.PromptExecuteWorkspaceScript(Workspace);
+        await WorkspaceController.PromptRunWorkspaceScript(Workspace, showReviewScriptOption: true);
     }
 
     private void OpenScript()
