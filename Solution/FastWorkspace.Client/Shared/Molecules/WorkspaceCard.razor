@@ -11,16 +11,16 @@
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
-        <MudText Class="mb-2">
+        <MudText Class="mb-2" Style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
             @if (!string.IsNullOrWhiteSpace(Workspace.Description))
             {
                 @Workspace.Description
             }
             else
             {
-                <span>&nbsp;</span>
+                <span>&nbsp;</span><br /><span>&nbsp;</span>
             }
-            </MudText>
+        </MudText>
     </MudCardContent>
     <MudCardActions>
         <MudText Typo="Typo.body2" Class="ml-2" Style="font-size: 0.7rem;">@_humanizedLastModifiedDate</MudText>
