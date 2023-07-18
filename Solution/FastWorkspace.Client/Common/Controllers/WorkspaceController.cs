@@ -162,7 +162,7 @@ public class WorkspaceController : ApplicationController, IDisposable
     {
         var parameters = new DialogParameters<WorkspaceScriptDialog>();
         parameters.Add(x => x.Workspace, workspace);
-        var options = new DialogOptions() { CloseButton = true, CloseOnEscapeKey = true, FullWidth = true, MaxWidth = MaxWidth.Large };
+        var options = new DialogOptions() { CloseButton = true, CloseOnEscapeKey = true, FullWidth = true, MaxWidth = MaxWidth.Large, FullScreen = true };
         return _dialogService.Show<WorkspaceScriptDialog>(workspace.Name, parameters, options);
     }
 

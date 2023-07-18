@@ -5,20 +5,24 @@
 @inject IStringLocalizer<AppLocales> Localize
 @inject HighlighterService HighlighterService
 
-<MudDialog>
+<MudDialog DisableSidePadding="true">
     <DialogContent>
-        <MudStack Row Justify="Justify.SpaceBetween" Class="mt-4 mb-8">
-            <div>
-                <MudSwitch T="bool" Checked="_highlight" CheckedChanged="HighlightChange" Label="@Localize["Workspace.Script.Highlight.Label"]" Color="Color.Primary" />
-                <MudSwitch T="bool" Checked="_startChevron" CheckedChanged="StartChevronChange" Label="@Localize["Workspace.Script.StartChevron.Label"]" Color="Color.Primary" />
-            </div>
-            <div>
-                <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="ExecuteScript">@Localize["Workspace.Script.ExecuteButton"]</MudButton>
-            </div>
-        </MudStack>
+        <div class="mx-8" style="display: flex; flex-direction: column; height: calc(100vh - 64px); margin-top: -12px; margin-bottom: -12px;">
+            <MudStack Row Justify="Justify.SpaceBetween" Class="mt-4 mb-8">
+                <div>
+                    <MudSwitch T="bool" Checked="_highlight" CheckedChanged="HighlightChange" Label="@Localize["Workspace.Script.Highlight.Label"]" Color="Color.Primary" />
+                    <MudSwitch T="bool" Checked="_startChevron" CheckedChanged="StartChevronChange" Label="@Localize["Workspace.Script.StartChevron.Label"]" Color="Color.Primary" />
+                </div>
+                <div>
+                    <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="ExecuteScript">@Localize["Workspace.Script.ExecuteButton"]</MudButton>
+                </div>
+            </MudStack>
 
-        <div class="mb-16">
-            @_displayableScript
+            <div class="mx-n8" style="flex: 1 1 auto; overflow-y: auto; min-height: 0px;">
+                <div class="mx-8 mt-4 mb-12">
+                    @_displayableScript
+                </div>
+            </div>
         </div>
     </DialogContent>
 </MudDialog>
