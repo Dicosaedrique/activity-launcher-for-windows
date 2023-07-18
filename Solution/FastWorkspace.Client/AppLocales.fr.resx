@@ -268,12 +268,15 @@
     <value>Copie de {0}</value>
   </data>
   <data name="Workspace.Script.ExecuteButton" xml:space="preserve">
-    <value>Run script</value>
+    <value>Exécuter le script</value>
   </data>
   <data name="Workspace.Script.Highlight.Label" xml:space="preserve">
     <value>Style code</value>
   </data>
   <data name="Workspace.Script.StartChevron.Label" xml:space="preserve">
     <value>Chevron en début de ligne</value>
+  </data>
+  <data name="Workspace.Script.Title" xml:space="preserve">
+    <value>Script PowerShell de {0}</value>
   </data>
 </root>

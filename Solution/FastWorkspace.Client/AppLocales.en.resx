@@ -276,4 +276,7 @@
   <data name="Workspace.Script.StartChevron.Label" xml:space="preserve">
     <value>Chevron on line start</value>
   </data>
+  <data name="Workspace.Script.Title" xml:space="preserve">
+    <value>PowerShell Script of {0}</value>
+  </data>
 </root>

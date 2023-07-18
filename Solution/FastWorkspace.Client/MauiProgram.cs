@@ -24,6 +24,12 @@ public static class MauiProgram
         {
             config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.TopEnd;
             config.SnackbarConfiguration.SnackbarVariant = Variant.Filled;
+            config.SnackbarConfiguration.PreventDuplicates = false;
+            config.SnackbarConfiguration.ShowCloseIcon = true;
+            config.SnackbarConfiguration.VisibleStateDuration = 10000;
+            config.SnackbarConfiguration.HideTransitionDuration = 200;
+            config.SnackbarConfiguration.ShowTransitionDuration = 200;
+
         });
 
         // add application event

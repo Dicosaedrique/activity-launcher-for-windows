@@ -1,7 +1,7 @@
 ﻿@inject IStringLocalizer<AppLocales> Localize
 @inject WorkspaceController WorkspaceController
 
-<MudCard Elevation="_elevation" onclick="@Edit" onmouseover="@MouseEnter" onmouseout="@MouseLeave">
+<MudCard Elevation="_elevation" onclick="@Edit" onmouseover="@MouseEnter" onmouseout="@MouseLeave" Style="cursor: pointer;">
     <MudCardHeader>
         <CardHeaderContent>
             <MudText Typo="Typo.h6">@Workspace.Name</MudText>
@@ -18,9 +18,9 @@
         <div style="flex: 1;" />
         <MudIconButton Icon="@Icons.Material.Filled.Code" OnClick="OpenScript" aria-label="see script"></MudIconButton>
         <MudMenu Icon="@Icons.Material.Filled.MoreVert" aria-label="more options menu">
-            <MudMenuItem OnClick="Edit">@Localize["Workspace.Card.EditMenu"]</MudMenuItem>
-            <MudMenuItem OnClick="Duplicate">@Localize["Workspace.Card.DuplicateMenu"]</MudMenuItem>
-            <MudMenuItem OnClick="Delete">@Localize["Workspace.Card.DeleteMenu"]</MudMenuItem>
+            <MudMenuItem Icon="@Icons.Material.Filled.Edit" OnClick="Edit">@Localize["Workspace.Card.EditMenu"]</MudMenuItem>
+            <MudMenuItem Icon="@Icons.Material.Filled.ContentCopy" OnClick="Duplicate">@Localize["Workspace.Card.DuplicateMenu"]</MudMenuItem>
+            <MudMenuItem Icon="@Icons.Material.Filled.Delete" OnClick="Delete">@Localize["Workspace.Card.DeleteMenu"]</MudMenuItem>
         </MudMenu>
     </MudCardActions>
 </MudCard>
@@ -65,12 +65,7 @@
 
     private async Task Duplicate()
     {
-        var duplicatedWorkspace = await WorkspaceController.DuplicateWorkspace(Workspace);
-
-        if (duplicatedWorkspace != null)
-        {
-            WorkspaceController.OpenEditWorkspaceDialog(duplicatedWorkspace);
-        }
+        await WorkspaceController.DuplicateWorkspace(Workspace);
     }
 
     private async Task Delete()

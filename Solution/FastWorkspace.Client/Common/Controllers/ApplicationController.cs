@@ -33,7 +33,6 @@ public class ApplicationController
 
     protected async Task PublishError(ErrorEventDetails details)
     {
-        // todo: ajouter une gestion des erreurs par snackbar
         await _eventManager.PublishError(this, details);
     }
 
