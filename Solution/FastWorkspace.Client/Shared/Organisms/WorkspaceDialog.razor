@@ -1,6 +1,4 @@
-﻿@using FastWorkspace.Domain.Common; @* todo: temp *@
-
-@inject WorkspaceController WorkspaceController
+﻿@inject WorkspaceController WorkspaceController
 @inject IStringLocalizer<AppLocales> Localize
 
 <MudDialog>
@@ -10,6 +8,13 @@
                 <MudTextField T="string" @bind-Value="@_workspace.Name" Label="@Localize["Workspace.Dialog.Name.Label"]" Required="true" RequiredError="@Localize["Workspace.Dialog.Name.RequiredError"]" />
                 <MudTextField T="string" @bind-Value="@_workspace.Description" Label="@Localize["Workspace.Dialog.Description.Label"]" Lines="5" />
             </MudStack>
+            <MudText Typo="Typo.h6" Class="mt-12 mb-4">Jobs</MudText>
+            <MudExpansionPanels MultiExpansion Class="mx-12 mb-12">
+                @foreach (var job in _workspace.SortedJobs)
+                {
+                    <JobEdit Job="job" />
+                }
+            </MudExpansionPanels>
         </MudForm>
     </DialogContent>
     <DialogActions>
@@ -54,17 +59,6 @@
 
     private async Task Create()
     {
-        // todo: temp
-        _workspace.AddJob(new TerminalJob()
-        {
-            TerminalTab = new TerminalTab()
-            {
-                Title = "Hello world",
-                Color = "#eb1ea3",
-            },
-            Enabled = true,
-        });
-
         var success = await WorkspaceController.CreateWorkspace(_workspace);
 
         if (success)

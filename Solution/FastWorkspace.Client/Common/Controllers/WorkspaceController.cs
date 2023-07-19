@@ -123,7 +123,7 @@ public class WorkspaceController : ApplicationController, IDisposable
 
     public IDialogReference OpenCreateWorkspaceDialog()
     {
-        var options = new DialogOptions() { CloseButton = false, CloseOnEscapeKey = true, FullWidth = true };
+        var options = new DialogOptions() { CloseButton = false, CloseOnEscapeKey = true, FullWidth = true, MaxWidth = MaxWidth.Large };
         return _dialogService.Show<WorkspaceDialog>(_localize["Workspace.Dialog.Create.Title"], options);
     }
 
@@ -131,7 +131,7 @@ public class WorkspaceController : ApplicationController, IDisposable
     {
         var parameters = new DialogParameters<WorkspaceDialog>();
         parameters.Add(x => x.WorkspaceToEdit, workspace);
-        var options = new DialogOptions() { CloseButton = false, CloseOnEscapeKey = true, FullWidth = true };
+        var options = new DialogOptions() { CloseButton = false, CloseOnEscapeKey = true, FullWidth = true, MaxWidth = MaxWidth.Large };
         return _dialogService.Show<WorkspaceDialog>(_localize["Workspace.Dialog.Edit.Title"], parameters, options);
     }
 

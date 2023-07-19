@@ -1,0 +1,12 @@
+﻿@using FastWorkspace.Domain.Interfaces;
+
+<MudExpansionPanel Text="@Label">
+    @Job.Description
+</MudExpansionPanel>
+
+@code {
+    [Parameter]
+    public IJob Job { get; set; } = null!;
+
+    public string Label => $"{Job.Sequence}. {Job.DisplayName}";
+}
