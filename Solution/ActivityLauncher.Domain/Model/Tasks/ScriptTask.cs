@@ -1,8 +1,8 @@
 ﻿using ActivityLauncher.Domain.Interfaces;
 
-namespace ActivityLauncher.Domain.Model.Jobs;
+namespace ActivityLauncher.Domain.Model.Tasks;
 
-public class ScriptJob : BaseJob, ICloneable<ScriptJob>
+public class ScriptTask : BaseTask, ICloneable<ScriptTask>
 {
     public string Script { get; set; } = string.Empty;
 
@@ -11,9 +11,9 @@ public class ScriptJob : BaseJob, ICloneable<ScriptJob>
         return Script;
     }
 
-    public ScriptJob Clone()
+    public ScriptTask Clone()
     {
-        return new ScriptJob()
+        return new ScriptTask()
         {
             Name = Name,
             Enabled = Enabled,

@@ -13,7 +13,7 @@ public partial class App : Application
     {
         Window window = base.CreateWindow(activationState);
 
-        window.Title = "Fast Workspace";
+        window.Title = "Activity Launcher for Windows";
 
         return window;
     }

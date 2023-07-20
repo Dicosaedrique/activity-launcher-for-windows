@@ -16,68 +16,68 @@ public class ScriptGeneratorService : IScriptGeneratorService
         _localize = localization;
     }
 
-    public string GetScript(Workspace workspace)
+    public string GetScript(Activity activity)
     {
         var builder = new StringBuilder();
 
-        builder.Append(GetScriptHeader(workspace));
+        builder.Append(GetScriptHeader(activity));
 
-        builder.Append(GetScriptJobSection(_localize["Generator.Section.BrowserTabsJob"], workspace.BrowserTabsJobs));
-        builder.Append(GetScriptJobSection(_localize["Generator.Section.ExplorerFolderJob"], workspace.ExplorerFolderJobs));
-        builder.Append(GetScriptJobSection(_localize["Generator.Section.ProgramJob"], workspace.ProgramJobs));
-        builder.Append(GetScriptJobSection(_localize["Generator.Section.ScriptJob"], workspace.ScriptJobs));
-        builder.Append(GetScriptJobSection(_localize["Generator.Section.TerminalJob"], workspace.TerminalJobs));
-        builder.Append(GetScriptJobSection(_localize["Generator.Section.VSCodeJob"], workspace.VSCodeJobs));
-        builder.Append(GetScriptJobSection(_localize["Generator.Section.VSSolutionJob"], workspace.VSSolutionJobs));
+        builder.Append(GetScriptTaskSection(_localize["Generator.Section.BrowserTabsTask"], activity.BrowserTabsTasks));
+        builder.Append(GetScriptTaskSection(_localize["Generator.Section.ExplorerFolderTask"], activity.ExplorerFolderTasks));
+        builder.Append(GetScriptTaskSection(_localize["Generator.Section.ProgramTask"], activity.ProgramTasks));
+        builder.Append(GetScriptTaskSection(_localize["Generator.Section.ScriptTask"], activity.ScriptTasks));
+        builder.Append(GetScriptTaskSection(_localize["Generator.Section.TerminalTask"], activity.TerminalTasks));
+        builder.Append(GetScriptTaskSection(_localize["Generator.Section.VSCodeTask"], activity.VSCodeTasks));
+        builder.Append(GetScriptTaskSection(_localize["Generator.Section.VSSolutionTask"], activity.VSSolutionTasks));
 
         builder.Append(GetScriptFooter());
 
         return builder.ToString();
     }
 
-    private string GetScriptHeader(Workspace workspace)
+    private string GetScriptHeader(Activity activity)
     {
-        if (string.IsNullOrWhiteSpace(workspace.Description))
+        if (string.IsNullOrWhiteSpace(activity.Description))
         {
             return string.Format(HeaderWithoutDescriptionTemplate,
                 _localize["Generator.Header.Name"],
-                workspace.Name,
+                activity.Name,
                 _localize["Generator.Header.Message"]);
         }
 
         return string.Format(HeaderTemplate,
             _localize["Generator.Header.Name"],
-            workspace.Name,
+            activity.Name,
             _localize["Generator.Header.Description"],
-            workspace.Description,
+            activity.Description,
             _localize["Generator.Header.Message"]);
     }
 
-    private string GetScriptJobSection(string title, IEnumerable<IJob> jobs)
+    private string GetScriptTaskSection(string title, IEnumerable<ITask> tasks)
     {
-        var enabledJobs = jobs.Where(job => job.Enabled);
+        var enabledTasks = tasks.Where(task => task.Enabled);
 
-        if(enabledJobs.Any())
+        if(enabledTasks.Any())
         {
-            var jobsScript = string.Join("\n\n", enabledJobs.Select(GetJobScript));
-            return string.Format(JobSectionTemplate, title, jobsScript);
+            var tasksScript = string.Join("\n\n", enabledTasks.Select(GetTaskScript));
+            return string.Format(TaskSectionTemplate, _localize["Generator.Section.Prefix"], title, tasksScript);
         }
 
         return string.Empty;
     }
 
-    private string GetJobScript(IJob job)
+    private string GetTaskScript(ITask task)
     {
-        if (!job.Enabled) return string.Empty;
+        if (!task.Enabled) return string.Empty;
 
         var builder = new StringBuilder();
 
-        if (!string.IsNullOrWhiteSpace(job.Name))
+        if (!string.IsNullOrWhiteSpace(task.Name))
         {
-            builder.AppendLine($"# {job.Name}");
+            builder.AppendLine($"# {task.Name}");
         }
 
-        builder.Append(job.GetScript());
+        builder.Append(task.GetScript());
 
         return builder.ToString();
     }
@@ -95,7 +95,7 @@ public class ScriptGeneratorService : IScriptGeneratorService
 
     private const string HeaderWithoutDescriptionTemplate = "###################################################################################################\n# {0}: {1}\n#\n# {2}\n###################################################################################################\n\n";
 
-    private const string JobSectionTemplate = "######################################################\n#region [{0}]\n\n{1}\n\n#endregion ###########################################\n\n\n\n";
+    private const string TaskSectionTemplate = "######################################################\n#region [{0}] {1}\n\n{2}\n\n#endregion ###########################################\n\n\n\n";
 
     private const string FooterTemplate = "# {0}\n# {1}\n###################################################################################################";
 

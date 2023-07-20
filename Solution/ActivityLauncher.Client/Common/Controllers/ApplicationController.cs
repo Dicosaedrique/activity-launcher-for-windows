@@ -14,16 +14,16 @@ public class ApplicationController
 
     protected readonly IDialogService _dialogService;
 
-    protected readonly IStringLocalizer<AppLocales> _localize;
+    protected readonly IStringLocalizer<CommonLocales> _commonLocalize;
 
     protected readonly ILogger<ApplicationController> _logger;
 
-    public ApplicationController(ApplicationEventManager eventManager, ISnackbar notificationService, IDialogService dialogService, IStringLocalizer<AppLocales> localize, ILogger<ApplicationController> logger)
+    public ApplicationController(ApplicationEventManager eventManager, ISnackbar notificationService, IDialogService dialogService, IStringLocalizer<CommonLocales> commonLocalize, ILogger<ApplicationController> logger)
     {
         _eventManager = eventManager;
         _notificationService = notificationService;
         _dialogService = dialogService;
-        _localize = localize;
+        _commonLocalize = commonLocalize;
         _logger = logger;
     }
 

@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using ActivityLauncher.Domain.Interfaces;
 
-namespace ActivityLauncher.Domain.Model.Jobs;
+namespace ActivityLauncher.Domain.Model.Tasks;
 
-public class ProgramJob : BaseJob, ICloneable<ProgramJob>
+public class ProgramTask : BaseTask, ICloneable<ProgramTask>
 {
     public string ProgramName { get; set; } = string.Empty;
 
@@ -37,9 +37,9 @@ public class ProgramJob : BaseJob, ICloneable<ProgramJob>
         }
     }
 
-    public ProgramJob Clone()
+    public ProgramTask Clone()
     {
-        return new ProgramJob()
+        return new ProgramTask()
         {
             Name = Name,
             ProgramName = ProgramName,

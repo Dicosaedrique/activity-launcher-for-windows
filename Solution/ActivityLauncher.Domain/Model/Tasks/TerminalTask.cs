@@ -2,9 +2,9 @@
 using ActivityLauncher.Domain.Interfaces;
 using ActivityLauncher.Domain.Model.Terminal;
 
-namespace ActivityLauncher.Domain.Model.Jobs;
+namespace ActivityLauncher.Domain.Model.Tasks;
 
-public class TerminalJob : BaseJob, ICloneable<TerminalJob>
+public class TerminalTask : BaseTask, ICloneable<TerminalTask>
 {
     public List<TerminalTab> TerminalTabs { get; set; } = new();
 
@@ -29,9 +29,9 @@ public class TerminalJob : BaseJob, ICloneable<TerminalJob>
         return builder.ToString();
     }
 
-    public TerminalJob Clone()
+    public TerminalTask Clone()
     {
-        return new TerminalJob()
+        return new TerminalTask()
         {
             Name = Name,
             Enabled = Enabled,

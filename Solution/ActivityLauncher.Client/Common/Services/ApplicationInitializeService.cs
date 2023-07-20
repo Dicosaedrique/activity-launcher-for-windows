@@ -7,12 +7,12 @@ namespace ActivityLauncher.Client.Common.Services;
 public class ApplicationInitializeService : IMauiInitializeService
 {
     private IAppConfiguration _appConfiguration = null!;
-    private IWorkspaceStore _workspaceStore = null!;
+    private IActivityStore _activityStore = null!;
 
     public void Initialize(IServiceProvider services)
     {
         _appConfiguration = services.GetRequiredService<IAppConfiguration>();
-        _workspaceStore = services.GetRequiredService<IWorkspaceStore>();
+        _activityStore = services.GetRequiredService<IActivityStore>();
 
         SetupStores();
         SetupApplicationLanguage();
@@ -22,7 +22,7 @@ public class ApplicationInitializeService : IMauiInitializeService
     {
         if (_appConfiguration.GetFileStorageDirectoryPath() != null)
         {
-            _workspaceStore.SetupStore();
+            _activityStore.SetupStore();
         }
     }
 

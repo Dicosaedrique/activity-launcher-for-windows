@@ -5,10 +5,10 @@
 
 @implements IAsyncDisposable
 
-@inject IWorkspaceStore WorkspaceStore
+@inject IActivityStore ActivityStore
 @inject IAppConfiguration AppConfiguration
 @inject NavigationManager Navigation
-@inject IStringLocalizer<ConfigurationPageLocales> Localize
+@inject IStringLocalizer<ConfigurationLocales> Localize
 @inject ApplicationEventManager EventManager
 
 @attribute [Route(Routes.ConfigurationPage)]
@@ -90,10 +90,10 @@
 
         if (AppConfiguration.SetFileStorageDirectoryPath(_fileStorageDirectoryPath))
         {
-            WorkspaceStore.SetupStore();
+            ActivityStore.SetupStore();
             AppConfiguration.SetLanguage(_language);
             AppConfiguration.SetTheme(_theme);
-            Navigation.NavigateTo(Routes.DashboardPage, replace: true);
+            Navigation.NavigateTo(Routes.ActivitiesPage, replace: true);
         }
         else
         {

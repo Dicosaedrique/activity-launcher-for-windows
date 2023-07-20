@@ -5,5 +5,5 @@ namespace ActivityLauncher.Domain.Services.Declarations;
 
 public interface IScriptGeneratorService
 {
-    public string GetScript(Workspace workspace);
+    public string GetScript(Activity activity);
 }

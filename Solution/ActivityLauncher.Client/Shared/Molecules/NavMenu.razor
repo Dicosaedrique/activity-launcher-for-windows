@@ -1,6 +1,6 @@
-﻿@inject IStringLocalizer<AppLocales> Localize
+﻿@inject IStringLocalizer<CommonLocales> Localize
 
 <MudNavMenu Class="mt-4">
-    <MudNavLink Href="@Routes.DashboardPage" Match="NavLinkMatch.Prefix">@Localize["Navigation.Dashboards"]</MudNavLink>
+    <MudNavLink Href="@Routes.ActivitiesPage" Match="NavLinkMatch.Prefix">@Localize["Navigation.Activities"]</MudNavLink>
     <MudNavLink Href="@Routes.ConfigurationPage" Match="NavLinkMatch.Prefix">@Localize["Navigation.Configuration"]</MudNavLink>
 </MudNavMenu>

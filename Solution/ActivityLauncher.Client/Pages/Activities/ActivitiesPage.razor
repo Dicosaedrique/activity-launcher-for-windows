@@ -1,0 +1,60 @@
+﻿@using ActivityLauncher.Client.Pages.Activities.Molecules;
+
+@implements IDisposable
+
+@attribute [Route(Routes.ActivitiesPage)]
+
+@inject ActivityController ActivityController
+@inject IStringLocalizer<ActivityLocales> Localize
+
+<MudContainer MaxWidth="MaxWidth.Large">
+    <MudStack Row Justify="Justify.SpaceBetween" Class="mb-14">
+        <div>
+            <MudText Typo="Typo.h4" Class="mb-4">@Localize["Page.Title"]</MudText>
+            <MudText Typo="Typo.subtitle1">@Localize["Page.Description"]</MudText>
+        </div>
+        <div>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="OpenCreateActivityDialog">@Localize["Page.CreateActivityButton"]</MudButton>
+        </div>
+    </MudStack>
+
+    @if (_activities != null)
+    {
+        <div Class="d-flex flex-wrap gap-4 mx-n2 mb-16">
+            @foreach (var activity in _activities.OrderBy(x => x.LastModifiedDate))
+            {
+                <ActivityCard @key="activity.Id" Activity="activity" />
+            }
+        </div>
+    }
+</MudContainer>
+
+@code {
+    private IEnumerable<Activity>? _activities;
+
+    protected override async Task OnInitializedAsync()
+    {
+        ActivityController.AddActivityChangedListener(GetActivities);
+        await GetActivities();
+    }
+
+    private async Task GetActivities()
+    {
+        _activities = await ActivityController.GetActivities();
+        StateHasChanged();
+    }
+
+    private void OpenCreateActivityDialog()
+    {
+        ActivityController.OpenCreateActivityDialog();
+    }
+
+    public void Dispose()
+    {
+        ActivityController.RemoveActivityChangedListener(GetActivities);
+    }
+}
+
+
+
+    

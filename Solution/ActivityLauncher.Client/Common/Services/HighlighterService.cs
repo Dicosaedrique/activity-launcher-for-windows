@@ -26,15 +26,15 @@ public class HighlighterService
         _scriptGenerator = scriptGenerator;
     }
 
-    public MarkupString GetDisplayableScript(Workspace workspace, bool startChevron = true)
+    public MarkupString GetDisplayableScript(Activity activity, bool startChevron = true)
     {
-        var formattedScript = GetFormattedScript(_scriptGenerator.GetScript(workspace), startChevron);
+        var formattedScript = GetFormattedScript(_scriptGenerator.GetScript(activity), startChevron);
         return new MarkupString(string.Format(template, string.Empty, formattedScript));
     }
 
-    public async Task<MarkupString> GetHiglightedScript(Workspace workspace, bool startChevron = true)
+    public async Task<MarkupString> GetHiglightedScript(Activity activity, bool startChevron = true)
     {
-        var highlightedScript = await _interopService.GetHighlightedPowerShellScript(_scriptGenerator.GetScript(workspace));
+        var highlightedScript = await _interopService.GetHighlightedPowerShellScript(_scriptGenerator.GetScript(activity));
         var cssClass = GetHighlightClassByTheme(_appConfiguration.GetTheme());
         var formattedScript = GetFormattedScript(highlightedScript, startChevron);
 

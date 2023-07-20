@@ -1,5 +1,5 @@
 ﻿namespace ActivityLauncher.Client.Locales;
 
-public class AppLocales
+public class CommonLocales
 {
 }

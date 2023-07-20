@@ -1,6 +1,6 @@
 ﻿@using CommunityToolkit.Maui.Storage;
 
-@inject IStringLocalizer<AppLocales> Localize
+@inject IStringLocalizer<CommonLocales> Localize
 
 <div>
     <MudStack Row AlignItems="AlignItems.Center" Class="mb-1">
@@ -39,7 +39,7 @@
             }
             else
             {
-                _error = Localize["Components.FolderPickerInput.Error"];
+                _error = Localize["FolderPickerInput.Error"];
             }
         }
     }

@@ -117,49 +117,127 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Errors.EmptyFileStorage" xml:space="preserve">
-    <value>Please choose a folder for this applications data!</value>
+  <data name="Page.CreateActivityButton" xml:space="preserve">
+    <value>Créer une activité</value>
   </data>
-  <data name="Errors.InvalidFileStorage" xml:space="preserve">
-    <value>Please choose an existing folder for this applications data!</value>
+  <data name="Page.Description" xml:space="preserve">
+    <value>Créez, modifiez et lancez vos activités depuis cette page.</value>
   </data>
-  <data name="FileStorage.FolderPicker.Label" xml:space="preserve">
-    <value>Select a folder</value>
+  <data name="Page.Title" xml:space="preserve">
+    <value>Activités</value>
   </data>
-  <data name="FileStorage.Help" xml:space="preserve">
-    <value>The application will use the provided folder to save the data (workspaces, ...)</value>
+  <data name="Notifications.Errors.CreateActivity" xml:space="preserve">
+    <value>Une erreur est survenue lors de la création de l'activité</value>
   </data>
-  <data name="FileStorage.Label" xml:space="preserve">
-    <value>Application Data Folder (required)</value>
+  <data name="Notifications.Errors.DeleteActivity" xml:space="preserve">
+    <value>Une erreur est survenue lors de la suppression de l'activité</value>
   </data>
-  <data name="Language.English" xml:space="preserve">
-    <value>English</value>
+  <data name="Notifications.Errors.DuplicateActivity" xml:space="preserve">
+    <value>Une erreur est survenue lors de la duplication de l'activité</value>
   </data>
-  <data name="Language.French" xml:space="preserve">
-    <value>Français</value>
+  <data name="Notifications.Errors.GetActivities" xml:space="preserve">
+    <value>Une erreur est survenue à la récupération des activités</value>
   </data>
-  <data name="Language.Label" xml:space="preserve">
-    <value>Language</value>
+  <data name="Notifications.Errors.LaunchActivity" xml:space="preserve">
+    <value>Une erreur est survenue lors du lancement de l'activité</value>
   </data>
-  <data name="ResetButton" xml:space="preserve">
-    <value>Reset</value>
+  <data name="Notifications.Errors.UpdateActivity" xml:space="preserve">
+    <value>Une erreur est survenue lors de la mise à jour de l'activité</value>
   </data>
-  <data name="SaveButton" xml:space="preserve">
-    <value>Save</value>
+  <data name="Notifications.Success.CreateActivity" xml:space="preserve">
+    <value>L'activité a bien été créé</value>
   </data>
-  <data name="Theme.Dark" xml:space="preserve">
-    <value>Dark</value>
+  <data name="Notifications.Success.DeleteActivity" xml:space="preserve">
+    <value>L'activité a bien été supprimé</value>
   </data>
-  <data name="Theme.Label" xml:space="preserve">
-    <value>Theme</value>
+  <data name="Notifications.Success.DuplicateActivity" xml:space="preserve">
+    <value>L'activité a bien été dupliqué</value>
   </data>
-  <data name="Theme.Light" xml:space="preserve">
-    <value>Light</value>
+  <data name="Notifications.Success.LaunchActivity" xml:space="preserve">
+    <value>L'activité a bien été lancée</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>Configuration</value>
+  <data name="Notifications.Success.UpdateActivity" xml:space="preserve">
+    <value>L'activité a bien été mis à jour</value>
   </data>
-  <data name="WelcomeMessage" xml:space="preserve">
-    <value>Welcome to Fast Workspace! Please configure your app before seting up your workspaces.</value>
+  <data name="Activity.Card.DeleteMenu" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Activity.Card.DuplicateMenu" xml:space="preserve">
+    <value>Dupliquer</value>
+  </data>
+  <data name="Activity.Card.EditMenu" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="Activity.Dialog.CancelButton" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Activity.Dialog.Create.SubmitButton" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="Activity.Dialog.Create.Title" xml:space="preserve">
+    <value>Créer une nouvelle activité</value>
+  </data>
+  <data name="Activity.Dialog.Delete.CancelButton" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Activity.Dialog.Delete.ConfirmButton" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Activity.Dialog.Delete.Message" xml:space="preserve">
+    <value>Voulez-vous vraiment supprimer l'activité "{0}" ? Cette action est définitive.</value>
+  </data>
+  <data name="Activity.Dialog.Delete.Title" xml:space="preserve">
+    <value>Supprimer l'activité</value>
+  </data>
+  <data name="Activity.Dialog.Description.Label" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Activity.Dialog.Edit.SubmitButton" xml:space="preserve">
+    <value>Sauvegarder</value>
+  </data>
+  <data name="Activity.Dialog.Edit.Title" xml:space="preserve">
+    <value>Modifier l'activité</value>
+  </data>
+  <data name="Activity.Dialog.Name.Label" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Activity.Dialog.Name.RequiredError" xml:space="preserve">
+    <value>L'activité doit avoir un nom !</value>
+  </data>
+  <data name="Activity.Duplicate.Name" xml:space="preserve">
+    <value>Copie de "{0}"</value>
+  </data>
+  <data name="Activity.Dialog.Script.LaunchButton" xml:space="preserve">
+    <value>Exécuter le script</value>
+  </data>
+  <data name="Activity.Dialog.Script.Highlight.Label" xml:space="preserve">
+    <value>Mettre en surbrillance la syntaxe</value>
+  </data>
+  <data name="Activity.Dialog.Script.StartChevron.Label" xml:space="preserve">
+    <value>Ajouter les chevrons en début de ligne</value>
+  </data>
+  <data name="Activity.Dialog.Script.Title" xml:space="preserve">
+    <value>Script PowerShell de l'activité "{0}"</value>
+  </data>
+  <data name="Activity.Dialog.Launch.CancelButton" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Activity.Dialog.Launch.ConfirmButton" xml:space="preserve">
+    <value>Exécuter</value>
+  </data>
+  <data name="Activity.Dialog.Launch.Message" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir exécuter le script PowerShell généré ? Aucune vérification automatique n'a été faite, il est donc recommandé de faire une revue manuelle du script avant son exécution afin de s'assurer qu'aucun problème ne puisse survenir à l'exécution.</value>
+  </data>
+  <data name="Activity.Dialog.Launch.ReviewScript" xml:space="preserve">
+    <value>Vérifier le script</value>
+  </data>
+  <data name="Activity.Dialog.Launch.Title" xml:space="preserve">
+    <value>Lancer le script pour l'activité "{0}"</value>
+  </data>
+  <data name="Activity.Card.OpenScriptTooltip" xml:space="preserve">
+    <value>Ouvrir le script</value>
+  </data>
+  <data name="Activity.Dialog.View.Description" xml:space="preserve">
+    <value>Description</value>
   </data>
 </root>

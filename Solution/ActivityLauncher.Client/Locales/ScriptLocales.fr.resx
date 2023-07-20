@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Generator.Footer.Message" xml:space="preserve">
-    <value>Merci d'utiliser Fast Workspace !</value>
+    <value>Merci d'utiliser Activity Launcher pour Windows !</value>
   </data>
   <data name="Generator.Footer.Timestamp" xml:space="preserve">
     <value>Script généré le {0:d} à {0:t}</value>
@@ -127,30 +127,33 @@
     <value>Description</value>
   </data>
   <data name="Generator.Header.Message" xml:space="preserve">
-    <value>Script généré avec amour par Fast Workspace &lt;3</value>
+    <value>Script généré avec amour par Activity Launcher pour Windows &lt;3</value>
   </data>
   <data name="Generator.Header.Name" xml:space="preserve">
-    <value>Espace de travail</value>
+    <value>Activité</value>
   </data>
-  <data name="Generator.Section.BrowserTabsJob" xml:space="preserve">
+  <data name="Generator.Section.BrowserTabsTask" xml:space="preserve">
     <value>Ouvrir des onglets dans le navigateur</value>
   </data>
-  <data name="Generator.Section.ExplorerFolderJob" xml:space="preserve">
+  <data name="Generator.Section.ExplorerFolderTask" xml:space="preserve">
     <value>Ouvrir l'explorateur de fichiers</value>
   </data>
-  <data name="Generator.Section.ProgramJob" xml:space="preserve">
+  <data name="Generator.Section.Prefix" xml:space="preserve">
+    <value>Tâches</value>
+  </data>
+  <data name="Generator.Section.ProgramTask" xml:space="preserve">
     <value>Ouvrir un programme</value>
   </data>
-  <data name="Generator.Section.ScriptJob" xml:space="preserve">
+  <data name="Generator.Section.ScriptTask" xml:space="preserve">
     <value>Exécuter un script PowerShell personnalisé</value>
   </data>
-  <data name="Generator.Section.TerminalJob" xml:space="preserve">
+  <data name="Generator.Section.TerminalTask" xml:space="preserve">
     <value>Ouvrir un ou plusieurs onglets dans Windows Terminal</value>
   </data>
-  <data name="Generator.Section.VSCodeJob" xml:space="preserve">
-    <value>Ouvrir un dossier dans Visual Studio Code</value>
+  <data name="Generator.Section.VSCodeTask" xml:space="preserve">
+    <value>Ouvrir un espace de travail Visual Studio Code</value>
   </data>
-  <data name="Generator.Section.VSSolutionJob" xml:space="preserve">
+  <data name="Generator.Section.VSSolutionTask" xml:space="preserve">
     <value>Ouvrir une solution Visual Studio</value>
   </data>
 </root>

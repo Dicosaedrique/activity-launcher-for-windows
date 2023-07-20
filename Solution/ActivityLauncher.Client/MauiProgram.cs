@@ -39,7 +39,7 @@ public static class MauiProgram
         // add services
         builder.Services.AddTransient<IAppConfiguration, AppConfiguration>();
         builder.Services.AddTransient<IFileStorage, DataFileStore>();
-        builder.Services.AddTransient<IWorkspaceStore, WorkspaceStore>();
+        builder.Services.AddTransient<IActivityStore, ActivityStore>();
         builder.Services.AddTransient<IMauiInitializeService, ApplicationInitializeService>();
         builder.Services.AddTransient<IScriptGeneratorService, ScriptGeneratorService>();
         builder.Services.AddTransient<IPowerShellScriptRunner, PowerShellScriptRunner>();
@@ -48,7 +48,7 @@ public static class MauiProgram
 
         // add controllers
         builder.Services.AddTransient<ApplicationController>();
-        builder.Services.AddTransient<WorkspaceController>();
+        builder.Services.AddTransient<ActivityController>();
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();

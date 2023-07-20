@@ -1,0 +1,18 @@
+﻿@inject ActivityController ActivityController
+@inject IStringLocalizer<ActivityLocales> Localize
+
+<MudDialog>
+    <DialogContent>
+        <MudText Typo="Typo.h6" Style="font-size: 1.2rem;">@Localize["Activity.Dialog.View.Description"]</MudText>
+        <MudText Typo="Typo.subtitle1">@Activity.Description</MudText>
+        @* todo: add tasks management *@
+    </DialogContent>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    public MudDialogInstance MudDialog { get; set; } = null!;
+
+    [Parameter]
+    public Activity Activity { get; set; } = null!;
+}

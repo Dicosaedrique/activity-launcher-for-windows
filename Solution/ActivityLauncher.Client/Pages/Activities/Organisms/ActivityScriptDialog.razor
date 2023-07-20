@@ -1,5 +1,5 @@
-﻿@inject WorkspaceController WorkspaceController
-@inject IStringLocalizer<AppLocales> Localize
+﻿@inject ActivityController ActivityController
+@inject IStringLocalizer<ActivityLocales> Localize
 @inject HighlighterService HighlighterService
 
 <MudDialog DisableSidePadding="true">
@@ -7,11 +7,11 @@
         <div class="mx-8" style="display: flex; flex-direction: column; height: calc(100vh - 64px); margin-top: -12px; margin-bottom: -12px;">
             <MudStack Row Justify="Justify.SpaceBetween" Class="mt-4 mb-8">
                 <div>
-                    <MudSwitch T="bool" Checked="_highlight" CheckedChanged="HighlightChange" Label="@Localize["Workspace.Script.Highlight.Label"]" Color="Color.Primary" />
-                    <MudSwitch T="bool" Checked="_startChevron" CheckedChanged="StartChevronChange" Label="@Localize["Workspace.Script.StartChevron.Label"]" Color="Color.Primary" />
+                    <MudSwitch T="bool" Checked="_highlight" CheckedChanged="HighlightChange" Label="@Localize["Activity.Dialog.Script.Highlight.Label"]" Color="Color.Primary" />
+                    <MudSwitch T="bool" Checked="_startChevron" CheckedChanged="StartChevronChange" Label="@Localize["Activity.Dialog.Script.StartChevron.Label"]" Color="Color.Primary" />
                 </div>
                 <div>
-                    <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="RunScript">@Localize["Workspace.Script.RunButton"]</MudButton>
+                    <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="LaunchActivity">@Localize["Activity.Dialog.Script.LaunchButton"]</MudButton>
                 </div>
             </MudStack>
 
@@ -29,7 +29,7 @@
     public MudDialogInstance MudDialog { get; set; } = null!;
 
     [Parameter]
-    public Workspace Workspace { get; set; } = null!;
+    public Activity Activity { get; set; } = null!;
 
     private bool _highlight = true;
     private bool _startChevron = true;
@@ -38,14 +38,14 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        MudDialog.SetTitle(string.Format(Localize["Workspace.Script.Title"], Workspace.Name));
+        MudDialog.SetTitle(string.Format(Localize["Activity.Dialog.Script.Title"], Activity.Name));
         await UpdateDisplayableScript();
     }
 
     private async Task UpdateDisplayableScript()
     {
-        if (_highlight) _displayableScript = await HighlighterService.GetHiglightedScript(Workspace, _startChevron);
-        else _displayableScript = HighlighterService.GetDisplayableScript(Workspace, _startChevron);
+        if (_highlight) _displayableScript = await HighlighterService.GetHiglightedScript(Activity, _startChevron);
+        else _displayableScript = HighlighterService.GetDisplayableScript(Activity, _startChevron);
     }
 
     private async Task StartChevronChange(bool startChevron)
@@ -60,9 +60,9 @@
         await UpdateDisplayableScript();
     }
 
-    private async Task RunScript()
+    private async Task LaunchActivity()
     {
-        await WorkspaceController.PromptRunWorkspaceScript(Workspace, false);
+        await ActivityController.PromptLaunchActivity(Activity, false);
     }
 
     // todo: nice to have

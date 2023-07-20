@@ -117,148 +117,127 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Components.FolderPickerInput.Error" xml:space="preserve">
-    <value>You must choose a valid existing folder.</value>
+  <data name="Page.CreateActivityButton" xml:space="preserve">
+    <value>Create an Activity</value>
   </data>
-  <data name="Dashboard.CreateWorkspaceButton" xml:space="preserve">
-    <value>Add</value>
+  <data name="Page.Description" xml:space="preserve">
+    <value>Create and edit your activities from this page.</value>
   </data>
-  <data name="Dashboard.Description" xml:space="preserve">
-    <value>Create and edit your workspaces from this page.</value>
+  <data name="Page.Title" xml:space="preserve">
+    <value>Activities</value>
   </data>
-  <data name="Dashboard.Title" xml:space="preserve">
-    <value>Workspaces</value>
+  <data name="Notifications.Errors.CreateActivity" xml:space="preserve">
+    <value>An error occurred while creating the activity</value>
   </data>
-  <data name="Errors.CreateWorkspace" xml:space="preserve">
-    <value>An error occurred while creating the workspace</value>
+  <data name="Notifications.Errors.DeleteActivity" xml:space="preserve">
+    <value>An error occurred while deleting the activity</value>
   </data>
-  <data name="Errors.DeleteWorkspace" xml:space="preserve">
-    <value>An error occurred while deleting the workspace</value>
+  <data name="Notifications.Errors.DuplicateActivity" xml:space="preserve">
+    <value>An error occurred while duplicating the activity</value>
   </data>
-  <data name="Errors.DuplicateWorkspace" xml:space="preserve">
-    <value>An error occurred while duplicating the workspace</value>
+  <data name="Notifications.Errors.GetActivities" xml:space="preserve">
+    <value>An error occurred while getting the activities</value>
   </data>
-  <data name="Errors.GetWorkspaces" xml:space="preserve">
-    <value>An error occurred while getting the workspaces</value>
+  <data name="Notifications.Errors.LaunchActivity" xml:space="preserve">
+    <value>An error occurred while launching the activity</value>
   </data>
-  <data name="Errors.RunWorkspaceScript" xml:space="preserve">
-    <value>An error occurred while running script</value>
+  <data name="Notifications.Errors.UpdateActivity" xml:space="preserve">
+    <value>An error occurred while updating the activity</value>
   </data>
-  <data name="Errors.UpdateWorkspace" xml:space="preserve">
-    <value>An error occurred while updating the workspace</value>
+  <data name="Notifications.Success.CreateActivity" xml:space="preserve">
+    <value>The activity has been created successfully</value>
   </data>
-  <data name="GlobalError.Button" xml:space="preserve">
-    <value>Refresh the application</value>
+  <data name="Notifications.Success.DeleteActivity" xml:space="preserve">
+    <value>The activity has been deleted successfully</value>
   </data>
-  <data name="GlobalError.Message" xml:space="preserve">
-    <value>An unhandled error occurred, please try again or</value>
+  <data name="Notifications.Success.DuplicateActivity" xml:space="preserve">
+    <value>The activity has been duplicated successfully</value>
   </data>
-  <data name="GlobalError.Message.Link" xml:space="preserve">
-    <value>signal the issue on GitHub</value>
+  <data name="Notifications.Success.LaunchActivity" xml:space="preserve">
+    <value>The activity has been launched successfully</value>
   </data>
-  <data name="GlobalError.Title" xml:space="preserve">
-    <value>This application doesn't feel well...</value>
+  <data name="Notifications.Success.UpdateActivity" xml:space="preserve">
+    <value>The activity has been updated successfully</value>
   </data>
-  <data name="Navigation.Configuration" xml:space="preserve">
-    <value>Configuration</value>
-  </data>
-  <data name="Navigation.Dashboards" xml:space="preserve">
-    <value>Workspaces</value>
-  </data>
-  <data name="Notifications.CreateWorkspace" xml:space="preserve">
-    <value>The workspace has been created successfully</value>
-  </data>
-  <data name="Notifications.DeleteWorkspace" xml:space="preserve">
-    <value>The workspace has been deleted successfully</value>
-  </data>
-  <data name="Notifications.DuplicateWorkspace" xml:space="preserve">
-    <value>The workspace has been duplicated successfully</value>
-  </data>
-  <data name="Notifications.RunWorkspaceScript" xml:space="preserve">
-    <value>The script has been run successfully</value>
-  </data>
-  <data name="Notifications.UpdateWorkspace" xml:space="preserve">
-    <value>The workspace has been updated successfully</value>
-  </data>
-  <data name="Workspace.Card.DeleteMenu" xml:space="preserve">
+  <data name="Activity.Card.DeleteMenu" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="Workspace.Card.DuplicateMenu" xml:space="preserve">
+  <data name="Activity.Card.DuplicateMenu" xml:space="preserve">
     <value>Duplicate</value>
   </data>
-  <data name="Workspace.Card.EditMenu" xml:space="preserve">
+  <data name="Activity.Card.EditMenu" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="Workspace.Dialog.CancelButton" xml:space="preserve">
+  <data name="Activity.Dialog.CancelButton" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="Workspace.Dialog.Create.SubmitButton" xml:space="preserve">
-    <value>Add</value>
+  <data name="Activity.Dialog.Create.SubmitButton" xml:space="preserve">
+    <value>Create</value>
   </data>
-  <data name="Workspace.Dialog.Create.Title" xml:space="preserve">
-    <value>Create a New Workspace</value>
+  <data name="Activity.Dialog.Create.Title" xml:space="preserve">
+    <value>Create a New Activity</value>
   </data>
-  <data name="Workspace.Dialog.Delete.CancelButton" xml:space="preserve">
+  <data name="Activity.Dialog.Delete.CancelButton" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="Workspace.Dialog.Delete.ConfirmButton" xml:space="preserve">
+  <data name="Activity.Dialog.Delete.ConfirmButton" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="Workspace.Dialog.Delete.Message" xml:space="preserve">
-    <value>Are you sure you want to delete workspace "{0}"? This action is final.</value>
+  <data name="Activity.Dialog.Delete.Message" xml:space="preserve">
+    <value>Are you sure you want to delete activity "{0}"? This action is final.</value>
   </data>
-  <data name="Workspace.Dialog.Delete.Title" xml:space="preserve">
-    <value>Delete Workspace</value>
+  <data name="Activity.Dialog.Delete.Title" xml:space="preserve">
+    <value>Delete Activity</value>
   </data>
-  <data name="Workspace.Dialog.Description.Label" xml:space="preserve">
+  <data name="Activity.Dialog.Description.Label" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="Workspace.Dialog.Edit.SubmitButton" xml:space="preserve">
+  <data name="Activity.Dialog.Edit.SubmitButton" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="Workspace.Dialog.Edit.Title" xml:space="preserve">
-    <value>Edit Workspace</value>
+  <data name="Activity.Dialog.Edit.Title" xml:space="preserve">
+    <value>Edit Activity</value>
   </data>
-  <data name="Workspace.Dialog.Name.Label" xml:space="preserve">
+  <data name="Activity.Dialog.Name.Label" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="Workspace.Dialog.Name.RequiredError" xml:space="preserve">
-    <value>Workspace name is required!</value>
+  <data name="Activity.Dialog.Name.RequiredError" xml:space="preserve">
+    <value>Activity name is required!</value>
   </data>
-  <data name="Workspace.Duplicate.Name" xml:space="preserve">
-    <value>Copy of {0}</value>
+  <data name="Activity.Duplicate.Name" xml:space="preserve">
+    <value>Copy of "{0}"</value>
   </data>
-  <data name="Workspace.Script.RunButton" xml:space="preserve">
+  <data name="Activity.Dialog.Script.LaunchButton" xml:space="preserve">
     <value>Run script</value>
   </data>
-  <data name="Workspace.Script.Highlight.Label" xml:space="preserve">
-    <value>Code Style</value>
+  <data name="Activity.Dialog.Script.Highlight.Label" xml:space="preserve">
+    <value>Highlight script syntax</value>
   </data>
-  <data name="Workspace.Script.StartChevron.Label" xml:space="preserve">
-    <value>Chevron on line start</value>
+  <data name="Activity.Dialog.Script.StartChevron.Label" xml:space="preserve">
+    <value>Add chevrons on line start</value>
   </data>
-  <data name="Workspace.Script.Title" xml:space="preserve">
-    <value>PowerShell Script of {0}</value>
+  <data name="Activity.Dialog.Script.Title" xml:space="preserve">
+    <value>PowerShell Script for Activity "{0}"</value>
   </data>
-  <data name="Workspace.Dialog.Run.CancelButton" xml:space="preserve">
+  <data name="Activity.Dialog.Launch.CancelButton" xml:space="preserve">
     <value>Annuler</value>
   </data>
-  <data name="Workspace.Dialog.Run.ConfirmButton" xml:space="preserve">
+  <data name="Activity.Dialog.Launch.ConfirmButton" xml:space="preserve">
     <value>Run</value>
   </data>
-  <data name="Workspace.Dialog.Run.Message" xml:space="preserve">
+  <data name="Activity.Dialog.Launch.Message" xml:space="preserve">
     <value>Are you sure you want to run the generated PowerShell script? No automatic verification has been performed, so we recommend that you manually review the script before executing it, to ensure that no problems occur at runtime.</value>
   </data>
-  <data name="Workspace.Dialog.Run.ReviewScript" xml:space="preserve">
+  <data name="Activity.Dialog.Launch.ReviewScript" xml:space="preserve">
     <value>Review Script</value>
   </data>
-  <data name="Workspace.Dialog.Run.Title" xml:space="preserve">
-    <value>Run Script {0}</value>
+  <data name="Activity.Dialog.Launch.Title" xml:space="preserve">
+    <value>Run Script for Activity "{0}"</value>
   </data>
-  <data name="Workspace.Card.OpenScriptTooltip" xml:space="preserve">
+  <data name="Activity.Card.OpenScriptTooltip" xml:space="preserve">
     <value>Open script</value>
   </data>
-  <data name="Workspace.Dialog.View.Description" xml:space="preserve">
+  <data name="Activity.Dialog.View.Description" xml:space="preserve">
     <value>Description</value>
   </data>
 </root>

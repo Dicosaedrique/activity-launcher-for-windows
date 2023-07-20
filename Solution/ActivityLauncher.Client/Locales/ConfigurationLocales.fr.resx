@@ -117,43 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Generator.Footer.Message" xml:space="preserve">
-    <value>Thanks for using Activity Launcher for Windows!</value>
+  <data name="Errors.EmptyFileStorage" xml:space="preserve">
+    <value>Veuillez choisir un dossier pour la sauvegarde des données de l'application !</value>
   </data>
-  <data name="Generator.Footer.Timestamp" xml:space="preserve">
-    <value>Script generated on {0:d} at {0:t}</value>
+  <data name="Errors.InvalidFileStorage" xml:space="preserve">
+    <value>Veuillez choisir un dossier existant pour la sauvegarde des données de l'application !</value>
   </data>
-  <data name="Generator.Header.Description" xml:space="preserve">
-    <value>Description</value>
+  <data name="FileStorage.FolderPicker.Label" xml:space="preserve">
+    <value>Choisir un dossier</value>
   </data>
-  <data name="Generator.Header.Message" xml:space="preserve">
-    <value>Script generated with love by Activity Launcher for Windows &lt;3</value>
+  <data name="FileStorage.Help" xml:space="preserve">
+    <value>L'application utilisera le dossier selectionné pour y sauvegarder les données créées dans l'application (activités, tâches, préférences, etc)</value>
   </data>
-  <data name="Generator.Header.Name" xml:space="preserve">
-    <value>Activity</value>
+  <data name="FileStorage.Label" xml:space="preserve">
+    <value>Dossier de stockage des données de l'application (requis)</value>
   </data>
-  <data name="Generator.Section.BrowserTabsTask" xml:space="preserve">
-    <value>Open Tabs In The Browser</value>
+  <data name="Language.English" xml:space="preserve">
+    <value>English</value>
   </data>
-  <data name="Generator.Section.ExplorerFolderTask" xml:space="preserve">
-    <value>Open Explorer Folder</value>
+  <data name="Language.French" xml:space="preserve">
+    <value>Français</value>
   </data>
-  <data name="Generator.Section.Prefix" xml:space="preserve">
-    <value>Tasks</value>
+  <data name="Language.Label" xml:space="preserve">
+    <value>Langue</value>
   </data>
-  <data name="Generator.Section.ProgramTask" xml:space="preserve">
-    <value>Open Program</value>
+  <data name="ResetButton" xml:space="preserve">
+    <value>Réinitialiser</value>
   </data>
-  <data name="Generator.Section.ScriptTask" xml:space="preserve">
-    <value>Run Custom PowerShell Script</value>
+  <data name="SaveButton" xml:space="preserve">
+    <value>Enregistrer</value>
   </data>
-  <data name="Generator.Section.TerminalTask" xml:space="preserve">
-    <value>Open One or More Tabs in Windows Terminal</value>
+  <data name="Theme.Dark" xml:space="preserve">
+    <value>Sombre</value>
   </data>
-  <data name="Generator.Section.VSCodeTask" xml:space="preserve">
-    <value>Open a Visual Studio Code Workspace</value>
+  <data name="Theme.Label" xml:space="preserve">
+    <value>Thème</value>
   </data>
-  <data name="Generator.Section.VSSolutionTask" xml:space="preserve">
-    <value>Open a Visual Studio Solution</value>
+  <data name="Theme.Light" xml:space="preserve">
+    <value>Clair</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="WelcomeMessage" xml:space="preserve">
+    <value>Bienvenue dans Activity Launcher pour Windows ! Veuillez configurer l'application avant de pouvoir mettre en place vos activités.</value>
   </data>
 </root>

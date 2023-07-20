@@ -1,8 +1,8 @@
 ﻿using ActivityLauncher.Domain.Interfaces;
 
-namespace ActivityLauncher.Domain.Model.Jobs;
+namespace ActivityLauncher.Domain.Model.Tasks;
 
-public abstract class BaseJob : IJob
+public abstract class BaseTask : ITask
 {
     public string? Name { get; set; }
 

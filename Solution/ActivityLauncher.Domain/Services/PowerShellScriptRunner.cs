@@ -15,9 +15,9 @@ public class PowerShellScriptRunner : IPowerShellScriptRunner
         _scriptGenerator = scriptGenerator;
     }
 
-    public Task<Result> RunScript(Workspace workspace)
+    public Task<Result> RunScript(Activity activity)
     {
-        return RunScript(_scriptGenerator.GetScript(workspace));
+        return RunScript(_scriptGenerator.GetScript(activity));
     }
 
     public async Task<Result> RunScript(string script)

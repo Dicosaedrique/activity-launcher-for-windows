@@ -1,0 +1,75 @@
+﻿@inject ActivityController ActivityController
+@inject IStringLocalizer<ActivityLocales> Localize
+
+<MudDialog>
+    <DialogContent>
+        <MudForm @ref="_form" @bind-IsValid="_success" Class="mb-6">
+            <MudStack Spacing="8">
+                <MudTextField T="string" @bind-Value="@_activity.Name" Label="@Localize["Activity.Dialog.Name.Label"]" Required="true" RequiredError="@Localize["Activity.Dialog.Name.RequiredError"]" />
+                <MudTextField T="string" @bind-Value="@_activity.Description" Label="@Localize["Activity.Dialog.Description.Label"]" Lines="5" />
+            </MudStack>
+        </MudForm>
+        @* todo: add tasks management *@
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="MudDialog.Cancel">@Localize["Activity.Dialog.CancelButton"]</MudButton>
+        <MudButton Color="Color.Primary" Disabled="@(!_success)" OnClick="Submit">@SubmitButtonLabel</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    public MudDialogInstance MudDialog { get; set; } = null!;
+
+    [Parameter]
+    public Activity? ActivityToEdit { get; set; }
+
+    private bool IsEdit => ActivityToEdit != null;
+
+    private string SubmitButtonLabel => IsEdit ? Localize["Activity.Dialog.Edit.SubmitButton"] : Localize["Activity.Dialog.Create.SubmitButton"];
+
+    private MudForm _form = null!;
+    private bool _success;
+
+    private Activity _activity = new();
+
+    protected override void OnInitialized()
+    {
+        if (IsEdit)
+        {
+            _activity = ActivityToEdit!.Clone();
+        }
+    }
+
+    private async Task Submit()
+    {
+        if (string.IsNullOrWhiteSpace(_activity.Name)) return;
+
+        _activity.Description = string.IsNullOrWhiteSpace(_activity.Description) ? null : _activity.Description;
+
+        if (IsEdit) await Edit();
+        else await Create();
+    }
+
+    private async Task Create()
+    {
+        Activity.InitializeDemoTasks(_activity);
+
+        var success = await ActivityController.CreateActivity(_activity);
+
+        if (success)
+        {
+            MudDialog.Close(DialogResult.Ok(true));
+        }
+    }
+
+    private async Task Edit()
+    {
+        var success = await ActivityController.UpdateActivity(_activity);
+
+        if (success)
+        {
+            MudDialog.Close(DialogResult.Ok(true));
+        }
+    }
+}

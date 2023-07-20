@@ -1,8 +1,8 @@
 ﻿using ActivityLauncher.Domain.Interfaces;
 
-namespace ActivityLauncher.Domain.Model.Jobs;
+namespace ActivityLauncher.Domain.Model.Tasks;
 
-public class ExplorerFolderJob : BaseJob, ICloneable<ExplorerFolderJob>
+public class VSCodeTask : BaseTask, ICloneable<VSCodeTask>
 {
     public string DirectoryPath { get; set; } = string.Empty;
 
@@ -10,15 +10,15 @@ public class ExplorerFolderJob : BaseJob, ICloneable<ExplorerFolderJob>
     {
         if (!string.IsNullOrWhiteSpace(DirectoryPath))
         {
-            return $"Start-Process -FilePath {DirectoryPath}";
+            return $"code \"{DirectoryPath}\"";
         }
 
         return null;
     }
 
-    public ExplorerFolderJob Clone()
+    public VSCodeTask Clone()
     {
-        return new ExplorerFolderJob()
+        return new VSCodeTask()
         {
             Name = Name,
             Enabled = Enabled,

@@ -1,5 +1,5 @@
 ﻿namespace ActivityLauncher.Client;
 
-public class ConfigurationPageLocales
+public class ConfigurationLocales
 {
 }

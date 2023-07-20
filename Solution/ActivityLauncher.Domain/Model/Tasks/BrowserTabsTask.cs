@@ -1,9 +1,9 @@
 ﻿using ActivityLauncher.Domain.Interfaces;
 
-namespace ActivityLauncher.Domain.Model.Jobs;
+namespace ActivityLauncher.Domain.Model.Tasks;
 
 // todo: implement in the future
-public class BrowserTabsJob : BaseJob, ICloneable<BrowserTabsJob>
+public class BrowserTabsTask : BaseTask, ICloneable<BrowserTabsTask>
 {
     public ICollection<string> Tabs { get; set; } = new List<string>();
 
@@ -12,9 +12,9 @@ public class BrowserTabsJob : BaseJob, ICloneable<BrowserTabsJob>
         return "# Sorry this feature is not available yet!";
     }
 
-    public BrowserTabsJob Clone()
+    public BrowserTabsTask Clone()
     {
-        return new BrowserTabsJob()
+        return new BrowserTabsTask()
         {
             Name = Name,
             Enabled = Enabled,

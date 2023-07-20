@@ -1,6 +1,6 @@
 ﻿namespace ActivityLauncher.Domain.Interfaces;
 
-public interface IJob : IScriptable
+public interface ITask : IScriptable
 {
     public string? Name { get; set; }
 
