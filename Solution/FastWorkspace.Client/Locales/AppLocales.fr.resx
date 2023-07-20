@@ -255,4 +255,10 @@
   <data name="Workspace.Dialog.Run.Title" xml:space="preserve">
     <value>Exécuter le script {0}</value>
   </data>
+  <data name="Workspace.Card.OpenScriptTooltip" xml:space="preserve">
+    <value>Ouvrir le script</value>
+  </data>
+  <data name="Workspace.Dialog.View.Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
 </root>

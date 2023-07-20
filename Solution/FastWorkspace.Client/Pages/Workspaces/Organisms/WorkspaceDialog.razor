@@ -3,17 +3,10 @@
 
 <MudDialog>
     <DialogContent>
-        <MudForm @ref="_form" @bind-IsValid="_success" Class="mb-6">
-            <MudStack Spacing="8">
-                <MudTextField T="string" @bind-Value="@_workspace.Name" Label="@Localize["Workspace.Dialog.Name.Label"]" Required="true" RequiredError="@Localize["Workspace.Dialog.Name.RequiredError"]" />
-                <MudTextField T="string" @bind-Value="@_workspace.Description" Label="@Localize["Workspace.Dialog.Description.Label"]" Lines="5" />
-            </MudStack>
-        </MudForm>
+        <MudText Typo="Typo.h6" Style="font-size: 1.2rem;">@Localize["Workspace.Dialog.View.Description"]</MudText>
+        <MudText Typo="Typo.subtitle1">@Workspace.Description</MudText>
+        @* todo: add jobs management *@
     </DialogContent>
-    <DialogActions>
-        <MudButton OnClick="MudDialog.Cancel">@Localize["Workspace.Dialog.CancelButton"]</MudButton>
-        <MudButton Color="Color.Primary" Disabled="@(!_success)" OnClick="Submit">@SubmitButtonLabel</MudButton>
-    </DialogActions>
 </MudDialog>
 
 @code {
@@ -21,54 +14,5 @@
     public MudDialogInstance MudDialog { get; set; } = null!;
 
     [Parameter]
-    public Workspace? WorkspaceToEdit { get; set; }
-
-    private bool IsEdit => WorkspaceToEdit != null;
-
-    private string SubmitButtonLabel => IsEdit ? Localize["Workspace.Dialog.Edit.SubmitButton"] : Localize["Workspace.Dialog.Create.SubmitButton"];
-
-    private MudForm _form = null!;
-    private bool _success;
-
-    private Workspace _workspace = new();
-
-    protected override void OnInitialized()
-    {
-        if (IsEdit)
-        {
-            _workspace = WorkspaceToEdit!.Clone();
-        }
-    }
-
-    private async Task Submit()
-    {
-        if (string.IsNullOrWhiteSpace(_workspace.Name)) return;
-
-        _workspace.Description = string.IsNullOrWhiteSpace(_workspace.Description) ? null : _workspace.Description;
-
-        if (IsEdit) await Edit();
-        else await Create();
-    }
-
-    private async Task Create()
-    {
-        Workspace.InitializeDemoJobs(_workspace);
-
-        var success = await WorkspaceController.CreateWorkspace(_workspace);
-
-        if (success)
-        {
-            MudDialog.Close(DialogResult.Ok(true));
-        }
-    }
-
-    private async Task Edit()
-    {
-        var success = await WorkspaceController.UpdateWorkspace(_workspace);
-
-        if (success)
-        {
-            MudDialog.Close(DialogResult.Ok(true));
-        }
-    }
+    public Workspace Workspace { get; set; } = null!;
 }

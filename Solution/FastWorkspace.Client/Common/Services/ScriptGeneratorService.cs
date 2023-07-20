@@ -77,7 +77,7 @@ public class ScriptGeneratorService : IScriptGeneratorService
             builder.AppendLine($"# {job.Name}");
         }
 
-        builder.AppendLine(job.GetScript());
+        builder.Append(job.GetScript());
 
         return builder.ToString();
     }
@@ -97,7 +97,7 @@ public class ScriptGeneratorService : IScriptGeneratorService
 
     private const string JobSectionTemplate = "######################################################\n#region [{0}]\n\n{1}\n\n#endregion ###########################################\n\n\n\n";
 
-    private const string FooterTemplate = "# {0}\n# {1}\n###################################################################################################\n";
+    private const string FooterTemplate = "# {0}\n# {1}\n###################################################################################################";
 
     #endregion
 }

@@ -124,18 +124,26 @@ public class WorkspaceController : ApplicationController, IDisposable
         }
     }
 
+    public IDialogReference OpenWorkspaceDialog(Workspace workspace)
+    {
+        var parameters = new DialogParameters<WorkspaceDialog>();
+        parameters.Add(x => x.Workspace, workspace);
+        var options = new DialogOptions() { CloseButton = true, CloseOnEscapeKey = true, FullWidth = true, FullScreen = true };
+        return _dialogService.Show<WorkspaceDialog>(workspace.Name, parameters, options);
+    }
+
     public IDialogReference OpenCreateWorkspaceDialog()
     {
-        var options = new DialogOptions() { CloseButton = false, CloseOnEscapeKey = true, FullWidth = true, MaxWidth = MaxWidth.Large };
-        return _dialogService.Show<WorkspaceDialog>(_localize["Workspace.Dialog.Create.Title"], options);
+        var options = new DialogOptions() { CloseButton = true, CloseOnEscapeKey = true, FullWidth = true, FullScreen = true };
+        return _dialogService.Show<WorkspaceDialogEdit>(_localize["Workspace.Dialog.Create.Title"], options);
     }
 
     public IDialogReference OpenEditWorkspaceDialog(Workspace workspace)
     {
-        var parameters = new DialogParameters<WorkspaceDialog>();
+        var parameters = new DialogParameters<WorkspaceDialogEdit>();
         parameters.Add(x => x.WorkspaceToEdit, workspace);
-        var options = new DialogOptions() { CloseButton = false, CloseOnEscapeKey = true, FullWidth = true, MaxWidth = MaxWidth.Large };
-        return _dialogService.Show<WorkspaceDialog>(_localize["Workspace.Dialog.Edit.Title"], parameters, options);
+        var options = new DialogOptions() { CloseButton = true, CloseOnEscapeKey = true, FullWidth = true, FullScreen = true };
+        return _dialogService.Show<WorkspaceDialogEdit>(_localize["Workspace.Dialog.Edit.Title"], parameters, options);
     }
 
     public async Task<bool> PromptDeleteWorkspace(Workspace workspace)
@@ -200,7 +208,7 @@ public class WorkspaceController : ApplicationController, IDisposable
     {
         var parameters = new DialogParameters<WorkspaceScriptDialog>();
         parameters.Add(x => x.Workspace, workspace);
-        var options = new DialogOptions() { CloseButton = true, CloseOnEscapeKey = true, FullWidth = true, MaxWidth = MaxWidth.Large, FullScreen = true };
+        var options = new DialogOptions() { CloseButton = true, CloseOnEscapeKey = true, FullWidth = true, FullScreen = true };
         return _dialogService.Show<WorkspaceScriptDialog>(workspace.Name, parameters, options);
     }
 

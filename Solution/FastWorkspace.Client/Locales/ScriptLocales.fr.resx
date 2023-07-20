@@ -121,7 +121,7 @@
     <value>Merci d'utiliser Fast Workspace !</value>
   </data>
   <data name="Generator.Footer.Timestamp" xml:space="preserve">
-    <value>Script généré le {{0:d}} à {{0:t}}</value>
+    <value>Script généré le {0:d} à {0:t}</value>
   </data>
   <data name="Generator.Header.Description" xml:space="preserve">
     <value>Description</value>

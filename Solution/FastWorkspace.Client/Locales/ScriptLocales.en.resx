@@ -117,20 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Espace de travail" xml:space="preserve">
-    <value>Workspace</value>
-  </data>
   <data name="Generator.Footer.Message" xml:space="preserve">
     <value>Thanks for using Fast Workspace!</value>
   </data>
   <data name="Generator.Footer.Timestamp" xml:space="preserve">
-    <value>Script generated the {{0:d}} at {{0:t}}</value>
+    <value>Script generated on {0:d} at {0:t}</value>
   </data>
   <data name="Generator.Header.Description" xml:space="preserve">
     <value>Description</value>
   </data>
   <data name="Generator.Header.Message" xml:space="preserve">
     <value>Script generated with love by Fast Workspace &lt;3</value>
+  </data>
+  <data name="Generator.Header.Name" xml:space="preserve">
+    <value>Workspace</value>
   </data>
   <data name="Generator.Section.BrowserTabsJob" xml:space="preserve">
     <value>Open Tabs In The Browser</value>

@@ -1,7 +1,7 @@
 ﻿@inject IStringLocalizer<AppLocales> Localize
 @inject WorkspaceController WorkspaceController
 
-<MudCard Elevation="_elevation" onclick="@Edit" onmouseover="@MouseEnter" onmouseout="@MouseLeave" Style="cursor: pointer; width: 280px;">
+<MudCard Elevation="_elevation" onclick="@Open" onmouseover="@MouseEnter" onmouseout="@MouseLeave" Style="cursor: pointer; width: 280px;">
     <MudCardHeader>
         <CardHeaderContent>
             <MudText Typo="Typo.h6" Style="font-size: 1.2rem; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; max-width: 195px;" title="@Workspace.Name">@Workspace.Name</MudText>
@@ -25,7 +25,9 @@
     <MudCardActions>
         <MudText Typo="Typo.body2" Class="ml-2" Style="font-size: 0.7rem;">@_humanizedLastModifiedDate</MudText>
         <div style="flex: 1;" />
-        <MudIconButton Icon="@Icons.Material.Filled.Code" OnClick="OpenScript" aria-label="see script"></MudIconButton>
+        <MudTooltip Text="@Localize["Workspace.Card.OpenScriptTooltip"]">
+            <MudIconButton Icon="@Icons.Material.Filled.Code" OnClick="OpenScript" aria-label="see script"></MudIconButton>
+        </MudTooltip>
         <MudMenu Icon="@Icons.Material.Filled.MoreVert" aria-label="more options menu">
             <MudMenuItem Icon="@Icons.Material.Filled.Edit" OnClick="Edit">@Localize["Workspace.Card.EditMenu"]</MudMenuItem>
             <MudMenuItem Icon="@Icons.Material.Filled.ContentCopy" OnClick="Duplicate">@Localize["Workspace.Card.DuplicateMenu"]</MudMenuItem>
@@ -60,6 +62,11 @@
     private async Task RunScript()
     {
         await WorkspaceController.PromptRunWorkspaceScript(Workspace, showReviewScriptOption: true);
+    }
+
+    private void Open()
+    {
+        WorkspaceController.OpenWorkspaceDialog(Workspace);
     }
 
     private void OpenScript()
