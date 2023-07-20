@@ -1,0 +1,71 @@
+﻿@inject WorkspaceController WorkspaceController
+@inject IStringLocalizer<AppLocales> Localize
+@inject HighlighterService HighlighterService
+
+<MudDialog DisableSidePadding="true">
+    <DialogContent>
+        <div class="mx-8" style="display: flex; flex-direction: column; height: calc(100vh - 64px); margin-top: -12px; margin-bottom: -12px;">
+            <MudStack Row Justify="Justify.SpaceBetween" Class="mt-4 mb-8">
+                <div>
+                    <MudSwitch T="bool" Checked="_highlight" CheckedChanged="HighlightChange" Label="@Localize["Workspace.Script.Highlight.Label"]" Color="Color.Primary" />
+                    <MudSwitch T="bool" Checked="_startChevron" CheckedChanged="StartChevronChange" Label="@Localize["Workspace.Script.StartChevron.Label"]" Color="Color.Primary" />
+                </div>
+                <div>
+                    <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="RunScript">@Localize["Workspace.Script.RunButton"]</MudButton>
+                </div>
+            </MudStack>
+
+            <div class="mx-n8" style="flex: 1 1 auto; overflow-y: auto; min-height: 0px;">
+                <div class="mx-8 mt-4 mb-12">
+                    @_displayableScript
+                </div>
+            </div>
+        </div>
+    </DialogContent>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    public MudDialogInstance MudDialog { get; set; } = null!;
+
+    [Parameter]
+    public Workspace Workspace { get; set; } = null!;
+
+    private bool _highlight = true;
+    private bool _startChevron = true;
+
+    private MarkupString _displayableScript;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        MudDialog.SetTitle(string.Format(Localize["Workspace.Script.Title"], Workspace.Name));
+        await UpdateDisplayableScript();
+    }
+
+    private async Task UpdateDisplayableScript()
+    {
+        if (_highlight) _displayableScript = await HighlighterService.GetHiglightedScript(Workspace, _startChevron);
+        else _displayableScript = HighlighterService.GetDisplayableScript(Workspace, _startChevron);
+    }
+
+    private async Task StartChevronChange(bool startChevron)
+    {
+        _startChevron = startChevron;
+        await UpdateDisplayableScript();
+    }
+
+    private async Task HighlightChange(bool highlight)
+    {
+        _highlight = highlight;
+        await UpdateDisplayableScript();
+    }
+
+    private async Task RunScript()
+    {
+        await WorkspaceController.PromptRunWorkspaceScript(Workspace, false);
+    }
+
+    // todo: nice to have
+    // - copy to clipboard the script
+    // - save the script in a file
+}

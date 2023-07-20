@@ -1,7 +1,7 @@
 ﻿using System.Text;
-using FastWorkspace.Domain;
 using FastWorkspace.Domain.Enums;
-using FastWorkspace.Domain.Services;
+using FastWorkspace.Domain.Model;
+using FastWorkspace.Domain.Services.Declarations;
 using Microsoft.AspNetCore.Components;
 
 namespace FastWorkspace.Client.Common.Services;
@@ -17,21 +17,24 @@ public class HighlighterService
 
     private readonly IAppConfiguration _appConfiguration;
 
-    public HighlighterService(InteropService interopService, IAppConfiguration appConfiguration)
+    private readonly IScriptGeneratorService _scriptGenerator;
+
+    public HighlighterService(InteropService interopService, IAppConfiguration appConfiguration, IScriptGeneratorService scriptGenerator)
     {
         _interopService = interopService;
         _appConfiguration = appConfiguration;
+        _scriptGenerator = scriptGenerator;
     }
 
     public MarkupString GetDisplayableScript(Workspace workspace, bool startChevron = true)
     {
-        var formattedScript = GetFormattedScript(workspace.GetScript(), startChevron);
+        var formattedScript = GetFormattedScript(_scriptGenerator.GetScript(workspace), startChevron);
         return new MarkupString(string.Format(template, string.Empty, formattedScript));
     }
 
     public async Task<MarkupString> GetHiglightedScript(Workspace workspace, bool startChevron = true)
     {
-        var highlightedScript = await _interopService.GetHighlightedPowerShellScript(workspace.GetScript());
+        var highlightedScript = await _interopService.GetHighlightedPowerShellScript(_scriptGenerator.GetScript(workspace));
         var cssClass = GetHighlightClassByTheme(_appConfiguration.GetTheme());
         var formattedScript = GetFormattedScript(highlightedScript, startChevron);
 

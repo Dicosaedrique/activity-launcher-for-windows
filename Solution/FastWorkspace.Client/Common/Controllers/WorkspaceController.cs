@@ -1,9 +1,7 @@
-﻿using System.Management.Automation;
-using FastWorkspace.Client.Common.Events;
-using FastWorkspace.Client.Common.Exceptions;
-using FastWorkspace.Client.Shared.Organisms;
-using FastWorkspace.Domain;
-using FastWorkspace.Domain.Services;
+﻿using FastWorkspace.Client.Common.Events;
+using FastWorkspace.Client.Pages.Workspaces.Organisms;
+using FastWorkspace.Domain.Model;
+using FastWorkspace.Domain.Services.Declarations;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using MudBlazor;
@@ -16,12 +14,16 @@ public class WorkspaceController : ApplicationController, IDisposable
 
     private readonly IWorkspaceStore _store;
 
-    private readonly List<WorkspacesChangedHandler> _handlers = new();
+    private readonly IPowerShellScriptRunner _powerShellScriptRunner;
 
-    public WorkspaceController(ApplicationEventManager eventManager, ISnackbar notificationService, IDialogService dialogService, IStringLocalizer<AppLocales> localize, ILogger<ApplicationController> logger, IWorkspaceStore store)
+    private readonly List<WorkspacesChangedHandler> _workspacesChangedHandlers = new();
+
+    public WorkspaceController(ApplicationEventManager eventManager, ISnackbar notificationService, IDialogService dialogService, IStringLocalizer<AppLocales> localize, ILogger<ApplicationController> logger, IWorkspaceStore store, IPowerShellScriptRunner powerShellScriptRunner)
         : base(eventManager, notificationService, dialogService, localize, logger)
     {
         _store = store;
+        _powerShellScriptRunner = powerShellScriptRunner;
+
         _eventManager.OnEvent += EventPublish;
     }
 
@@ -166,7 +168,7 @@ public class WorkspaceController : ApplicationController, IDisposable
         {
             return await RunWorkspaceScript(workspace);
         }
-        else if(result.HasValue)
+        else if (result.HasValue)
         {
             OpenWorkspaceScriptDialog(workspace);
             return false;
@@ -179,32 +181,16 @@ public class WorkspaceController : ApplicationController, IDisposable
 
     public async Task<bool> RunWorkspaceScript(Workspace workspace)
     {
-        Exception? exception = null;
+        var result = await _powerShellScriptRunner.RunScript(workspace);
 
-        try
-        {
-            var powershell = PowerShell.Create().AddScript(workspace.GetScript());
-            await powershell.InvokeAsync();
-            var errors = powershell.Streams.Error.ToList();
-
-            if (errors.Any())
-            {
-                exception = new PowerShellRunException(errors);
-            }
-        }
-        catch (Exception ex)
-        {
-            exception = ex;
-        }
-
-        if (exception == null)
+        if (result.Success)
         {
             NotifySuccess(_localize["Notifications.RunWorkspaceScript"]);
             return true;
         }
         else
         {
-            await PublishError(exception.ToErrorEventDetails(_localize["Errors.RunWorkspaceScript"]));
+            await PublishError(result.Exception!.ToErrorEventDetails(_localize["Errors.RunWorkspaceScript"]));
             return false;
         }
     }
@@ -221,18 +207,18 @@ public class WorkspaceController : ApplicationController, IDisposable
     {
         if (applicationEvent.Type is ApplicationEventType.WorkspaceCreated or ApplicationEventType.WorkspaceUpdated or ApplicationEventType.WorkspaceDeleted)
         {
-            await Task.WhenAll(_handlers.Select(handler => handler()));
+            await Task.WhenAll(_workspacesChangedHandlers.Select(handler => handler()));
         }
     }
 
     public void AddWorkspaceChangedListener(WorkspacesChangedHandler handler)
     {
-        _handlers.Add(handler);
+        _workspacesChangedHandlers.Add(handler);
     }
 
     public void RemoveWorkspaceChangedListener(WorkspacesChangedHandler handler)
     {
-        _handlers.Remove(handler);
+        _workspacesChangedHandlers.Remove(handler);
     }
 
     public void Dispose()

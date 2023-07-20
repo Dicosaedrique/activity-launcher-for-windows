@@ -2,5 +2,5 @@
 
 public interface IScriptable
 {
-    public string GetScript();
+    public string? GetScript();
 }

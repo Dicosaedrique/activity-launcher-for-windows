@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using FastWorkspace.Domain.Common.Localization;
-using FastWorkspace.Domain.Services;
+using FastWorkspace.Domain.Services.Declarations;
 
 namespace FastWorkspace.Client.Common.Services;
 

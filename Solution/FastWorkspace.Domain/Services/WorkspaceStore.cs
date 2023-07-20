@@ -1,5 +1,7 @@
-﻿using FastWorkspace.Domain.Extensions;
-using FastWorkspace.Domain.Utils;
+﻿using FastWorkspace.Domain.Common.Extensions;
+using FastWorkspace.Domain.Common.Utils;
+using FastWorkspace.Domain.Model;
+using FastWorkspace.Domain.Services.Declarations;
 
 namespace FastWorkspace.Domain.Services;
 

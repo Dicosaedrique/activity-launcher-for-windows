@@ -1,4 +1,5 @@
-﻿using FastWorkspace.Domain.Utils;
+﻿using FastWorkspace.Domain.Common.Utils;
+using FastWorkspace.Domain.Services.Declarations;
 using Newtonsoft.Json;
 
 namespace FastWorkspace.Domain.Services;

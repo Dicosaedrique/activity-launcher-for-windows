@@ -3,6 +3,7 @@ using FastWorkspace.Client.Common.Controllers;
 using FastWorkspace.Client.Common.Events;
 using FastWorkspace.Client.Common.Services;
 using FastWorkspace.Domain.Services;
+using FastWorkspace.Domain.Services.Declarations;
 using Microsoft.Extensions.Logging;
 using MudBlazor;
 using MudBlazor.Services;
@@ -40,6 +41,8 @@ public static class MauiProgram
         builder.Services.AddTransient<IFileStorage, DataFileStore>();
         builder.Services.AddTransient<IWorkspaceStore, WorkspaceStore>();
         builder.Services.AddTransient<IMauiInitializeService, ApplicationInitializeService>();
+        builder.Services.AddTransient<IScriptGeneratorService, ScriptGeneratorService>();
+        builder.Services.AddTransient<IPowerShellScriptRunner, PowerShellScriptRunner>();
         builder.Services.AddTransient<InteropService>();
         builder.Services.AddTransient<HighlighterService>();
 
