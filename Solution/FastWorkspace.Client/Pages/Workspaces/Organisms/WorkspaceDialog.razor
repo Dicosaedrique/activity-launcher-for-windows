@@ -52,6 +52,8 @@
 
     private async Task Create()
     {
+        Workspace.InitializeDemoJobs(_workspace);
+
         var success = await WorkspaceController.CreateWorkspace(_workspace);
 
         if (success)

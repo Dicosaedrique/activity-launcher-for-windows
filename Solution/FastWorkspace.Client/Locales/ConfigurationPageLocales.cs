@@ -1,5 +1,5 @@
 ﻿namespace FastWorkspace.Client;
 
-public class AppLocales
+public class ConfigurationPageLocales
 {
 }

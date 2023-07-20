@@ -3,7 +3,7 @@ using FastWorkspace.Domain.Interfaces;
 
 namespace FastWorkspace.Domain.Model.Jobs;
 
-public class ProgramFileJob : BaseJob, ICloneable<ProgramFileJob>
+public class ProgramJob : BaseJob, ICloneable<ProgramJob>
 {
     public string ProgramName { get; set; } = string.Empty;
 
@@ -37,9 +37,9 @@ public class ProgramFileJob : BaseJob, ICloneable<ProgramFileJob>
         }
     }
 
-    public ProgramFileJob Clone()
+    public ProgramJob Clone()
     {
-        return new ProgramFileJob()
+        return new ProgramJob()
         {
             Name = Name,
             ProgramName = ProgramName,

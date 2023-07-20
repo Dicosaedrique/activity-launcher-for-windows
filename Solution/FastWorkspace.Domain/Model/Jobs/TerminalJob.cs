@@ -6,7 +6,7 @@ namespace FastWorkspace.Domain.Model.Jobs;
 
 public class TerminalJob : BaseJob, ICloneable<TerminalJob>
 {
-    public TerminalTab TerminalTab { get; set; } = new();
+    public List<TerminalTab> TerminalTabs { get; set; } = new();
 
     public override string? GetScript()
     {
@@ -14,7 +14,17 @@ public class TerminalJob : BaseJob, ICloneable<TerminalJob>
 
         builder.Append("wt");
 
-        builder.Append(TerminalTab.GetInvokeCommandArgs());
+        for (var i = 0; i < TerminalTabs.Count; i++)
+        {
+            var terminalTab = TerminalTabs.ElementAt(i);
+
+            builder.Append(terminalTab.GetInvokeCommandArgs());
+
+            if (i != TerminalTabs.Count - 1)
+            {
+                builder.Append(" `; new-tab");
+            }
+        }
 
         return builder.ToString();
     }
@@ -25,7 +35,7 @@ public class TerminalJob : BaseJob, ICloneable<TerminalJob>
         {
             Name = Name,
             Enabled = Enabled,
-            TerminalTab = TerminalTab.Clone(),
+            TerminalTabs = TerminalTabs.Select(terminalTab => terminalTab.Clone()).ToList(),
         };
     }
 }

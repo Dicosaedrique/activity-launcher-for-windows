@@ -120,51 +120,6 @@
   <data name="Components.FolderPickerInput.Error" xml:space="preserve">
     <value>Vous devez choisir un dossier valide.</value>
   </data>
-  <data name="Configuration.Errors.EmptyFileStorage" xml:space="preserve">
-    <value>Veuillez choisir un dossier pour la sauvegarde des données de l'application !</value>
-  </data>
-  <data name="Configuration.Errors.InvalidFileStorage" xml:space="preserve">
-    <value>Veuillez choisir un dossier existant pour la sauvegarde des données de l'application !</value>
-  </data>
-  <data name="Configuration.FileStorage.FolderPicker.Label" xml:space="preserve">
-    <value>Choisir un dossier</value>
-  </data>
-  <data name="Configuration.FileStorage.Help" xml:space="preserve">
-    <value>L'application utilisera le dossier selectionné pour y sauvegarder les données créées dans l'application (comme les espaces de travail)</value>
-  </data>
-  <data name="Configuration.FileStorage.Label" xml:space="preserve">
-    <value>Dossier de stockage des données de l'application (requis)</value>
-  </data>
-  <data name="Configuration.Language.English" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="Configuration.Language.French" xml:space="preserve">
-    <value>Français</value>
-  </data>
-  <data name="Configuration.Language.Label" xml:space="preserve">
-    <value>Langue</value>
-  </data>
-  <data name="Configuration.ResetButton" xml:space="preserve">
-    <value>Réinitialiser</value>
-  </data>
-  <data name="Configuration.SaveButton" xml:space="preserve">
-    <value>Enregistrer</value>
-  </data>
-  <data name="Configuration.Theme.Dark" xml:space="preserve">
-    <value>Sombre</value>
-  </data>
-  <data name="Configuration.Theme.Label" xml:space="preserve">
-    <value>Thème</value>
-  </data>
-  <data name="Configuration.Theme.Light" xml:space="preserve">
-    <value>Clair</value>
-  </data>
-  <data name="Configuration.Title" xml:space="preserve">
-    <value>Paramètres</value>
-  </data>
-  <data name="Configuration.WelcomeMessage" xml:space="preserve">
-    <value>Bienvenue dans Fast Workspace ! Veuillez configurer l'application avant de pouvoir mettre en place vos espaces de travail.</value>
-  </data>
   <data name="Dashboard.CreateWorkspaceButton" xml:space="preserve">
     <value>Ajouter</value>
   </data>

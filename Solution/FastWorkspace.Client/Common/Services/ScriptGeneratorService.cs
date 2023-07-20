@@ -1,61 +1,103 @@
-﻿using FastWorkspace.Domain.Interfaces;
+﻿using System.Text;
+using FastWorkspace.Client.Locales;
+using FastWorkspace.Domain.Interfaces;
 using FastWorkspace.Domain.Model;
 using FastWorkspace.Domain.Services.Declarations;
+using Microsoft.Extensions.Localization;
 
 namespace FastWorkspace.Client.Common.Services;
 
 public class ScriptGeneratorService : IScriptGeneratorService
 {
+    private readonly IStringLocalizer<ScriptLocales> _localize;
+
+    public ScriptGeneratorService(IStringLocalizer<ScriptLocales> localization)
+    {
+        _localize = localization;
+    }
+
     public string GetScript(Workspace workspace)
     {
-        return string.Empty; // todo
-    }
-
-    public string GetScript(IJob job)
-    {
-        return string.Empty; // todo
-    }
-
-    /*public string GetScript()
-    {
         var builder = new StringBuilder();
-        builder.Append(GetScriptHeader());
 
-        var readyJobs = _jobs.Where(x => x.Enabled).OrderBy(x => x.Sequence);
+        builder.Append(GetScriptHeader(workspace));
 
-        foreach (var job in readyJobs)
-        {
-            builder.Append(GetJobScript(job));
-        }
+        builder.Append(GetScriptJobSection(_localize["Generator.Section.BrowserTabsJob"], workspace.BrowserTabsJobs));
+        builder.Append(GetScriptJobSection(_localize["Generator.Section.ExplorerFolderJob"], workspace.ExplorerFolderJobs));
+        builder.Append(GetScriptJobSection(_localize["Generator.Section.ProgramJob"], workspace.ProgramJobs));
+        builder.Append(GetScriptJobSection(_localize["Generator.Section.ScriptJob"], workspace.ScriptJobs));
+        builder.Append(GetScriptJobSection(_localize["Generator.Section.TerminalJob"], workspace.TerminalJobs));
+        builder.Append(GetScriptJobSection(_localize["Generator.Section.VSCodeJob"], workspace.VSCodeJobs));
+        builder.Append(GetScriptJobSection(_localize["Generator.Section.VSSolutionJob"], workspace.VSSolutionJobs));
 
         builder.Append(GetScriptFooter());
 
         return builder.ToString();
     }
 
-    private string GetScriptHeader()
+    private string GetScriptHeader(Workspace workspace)
     {
-        const string template = "##################################################################################################\n# Workspace: {0}\n#\n# Script generated with love by Fast Workspace <3\n##################################################################################################\n\n#region JOBS\n\n";
-        const string templateWithDescription = "##################################################################################################\n# Workspace: {0}\n# Description: {1}\n#\n# Script generated with love by Fast Workspace <3\n##################################################################################################\n\n#region JOBS\n\n";
+        if (string.IsNullOrWhiteSpace(workspace.Description))
+        {
+            return string.Format(HeaderWithoutDescriptionTemplate,
+                _localize["Generator.Header.Name"],
+                workspace.Name,
+                _localize["Generator.Header.Message"]);
+        }
 
-        return string.IsNullOrWhiteSpace(Description)
-        ? string.Format(template, Name)
-            : string.Format(templateWithDescription, Name, Description);
+        return string.Format(HeaderTemplate,
+            _localize["Generator.Header.Name"],
+            workspace.Name,
+            _localize["Generator.Header.Description"],
+            workspace.Description,
+            _localize["Generator.Header.Message"]);
+    }
+
+    private string GetScriptJobSection(string title, IEnumerable<IJob> jobs)
+    {
+        var enabledJobs = jobs.Where(job => job.Enabled);
+
+        if(enabledJobs.Any())
+        {
+            var jobsScript = string.Join("\n\n", enabledJobs.Select(GetJobScript));
+            return string.Format(JobSectionTemplate, title, jobsScript);
+        }
+
+        return string.Empty;
     }
 
     private string GetJobScript(IJob job)
     {
-        const string template = "###################################\n# Job {0} - {1}\n\n{2}\n\n\n";
-        const string templateWithDescription = "###################################\n# Job {0} - {1}\n# Description: {2}\n\n{3}\n\n\n";
+        if (!job.Enabled) return string.Empty;
 
-        return string.IsNullOrWhiteSpace(job.Description)
-            ? string.Format(template, job.Sequence + 1, job.DisplayName, job.GetScript())
-            : string.Format(templateWithDescription, job.Sequence + 1, job.DisplayName, job.Description, job.GetScript());
+        var builder = new StringBuilder();
+
+        if (!string.IsNullOrWhiteSpace(job.Name))
+        {
+            builder.AppendLine($"# {job.Name}");
+        }
+
+        builder.AppendLine(job.GetScript());
+
+        return builder.ToString();
     }
 
     private string GetScriptFooter()
     {
-        const string template = "#endregion JOBS\n\n# Script generated the {0:d} at {0:t}\n# Thanks for using Fast Workspace!";
-        return string.Format(template, DateTime.Now);
-    }*/
+        return string.Format(FooterTemplate,
+            string.Format(_localize["Generator.Footer.Timestamp"], DateTime.Now),
+            _localize["Generator.Footer.Message"]);
+    }
+
+    #region Templates
+
+    private const string HeaderTemplate = "###################################################################################################\n# {0}: {1}\n# {2}: {3}\n#\n# {4}\n###################################################################################################\n\n";
+
+    private const string HeaderWithoutDescriptionTemplate = "###################################################################################################\n# {0}: {1}\n#\n# {2}\n###################################################################################################\n\n";
+
+    private const string JobSectionTemplate = "######################################################\n#region [{0}]\n\n{1}\n\n#endregion ###########################################\n\n\n\n";
+
+    private const string FooterTemplate = "# {0}\n# {1}\n###################################################################################################\n";
+
+    #endregion
 }

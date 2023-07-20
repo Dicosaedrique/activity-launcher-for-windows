@@ -1,4 +1,5 @@
 ﻿using FastWorkspace.Client.Common.Events;
+using FastWorkspace.Client.Locales;
 using FastWorkspace.Client.Pages.Workspaces.Organisms;
 using FastWorkspace.Domain.Model;
 using FastWorkspace.Domain.Services.Declarations;

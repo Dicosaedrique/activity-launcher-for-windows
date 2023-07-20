@@ -1,4 +1,5 @@
 ﻿using FastWorkspace.Client.Common.Events;
+using FastWorkspace.Client.Locales;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using MudBlazor;

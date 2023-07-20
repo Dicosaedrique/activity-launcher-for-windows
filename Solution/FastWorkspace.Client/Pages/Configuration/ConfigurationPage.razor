@@ -14,36 +14,36 @@
 @attribute [Route(Routes.ConfigurationPage)]
 
 <MudContainer MaxWidth="MaxWidth.Medium">
-    <MudText Typo="Typo.h4" Class="mb-8">@Localize["Configuration.Title"]</MudText>
+    <MudText Typo="Typo.h4" Class="mb-8">@Localize["Title"]</MudText>
 
     @if (!AppConfiguration.IsAppReady())
     {
-        <MudText Typo="Typo.subtitle1" Class="mb-8">@Localize["Configuration.WelcomeMessage"]</MudText>
+        <MudText Typo="Typo.subtitle1" Class="mb-8">@Localize["WelcomeMessage"]</MudText>
     }
 
     <MudStack Spacing="8">
         <div>
-            <MudText Typo="Typo.h6">@Localize["Configuration.Language.Label"]</MudText>
+            <MudText Typo="Typo.h6">@Localize["Language.Label"]</MudText>
             <MudRadioGroup T="Language" SelectedOption="_language" SelectedOptionChanged="LanguageChange">
-                <MudRadio Option="Language.English" Color="Color.Primary">@Localize["Configuration.Language.English"]</MudRadio>
-                <MudRadio Option="Language.French" Color="Color.Primary">@Localize["Configuration.Language.French"]</MudRadio>
+                <MudRadio Option="Language.English" Color="Color.Primary">@Localize["Language.English"]</MudRadio>
+                <MudRadio Option="Language.French" Color="Color.Primary">@Localize["Language.French"]</MudRadio>
             </MudRadioGroup>
         </div>
         <div>
-            <MudText Typo="Typo.h6">@Localize["Configuration.Theme.Label"]</MudText>
+            <MudText Typo="Typo.h6">@Localize["Theme.Label"]</MudText>
             <MudRadioGroup T="Theme" SelectedOption="_theme" SelectedOptionChanged="ThemeChange">
-                <MudRadio Option="Theme.Light" Color="Color.Primary">@Localize["Configuration.Theme.Light"]</MudRadio>
-                <MudRadio Option="Theme.Dark" Color="Color.Primary">@Localize["Configuration.Theme.Dark"]</MudRadio>
+                <MudRadio Option="Theme.Light" Color="Color.Primary">@Localize["Theme.Light"]</MudRadio>
+                <MudRadio Option="Theme.Dark" Color="Color.Primary">@Localize["Theme.Dark"]</MudRadio>
             </MudRadioGroup>
         </div>
         <div>
-            <MudText Typo="Typo.h6" Class="mb-2">@Localize["Configuration.FileStorage.Label"]</MudText>
-            <MudText Typo="Typo.body1" Class="mb-4">@Localize["Configuration.FileStorage.Help"]</MudText>
-            <FolderPickerInput Label="@Localize["Configuration.FileStorage.FolderPicker.Label"]" @bind-FolderPath="_fileStorageDirectoryPath" />
+            <MudText Typo="Typo.h6" Class="mb-2">@Localize["FileStorage.Label"]</MudText>
+            <MudText Typo="Typo.body1" Class="mb-4">@Localize["FileStorage.Help"]</MudText>
+            <FolderPickerInput Label="@Localize["FileStorage.FolderPicker.Label"]" @bind-FolderPath="_fileStorageDirectoryPath" />
         </div>
         <div class="mt-16">
-            <MudButton Variant="Variant.Filled" Color="Color.Default" OnClick="Reset" Class="mr-4">@Localize["Configuration.ResetButton"]</MudButton>
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="string.IsNullOrWhiteSpace(_fileStorageDirectoryPath)" OnClick="Save">@Localize["Configuration.SaveButton"]</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Default" OnClick="Reset" Class="mr-4">@Localize["ResetButton"]</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="string.IsNullOrWhiteSpace(_fileStorageDirectoryPath)" OnClick="Save">@Localize["SaveButton"]</MudButton>
             <ErrorText Error="@_error" />
         </div>
     </MudStack>
@@ -85,7 +85,7 @@
     {
         if (string.IsNullOrWhiteSpace(_fileStorageDirectoryPath))
         {
-            _error = Localize["Configuration.Errors.EmptyFileStorage"];
+            _error = Localize["Errors.EmptyFileStorage"];
         }
 
         if (AppConfiguration.SetFileStorageDirectoryPath(_fileStorageDirectoryPath))
@@ -97,7 +97,7 @@
         }
         else
         {
-            _error = Localize["Configuration.Errors.InvalidFileStorage"];
+            _error = Localize["Errors.InvalidFileStorage"];
         }
     }
 

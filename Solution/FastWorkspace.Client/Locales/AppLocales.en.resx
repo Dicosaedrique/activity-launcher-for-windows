@@ -120,51 +120,6 @@
   <data name="Components.FolderPickerInput.Error" xml:space="preserve">
     <value>You must choose a valid existing folder.</value>
   </data>
-  <data name="Configuration.Errors.EmptyFileStorage" xml:space="preserve">
-    <value>Please choose a folder for this applications data!</value>
-  </data>
-  <data name="Configuration.Errors.InvalidFileStorage" xml:space="preserve">
-    <value>Please choose an existing folder for this applications data!</value>
-  </data>
-  <data name="Configuration.FileStorage.FolderPicker.Label" xml:space="preserve">
-    <value>Select a folder</value>
-  </data>
-  <data name="Configuration.FileStorage.Help" xml:space="preserve">
-    <value>The application will use the provided folder to save the data (workspaces, ...)</value>
-  </data>
-  <data name="Configuration.FileStorage.Label" xml:space="preserve">
-    <value>Application Data Folder (required)</value>
-  </data>
-  <data name="Configuration.Language.English" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="Configuration.Language.French" xml:space="preserve">
-    <value>Français</value>
-  </data>
-  <data name="Configuration.Language.Label" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="Configuration.ResetButton" xml:space="preserve">
-    <value>Reset</value>
-  </data>
-  <data name="Configuration.SaveButton" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="Configuration.Theme.Dark" xml:space="preserve">
-    <value>Dark</value>
-  </data>
-  <data name="Configuration.Theme.Label" xml:space="preserve">
-    <value>Theme</value>
-  </data>
-  <data name="Configuration.Theme.Light" xml:space="preserve">
-    <value>Light</value>
-  </data>
-  <data name="Configuration.Title" xml:space="preserve">
-    <value>Configuration</value>
-  </data>
-  <data name="Configuration.WelcomeMessage" xml:space="preserve">
-    <value>Welcome to Fast Workspace! Please configure your app before seting up your workspaces.</value>
-  </data>
   <data name="Dashboard.CreateWorkspaceButton" xml:space="preserve">
     <value>Add</value>
   </data>
