@@ -1,0 +1,30 @@
+﻿@inject ActivityController ActivityController
+@inject IStringLocalizer<ActivityLocales> Localize
+
+<MudCard Outlined>
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.body1">@DisplayName</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="RunTask" />
+        </CardHeaderActions>
+    </MudCardHeader>
+    <MudCardContent>
+        Le détail de ta tâche etc etc
+        @*<MudSwitch T="bool" Checked="Task.Enabled" CheckedChanged="() => {}" Color="Color.Primary" />*@
+        @* todo: add details for each type of tasks *@
+    </MudCardContent>
+</MudCard>
+
+@code {
+    [Parameter]
+    public ITask Task { get; set; } = null!;
+
+    private string DisplayName => string.IsNullOrWhiteSpace(Task.Name) ? Localize["Task.EmptyName"] : Task.Name;
+
+    private async Task RunTask()
+    {
+        await ActivityController.PromptLaunchTask(Task);
+    }
+}

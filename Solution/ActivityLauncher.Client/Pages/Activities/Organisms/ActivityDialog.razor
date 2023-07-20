@@ -1,18 +1,56 @@
-﻿@inject ActivityController ActivityController
+﻿@using ActivityLauncher.Client.Pages.Activities.Molecules;
+
+@inject ActivityController ActivityController
 @inject IStringLocalizer<ActivityLocales> Localize
 
-<MudDialog>
+<MudDialog DisableSidePadding>
+    <TitleContent>
+        <MudText Typo="Typo.h5">@Activity.Name</MudText>
+    </TitleContent>
     <DialogContent>
-        <MudText Typo="Typo.h6" Style="font-size: 1.2rem;">@Localize["Activity.Dialog.View.Description"]</MudText>
-        <MudText Typo="Typo.subtitle1">@Activity.Description</MudText>
-        @* todo: add tasks management *@
+        <div style="max-height: calc(100vh - 64px); overflow-y: scroll">
+            <MudContainer>
+                @if (!string.IsNullOrWhiteSpace(Activity.Description))
+                {
+                    <MudText Typo="Typo.h5">@Localize["Activity.Dialog.View.Description"]</MudText>
+                    <MudText Typo="Typo.subtitle1">@Activity.Description</MudText>
+                }
+                <MudText Typo="Typo.h5" Class="my-6">@Localize["Activity.Dialog.View.Tasks.Title"]</MudText>
+                @if (Activity.GetTasks().Any())
+                {
+                    <MudStack Spacing="6" Class="mb-16">
+                        @foreach (var taskList in GetActivityTaskLists())
+                        {
+                            <TaskListSection Title="@taskList.Title" Description="@taskList.Description" Tasks="taskList.Tasks" />
+                        }
+                    </MudStack>
+                }
+                else
+                {
+                    <MudText Typo="Typo.body1">@Localize["Activity.Dialog.View.Tasks.Empty"]</MudText>
+                }
+            </MudContainer>
+        </div>
     </DialogContent>
 </MudDialog>
 
 @code {
-    [CascadingParameter]
-    public MudDialogInstance MudDialog { get; set; } = null!;
+        [CascadingParameter]
+        public MudDialogInstance MudDialog { get; set; } = null!;
 
-    [Parameter]
-    public Activity Activity { get; set; } = null!;
+        [Parameter]
+        public Activity Activity { get; set; } = null!;
+
+        private IEnumerable<TaskListData> GetActivityTaskLists()
+        {
+            if (Activity.BrowserTabsTasks.Any()) yield return new TaskListData("Task.BrowserTabsTask.Title", "Task.BrowserTabsTask.Description", Activity.BrowserTabsTasks);
+            if (Activity.ExplorerFolderTasks.Any()) yield return new TaskListData("Task.ExplorerFolderTask.Title", "Task.ExplorerFolderTask.Description", Activity.ExplorerFolderTasks);
+            if (Activity.ProgramTasks.Any()) yield return new TaskListData("Task.ProgramTask.Title", "Task.ProgramTask.Description", Activity.ProgramTasks);
+            if (Activity.ScriptTasks.Any()) yield return new TaskListData("Task.ScriptTask.Title", "Task.ScriptTask.Description", Activity.ScriptTasks);
+            if (Activity.TerminalTasks.Any()) yield return new TaskListData("Task.TerminalTask.Title", "Task.TerminalTask.Description", Activity.TerminalTasks);
+            if (Activity.VSCodeTasks.Any()) yield return new TaskListData("Task.VSCodeTask.Title", "Task.VSCodeTask.Description", Activity.VSCodeTasks);
+            if (Activity.VSSolutionTasks.Any()) yield return new TaskListData("Task.VSSolutionTask.Title", "Task.VSSolutionTask.Description", Activity.VSSolutionTasks);
+        }
+
+    private record TaskListData(string Title, string Description, IEnumerable<ITask> Tasks);
 }

@@ -1,0 +1,47 @@
+﻿@inject IStringLocalizer<ActivityLocales> Localize
+
+<MudCard Outlined>
+    <MudCardHeader onclick="@ToggleExpanded" Style="cursor: pointer;">
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">@Title</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            <MudIconButton Icon="@_expansionIcon" Color="Color.Default" OnClick="ToggleExpanded" />
+        </CardHeaderActions>
+    </MudCardHeader>
+
+    @if(_expanded)
+    {
+        <MudCardContent>
+            <MudText Typo="Typo.subtitle1" Class="mb-4">@Description</MudText>
+            <MudStack Spacing="4">
+                @foreach (var task in Tasks)
+                {
+                    <TaskCard Task="task" />
+                }
+            </MudStack>
+        </MudCardContent>
+    }
+</MudCard>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Description { get; set; } = string.Empty;
+
+    [Parameter]
+    public IEnumerable<ITask> Tasks { get; set; } = null!;
+
+    private bool _expanded = true;
+
+    private void ToggleExpanded()
+    {
+        _expanded = !_expanded;
+    }
+
+    private string _expansionIcon => _expanded ? @Icons.Material.Filled.Remove : @Icons.Material.Filled.Add;
+
+    // todo: add icons there
+}

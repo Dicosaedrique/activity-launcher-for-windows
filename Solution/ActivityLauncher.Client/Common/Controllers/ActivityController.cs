@@ -1,6 +1,7 @@
 ﻿using ActivityLauncher.Client.Common.Events;
 using ActivityLauncher.Client.Locales;
 using ActivityLauncher.Client.Pages.Activities.Organisms;
+using ActivityLauncher.Domain.Interfaces;
 using ActivityLauncher.Domain.Model;
 using ActivityLauncher.Domain.Services.Declarations;
 using Microsoft.Extensions.Localization;
@@ -191,6 +192,24 @@ public class ActivityController : ApplicationController, IDisposable
         }
     }
 
+    public async Task<bool> PromptLaunchTask(ITask task)
+    {
+        bool? result = await _dialogService.ShowMessageBox(
+            string.Format(_localize["Task.Dialog.Launch.Title"], task.Name ?? _localize["Task.EmptyName"]),
+            string.Format(_localize["Task.Dialog.Launch.Message"], task.Name ?? _localize["Task.EmptyName"]),
+            yesText: _localize["Task.Dialog.Launch.ConfirmButton"],
+            cancelText: _localize["Task.Dialog.Launch.CancelButton"]);
+
+        if (result.HasValue && result.Value)
+        {
+            return await LaunchTask(task);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public async Task<bool> LaunchActivity(Activity activity)
     {
         var result = await _powerShellScriptRunner.RunScript(activity);
@@ -203,6 +222,22 @@ public class ActivityController : ApplicationController, IDisposable
         else
         {
             await PublishError(result.Exception!.ToErrorEventDetails(_localize["Notifications.Errors.LaunchActivity"]));
+            return false;
+        }
+    }
+
+    public async Task<bool> LaunchTask(ITask task)
+    {
+        var result = await _powerShellScriptRunner.RunScript(task);
+
+        if (result.Success)
+        {
+            NotifySuccess(_localize["Notifications.Success.LaunchTask"]);
+            return true;
+        }
+        else
+        {
+            await PublishError(result.Exception!.ToErrorEventDetails(_localize["Notifications.Errors.LaunchTask"]));
             return false;
         }
     }
