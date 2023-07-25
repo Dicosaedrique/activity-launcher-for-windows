@@ -3,10 +3,10 @@
 <MudCard Outlined>
     <MudCardHeader onclick="@ToggleExpanded" Style="cursor: pointer;">
         <CardHeaderContent>
-            <MudText Typo="Typo.h6">@Title</MudText>
+            <MudText Typo="Typo.h6">@InternalTitle</MudText>
         </CardHeaderContent>
         <CardHeaderActions>
-            <MudIconButton Icon="@_expansionIcon" Color="Color.Default" OnClick="ToggleExpanded" />
+            <MudIconButton Icon="@ExpansionIcon" Color="Color.Default" OnClick="ToggleExpanded" />
         </CardHeaderActions>
     </MudCardHeader>
 
@@ -34,14 +34,16 @@
     [Parameter]
     public IEnumerable<ITask> Tasks { get; set; } = null!;
 
-    private bool _expanded = true;
+    private bool _expanded = false;
 
     private void ToggleExpanded()
     {
         _expanded = !_expanded;
     }
 
-    private string _expansionIcon => _expanded ? @Icons.Material.Filled.Remove : @Icons.Material.Filled.Add;
+    private string ExpansionIcon => _expanded ? @Icons.Material.Filled.Remove : @Icons.Material.Filled.Add;
+
+    private string InternalTitle => $"{Title} ({Tasks.Count()})";
 
     // todo: add icons there
 }

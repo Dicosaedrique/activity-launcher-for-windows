@@ -240,4 +240,67 @@
   <data name="Activity.Dialog.View.Description" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="Activity.Dialog.View.Tasks.Empty" xml:space="preserve">
+    <value>Il n'y a aucune tâche dans cette activité.</value>
+  </data>
+  <data name="Activity.Dialog.View.Tasks.Title" xml:space="preserve">
+    <value>Tâches</value>
+  </data>
+  <data name="Notifications.Errors.LaunchTask" xml:space="preserve">
+    <value>Une erreur est survenue lors du lancement de la tâche</value>
+  </data>
+  <data name="Notifications.Success.LaunchTask" xml:space="preserve">
+    <value>La tâche a bien été lancée</value>
+  </data>
+  <data name="Task.Dialog.Launch.CancelButton" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Task.Dialog.Launch.ConfirmButton" xml:space="preserve">
+    <value>Exéctuer</value>
+  </data>
+  <data name="Task.Dialog.Launch.Message" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir exécuter le script PowerShell généré ? Aucune vérification automatique n'a été faite, il est donc recommandé de faire une revue manuelle du script avant son exécution afin de s'assurer qu'aucun problème ne puisse survenir à l'exécution.</value>
+  </data>
+  <data name="Task.Dialog.Launch.Title" xml:space="preserve">
+    <value>Lancer la tâche "{0}"</value>
+  </data>
+  <data name="Task.EmptyName" xml:space="preserve">
+    <value>Sans nom</value>
+  </data>
+  <data name="Task.ExplorerFolderTask.Description" xml:space="preserve">
+    <value>Ouvrir un dossier dans une fenêtre de l'explorateur de fichier.</value>
+  </data>
+  <data name="Task.ExplorerFolderTask.Title" xml:space="preserve">
+    <value>Explorateur de fichier</value>
+  </data>
+  <data name="Task.OpenFileTask.Description" xml:space="preserve">
+    <value>Ouvre un fichier avec son application par défaut.</value>
+  </data>
+  <data name="Task.OpenFileTask.Title" xml:space="preserve">
+    <value>Ouverture fichier</value>
+  </data>
+  <data name="Task.ProgramTask.Description" xml:space="preserve">
+    <value>Ouvrir un programme par son nom ou par le fichier d'exécutable (possibilité de modifier les paramètres de lancement).</value>
+  </data>
+  <data name="Task.ProgramTask.Title" xml:space="preserve">
+    <value>Ouvrir un programme</value>
+  </data>
+  <data name="Task.ScriptTask.Description" xml:space="preserve">
+    <value>Permet l'exécution de n'importe quel script PowerShell saisie dans la tâche.</value>
+  </data>
+  <data name="Task.ScriptTask.Title" xml:space="preserve">
+    <value>Script PowerShell</value>
+  </data>
+  <data name="Task.TerminalTask.Description" xml:space="preserve">
+    <value>Ouvre un ou plusieurs onglets dans Windows Terminal. Possibilité de choisir le repertoire de l'onglet, sa couleur, son titre et si une commande par défaut doit être exécutée au lancement.</value>
+  </data>
+  <data name="Task.TerminalTask.Title" xml:space="preserve">
+    <value>Windows Terminal</value>
+  </data>
+  <data name="Task.VSCodeTask.Description" xml:space="preserve">
+    <value>Ouverture d'un repertoire de travail avec Visual Studio Code.</value>
+  </data>
+  <data name="Task.VSCodeTask.Title" xml:space="preserve">
+    <value>Visual Studio Code</value>
+  </data>
 </root>

@@ -196,7 +196,7 @@ public class ActivityController : ApplicationController, IDisposable
     {
         bool? result = await _dialogService.ShowMessageBox(
             string.Format(_localize["Task.Dialog.Launch.Title"], task.Name ?? _localize["Task.EmptyName"]),
-            string.Format(_localize["Task.Dialog.Launch.Message"], task.Name ?? _localize["Task.EmptyName"]),
+            _localize["Task.Dialog.Launch.Message"],
             yesText: _localize["Task.Dialog.Launch.ConfirmButton"],
             cancelText: _localize["Task.Dialog.Launch.CancelButton"]);
 

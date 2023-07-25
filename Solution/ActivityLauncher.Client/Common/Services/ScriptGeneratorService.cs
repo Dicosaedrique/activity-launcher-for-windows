@@ -22,13 +22,12 @@ public class ScriptGeneratorService : IScriptGeneratorService
 
         builder.Append(GetScriptHeader(activity));
 
-        builder.Append(GetScriptTaskSection(_localize["Generator.Section.BrowserTabsTask"], activity.BrowserTabsTasks));
         builder.Append(GetScriptTaskSection(_localize["Generator.Section.ExplorerFolderTask"], activity.ExplorerFolderTasks));
         builder.Append(GetScriptTaskSection(_localize["Generator.Section.ProgramTask"], activity.ProgramTasks));
         builder.Append(GetScriptTaskSection(_localize["Generator.Section.ScriptTask"], activity.ScriptTasks));
         builder.Append(GetScriptTaskSection(_localize["Generator.Section.TerminalTask"], activity.TerminalTasks));
         builder.Append(GetScriptTaskSection(_localize["Generator.Section.VSCodeTask"], activity.VSCodeTasks));
-        builder.Append(GetScriptTaskSection(_localize["Generator.Section.VSSolutionTask"], activity.VSSolutionTasks));
+        builder.Append(GetScriptTaskSection(_localize["Generator.Section.OpenFileTask"], activity.OpenFileTasks));
 
         builder.Append(GetScriptFooter());
 

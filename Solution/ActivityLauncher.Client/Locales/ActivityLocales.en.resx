@@ -220,7 +220,7 @@
     <value>PowerShell Script for Activity "{0}"</value>
   </data>
   <data name="Activity.Dialog.Launch.CancelButton" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Cancel</value>
   </data>
   <data name="Activity.Dialog.Launch.ConfirmButton" xml:space="preserve">
     <value>Run</value>
@@ -239,5 +239,68 @@
   </data>
   <data name="Activity.Dialog.View.Description" xml:space="preserve">
     <value>Description</value>
+  </data>
+  <data name="Activity.Dialog.View.Tasks.Empty" xml:space="preserve">
+    <value>There is no tasks in this activity.</value>
+  </data>
+  <data name="Activity.Dialog.View.Tasks.Title" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
+  <data name="Notifications.Errors.LaunchTask" xml:space="preserve">
+    <value>An error occurred while launching the task</value>
+  </data>
+  <data name="Notifications.Success.LaunchTask" xml:space="preserve">
+    <value>The task has been launched successfully</value>
+  </data>
+  <data name="Task.Dialog.Launch.CancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Task.Dialog.Launch.ConfirmButton" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="Task.Dialog.Launch.Message" xml:space="preserve">
+    <value>Are you sure you want to run the generated PowerShell script? No automatic verification has been performed, so we recommend that you manually review the script before executing it, to ensure that no problems occur at runtime.</value>
+  </data>
+  <data name="Task.Dialog.Launch.Title" xml:space="preserve">
+    <value>Launch task "{0}"</value>
+  </data>
+  <data name="Task.EmptyName" xml:space="preserve">
+    <value>No Name</value>
+  </data>
+  <data name="Task.ExplorerFolderTask.Description" xml:space="preserve">
+    <value>Open a folder in a file explorer window.</value>
+  </data>
+  <data name="Task.ExplorerFolderTask.Title" xml:space="preserve">
+    <value>File Explorer</value>
+  </data>
+  <data name="Task.OpenFileTask.Description" xml:space="preserve">
+    <value>Opens a file with its default application.</value>
+  </data>
+  <data name="Task.OpenFileTask.Title" xml:space="preserve">
+    <value>Open file</value>
+  </data>
+  <data name="Task.ProgramTask.Description" xml:space="preserve">
+    <value>Open a program by its name or by the executable file (possibility of modifying the launch parameters).</value>
+  </data>
+  <data name="Task.ProgramTask.Title" xml:space="preserve">
+    <value>Open a program</value>
+  </data>
+  <data name="Task.ScriptTask.Description" xml:space="preserve">
+    <value>Allows the execution of any PowerShell script entered in the task.</value>
+  </data>
+  <data name="Task.ScriptTask.Title" xml:space="preserve">
+    <value>PowerShell Script</value>
+  </data>
+  <data name="Task.TerminalTask.Description" xml:space="preserve">
+    <value>Opens one or more tabs in Windows Terminal. Allowing you to choose the directory of the tab, its color, its title and if a default command should be executed at launch.</value>
+  </data>
+  <data name="Task.TerminalTask.Title" xml:space="preserve">
+    <value>Windows Terminal</value>
+  </data>
+  <data name="Task.VSCodeTask.Description" xml:space="preserve">
+    <value>Opening a workspace with Visual Studio Code.</value>
+  </data>
+  <data name="Task.VSCodeTask.Title" xml:space="preserve">
+    <value>Visual Studio Code</value>
   </data>
 </root>

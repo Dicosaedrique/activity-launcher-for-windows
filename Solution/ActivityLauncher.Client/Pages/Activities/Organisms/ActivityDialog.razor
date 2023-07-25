@@ -43,13 +43,12 @@
 
         private IEnumerable<TaskListData> GetActivityTaskLists()
         {
-            if (Activity.BrowserTabsTasks.Any()) yield return new TaskListData("Task.BrowserTabsTask.Title", "Task.BrowserTabsTask.Description", Activity.BrowserTabsTasks);
-            if (Activity.ExplorerFolderTasks.Any()) yield return new TaskListData("Task.ExplorerFolderTask.Title", "Task.ExplorerFolderTask.Description", Activity.ExplorerFolderTasks);
-            if (Activity.ProgramTasks.Any()) yield return new TaskListData("Task.ProgramTask.Title", "Task.ProgramTask.Description", Activity.ProgramTasks);
-            if (Activity.ScriptTasks.Any()) yield return new TaskListData("Task.ScriptTask.Title", "Task.ScriptTask.Description", Activity.ScriptTasks);
-            if (Activity.TerminalTasks.Any()) yield return new TaskListData("Task.TerminalTask.Title", "Task.TerminalTask.Description", Activity.TerminalTasks);
-            if (Activity.VSCodeTasks.Any()) yield return new TaskListData("Task.VSCodeTask.Title", "Task.VSCodeTask.Description", Activity.VSCodeTasks);
-            if (Activity.VSSolutionTasks.Any()) yield return new TaskListData("Task.VSSolutionTask.Title", "Task.VSSolutionTask.Description", Activity.VSSolutionTasks);
+            if (Activity.ExplorerFolderTasks.Any()) yield return new TaskListData(Localize["Task.ExplorerFolderTask.Title"], Localize["Task.ExplorerFolderTask.Description"], Activity.ExplorerFolderTasks);
+            if (Activity.ProgramTasks.Any()) yield return new TaskListData(Localize["Task.ProgramTask.Title"], Localize["Task.ProgramTask.Description"], Activity.ProgramTasks);
+            if (Activity.ScriptTasks.Any()) yield return new TaskListData(Localize["Task.ScriptTask.Title"], Localize["Task.ScriptTask.Description"], Activity.ScriptTasks);
+            if (Activity.TerminalTasks.Any()) yield return new TaskListData(Localize["Task.TerminalTask.Title"], Localize["Task.TerminalTask.Description"], Activity.TerminalTasks);
+            if (Activity.VSCodeTasks.Any()) yield return new TaskListData(Localize["Task.VSCodeTask.Title"], Localize["Task.VSCodeTask.Description"], Activity.VSCodeTasks);
+            if (Activity.OpenFileTasks.Any()) yield return new TaskListData(Localize["Task.OpenFileTask.Title"], Localize["Task.OpenFileTask.Description"], Activity.OpenFileTasks);
         }
 
     private record TaskListData(string Title, string Description, IEnumerable<ITask> Tasks);

@@ -132,11 +132,11 @@
   <data name="Generator.Header.Name" xml:space="preserve">
     <value>Activité</value>
   </data>
-  <data name="Generator.Section.BrowserTabsTask" xml:space="preserve">
-    <value>Ouvrir des onglets dans le navigateur</value>
-  </data>
   <data name="Generator.Section.ExplorerFolderTask" xml:space="preserve">
     <value>Ouvrir l'explorateur de fichiers</value>
+  </data>
+  <data name="Generator.Section.OpenFileTask" xml:space="preserve">
+    <value>Ouvrir un fichier avec l'application par défaut</value>
   </data>
   <data name="Generator.Section.Prefix" xml:space="preserve">
     <value>Tâches</value>
@@ -152,8 +152,5 @@
   </data>
   <data name="Generator.Section.VSCodeTask" xml:space="preserve">
     <value>Ouvrir un espace de travail Visual Studio Code</value>
-  </data>
-  <data name="Generator.Section.VSSolutionTask" xml:space="preserve">
-    <value>Ouvrir une solution Visual Studio</value>
   </data>
 </root>
