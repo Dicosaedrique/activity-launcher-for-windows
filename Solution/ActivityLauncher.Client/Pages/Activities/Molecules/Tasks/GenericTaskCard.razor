@@ -30,7 +30,7 @@
     <MudCardContent Class="pt-0">
         @if (EditMode)
         {
-            <MudTextField T="string" Style="width: 50%;" @bind-Value="Task.Name" Label="@Localize["Activity.Dialog.Task.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Task.Name.RequiredError"]" Variant="Variant.Outlined" />
+            <MudTextField T="string" @bind-Value="Task.Name" Label="@Localize["Activity.Dialog.Task.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Task.Name.RequiredError"]" Variant="Variant.Outlined" />
         }
         @TaskDetailTemplate
     </MudCardContent>

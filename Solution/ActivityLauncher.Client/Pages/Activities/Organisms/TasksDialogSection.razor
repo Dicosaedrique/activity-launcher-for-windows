@@ -14,12 +14,14 @@
 
     @if(_tasks.Any())
     {
-        <MudStack Spacing="6">
-            @foreach(var task in _tasks)
+        <MudGrid Spacing="3">
+            @foreach (var task in _tasks)
             {
-                <TaskCard Task="task" EditMode="EditMode" OnRemove="GetOnRemoveCallback(task)" />
+                <MudItem @key="task.Id" xs="6">
+                    <TaskCard Task="task" EditMode="EditMode" OnRemove="GetOnRemoveCallback(task)" />
+                </MudItem>
             }
-        </MudStack>
+        </MudGrid>
     }
     else
     {
