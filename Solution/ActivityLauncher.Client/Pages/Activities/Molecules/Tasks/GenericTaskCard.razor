@@ -1,0 +1,64 @@
+﻿@inject ActivityController ActivityController
+@inject IStringLocalizer<ActivityLocales> Localize
+
+<MudCard Outlined>
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudStack Row AlignItems="AlignItems.Center" Spacing="4">
+                <MudImage Style="height: 30px; width: 30px;" Src="@TaskIconSource" />
+                <MudText Typo="Typo.body1">@DisplayName</MudText>
+                <MudTooltip Text="@HelperTooltip">
+                    <MudIconButton Class="pa-0" Icon="@Icons.Material.Filled.HelpOutline" />
+                </MudTooltip>
+            </MudStack>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            @if (EditMode)
+            {
+                <MudTooltip Text="@Localize["Activity.Dialog.Task.DeleteHelper"]">
+                    <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="OnRemove" />
+                </MudTooltip>
+            }
+            else
+            {
+                <MudTooltip Text="@Localize["Activity.Dialog.Task.LaunchHelper"]">
+                    <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="LaunchTask" />
+                </MudTooltip>
+            }
+        </CardHeaderActions>
+    </MudCardHeader>
+    <MudCardContent>
+        @if (EditMode)
+        {
+            <MudTextField T="string" @bind-Value="Task.Name" Label="@Localize["Activity.Dialog.Task.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Task.Name.RequiredError"]" />
+        }
+        @TaskDetailTemplate
+    </MudCardContent>
+</MudCard>
+
+@code {
+    [Parameter]
+    public ITask Task { get; set; } = null!;
+
+    [Parameter]
+    public bool EditMode { get; set; } = false;
+
+    [Parameter]
+    public string HelperTooltip { get; set; } = string.Empty;
+
+    [Parameter]
+    public string TaskIconSource { get; set; } = string.Empty;
+
+    [Parameter]
+    public EventCallback OnRemove { get; set; }
+
+    [Parameter]
+    public RenderFragment TaskDetailTemplate { get; set; } = null!;
+
+    private string DisplayName => string.IsNullOrWhiteSpace(Task.Name) ? Localize["Task.EmptyName"] : Task.Name;
+
+    private async Task LaunchTask()
+    {
+        await ActivityController.PromptLaunchTask(Task);
+    }
+}

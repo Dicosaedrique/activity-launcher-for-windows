@@ -1,60 +1,34 @@
-﻿@inject ActivityController ActivityController
-@inject IStringLocalizer<ActivityLocales> Localize
+﻿@using ActivityLauncher.Client.Pages.Activities.Molecules.Tasks;
 
-<MudCard Outlined>
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.body1">@DisplayName</MudText>
-        </CardHeaderContent>
-        <CardHeaderActions>
-            @if (EditMode)
-            {
-                <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="OnRemove" />
-            }
-            else
-            {
-                <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="RunTask" />
-            }
-        </CardHeaderActions>
-    </MudCardHeader>
-    <MudCardContent>
-        @if (EditMode)
-        {
-            <MudTextField T="string" @bind-Value="Task.Name" Label="@Localize["Activity.Dialog.Task.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Task.Name.RequiredError"]" />
-        }
-        <MudCheckBox T="bool" Checked="Task.Enabled" CheckedChanged="EnabledChange" Disabled="!EditMode" Label="@InternalEnabled" Color="Color.Primary" />
-        Le détail de ta tâche etc etc
-        @* todo: add details for each type of tasks *@
-    </MudCardContent>
-</MudCard>
+@switch (Task)
+{
+    case ExplorerFolderTask explorerFolderTask:
+        <ExplorerFolderTaskCard Task="explorerFolderTask" EditMode="EditMode" OnRemove="OnRemove" />
+        break;
+    case ProgramTask programTask:
+        <ProgramTaskCard Task="programTask" EditMode="EditMode" OnRemove="OnRemove" />
+        break;
+    case ScriptTask scriptTask:
+        <ScriptTaskCard Task="scriptTask" EditMode="EditMode" OnRemove="OnRemove" />
+        break;
+    case TerminalTask terminalTask:
+        <TerminalTaskCard Task="terminalTask" EditMode="EditMode" OnRemove="OnRemove" />
+        break;
+    case VSCodeTask vSCodeTask:
+        <VSCodeTaskCard Task="vSCodeTask" EditMode="EditMode" OnRemove="OnRemove" />
+        break;
+    case OpenFileTask openFileTask:
+        <OpenFileTaskCard Task="openFileTask" EditMode="EditMode" OnRemove="OnRemove" />
+        break;
+}
 
 @code {
     [Parameter]
     public ITask Task { get; set; } = null!;
 
     [Parameter]
-    public EventCallback<ITask> TaskChanged { get; set; }
-
-    [Parameter]
     public bool EditMode { get; set; } = false;
 
     [Parameter]
     public EventCallback OnRemove { get; set; }
-
-    private string DisplayName => string.IsNullOrWhiteSpace(Task.Name) ? Localize["Task.EmptyName"] : Task.Name;
-
-    private string InternalEnabled => Task.Enabled ? Localize["Activity.Dialog.Task.Enabled.Label.True"] : Localize["Activity.Dialog.Task.Enabled.Label.False"];
-
-    private async Task RunTask()
-    {
-        await ActivityController.PromptLaunchTask(Task);
-    }
-
-    private void EnabledChange(bool enabled)
-    {
-        if(EditMode)
-        {
-            Task.Enabled = enabled;
-        }
-    }
 }

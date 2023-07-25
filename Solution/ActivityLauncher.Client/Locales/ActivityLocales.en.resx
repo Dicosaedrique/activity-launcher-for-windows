@@ -165,8 +165,8 @@
   <data name="Activity.Card.DuplicateMenu" xml:space="preserve">
     <value>Duplicate</value>
   </data>
-  <data name="Activity.Card.EditMenu" xml:space="preserve">
-    <value>Edit</value>
+  <data name="Activity.Card.OpenScriptMenu" xml:space="preserve">
+    <value>Open script</value>
   </data>
   <data name="Activity.Dialog.CancelButton" xml:space="preserve">
     <value>Cancel</value>
@@ -234,8 +234,8 @@
   <data name="Activity.Dialog.Launch.Title" xml:space="preserve">
     <value>Run Script for Activity "{0}"</value>
   </data>
-  <data name="Activity.Card.OpenScriptTooltip" xml:space="preserve">
-    <value>Open script</value>
+  <data name="Activity.Card.EditButtonTooltip" xml:space="preserve">
+    <value>Edit activity</value>
   </data>
   <data name="Activity.Dialog.View.Description.Title" xml:space="preserve">
     <value>Description</value>
@@ -309,9 +309,6 @@
   <data name="Task.VSCodeTask.Title" xml:space="preserve">
     <value>Visual Studio Code</value>
   </data>
-  <data name="Activity.Dialog.Task.Enabled.Label.True" xml:space="preserve">
-    <value>Enabled</value>
-  </data>
   <data name="Task.NewName" xml:space="preserve">
     <value>New Task {0}</value>
   </data>
@@ -321,7 +318,40 @@
   <data name="Activity.Dialog.Task.Name.RequiredError" xml:space="preserve">
     <value>Task name is required!</value>
   </data>
-  <data name="Activity.Dialog.Task.Enabled.Label.False" xml:space="preserve">
-    <value>Disabled</value>
+  <data name="Activity.Card.LaunchActivityTooltip" xml:space="preserve">
+    <value>Launch activity</value>
+  </data>
+  <data name="Activity.Dialog.Task.DeleteHelper" xml:space="preserve">
+    <value>Delete task</value>
+  </data>
+  <data name="Activity.Dialog.Task.ExplorerFolderTask.HelperTooltip" xml:space="preserve">
+    <value>todo</value>
+  </data>
+  <data name="Activity.Dialog.Task.LaunchHelper" xml:space="preserve">
+    <value>Launch task</value>
+  </data>
+  <data name="Activity.Dialog.Task.OpenFileTask.HelperTooltip" xml:space="preserve">
+    <value>todo</value>
+  </data>
+  <data name="Activity.Dialog.Task.ProgramTask.HelperTooltip" xml:space="preserve">
+    <value>todo</value>
+  </data>
+  <data name="Activity.Dialog.Task.ScriptTask.HelperTooltip" xml:space="preserve">
+    <value>todo</value>
+  </data>
+  <data name="Activity.Dialog.Task.TerminalTask.HelperTooltip" xml:space="preserve">
+    <value>todo</value>
+  </data>
+  <data name="Activity.Dialog.Task.VSCodeTask.HelperTooltip" xml:space="preserve">
+    <value>todo</value>
+  </data>
+  <data name="Activity.Dialog.View.CreationDate" xml:space="preserve">
+    <value>Created {0}</value>
+  </data>
+  <data name="Activity.Dialog.View.EditButton" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Activity.Dialog.View.LastModifiedDate" xml:space="preserve">
+    <value>Last modified {0}</value>
   </data>
 </root>

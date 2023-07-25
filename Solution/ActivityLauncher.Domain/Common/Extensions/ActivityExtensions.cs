@@ -6,29 +6,9 @@ namespace ActivityLauncher.Domain.Common.Extensions;
 
 public static class ActivityExtensions
 {
-    public static IEnumerable<ITask> GetTasks(this Activity activity)
-    {
-        foreach (var task in activity.ExplorerFolderTasks) yield return task;
-        foreach (var task in activity.ProgramTasks) yield return task;
-        foreach (var task in activity.ScriptTasks) yield return task;
-        foreach (var task in activity.TerminalTasks) yield return task;
-        foreach (var task in activity.VSCodeTasks) yield return task;
-        foreach (var task in activity.OpenFileTasks) yield return task;
-    }
-
-    public static IEnumerable<IEnumerable<ITask>> GetTasksList(this Activity activity)
-    {
-        yield return activity.ExplorerFolderTasks;
-        yield return activity.ProgramTasks;
-        yield return activity.ScriptTasks;
-        yield return activity.TerminalTasks;
-        yield return activity.VSCodeTasks;
-        yield return activity.OpenFileTasks;
-    }
-
     public static void AddTask(this Activity activity, ITask task)
     {
-        switch(task)
+        switch (task)
         {
             case ExplorerFolderTask explorerFolderTask:
                 activity.AddTask(explorerFolderTask);

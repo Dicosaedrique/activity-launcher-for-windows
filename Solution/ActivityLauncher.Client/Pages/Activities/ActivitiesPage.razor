@@ -21,7 +21,7 @@
     @if (_activities != null)
     {
         <div Class="d-flex flex-wrap gap-4 mx-n2 mb-16">
-            @foreach (var activity in _activities.OrderBy(x => x.LastModifiedDate))
+            @foreach (var activity in _activities.OrderBy(x => x.CreationDate))
             {
                 <ActivityCard @key="activity.Id" Activity="activity" />
             }

@@ -6,22 +6,23 @@ public class OpenFileTask : BaseTask, ICloneable<OpenFileTask>
 {
     public string FilePath { get; set; } = string.Empty;
 
-    public override string? GetScript()
+    public override bool IsValid()
     {
-        if (!string.IsNullOrWhiteSpace(FilePath))
-        {
-            return $"Start-Process -FilePath \"{FilePath}\"";
-        }
+        return true; // todo: validate that FilePath is not null and is a *file* that exists
+    }
 
-        return null;
+    protected override string GetValidScript()
+    {
+        return $"Start-Process -FilePath \"{FilePath}\"";
     }
 
     public OpenFileTask Clone()
     {
         return new OpenFileTask()
         {
+            Id = Id,
             Name = Name,
-            Enabled = Enabled,
+            CreationDate = CreationDate,
             FilePath = FilePath,
         };
     }

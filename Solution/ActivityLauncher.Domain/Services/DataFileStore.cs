@@ -17,10 +17,7 @@ public class DataFileStore : IFileStorage
     {
         try
         {
-            using Stream fileStream = File.OpenRead(filePath);
-            using StreamReader reader = new StreamReader(fileStream);
-
-            return new ResultWithContent<string>(await reader.ReadToEndAsync());
+            return new ResultWithContent<string>(await File.ReadAllTextAsync(filePath));
         }
         catch (Exception exception)
         {
@@ -43,7 +40,6 @@ public class DataFileStore : IFileStorage
             {
                 return new ResultWithContent<TResult>(result.Exception!);
             }
-
         }
         catch (Exception exception)
         {
@@ -56,11 +52,7 @@ public class DataFileStore : IFileStorage
     {
         try
         {
-            using var fileStream = File.OpenWrite(filePath);
-            using var writter = new StreamWriter(fileStream);
-
-            await writter.WriteAsync(content);
-
+            await File.WriteAllTextAsync(filePath, content);
             return Result.SuccessResult;
         }
         catch (Exception exception)

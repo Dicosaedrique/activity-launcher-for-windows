@@ -22,12 +22,10 @@ public class ScriptGeneratorService : IScriptGeneratorService
 
         builder.Append(GetScriptHeader(activity));
 
-        builder.Append(GetScriptTaskSection(_localize["Generator.Section.ExplorerFolderTask"], activity.ExplorerFolderTasks));
-        builder.Append(GetScriptTaskSection(_localize["Generator.Section.ProgramTask"], activity.ProgramTasks));
-        builder.Append(GetScriptTaskSection(_localize["Generator.Section.ScriptTask"], activity.ScriptTasks));
-        builder.Append(GetScriptTaskSection(_localize["Generator.Section.TerminalTask"], activity.TerminalTasks));
-        builder.Append(GetScriptTaskSection(_localize["Generator.Section.VSCodeTask"], activity.VSCodeTasks));
-        builder.Append(GetScriptTaskSection(_localize["Generator.Section.OpenFileTask"], activity.OpenFileTasks));
+        foreach(var task in activity.GetTasks())
+        {
+            builder.Append(GetTaskScript(task));
+        }
 
         builder.Append(GetScriptFooter());
 
@@ -52,23 +50,8 @@ public class ScriptGeneratorService : IScriptGeneratorService
             _localize["Generator.Header.Message"]);
     }
 
-    private string GetScriptTaskSection(string title, IEnumerable<ITask> tasks)
-    {
-        var enabledTasks = tasks.Where(task => task.Enabled);
-
-        if (enabledTasks.Any())
-        {
-            var tasksScript = string.Join("\n\n", enabledTasks.Select(GetTaskScript));
-            return string.Format(TaskSectionTemplate, _localize["Generator.Section.Prefix"], title, tasksScript);
-        }
-
-        return string.Empty;
-    }
-
     private string GetTaskScript(ITask task)
     {
-        if (!task.Enabled) return string.Empty;
-
         var builder = new StringBuilder();
 
         if (!string.IsNullOrWhiteSpace(task.Name))
@@ -78,7 +61,7 @@ public class ScriptGeneratorService : IScriptGeneratorService
 
         builder.Append(task.GetScript());
 
-        return builder.ToString();
+        return string.Format(TaskTemplate, builder.ToString());
     }
 
     private string GetScriptFooter()
@@ -94,7 +77,7 @@ public class ScriptGeneratorService : IScriptGeneratorService
 
     private const string HeaderWithoutDescriptionTemplate = "###################################################################################################\n# {0}: {1}\n#\n# {2}\n###################################################################################################\n\n";
 
-    private const string TaskSectionTemplate = "######################################################\n#region [{0}] {1}\n\n{2}\n\n#endregion ###########################################\n\n\n\n";
+    private const string TaskTemplate = "{0}\n\n\n";
 
     private const string FooterTemplate = "# {0}\n# {1}\n###################################################################################################";
 

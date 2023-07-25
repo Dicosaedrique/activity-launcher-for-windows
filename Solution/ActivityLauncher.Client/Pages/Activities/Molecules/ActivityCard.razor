@@ -7,7 +7,9 @@
             <MudText Typo="Typo.h6" Style="font-size: 1.2rem; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; max-width: 195px;" title="@Activity.Name">@Activity.Name</MudText>
         </CardHeaderContent>
         <CardHeaderActions>
-            <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Size="Size.Large" Color="Color.Success" OnClick="LaunchActivity" />
+            <MudTooltip Text="@Localize["Activity.Card.LaunchActivityTooltip"]">
+                <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Size="Size.Large" Color="Color.Success" OnClick="LaunchActivity" />
+            </MudTooltip>
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
@@ -25,11 +27,11 @@
     <MudCardActions>
         <MudText Typo="Typo.body2" Class="ml-2" Style="font-size: 0.7rem;">@_humanizedLastModifiedDate</MudText>
         <div style="flex: 1;" />
-        <MudTooltip Text="@Localize["Activity.Card.OpenScriptTooltip"]">
-            <MudIconButton Icon="@Icons.Material.Filled.Code" OnClick="OpenScript"></MudIconButton>
+        <MudTooltip Text="@Localize["Activity.Card.EditButtonTooltip"]">
+            <MudIconButton Icon="@Icons.Material.Filled.Edit" OnClick="Edit"></MudIconButton>
         </MudTooltip>
         <MudMenu Icon="@Icons.Material.Filled.MoreVert">
-            <MudMenuItem Icon="@Icons.Material.Filled.Edit" OnClick="Edit">@Localize["Activity.Card.EditMenu"]</MudMenuItem>
+            <MudMenuItem Icon="@Icons.Material.Filled.Code" OnClick="OpenScript">@Localize["Activity.Card.OpenScriptMenu"]</MudMenuItem>
             <MudMenuItem Icon="@Icons.Material.Filled.ContentCopy" OnClick="Duplicate">@Localize["Activity.Card.DuplicateMenu"]</MudMenuItem>
             <MudMenuItem Icon="@Icons.Material.Filled.Delete" OnClick="Delete">@Localize["Activity.Card.DeleteMenu"]</MudMenuItem>
         </MudMenu>

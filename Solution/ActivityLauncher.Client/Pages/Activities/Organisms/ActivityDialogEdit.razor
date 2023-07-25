@@ -1,22 +1,24 @@
 ﻿@inject ActivityController ActivityController
 @inject IStringLocalizer<ActivityLocales> Localize
 
-<MudDialog>
+<MudDialog DisableSidePadding>
     <DialogContent>
         <div style="max-height: calc(100vh - 64px); overflow-y: scroll">
-            <MudForm @ref="_form" @bind-IsValid="_success" Class="mb-6">
-                <MudStack Spacing="8">
-                    <MudTextField T="string" @bind-Value="_activity.Name" Label="@Localize["Activity.Dialog.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Name.RequiredError"]" />
-                    <MudTextField T="string" @bind-Value="_activity.Description" Label="@Localize["Activity.Dialog.Description.Label"]" Lines="5" />
-                </MudStack>
-                <TasksDialogSection Activity="_activity" EditMode />
-            </MudForm>
+            <MudContainer Class="mb-16">
+                <MudForm @ref="_form" @bind-IsValid="_success">
+                    <MudStack Spacing="4">
+                        <MudTextField T="string" @bind-Value="_activity.Name" Label="@Localize["Activity.Dialog.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Name.RequiredError"]" />
+                        <MudTextField T="string" @bind-Value="_activity.Description" Label="@Localize["Activity.Dialog.Description.Label"]" Lines="2" />
+                    </MudStack>
+                    <TasksDialogSection Class="mt-12" Activity="_activity" EditMode />
+                    <MudStack Class="mt-12" Row Justify="Justify.FlexEnd">
+                        <MudButton Variant="Variant.Filled" OnClick="MudDialog.Cancel">@Localize["Activity.Dialog.CancelButton"]</MudButton>
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!_success)" OnClick="Submit">@SubmitButtonLabel</MudButton>
+                    </MudStack>
+                </MudForm>
+            </MudContainer>
         </div>
     </DialogContent>
-    <DialogActions>
-        <MudButton OnClick="MudDialog.Cancel">@Localize["Activity.Dialog.CancelButton"]</MudButton>
-        <MudButton Color="Color.Primary" Disabled="@(!_success)" OnClick="Submit">@SubmitButtonLabel</MudButton>
-    </DialogActions>
 </MudDialog>
 
 @code {
@@ -55,7 +57,7 @@
 
     private async Task Create()
     {
-        //Activity.InitializeDemoTasks(_activity);
+        Activity.InitializeDemoTasks(_activity);
 
         var success = await ActivityController.CreateActivity(_activity);
 
@@ -72,6 +74,7 @@
         if (success)
         {
             MudDialog.Close(DialogResult.Ok(true));
+            MudDialog.CancelAll();
         }
     }
 }

@@ -11,39 +11,40 @@ public class ProgramTask : BaseTask, ICloneable<ProgramTask>
 
     public string ArgumentList { get; set; } = string.Empty;
 
-    public override string? GetScript()
+    private bool HasProgramName => !string.IsNullOrWhiteSpace(ProgramName);
+
+    public override bool IsValid()
     {
-        if (!string.IsNullOrWhiteSpace(ProgramName))
+        return true; // todo: validate that either programname is set or that a program file path is set and exist
+    }
+
+    protected override string GetValidScript()
+    {
+        if (HasProgramName)
         {
             return $"Start-Process {ProgramName}";
         }
 
-        if (!string.IsNullOrWhiteSpace(ProgramFilePath))
+        var builder = new StringBuilder();
+
+        builder.Append($"Start-Process -FilePath \"{ProgramFilePath}\"");
+
+        if (!string.IsNullOrWhiteSpace(ArgumentList))
         {
-            var builder = new StringBuilder();
-
-            builder.Append($"Start-Process -FilePath \"{ProgramFilePath}\"");
-
-            if (!string.IsNullOrWhiteSpace(ArgumentList))
-            {
-                builder.Append($" -ArgumentList \"{ArgumentList}\"");
-            }
-
-            return builder.ToString();
+            builder.Append($" -ArgumentList \"{ArgumentList}\"");
         }
-        else
-        {
-            return null;
-        }
+
+        return builder.ToString();
     }
 
     public ProgramTask Clone()
     {
         return new ProgramTask()
         {
+            Id = Id,
             Name = Name,
+            CreationDate = CreationDate,
             ProgramName = ProgramName,
-            Enabled = Enabled,
             ProgramFilePath = ProgramFilePath,
             ArgumentList = ArgumentList,
         };

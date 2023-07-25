@@ -165,8 +165,8 @@
   <data name="Activity.Card.DuplicateMenu" xml:space="preserve">
     <value>Dupliquer</value>
   </data>
-  <data name="Activity.Card.EditMenu" xml:space="preserve">
-    <value>Modifier</value>
+  <data name="Activity.Card.OpenScriptMenu" xml:space="preserve">
+    <value>Voir le script</value>
   </data>
   <data name="Activity.Dialog.CancelButton" xml:space="preserve">
     <value>Annuler</value>
@@ -234,8 +234,8 @@
   <data name="Activity.Dialog.Launch.Title" xml:space="preserve">
     <value>Lancer le script pour l'activité "{0}"</value>
   </data>
-  <data name="Activity.Card.OpenScriptTooltip" xml:space="preserve">
-    <value>Ouvrir le script</value>
+  <data name="Activity.Card.EditButtonTooltip" xml:space="preserve">
+    <value>Modifier l'activité</value>
   </data>
   <data name="Activity.Dialog.View.Description.Title" xml:space="preserve">
     <value>Description</value>
@@ -271,7 +271,7 @@
     <value>Lancer la tâche "{0}"</value>
   </data>
   <data name="Task.EmptyName" xml:space="preserve">
-    <value>Aucun nom</value>
+    <value>Sans nom</value>
   </data>
   <data name="Task.ExplorerFolderTask.Description" xml:space="preserve">
     <value>Ouvrir un dossier dans une fenêtre de l'explorateur de fichier.</value>
@@ -309,9 +309,6 @@
   <data name="Task.VSCodeTask.Title" xml:space="preserve">
     <value>Visual Studio Code</value>
   </data>
-  <data name="Activity.Dialog.Task.Enabled.Label.True" xml:space="preserve">
-    <value>Activée</value>
-  </data>
   <data name="Task.NewName" xml:space="preserve">
     <value>Nouvelle tâche {0}</value>
   </data>
@@ -321,7 +318,40 @@
   <data name="Activity.Dialog.Task.Name.RequiredError" xml:space="preserve">
     <value>La tâche doit avoir un nom !</value>
   </data>
-  <data name="Activity.Dialog.Task.Enabled.Label.False" xml:space="preserve">
-    <value>Désactivée</value>
+  <data name="Activity.Card.LaunchActivityTooltip" xml:space="preserve">
+    <value>Lancer l'activité</value>
+  </data>
+  <data name="Activity.Dialog.Task.DeleteHelper" xml:space="preserve">
+    <value>Supprimer la tâche</value>
+  </data>
+  <data name="Activity.Dialog.Task.ExplorerFolderTask.HelperTooltip" xml:space="preserve">
+    <value>todo</value>
+  </data>
+  <data name="Activity.Dialog.Task.LaunchHelper" xml:space="preserve">
+    <value>Lancer la tâche</value>
+  </data>
+  <data name="Activity.Dialog.Task.OpenFileTask.HelperTooltip" xml:space="preserve">
+    <value>todo</value>
+  </data>
+  <data name="Activity.Dialog.Task.ProgramTask.HelperTooltip" xml:space="preserve">
+    <value>todo</value>
+  </data>
+  <data name="Activity.Dialog.Task.ScriptTask.HelperTooltip" xml:space="preserve">
+    <value>todo</value>
+  </data>
+  <data name="Activity.Dialog.Task.TerminalTask.HelperTooltip" xml:space="preserve">
+    <value>todo</value>
+  </data>
+  <data name="Activity.Dialog.Task.VSCodeTask.HelperTooltip" xml:space="preserve">
+    <value>todo</value>
+  </data>
+  <data name="Activity.Dialog.View.CreationDate" xml:space="preserve">
+    <value>Créée {0}</value>
+  </data>
+  <data name="Activity.Dialog.View.EditButton" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="Activity.Dialog.View.LastModifiedDate" xml:space="preserve">
+    <value>Modifiée {0}</value>
   </data>
 </root>

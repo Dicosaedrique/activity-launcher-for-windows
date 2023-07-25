@@ -8,7 +8,12 @@ public class TerminalTask : BaseTask, ICloneable<TerminalTask>
 {
     public List<TerminalTab> TerminalTabs { get; set; } = new();
 
-    public override string? GetScript()
+    public override bool IsValid()
+    {
+        return TerminalTabs.TrueForAll(x => x.IsValid());
+    }
+
+    protected override string GetValidScript()
     {
         var builder = new StringBuilder();
 
@@ -16,9 +21,7 @@ public class TerminalTask : BaseTask, ICloneable<TerminalTask>
 
         for (var i = 0; i < TerminalTabs.Count; i++)
         {
-            var terminalTab = TerminalTabs.ElementAt(i);
-
-            builder.Append(terminalTab.GetInvokeCommandArgs());
+            builder.Append(TerminalTabs[i].GetInvokeCommandArgs());
 
             if (i != TerminalTabs.Count - 1)
             {
@@ -33,8 +36,9 @@ public class TerminalTask : BaseTask, ICloneable<TerminalTask>
     {
         return new TerminalTask()
         {
+            Id = Id,
             Name = Name,
-            Enabled = Enabled,
+            CreationDate = CreationDate,
             TerminalTabs = TerminalTabs.Select(terminalTab => terminalTab.Clone()).ToList(),
         };
     }

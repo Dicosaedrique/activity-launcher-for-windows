@@ -7,10 +7,22 @@
     </TitleContent>
     <DialogContent>
         <div style="max-height: calc(100vh - 64px); overflow-y: scroll">
-            <MudContainer>
-                <MudText Typo="Typo.h5">@Localize["Activity.Dialog.View.Description.Title"]</MudText>
-                <MudText Typo="Typo.subtitle1">@InternalDescription</MudText>
-                <TasksDialogSection Activity="Activity" />
+            <MudContainer Class="mb-16">
+                <MudStack Row Justify="Justify.SpaceBetween">
+                    <div style="width: 70%;">
+                        <MudText Typo="Typo.h5" Class="mb-2">@Localize["Activity.Dialog.View.Description.Title"]</MudText>
+                        <MudText Typo="Typo.body2">@InternalDescription</MudText>
+                        
+                    </div>
+                    <MudStack>
+                        <MudButton IconClass="@Icons.Material.Filled.Edit" Color="Color.Primary" Variant="Variant.Filled" OnClick="Edit">@Localize["Activity.Dialog.View.EditButton"]</MudButton>
+                        <div>
+                            <MudText Typo="Typo.body2" Align="Align.End" Style="font-size: 0.7rem;">@_humanizedCreationDate</MudText>
+                            <MudText Typo="Typo.body2" Align="Align.End" Style="font-size: 0.7rem;">@_humanizedLastModifiedDate</MudText>
+                        </div>
+                    </MudStack>
+                </MudStack>
+                <TasksDialogSection Class="mt-12" Activity="Activity" />
             </MudContainer>
         </div>
     </DialogContent>
@@ -21,4 +33,18 @@
     public Activity Activity { get; set; } = null!;
 
     private string InternalDescription => string.IsNullOrWhiteSpace(Activity.Description) ? Localize["Activity.Dialog.View.Description.Empty"] : Activity.Description;
+
+    private string _humanizedCreationDate = string.Empty;
+    private string _humanizedLastModifiedDate = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        _humanizedCreationDate = string.Format(Localize["Activity.Dialog.View.CreationDate"], Activity.CreationDate.Humanize());
+        _humanizedLastModifiedDate = string.Format(Localize["Activity.Dialog.View.LastModifiedDate"], Activity.LastModifiedDate.Humanize());
+    }
+
+    private void Edit()
+    {
+        ActivityController.OpenEditActivityDialog(Activity);
+    }
 }

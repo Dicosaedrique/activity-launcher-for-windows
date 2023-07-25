@@ -132,25 +132,4 @@
   <data name="Generator.Header.Name" xml:space="preserve">
     <value>Activité</value>
   </data>
-  <data name="Generator.Section.ExplorerFolderTask" xml:space="preserve">
-    <value>Ouvrir l'explorateur de fichiers</value>
-  </data>
-  <data name="Generator.Section.OpenFileTask" xml:space="preserve">
-    <value>Ouvrir un fichier avec l'application par défaut</value>
-  </data>
-  <data name="Generator.Section.Prefix" xml:space="preserve">
-    <value>Tâches</value>
-  </data>
-  <data name="Generator.Section.ProgramTask" xml:space="preserve">
-    <value>Ouvrir un programme</value>
-  </data>
-  <data name="Generator.Section.ScriptTask" xml:space="preserve">
-    <value>Exécuter un script PowerShell personnalisé</value>
-  </data>
-  <data name="Generator.Section.TerminalTask" xml:space="preserve">
-    <value>Ouvrir un ou plusieurs onglets dans Windows Terminal</value>
-  </data>
-  <data name="Generator.Section.VSCodeTask" xml:space="preserve">
-    <value>Ouvrir un espace de travail Visual Studio Code</value>
-  </data>
 </root>

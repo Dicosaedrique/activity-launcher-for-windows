@@ -6,22 +6,23 @@ public class VSCodeTask : BaseTask, ICloneable<VSCodeTask>
 {
     public string DirectoryPath { get; set; } = string.Empty;
 
-    public override string? GetScript()
+    public override bool IsValid()
     {
-        if (!string.IsNullOrWhiteSpace(DirectoryPath))
-        {
-            return $"code \"{DirectoryPath}\"";
-        }
+        return true; // todo: check that DirectoryPath exists and is a directory
+    }
 
-        return null;
+    protected override string GetValidScript()
+    {
+        return $"code \"{DirectoryPath}\"";
     }
 
     public VSCodeTask Clone()
     {
         return new VSCodeTask()
         {
+            Id = Id,
             Name = Name,
-            Enabled = Enabled,
+            CreationDate = CreationDate,
             DirectoryPath = DirectoryPath,
         };
     }

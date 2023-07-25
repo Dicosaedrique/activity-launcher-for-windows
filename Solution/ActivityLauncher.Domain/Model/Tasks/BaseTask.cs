@@ -4,9 +4,18 @@ namespace ActivityLauncher.Domain.Model.Tasks;
 
 public abstract class BaseTask : ITask
 {
+    public Guid Id { get; set; } = Guid.NewGuid();
+
     public string? Name { get; set; }
 
-    public bool Enabled { get; set; } = true;
+    public DateTime CreationDate { get; protected set; } = DateTime.Now;
 
-    public abstract string? GetScript();
+    public string? GetScript()
+    {
+        return IsValid() ? GetValidScript() : null;
+    }
+
+    protected abstract string GetValidScript();
+
+    public abstract bool IsValid();
 }

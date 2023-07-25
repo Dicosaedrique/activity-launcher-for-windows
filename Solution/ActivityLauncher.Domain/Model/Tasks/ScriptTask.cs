@@ -6,7 +6,12 @@ public class ScriptTask : BaseTask, ICloneable<ScriptTask>
 {
     public string Script { get; set; } = string.Empty;
 
-    public override string? GetScript()
+    public override bool IsValid()
+    {
+        return true;
+    }
+
+    protected override string GetValidScript()
     {
         return Script;
     }
@@ -15,8 +20,9 @@ public class ScriptTask : BaseTask, ICloneable<ScriptTask>
     {
         return new ScriptTask()
         {
+            Id = Id,
             Name = Name,
-            Enabled = Enabled,
+            CreationDate = CreationDate,
             Script = Script,
         };
     }

@@ -40,6 +40,11 @@ public class TerminalTab : ICloneable<TerminalTab>
         return builder.ToString();
     }
 
+    public bool IsValid()
+    {
+        return true; // todo: ensure that color is a color and that location path exists and is a directory
+    }
+
     public TerminalTab Clone()
     {
         return new TerminalTab()

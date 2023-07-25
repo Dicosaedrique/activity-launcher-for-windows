@@ -1,0 +1,19 @@
+﻿@inject ActivityController ActivityController
+@inject IStringLocalizer<ActivityLocales> Localize
+
+<GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" HelperTooltip="@Localize["Activity.Dialog.Task.ScriptTask.HelperTooltip"]" TaskIconSource="/img/ScriptTaskIcon.png">
+    <TaskDetailTemplate>
+
+    </TaskDetailTemplate>
+</GenericTaskCard>
+
+@code {
+    [Parameter]
+    public ScriptTask Task { get; set; } = null!;
+
+    [Parameter]
+    public bool EditMode { get; set; } = false;
+
+    [Parameter]
+    public EventCallback OnRemove { get; set; }
+}

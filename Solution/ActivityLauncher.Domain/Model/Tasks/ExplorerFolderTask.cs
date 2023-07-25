@@ -6,22 +6,23 @@ public class ExplorerFolderTask : BaseTask, ICloneable<ExplorerFolderTask>
 {
     public string DirectoryPath { get; set; } = string.Empty;
 
-    public override string? GetScript()
+    public override bool IsValid()
     {
-        if (!string.IsNullOrWhiteSpace(DirectoryPath))
-        {
-            return $"Start-Process -FilePath {DirectoryPath}";
-        }
+        return true; // todo: validate that DirectoryPath is not null and is a *directory* that exists
+    }
 
-        return null;
+    protected override string GetValidScript()
+    {
+        return $"Start-Process -FilePath {DirectoryPath}";
     }
 
     public ExplorerFolderTask Clone()
     {
         return new ExplorerFolderTask()
         {
+            Id = Id,
             Name = Name,
-            Enabled = Enabled,
+            CreationDate = CreationDate,
             DirectoryPath = DirectoryPath,
         };
     }
