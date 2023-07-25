@@ -1,0 +1,54 @@
+﻿@using ActivityLauncher.Client.Pages.Activities.Atoms;
+@using ActivityLauncher.Client.Pages.Activities.Molecules;
+
+@inject IStringLocalizer<ActivityLocales> Localize
+
+<MudStack Row Justify="Justify.SpaceBetween">
+    <MudText Typo="Typo.h5" Class="my-6">@Localize["Activity.Dialog.Tasks.Title"]</MudText>
+    @if (EditMode)
+    {
+        <AddTaskButton Class="mt-4" @bind-Activity="Activity" />
+    }
+</MudStack>
+
+@if (Activity.GetTasks().Any())
+{
+    <MudStack Spacing="6" Class="mb-16">
+        @if (Activity.ExplorerFolderTasks.Any())
+        {
+            <TaskListSection @bind-Activity="Activity" Title="@Localize["Task.ExplorerFolderTask.Title"]" Description="@Localize["Task.ExplorerFolderTask.Description"]" Tasks="Activity.ExplorerFolderTasks" EditMode="EditMode" />
+        }
+        @if (Activity.ProgramTasks.Any())
+        {
+            <TaskListSection @bind-Activity="Activity" Title="@Localize["Task.ProgramTask.Title"]" Description="@Localize["Task.ProgramTask.Description"]" Tasks="Activity.ProgramTasks" EditMode="EditMode" />
+        }
+        @if (Activity.ScriptTasks.Any())
+        {
+            <TaskListSection @bind-Activity="Activity" Title="@Localize["Task.ScriptTask.Title"]" Description="@Localize["Task.ScriptTask.Description"]" Tasks="Activity.ScriptTasks" EditMode="EditMode" />
+        }
+        @if (Activity.TerminalTasks.Any())
+        {
+            <TaskListSection @bind-Activity="Activity" Title="@Localize["Task.TerminalTask.Title"]" Description="@Localize["Task.TerminalTask.Description"]" Tasks="Activity.TerminalTasks" EditMode="EditMode" />
+        }
+        @if (Activity.VSCodeTasks.Any())
+        {
+            <TaskListSection @bind-Activity="Activity" Title="@Localize["Task.VSCodeTask.Title"]" Description="@Localize["Task.VSCodeTask.Description"]" Tasks="Activity.VSCodeTasks" EditMode="EditMode" />
+        }
+        @if (Activity.OpenFileTasks.Any())
+        {
+            <TaskListSection @bind-Activity="Activity" Title="@Localize["Task.OpenFileTask.Title"]" Description="@Localize["Task.OpenFileTask.Description"]" Tasks="Activity.OpenFileTasks" EditMode="EditMode" />
+        }
+    </MudStack>
+}
+else
+{
+    <MudText Typo="Typo.body1">@Localize["Activity.Dialog.Tasks.Empty"]</MudText>
+}
+
+@code {
+    [Parameter]
+    public Activity Activity { get; set; } = null!;
+
+    [Parameter]
+    public bool EditMode { get; set; } = false;
+}

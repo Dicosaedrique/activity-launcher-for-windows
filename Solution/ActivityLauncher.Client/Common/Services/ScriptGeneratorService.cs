@@ -56,7 +56,7 @@ public class ScriptGeneratorService : IScriptGeneratorService
     {
         var enabledTasks = tasks.Where(task => task.Enabled);
 
-        if(enabledTasks.Any())
+        if (enabledTasks.Any())
         {
             var tasksScript = string.Join("\n\n", enabledTasks.Select(GetTaskScript));
             return string.Format(TaskSectionTemplate, _localize["Generator.Section.Prefix"], title, tasksScript);

@@ -237,13 +237,19 @@
   <data name="Activity.Card.OpenScriptTooltip" xml:space="preserve">
     <value>Ouvrir le script</value>
   </data>
-  <data name="Activity.Dialog.View.Description" xml:space="preserve">
+  <data name="Activity.Dialog.View.Description.Title" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="Activity.Dialog.View.Tasks.Empty" xml:space="preserve">
+  <data name="Activity.Dialog.Tasks.AddTask" xml:space="preserve">
+    <value>Ajouter une tâche</value>
+  </data>
+  <data name="Activity.Dialog.View.Description.Empty" xml:space="preserve">
+    <value>Aucune description</value>
+  </data>
+  <data name="Activity.Dialog.Tasks.Empty" xml:space="preserve">
     <value>Il n'y a aucune tâche dans cette activité.</value>
   </data>
-  <data name="Activity.Dialog.View.Tasks.Title" xml:space="preserve">
+  <data name="Activity.Dialog.Tasks.Title" xml:space="preserve">
     <value>Tâches</value>
   </data>
   <data name="Notifications.Errors.LaunchTask" xml:space="preserve">
@@ -265,7 +271,7 @@
     <value>Lancer la tâche "{0}"</value>
   </data>
   <data name="Task.EmptyName" xml:space="preserve">
-    <value>Sans nom</value>
+    <value>Aucun nom</value>
   </data>
   <data name="Task.ExplorerFolderTask.Description" xml:space="preserve">
     <value>Ouvrir un dossier dans une fenêtre de l'explorateur de fichier.</value>
@@ -302,5 +308,20 @@
   </data>
   <data name="Task.VSCodeTask.Title" xml:space="preserve">
     <value>Visual Studio Code</value>
+  </data>
+  <data name="Activity.Dialog.Task.Enabled.Label.True" xml:space="preserve">
+    <value>Activée</value>
+  </data>
+  <data name="Task.NewName" xml:space="preserve">
+    <value>Nouvelle tâche {0}</value>
+  </data>
+  <data name="Activity.Dialog.Task.Name.Label" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Activity.Dialog.Task.Name.RequiredError" xml:space="preserve">
+    <value>La tâche doit avoir un nom !</value>
+  </data>
+  <data name="Activity.Dialog.Task.Enabled.Label.False" xml:space="preserve">
+    <value>Désactivée</value>
   </data>
 </root>

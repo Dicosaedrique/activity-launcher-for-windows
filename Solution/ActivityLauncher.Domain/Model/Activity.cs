@@ -28,6 +28,24 @@ public class Activity : ICloneable<Activity>
 
     public List<OpenFileTask> OpenFileTasks { get; init; } = new();
 
+    public void AddTask(ExplorerFolderTask task) => ExplorerFolderTasks.Add(task);
+    public bool RemoveTask(ExplorerFolderTask task) => ExplorerFolderTasks.Remove(task);
+
+    public void AddTask(ProgramTask task) => ProgramTasks.Add(task);
+    public bool RemoveTask(ProgramTask task) => ProgramTasks.Remove(task);
+
+    public void AddTask(ScriptTask task) => ScriptTasks.Add(task);
+    public bool RemoveTask(ScriptTask task) => ScriptTasks.Remove(task);
+
+    public void AddTask(TerminalTask task) => TerminalTasks.Add(task);
+    public bool RemoveTask(TerminalTask task) => TerminalTasks.Remove(task);
+
+    public void AddTask(VSCodeTask task) => VSCodeTasks.Add(task);
+    public bool RemoveTask(VSCodeTask task) => VSCodeTasks.Remove(task);
+
+    public void AddTask(OpenFileTask task) => OpenFileTasks.Add(task);
+    public bool RemoveTask(OpenFileTask task) => OpenFileTasks.Remove(task);
+
     public Activity Clone()
     {
         return new Activity()

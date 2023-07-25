@@ -3,13 +3,15 @@
 
 <MudDialog>
     <DialogContent>
-        <MudForm @ref="_form" @bind-IsValid="_success" Class="mb-6">
-            <MudStack Spacing="8">
-                <MudTextField T="string" @bind-Value="@_activity.Name" Label="@Localize["Activity.Dialog.Name.Label"]" Required="true" RequiredError="@Localize["Activity.Dialog.Name.RequiredError"]" />
-                <MudTextField T="string" @bind-Value="@_activity.Description" Label="@Localize["Activity.Dialog.Description.Label"]" Lines="5" />
-            </MudStack>
-        </MudForm>
-        @* todo: add tasks management *@
+        <div style="max-height: calc(100vh - 64px); overflow-y: scroll">
+            <MudForm @ref="_form" @bind-IsValid="_success" Class="mb-6">
+                <MudStack Spacing="8">
+                    <MudTextField T="string" @bind-Value="_activity.Name" Label="@Localize["Activity.Dialog.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Name.RequiredError"]" />
+                    <MudTextField T="string" @bind-Value="_activity.Description" Label="@Localize["Activity.Dialog.Description.Label"]" Lines="5" />
+                </MudStack>
+                <TasksDialogSection Activity="_activity" EditMode />
+            </MudForm>
+        </div>
     </DialogContent>
     <DialogActions>
         <MudButton OnClick="MudDialog.Cancel">@Localize["Activity.Dialog.CancelButton"]</MudButton>
@@ -53,7 +55,7 @@
 
     private async Task Create()
     {
-        Activity.InitializeDemoTasks(_activity);
+        //Activity.InitializeDemoTasks(_activity);
 
         var success = await ActivityController.CreateActivity(_activity);
 

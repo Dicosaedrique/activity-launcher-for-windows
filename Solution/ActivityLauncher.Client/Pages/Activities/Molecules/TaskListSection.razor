@@ -1,5 +1,7 @@
 ﻿@inject IStringLocalizer<ActivityLocales> Localize
 
+@inject IStringLocalizer<ActivityLocales> Localize
+
 <MudCard Outlined>
     <MudCardHeader onclick="@ToggleExpanded" Style="cursor: pointer;">
         <CardHeaderContent>
@@ -10,14 +12,14 @@
         </CardHeaderActions>
     </MudCardHeader>
 
-    @if(_expanded)
+    @if (_expanded)
     {
         <MudCardContent>
             <MudText Typo="Typo.subtitle1" Class="mb-4">@Description</MudText>
             <MudStack Spacing="4">
                 @foreach (var task in Tasks)
                 {
-                    <TaskCard Task="task" />
+                    <TaskCard Task="task" EditMode="EditMode" OnRemove="GetOnRemoveCallback(task)" />
                 }
             </MudStack>
         </MudCardContent>
@@ -26,6 +28,12 @@
 
 @code {
     [Parameter]
+    public Activity Activity { get; set; } = null!;
+
+    [Parameter]
+    public EventCallback<Activity> ActivityChanged { get; set; }
+
+    [Parameter]
     public string Title { get; set; } = string.Empty;
 
     [Parameter]
@@ -33,6 +41,9 @@
 
     [Parameter]
     public IEnumerable<ITask> Tasks { get; set; } = null!;
+
+    [Parameter]
+    public bool EditMode { get; set; } = false;
 
     private bool _expanded = false;
 
@@ -44,6 +55,15 @@
     private string ExpansionIcon => _expanded ? @Icons.Material.Filled.Remove : @Icons.Material.Filled.Add;
 
     private string InternalTitle => $"{Title} ({Tasks.Count()})";
+
+    private EventCallback GetOnRemoveCallback(ITask task)
+    {
+        return EventCallback.Factory.Create(this, async () =>
+        {
+            Activity.RemoveTask(task);
+            await ActivityChanged.InvokeAsync(Activity);
+        });
+    }
 
     // todo: add icons there
 }

@@ -7,12 +7,23 @@
             <MudText Typo="Typo.body1">@DisplayName</MudText>
         </CardHeaderContent>
         <CardHeaderActions>
-            <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="RunTask" />
+            @if (EditMode)
+            {
+                <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="OnRemove" />
+            }
+            else
+            {
+                <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="RunTask" />
+            }
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
+        @if (EditMode)
+        {
+            <MudTextField T="string" @bind-Value="Task.Name" Label="@Localize["Activity.Dialog.Task.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Task.Name.RequiredError"]" />
+        }
+        <MudCheckBox T="bool" Checked="Task.Enabled" CheckedChanged="EnabledChange" Disabled="!EditMode" Label="@InternalEnabled" Color="Color.Primary" />
         Le détail de ta tâche etc etc
-        @*<MudSwitch T="bool" Checked="Task.Enabled" CheckedChanged="() => {}" Color="Color.Primary" />*@
         @* todo: add details for each type of tasks *@
     </MudCardContent>
 </MudCard>
@@ -21,10 +32,29 @@
     [Parameter]
     public ITask Task { get; set; } = null!;
 
+    [Parameter]
+    public EventCallback<ITask> TaskChanged { get; set; }
+
+    [Parameter]
+    public bool EditMode { get; set; } = false;
+
+    [Parameter]
+    public EventCallback OnRemove { get; set; }
+
     private string DisplayName => string.IsNullOrWhiteSpace(Task.Name) ? Localize["Task.EmptyName"] : Task.Name;
+
+    private string InternalEnabled => Task.Enabled ? Localize["Activity.Dialog.Task.Enabled.Label.True"] : Localize["Activity.Dialog.Task.Enabled.Label.False"];
 
     private async Task RunTask()
     {
         await ActivityController.PromptLaunchTask(Task);
+    }
+
+    private void EnabledChange(bool enabled)
+    {
+        if(EditMode)
+        {
+            Task.Enabled = enabled;
+        }
     }
 }

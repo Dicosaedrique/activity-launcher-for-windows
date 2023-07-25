@@ -1,6 +1,4 @@
-﻿@using ActivityLauncher.Client.Pages.Activities.Molecules;
-
-@inject ActivityController ActivityController
+﻿@inject ActivityController ActivityController
 @inject IStringLocalizer<ActivityLocales> Localize
 
 <MudDialog DisableSidePadding>
@@ -10,46 +8,17 @@
     <DialogContent>
         <div style="max-height: calc(100vh - 64px); overflow-y: scroll">
             <MudContainer>
-                @if (!string.IsNullOrWhiteSpace(Activity.Description))
-                {
-                    <MudText Typo="Typo.h5">@Localize["Activity.Dialog.View.Description"]</MudText>
-                    <MudText Typo="Typo.subtitle1">@Activity.Description</MudText>
-                }
-                <MudText Typo="Typo.h5" Class="my-6">@Localize["Activity.Dialog.View.Tasks.Title"]</MudText>
-                @if (Activity.GetTasks().Any())
-                {
-                    <MudStack Spacing="6" Class="mb-16">
-                        @foreach (var taskList in GetActivityTaskLists())
-                        {
-                            <TaskListSection Title="@taskList.Title" Description="@taskList.Description" Tasks="taskList.Tasks" />
-                        }
-                    </MudStack>
-                }
-                else
-                {
-                    <MudText Typo="Typo.body1">@Localize["Activity.Dialog.View.Tasks.Empty"]</MudText>
-                }
+                <MudText Typo="Typo.h5">@Localize["Activity.Dialog.View.Description.Title"]</MudText>
+                <MudText Typo="Typo.subtitle1">@InternalDescription</MudText>
+                <TasksDialogSection Activity="Activity" />
             </MudContainer>
         </div>
     </DialogContent>
 </MudDialog>
 
 @code {
-        [CascadingParameter]
-        public MudDialogInstance MudDialog { get; set; } = null!;
+    [Parameter]
+    public Activity Activity { get; set; } = null!;
 
-        [Parameter]
-        public Activity Activity { get; set; } = null!;
-
-        private IEnumerable<TaskListData> GetActivityTaskLists()
-        {
-            if (Activity.ExplorerFolderTasks.Any()) yield return new TaskListData(Localize["Task.ExplorerFolderTask.Title"], Localize["Task.ExplorerFolderTask.Description"], Activity.ExplorerFolderTasks);
-            if (Activity.ProgramTasks.Any()) yield return new TaskListData(Localize["Task.ProgramTask.Title"], Localize["Task.ProgramTask.Description"], Activity.ProgramTasks);
-            if (Activity.ScriptTasks.Any()) yield return new TaskListData(Localize["Task.ScriptTask.Title"], Localize["Task.ScriptTask.Description"], Activity.ScriptTasks);
-            if (Activity.TerminalTasks.Any()) yield return new TaskListData(Localize["Task.TerminalTask.Title"], Localize["Task.TerminalTask.Description"], Activity.TerminalTasks);
-            if (Activity.VSCodeTasks.Any()) yield return new TaskListData(Localize["Task.VSCodeTask.Title"], Localize["Task.VSCodeTask.Description"], Activity.VSCodeTasks);
-            if (Activity.OpenFileTasks.Any()) yield return new TaskListData(Localize["Task.OpenFileTask.Title"], Localize["Task.OpenFileTask.Description"], Activity.OpenFileTasks);
-        }
-
-    private record TaskListData(string Title, string Description, IEnumerable<ITask> Tasks);
+    private string InternalDescription => string.IsNullOrWhiteSpace(Activity.Description) ? Localize["Activity.Dialog.View.Description.Empty"] : Activity.Description;
 }

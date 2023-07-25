@@ -237,13 +237,19 @@
   <data name="Activity.Card.OpenScriptTooltip" xml:space="preserve">
     <value>Open script</value>
   </data>
-  <data name="Activity.Dialog.View.Description" xml:space="preserve">
+  <data name="Activity.Dialog.View.Description.Title" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="Activity.Dialog.View.Tasks.Empty" xml:space="preserve">
+  <data name="Activity.Dialog.Tasks.AddTask" xml:space="preserve">
+    <value>Add task</value>
+  </data>
+  <data name="Activity.Dialog.View.Description.Empty" xml:space="preserve">
+    <value>No description</value>
+  </data>
+  <data name="Activity.Dialog.Tasks.Empty" xml:space="preserve">
     <value>There is no tasks in this activity.</value>
   </data>
-  <data name="Activity.Dialog.View.Tasks.Title" xml:space="preserve">
+  <data name="Activity.Dialog.Tasks.Title" xml:space="preserve">
     <value>Tasks</value>
   </data>
   <data name="Notifications.Errors.LaunchTask" xml:space="preserve">
@@ -302,5 +308,20 @@
   </data>
   <data name="Task.VSCodeTask.Title" xml:space="preserve">
     <value>Visual Studio Code</value>
+  </data>
+  <data name="Activity.Dialog.Task.Enabled.Label.True" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="Task.NewName" xml:space="preserve">
+    <value>New Task {0}</value>
+  </data>
+  <data name="Activity.Dialog.Task.Name.Label" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Activity.Dialog.Task.Name.RequiredError" xml:space="preserve">
+    <value>Task name is required!</value>
+  </data>
+  <data name="Activity.Dialog.Task.Enabled.Label.False" xml:space="preserve">
+    <value>Disabled</value>
   </data>
 </root>

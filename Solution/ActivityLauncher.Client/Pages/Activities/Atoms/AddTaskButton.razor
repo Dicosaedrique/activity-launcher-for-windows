@@ -1,0 +1,57 @@
+﻿@inject IStringLocalizer<ActivityLocales> Localize
+
+<MudMenu Class="@Class" Label="@Localize["Activity.Dialog.Tasks.AddTask"]" Variant="Variant.Filled" Color="Color.Primary">
+    <MudMenuItem OnClick="AddExplorerFolderTask">@Localize["Task.ExplorerFolderTask.Title"]</MudMenuItem>
+    <MudMenuItem OnClick="AddProgramTask">@Localize["Task.ProgramTask.Title"]</MudMenuItem>
+    <MudMenuItem OnClick="AddScriptTask">@Localize["Task.ScriptTask.Title"]</MudMenuItem>
+    <MudMenuItem OnClick="AddTerminalTask">@Localize["Task.TerminalTask.Title"]</MudMenuItem>
+    <MudMenuItem OnClick="AddVSCodeTask">@Localize["Task.VSCodeTask.Title"]</MudMenuItem>
+    <MudMenuItem OnClick="AddOpenFileTask">@Localize["Task.OpenFileTask.Title"]</MudMenuItem>
+</MudMenu>
+
+@code {
+    [Parameter]
+    public Activity Activity { get; set; } = null!;
+
+    [Parameter]
+    public EventCallback<Activity> ActivityChanged { get; set; }
+
+    [Parameter]
+    public string Class { get; set; } = string.Empty;
+
+    private async Task AddExplorerFolderTask()
+    {
+        Activity.AddTask(new ExplorerFolderTask() { Name = string.Format(Localize["Task.NewName"], Activity.ExplorerFolderTasks.Count() + 1) });
+        await ActivityChanged.InvokeAsync(Activity);
+    }
+
+    private async Task AddProgramTask()
+    {
+        Activity.AddTask(new ProgramTask() { Name = string.Format(Localize["Task.NewName"], Activity.ProgramTasks.Count() + 1) });
+        await ActivityChanged.InvokeAsync(Activity);
+    }
+
+    private async Task AddScriptTask()
+    {
+        Activity.AddTask(new ScriptTask() { Name = string.Format(Localize["Task.NewName"], Activity.ScriptTasks.Count() + 1) });
+        await ActivityChanged.InvokeAsync(Activity);
+    }
+
+    private async Task AddTerminalTask()
+    {
+        Activity.AddTask(new TerminalTask() { Name = string.Format(Localize["Task.NewName"], Activity.TerminalTasks.Count() + 1) });
+        await ActivityChanged.InvokeAsync(Activity);
+    }
+
+    private async Task AddVSCodeTask()
+    {
+        Activity.AddTask(new VSCodeTask() { Name = string.Format(Localize["Task.NewName"], Activity.VSCodeTasks.Count() + 1) });
+        await ActivityChanged.InvokeAsync(Activity);
+    }
+
+    private async Task AddOpenFileTask()
+    {
+        Activity.AddTask(new OpenFileTask() { Name = string.Format(Localize["Task.NewName"], Activity.OpenFileTasks.Count() + 1) });
+        await ActivityChanged.InvokeAsync(Activity);
+    }
+}
