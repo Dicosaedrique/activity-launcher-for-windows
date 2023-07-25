@@ -4,7 +4,7 @@
 @inject IStringLocalizer<ActivityLocales> Localize
 
 <div class="@Class">
-    <MudStack Class="mb-6" Row Justify="Justify.SpaceBetween">
+    <MudStack Class="mb-8" Row Justify="Justify.SpaceBetween">
         <MudText Typo="Typo.h5">@Localize["Activity.Dialog.Tasks.Title"]</MudText>
         @if (EditMode)
         {
@@ -14,7 +14,7 @@
 
     @if(_tasks.Any())
     {
-        <MudStack Spacing="4">
+        <MudStack Spacing="6">
             @foreach(var task in _tasks)
             {
                 <TaskCard Task="task" EditMode="EditMode" OnRemove="GetOnRemoveCallback(task)" />

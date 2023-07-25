@@ -1,7 +1,7 @@
 ﻿@inject ActivityController ActivityController
 @inject IStringLocalizer<ActivityLocales> Localize
 
-<MudCard Outlined>
+<MudCard Elevation="4">
     <MudCardHeader>
         <CardHeaderContent>
             <MudStack Row AlignItems="AlignItems.Center" Spacing="4">
@@ -27,10 +27,10 @@
             }
         </CardHeaderActions>
     </MudCardHeader>
-    <MudCardContent>
+    <MudCardContent Class="pt-0">
         @if (EditMode)
         {
-            <MudTextField T="string" @bind-Value="Task.Name" Label="@Localize["Activity.Dialog.Task.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Task.Name.RequiredError"]" />
+            <MudTextField T="string" Style="width: 50%;" @bind-Value="Task.Name" Label="@Localize["Activity.Dialog.Task.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Task.Name.RequiredError"]" Variant="Variant.Outlined" />
         }
         @TaskDetailTemplate
     </MudCardContent>
