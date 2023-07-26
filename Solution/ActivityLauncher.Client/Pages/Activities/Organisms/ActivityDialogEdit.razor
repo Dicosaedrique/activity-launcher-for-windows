@@ -7,8 +7,8 @@
             <MudContainer Class="mb-16">
                 <MudForm @ref="_form">
                     <MudStack Spacing="4">
-                        <MudTextField T="string" Style="width: 50%;" @bind-Value="_activity.Name" Label="@Localize["Activity.Dialog.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Name.RequiredError"]" Variant="Variant.Outlined" />
-                        <MudTextField T="string" @bind-Value="_activity.Description" Label="@Localize["Activity.Dialog.Description.Label"]" Lines="2" Variant="Variant.Outlined" />
+                        <MudTextField T="string" Style="width: 50%;" @bind-Value="_activity.Name" Label="@Localize["Activity.Dialog.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Name.RequiredError"]" Variant="Variant.Filled" />
+                        <MudTextField T="string" @bind-Value="_activity.Description" Label="@Localize["Activity.Dialog.Description.Label"]" Lines="2" Variant="Variant.Filled" />
                     </MudStack>
                     <TasksDialogSection Class="mt-12" Activity="_activity" EditMode />
                     <MudStack Class="mt-12" Row Justify="Justify.FlexEnd">
@@ -47,6 +47,8 @@
     private async Task Submit()
     {
         await _form.Validate();
+
+        // todo: validate tasks
 
         if (_form.IsValid)
         {

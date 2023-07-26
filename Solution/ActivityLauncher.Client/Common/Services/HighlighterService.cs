@@ -8,7 +8,7 @@ namespace ActivityLauncher.Client.Common.Services;
 
 public class HighlighterService
 {
-    private const string template = "<code style=\"font-size: 1rem;\" class=\"{0}\">{1}</code>";
+    private const string Template = "<code style=\"font-size: 1rem;\" class=\"{0}\">{1}</code>";
 
     private const string LightClass = "hljs-light";
     private const string DarkClass = "hljs-dark";
@@ -26,19 +26,24 @@ public class HighlighterService
         _scriptGenerator = scriptGenerator;
     }
 
-    public MarkupString GetDisplayableScript(Activity activity, bool startChevron = true)
-    {
-        var formattedScript = GetFormattedScript(_scriptGenerator.GetScript(activity), startChevron);
-        return new MarkupString(string.Format(template, string.Empty, formattedScript));
-    }
+    public Task<MarkupString> GetDisplayableScriptAsync(Activity activity, bool highlight, bool startChevron)
+        => GetDisplayableScriptAsync(_scriptGenerator.GetScript(activity), highlight, startChevron);
 
-    public async Task<MarkupString> GetHiglightedScript(Activity activity, bool startChevron = true)
+    public async Task<MarkupString> GetDisplayableScriptAsync(string script, bool highlight, bool startChevron)
     {
-        var highlightedScript = await _interopService.GetHighlightedPowerShellScript(_scriptGenerator.GetScript(activity));
-        var cssClass = GetHighlightClassByTheme(_appConfiguration.GetTheme());
-        var formattedScript = GetFormattedScript(highlightedScript, startChevron);
+        if (highlight)
+        {
+            var highlightedScript = await _interopService.GetHighlightedPowerShellScript(script);
+            var cssClass = GetHighlightClassByTheme(_appConfiguration.GetTheme());
+            var formattedScript = GetFormattedScript(highlightedScript, startChevron);
 
-        return new MarkupString(string.Format(template, cssClass, formattedScript));
+            return new MarkupString(string.Format(Template, cssClass, formattedScript));
+        }
+        else
+        {
+            var formattedScript = GetFormattedScript(script, startChevron);
+            return new MarkupString(string.Format(Template, string.Empty, formattedScript));
+        }
     }
 
     private static string GetFormattedScript(string script, bool startChevron)

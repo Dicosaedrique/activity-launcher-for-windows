@@ -1,14 +1,13 @@
 ﻿@inject ActivityController ActivityController
 @inject IStringLocalizer<ActivityLocales> Localize
-@inject HighlighterService HighlighterService
 
 <MudDialog DisableSidePadding="true">
     <DialogContent>
         <div class="mx-8" style="display: flex; flex-direction: column; height: calc(100vh - 64px); margin-top: -12px; margin-bottom: -12px;">
             <MudStack Row Justify="Justify.SpaceBetween" Class="mt-4 mb-8">
                 <div>
-                    <MudSwitch T="bool" Checked="_highlight" CheckedChanged="HighlightChange" Label="@Localize["Activity.Dialog.Script.Highlight.Label"]" Color="Color.Primary" />
-                    <MudSwitch T="bool" Checked="_startChevron" CheckedChanged="StartChevronChange" Label="@Localize["Activity.Dialog.Script.StartChevron.Label"]" Color="Color.Primary" />
+                    <MudSwitch T="bool" @bind-Checked="_highlight" Label="@Localize["Activity.Dialog.Script.Highlight.Label"]" Color="Color.Primary" />
+                    <MudSwitch T="bool" @bind-Checked="_startChevron" Label="@Localize["Activity.Dialog.Script.StartChevron.Label"]" Color="Color.Primary" />
                 </div>
                 <div>
                     <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="LaunchActivity">@Localize["Activity.Dialog.Script.LaunchButton"]</MudButton>
@@ -16,9 +15,7 @@
             </MudStack>
 
             <div class="mx-n8" style="flex: 1 1 auto; overflow-y: auto; min-height: 0px;">
-                <div class="mx-8 mt-4 mb-12">
-                    @_displayableScript
-                </div>
+                <PowerShellScriptDisplay Class="mx-8 mt-4 mb-12" Activity="Activity" Highlight="_highlight" StartChevron="_startChevron" />
             </div>
         </div>
     </DialogContent>
@@ -34,30 +31,9 @@
     private bool _highlight = true;
     private bool _startChevron = true;
 
-    private MarkupString _displayableScript;
-
-    protected override async Task OnParametersSetAsync()
+    protected override void OnInitialized()
     {
         MudDialog.SetTitle(string.Format(Localize["Activity.Dialog.Script.Title"], Activity.Name));
-        await UpdateDisplayableScript();
-    }
-
-    private async Task UpdateDisplayableScript()
-    {
-        if (_highlight) _displayableScript = await HighlighterService.GetHiglightedScript(Activity, _startChevron);
-        else _displayableScript = HighlighterService.GetDisplayableScript(Activity, _startChevron);
-    }
-
-    private async Task StartChevronChange(bool startChevron)
-    {
-        _startChevron = startChevron;
-        await UpdateDisplayableScript();
-    }
-
-    private async Task HighlightChange(bool highlight)
-    {
-        _highlight = highlight;
-        await UpdateDisplayableScript();
     }
 
     private async Task LaunchActivity()

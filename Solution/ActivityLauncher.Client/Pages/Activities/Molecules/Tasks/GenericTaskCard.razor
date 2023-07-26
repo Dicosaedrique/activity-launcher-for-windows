@@ -6,7 +6,7 @@
         <CardHeaderContent>
             <MudStack Row AlignItems="AlignItems.Center" Spacing="4">
                 <MudImage Style="height: 30px; width: 30px;" Src="@TaskIconSource" />
-                <MudText Typo="Typo.body1">@DisplayName</MudText>
+                <MudText Typo="Typo.body1" Style="font-weight: bold;">@DisplayName</MudText>
                 <MudTooltip Text="@HelperTooltip">
                     <MudIconButton Class="pa-0" Icon="@Icons.Material.Filled.HelpOutline" />
                 </MudTooltip>
@@ -27,10 +27,10 @@
             }
         </CardHeaderActions>
     </MudCardHeader>
-    <MudCardContent Class="pt-0">
+    <MudCardContent>
         @if (EditMode)
         {
-            <MudTextField T="string" @bind-Value="Task.Name" Label="@Localize["Activity.Dialog.Task.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Task.Name.RequiredError"]" Variant="Variant.Outlined" />
+            <MudTextField T="string" @bind-Value="Task.Name" Label="@Localize["Activity.Dialog.Task.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Task.Name.RequiredError"]" Variant="Variant.Filled" />
         }
         @TaskDetailTemplate
     </MudCardContent>

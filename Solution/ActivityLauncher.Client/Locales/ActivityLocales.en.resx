@@ -354,4 +354,22 @@
   <data name="Activity.Dialog.View.LastModifiedDate" xml:space="preserve">
     <value>Last modified {0}</value>
   </data>
+  <data name="Activity.Dialog.Task.ExplorerFolderTask.DirectoryPath.Empty" xml:space="preserve">
+    <value>No folder entered.</value>
+  </data>
+  <data name="Activity.Dialog.Task.ExplorerFolderTask.DirectoryPath.Label" xml:space="preserve">
+    <value>Folder to open</value>
+  </data>
+  <data name="Activity.Dialog.Task.ScriptTask.Script.Empty" xml:space="preserve">
+    <value>No script entered.</value>
+  </data>
+  <data name="Activity.Dialog.Task.ScriptTask.Script.Label" xml:space="preserve">
+    <value>PowerShell Script</value>
+  </data>
+  <data name="Activity.Dialog.Task.VSCodeTask.DirectoryPath.Empty" xml:space="preserve">
+    <value>No workspace entered.</value>
+  </data>
+  <data name="Activity.Dialog.Task.VSCodeTask.DirectoryPath.Label" xml:space="preserve">
+    <value>Workspace folder</value>
+  </data>
 </root>
