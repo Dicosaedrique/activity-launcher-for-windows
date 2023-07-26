@@ -3,11 +3,13 @@
 @inject IStringLocalizer<CommonLocales> Localize
 
 <div>
-    <MudStack Row AlignItems="AlignItems.Center" Class="mb-1">
-        <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Folder" Color="Color.Primary" Size="Size.Small" OnClick="PickFolder">@Label</MudButton>
+    <MudStack Class="mb-1">
+        <div>
+            <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Folder" Color="Color.Primary" Size="Size.Small" OnClick="PickFolder">@Label</MudButton>
+        </div>
         @if (!string.IsNullOrWhiteSpace(FolderPath))
         {
-            <code style="font-size: 1rem;">@FolderPath</code>
+            <code style="font-size: 1rem; overflow-wrap: anywhere;">@FolderPath</code>
         }
     </MudStack>
     <ErrorText Error="@_error" />

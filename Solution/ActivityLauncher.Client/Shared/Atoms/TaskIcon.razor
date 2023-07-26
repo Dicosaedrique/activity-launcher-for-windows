@@ -1,0 +1,11 @@
+﻿<MudImage Src="@TaskType.GetIconSource()" Style="@InternalStyle" />
+
+@code {
+    [Parameter]
+    public TaskType TaskType { get; set; }
+
+    [Parameter]
+    public int Size { get; set; } = 30;
+
+    private string InternalStyle => $"height: {Size}px; width: {Size}px;";
+}

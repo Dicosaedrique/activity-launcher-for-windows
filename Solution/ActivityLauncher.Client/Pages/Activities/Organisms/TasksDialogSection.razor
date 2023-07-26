@@ -12,16 +12,45 @@
         }
     </MudStack>
 
-    @if(_tasks.Any())
+    @if (_tasks.Any())
     {
-        <MudGrid Spacing="3">
-            @foreach (var task in _tasks)
-            {
-                <MudItem @key="task.Id" xs="6">
-                    <TaskCard Task="task" EditMode="EditMode" OnRemove="GetOnRemoveCallback(task)" />
-                </MudItem>
-            }
-        </MudGrid>
+        <MudStack Row>
+            <MudPaper Width="350px">
+                <MudList Clickable Color="Color.Primary" @bind-SelectedValue="_currentTaskId">
+                    <MudListSubheader>@Localize["Activity.Dialog.Tasks.NavList.Title"]</MudListSubheader>
+                    <MudListItem Text="@Localize["Activity.Dialog.Tasks.NavList.AllTasks"]" Value="default(Guid)" />
+                    <MudListItem Text="@Localize["Activity.Dialog.Tasks.NavList.TasksLabel"]" InitiallyExpanded>
+                        <NestedList>
+                            @foreach (var task in _tasks)
+                            {
+                                <MudListItem @key="task.Id" Value="task.Id">
+                                    <MudStack Row AlignItems="AlignItems.Center">
+                                        <TaskIcon TaskType="task.TaskType" Size="24" />
+                                        <span>@task.Name</span>
+                                    </MudStack>
+                                </MudListItem>
+                            }
+                        </NestedList>
+                    </MudListItem>
+                </MudList>
+            </MudPaper>
+            <div style="flex: 1;">
+                @if ((Guid)_currentTaskId == default)
+                {
+                    <MudStack Spacing="6">
+                        @foreach (var task in _tasks)
+                        {
+                            <TaskCard @key="task.Id" Task="task" EditMode="EditMode" OnNameChange="TaskNameChanged" OnRemove="GetOnRemoveCallback(task)" />
+                        }
+                    </MudStack>
+                }
+                else
+                {
+                    var task = _tasks.First(x => x.Id == (Guid)_currentTaskId);
+                    <TaskCard Task="task" EditMode="EditMode" OnNameChange="TaskNameChanged" OnRemove="GetOnRemoveCallback(task)" />
+                }
+            </div>
+        </MudStack>
     }
     else
     {
@@ -41,9 +70,16 @@
 
     private IEnumerable<ITask> _tasks = null!;
 
+    private object _currentTaskId = default(Guid);
+
     protected override void OnInitialized()
     {
         TasksChanged();
+    }
+
+    private void TaskNameChanged()
+    {
+        StateHasChanged();
     }
 
     private void TasksChanged()

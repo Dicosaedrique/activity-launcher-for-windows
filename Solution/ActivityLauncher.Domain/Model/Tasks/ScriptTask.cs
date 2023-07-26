@@ -1,9 +1,12 @@
-﻿using ActivityLauncher.Domain.Interfaces;
+﻿using ActivityLauncher.Domain.Enums;
+using ActivityLauncher.Domain.Interfaces;
 
 namespace ActivityLauncher.Domain.Model.Tasks;
 
 public class ScriptTask : BaseTask, ICloneable<ScriptTask>
 {
+    public override TaskType TaskType => TaskType.ScriptTask;
+
     public string Script { get; set; } = string.Empty;
 
     public override bool IsValid()

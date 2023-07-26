@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using ActivityLauncher.Domain.Enums;
 using ActivityLauncher.Domain.Interfaces;
 using ActivityLauncher.Domain.Model.Terminal;
 
@@ -6,6 +7,8 @@ namespace ActivityLauncher.Domain.Model.Tasks;
 
 public class TerminalTask : BaseTask, ICloneable<TerminalTask>
 {
+    public override TaskType TaskType => TaskType.TerminalTask;
+
     public List<TerminalTab> TerminalTabs { get; set; } = new();
 
     public override bool IsValid()

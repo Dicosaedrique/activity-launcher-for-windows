@@ -1,4 +1,5 @@
-﻿using ActivityLauncher.Domain.Interfaces;
+﻿using ActivityLauncher.Domain.Enums;
+using ActivityLauncher.Domain.Interfaces;
 
 namespace ActivityLauncher.Domain.Model.Tasks;
 
@@ -9,6 +10,8 @@ public abstract class BaseTask : ITask
     public string? Name { get; set; }
 
     public DateTime CreationDate { get; protected set; } = DateTime.Now;
+
+    public abstract TaskType TaskType { get; }
 
     public string? GetScript()
     {

@@ -1,0 +1,41 @@
+﻿@using CommunityToolkit.Maui.Storage;
+
+@inject IStringLocalizer<CommonLocales> Localize
+
+<div>
+    <MudStack Class="mb-1">
+        <div>
+            <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.FileOpen" Color="Color.Primary" Size="Size.Small" OnClick="PickFile">@Label</MudButton>
+        </div>
+        @if (!string.IsNullOrWhiteSpace(FilePath))
+        {
+            <code style="font-size: 1rem; overflow-wrap: anywhere;">@FilePath</code>
+        }
+    </MudStack>
+    <ErrorText Error="@_error" />
+</div>
+
+@code {
+    [Parameter]
+    public string Label { get; set; } = string.Empty;
+
+    [Parameter]
+    public string FilePath { get; set; } = string.Empty;
+
+    [Parameter]
+    public EventCallback<string> FilePathChanged { get; set; }
+
+    private string? _error;
+
+    private async Task PickFile()
+    {
+        var result = await FilePicker.PickAsync();
+
+        if (result != null)
+        {
+            _error = null;
+            FilePath = result.FullPath;
+            await FilePathChanged.InvokeAsync(FilePath);
+        }
+    }
+}

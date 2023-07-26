@@ -1,11 +1,11 @@
 ﻿@inject ActivityController ActivityController
 @inject IStringLocalizer<ActivityLocales> Localize
 
-<GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" HelperTooltip="@Localize["Activity.Dialog.Task.VSCodeTask.HelperTooltip"]" TaskIconSource="/img/VSCodeTaskIcon.png">
+<GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" OnNameChange="OnNameChange" TaskType="Task.TaskType">
     <TaskDetailTemplate>
         @if (EditMode)
         {
-            <div class="mt-4">
+            <div class="mt-6">
                 <FolderPickerInput Label="@Localize["Activity.Dialog.Task.VSCodeTask.DirectoryPath.Label"]" @bind-FolderPath="Task.DirectoryPath" />
             </div>
         }
@@ -34,6 +34,9 @@
 
     [Parameter]
     public bool EditMode { get; set; } = false;
+
+    [Parameter]
+    public EventCallback OnNameChange { get; set; }
 
     [Parameter]
     public EventCallback OnRemove { get; set; }

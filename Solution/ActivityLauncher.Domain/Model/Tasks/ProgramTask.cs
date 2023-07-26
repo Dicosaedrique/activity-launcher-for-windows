@@ -1,10 +1,13 @@
 ﻿using System.Text;
+using ActivityLauncher.Domain.Enums;
 using ActivityLauncher.Domain.Interfaces;
 
 namespace ActivityLauncher.Domain.Model.Tasks;
 
 public class ProgramTask : BaseTask, ICloneable<ProgramTask>
 {
+    public override TaskType TaskType => TaskType.ProgramTask;
+
     public string ProgramName { get; set; } = string.Empty;
 
     public string ProgramFilePath { get; set; } = string.Empty;

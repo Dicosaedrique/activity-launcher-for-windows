@@ -77,7 +77,7 @@ public class ScriptGeneratorService : IScriptGeneratorService
 
     private const string HeaderWithoutDescriptionTemplate = "###################################################################################################\n# {0}: {1}\n#\n# {2}\n###################################################################################################\n\n";
 
-    private const string TaskTemplate = "{0}\n\n\n";
+    private const string TaskTemplate = "{0}\n\n";
 
     private const string FooterTemplate = "# {0}\n# {1}\n###################################################################################################";
 

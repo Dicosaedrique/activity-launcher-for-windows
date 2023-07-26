@@ -360,6 +360,12 @@
   <data name="Activity.Dialog.Task.ExplorerFolderTask.DirectoryPath.Label" xml:space="preserve">
     <value>Dossier à ouvrir</value>
   </data>
+  <data name="Activity.Dialog.Task.OpenFileTask.FilePath.Empty" xml:space="preserve">
+    <value>Aucun fichier renseigné.</value>
+  </data>
+  <data name="Activity.Dialog.Task.OpenFileTask.FilePath.Label" xml:space="preserve">
+    <value>Fichier à ouvrir</value>
+  </data>
   <data name="Activity.Dialog.Task.ScriptTask.Script.Empty" xml:space="preserve">
     <value>Aucun script renseigné.</value>
   </data>
@@ -371,5 +377,14 @@
   </data>
   <data name="Activity.Dialog.Task.VSCodeTask.DirectoryPath.Label" xml:space="preserve">
     <value>Dossier de l'espace de travail</value>
+  </data>
+  <data name="Activity.Dialog.Tasks.NavList.AllTasks" xml:space="preserve">
+    <value>Toutes</value>
+  </data>
+  <data name="Activity.Dialog.Tasks.NavList.TasksLabel" xml:space="preserve">
+    <value>Tâches</value>
+  </data>
+  <data name="Activity.Dialog.Tasks.NavList.Title" xml:space="preserve">
+    <value>Selection tâches</value>
   </data>
 </root>

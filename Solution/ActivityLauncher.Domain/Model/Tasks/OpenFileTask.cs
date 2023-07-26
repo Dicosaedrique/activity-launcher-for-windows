@@ -1,9 +1,12 @@
-﻿using ActivityLauncher.Domain.Interfaces;
+﻿using ActivityLauncher.Domain.Enums;
+using ActivityLauncher.Domain.Interfaces;
 
 namespace ActivityLauncher.Domain.Model.Tasks;
 
 public class OpenFileTask : BaseTask, ICloneable<OpenFileTask>
 {
+    public override TaskType TaskType => TaskType.OpenFileTask;
+
     public string FilePath { get; set; } = string.Empty;
 
     public override bool IsValid()

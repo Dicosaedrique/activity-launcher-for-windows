@@ -3,22 +3,22 @@
 @switch (Task)
 {
     case ExplorerFolderTask explorerFolderTask:
-        <ExplorerFolderTaskCard Task="explorerFolderTask" EditMode="EditMode" OnRemove="OnRemove" />
+        <ExplorerFolderTaskCard Task="explorerFolderTask" EditMode="EditMode" OnNameChange="OnNameChange" OnRemove="OnRemove" />
         break;
     case ProgramTask programTask:
-        <ProgramTaskCard Task="programTask" EditMode="EditMode" OnRemove="OnRemove" />
+        <ProgramTaskCard Task="programTask" EditMode="EditMode" OnNameChange="OnNameChange" OnRemove="OnRemove" />
         break;
     case ScriptTask scriptTask:
-        <ScriptTaskCard Task="scriptTask" EditMode="EditMode" OnRemove="OnRemove" />
+        <ScriptTaskCard Task="scriptTask" EditMode="EditMode" OnNameChange="OnNameChange" OnRemove="OnRemove" />
         break;
     case TerminalTask terminalTask:
-        <TerminalTaskCard Task="terminalTask" EditMode="EditMode" OnRemove="OnRemove" />
+        <TerminalTaskCard Task="terminalTask" EditMode="EditMode" OnNameChange="OnNameChange" OnRemove="OnRemove" />
         break;
     case VSCodeTask vSCodeTask:
-        <VSCodeTaskCard Task="vSCodeTask" EditMode="EditMode" OnRemove="OnRemove" />
+        <VSCodeTaskCard Task="vSCodeTask" EditMode="EditMode" OnNameChange="OnNameChange" OnRemove="OnRemove" />
         break;
     case OpenFileTask openFileTask:
-        <OpenFileTaskCard Task="openFileTask" EditMode="EditMode" OnRemove="OnRemove" />
+        <OpenFileTaskCard Task="openFileTask" EditMode="EditMode" OnNameChange="OnNameChange" OnRemove="OnRemove" />
         break;
 }
 
@@ -28,6 +28,9 @@
 
     [Parameter]
     public bool EditMode { get; set; } = false;
+
+    [Parameter]
+    public EventCallback OnNameChange { get; set; }
 
     [Parameter]
     public EventCallback OnRemove { get; set; }

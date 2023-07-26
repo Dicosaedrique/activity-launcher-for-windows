@@ -1,9 +1,12 @@
-﻿using ActivityLauncher.Domain.Interfaces;
+﻿using ActivityLauncher.Domain.Enums;
+using ActivityLauncher.Domain.Interfaces;
 
 namespace ActivityLauncher.Domain.Model.Tasks;
 
 public class VSCodeTask : BaseTask, ICloneable<VSCodeTask>
 {
+    public override TaskType TaskType => TaskType.VSCodeTask;
+
     public string DirectoryPath { get; set; } = string.Empty;
 
     public override bool IsValid()

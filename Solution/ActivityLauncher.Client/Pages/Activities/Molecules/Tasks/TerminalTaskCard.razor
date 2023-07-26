@@ -1,7 +1,7 @@
 ﻿@inject ActivityController ActivityController
 @inject IStringLocalizer<ActivityLocales> Localize
 
-<GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" HelperTooltip="@Localize["Activity.Dialog.Task.TerminalTask.HelperTooltip"]" TaskIconSource="/img/TerminalTaskIcon.png">
+<GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" OnNameChange="OnNameChange" TaskType="Task.TaskType">
     <TaskDetailTemplate>
 
     </TaskDetailTemplate>
@@ -13,6 +13,9 @@
 
     [Parameter]
     public bool EditMode { get; set; } = false;
+
+    [Parameter]
+    public EventCallback OnNameChange { get; set; }
 
     [Parameter]
     public EventCallback OnRemove { get; set; }

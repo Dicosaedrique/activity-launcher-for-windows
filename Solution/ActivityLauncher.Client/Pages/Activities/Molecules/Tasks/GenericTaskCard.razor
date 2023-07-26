@@ -5,7 +5,7 @@
     <MudCardHeader>
         <CardHeaderContent>
             <MudStack Row AlignItems="AlignItems.Center" Spacing="4">
-                <MudImage Style="height: 30px; width: 30px;" Src="@TaskIconSource" />
+                <TaskIcon TaskType="TaskType" Size="30" />
                 <MudText Typo="Typo.body1" Style="font-weight: bold;">@DisplayName</MudText>
                 <MudTooltip Text="@HelperTooltip">
                     <MudIconButton Class="pa-0" Icon="@Icons.Material.Filled.HelpOutline" />
@@ -30,7 +30,7 @@
     <MudCardContent>
         @if (EditMode)
         {
-            <MudTextField T="string" @bind-Value="Task.Name" Label="@Localize["Activity.Dialog.Task.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Task.Name.RequiredError"]" Variant="Variant.Filled" />
+            <MudTextField T="string" Value="Task.Name" ValueChanged="NameChanged" Label="@Localize["Activity.Dialog.Task.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Task.Name.RequiredError"]" Variant="Variant.Filled" />
         }
         @TaskDetailTemplate
     </MudCardContent>
@@ -44,10 +44,10 @@
     public bool EditMode { get; set; } = false;
 
     [Parameter]
-    public string HelperTooltip { get; set; } = string.Empty;
+    public TaskType TaskType { get; set; }
 
     [Parameter]
-    public string TaskIconSource { get; set; } = string.Empty;
+    public EventCallback OnNameChange { get; set; }
 
     [Parameter]
     public EventCallback OnRemove { get; set; }
@@ -56,6 +56,14 @@
     public RenderFragment TaskDetailTemplate { get; set; } = null!;
 
     private string DisplayName => string.IsNullOrWhiteSpace(Task.Name) ? Localize["Task.EmptyName"] : Task.Name;
+
+    private string HelperTooltip => $"Activity.Dialog.Task.{TaskType}.HelperTooltip";
+
+    private async Task NameChanged(string name)
+    {
+        Task.Name = name;
+        await OnNameChange.InvokeAsync();
+    }
 
     private async Task LaunchTask()
     {
