@@ -57,7 +57,7 @@
 
     private string DisplayName => string.IsNullOrWhiteSpace(Task.Name) ? Localize["Task.EmptyName"] : Task.Name;
 
-    private string HelperTooltip => $"Activity.Dialog.Task.{TaskType}.HelperTooltip";
+    private string HelperTooltip => Localize[$"Activity.Dialog.Task.{TaskType}.HelperTooltip"];
 
     private async Task NameChanged(string name)
     {
