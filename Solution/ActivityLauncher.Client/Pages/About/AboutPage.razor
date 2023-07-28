@@ -1,0 +1,26 @@
+﻿@inject IStringLocalizer<AboutPageLocales> Localize
+
+@attribute [Route(Routes.AboutPage)]
+
+<MudContainer MaxWidth="MaxWidth.Large">
+    <MudText Typo="Typo.h4" Class="mb-8">@Localize["Title"]</MudText>
+
+    <MudText Class="mb-8" Typo="Typo.body1">@Localize["Description"]</MudText>
+
+    <div class="mx-4 mb-8">
+        <MudText Class="mb-4" Typo="Typo.body1">@(new MarkupString(Localize["SellingPoint.1"]))</MudText>
+        <MudText Class="mb-4" Typo="Typo.body1">@(new MarkupString(Localize["SellingPoint.2"]))</MudText>
+        <MudText Class="mb-4" Typo="Typo.body1">@(new MarkupString(Localize["SellingPoint.3"]))</MudText>
+        <MudText Class="mb-4" Typo="Typo.body1">@(new MarkupString(Localize["SellingPoint.4"]))</MudText>
+        <MudText Typo="Typo.body1">@(new MarkupString(Localize["SellingPoint.5"]))</MudText>
+    </div>
+
+    <MudText Class="mb-2" Typo="Typo.h6">@Localize["Target.1.Title"]</MudText>
+    <MudText Class="mb-4" Typo="Typo.body1">@Localize["Target.1.Description"]</MudText>
+
+    <MudText Class="mb-2" Typo="Typo.h6">@Localize["Target.2.Title"]</MudText>
+    <MudText Class="mb-8" Typo="Typo.body1">@Localize["Target.2.Description"]</MudText>
+
+    <MudText Class="mb-2" Typo="Typo.h6">@Localize["Credits.Title"]</MudText>
+    <MudText Class="mb-16" Typo="Typo.body1">@(new MarkupString(Localize["Credits.Description"]))</MudText>
+</MudContainer>

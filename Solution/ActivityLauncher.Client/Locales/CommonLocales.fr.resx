@@ -141,4 +141,7 @@
   <data name="App.Title" xml:space="preserve">
     <value>Activity Launcher pour Windows</value>
   </data>
+  <data name="Navigation.About" xml:space="preserve">
+    <value>À propos</value>
+  </data>
 </root>
