@@ -3,16 +3,22 @@
 @inject IStringLocalizer<CommonLocales> Localize
 
 <div>
-    <MudStack Class="mb-1">
+    <MudStack Spacing="1">
         <div>
             <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Folder" Color="Color.Primary" Size="Size.Small" OnClick="PickFolder">@Label</MudButton>
         </div>
         @if (!string.IsNullOrWhiteSpace(FolderPath))
         {
-            <code style="font-size: 1rem; overflow-wrap: anywhere;">@FolderPath</code>
+            <MudStack Row Spacing="2" AlignItems="AlignItems.Center">
+                <code style="font-size: 1rem; overflow-wrap: anywhere;">@FolderPath</code>
+                @if (AllowClear)
+                {
+                    <MudIconButton Icon="@Icons.Material.Filled.Close" Size="Size.Small" OnClick="Clear" />
+                }
+            </MudStack>
         }
     </MudStack>
-    <ErrorText Error="@_error" />
+    <ErrorText Class="mt-1" Error="@_error" />
 </div>
 
 @code {
@@ -24,6 +30,9 @@
 
     [Parameter]
     public EventCallback<string?> FolderPathChanged { get; set; }
+
+    [Parameter]
+    public bool AllowClear { get; set; } = false;
 
     private string? _error;
 
@@ -43,6 +52,15 @@
             {
                 _error = Localize["FolderPickerInput.Error"];
             }
+        }
+    }
+
+    private async Task Clear()
+    {
+        if (AllowClear)
+        {
+            FolderPath = null;
+            await FolderPathChanged.InvokeAsync(null);
         }
     }
 }

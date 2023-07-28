@@ -5,11 +5,11 @@ namespace ActivityLauncher.Domain.Model.Terminal;
 
 public class TerminalTab : ICloneable<TerminalTab>
 {
-    public string? Command { get; set; }
-
     public string? Title { get; set; }
 
     public string? LocationPath { get; set; }
+
+    public string? Command { get; set; }
 
     public string? Color { get; set; }
 
@@ -49,9 +49,9 @@ public class TerminalTab : ICloneable<TerminalTab>
     {
         return new TerminalTab()
         {
-            Command = Command,
             Title = Title,
             LocationPath = LocationPath,
+            Command = Command,
             Color = Color,
         };
     }

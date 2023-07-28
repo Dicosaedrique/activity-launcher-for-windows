@@ -16,7 +16,7 @@
     {
         <MudStack Row>
             <MudPaper Width="350px">
-                <MudList Clickable Color="Color.Primary" @bind-SelectedValue="_currentTaskId">
+                <MudList Clickable Color="Color.Primary" @bind-SelectedValue="_currentTaskIdObject">
                     <MudListSubheader>@Localize["Activity.Dialog.Tasks.NavList.Title"]</MudListSubheader>
                     <MudListItem Text="@Localize["Activity.Dialog.Tasks.NavList.AllTasks"]" Value="default(Guid)" />
                     <MudListItem Text="@Localize["Activity.Dialog.Tasks.NavList.TasksLabel"]" InitiallyExpanded>
@@ -35,7 +35,7 @@
                 </MudList>
             </MudPaper>
             <div style="flex: 1;">
-                @if ((Guid)_currentTaskId == default)
+                @if (ShowAllTasks)
                 {
                     <MudStack Spacing="6">
                         @foreach (var task in _tasks)
@@ -46,7 +46,7 @@
                 }
                 else
                 {
-                    var task = _tasks.First(x => x.Id == (Guid)_currentTaskId);
+                    var task = _tasks.First(x => x.Id == CurrentTaskId);
                     <TaskCard Task="task" EditMode="EditMode" OnNameChange="TaskNameChanged" OnRemove="GetOnRemoveCallback(task)" />
                 }
             </div>
@@ -70,7 +70,15 @@
 
     private IEnumerable<ITask> _tasks = null!;
 
-    private object _currentTaskId = default(Guid);
+    private object _currentTaskIdObject = default(Guid);
+
+    private Guid CurrentTaskId
+    {
+        get => (Guid)_currentTaskIdObject;
+        set => _currentTaskIdObject = value;
+    }
+
+    private bool ShowAllTasks => CurrentTaskId == default;
 
     protected override void OnInitialized()
     {
@@ -84,7 +92,7 @@
 
     private void TasksChanged()
     {
-        _tasks = Activity.GetTasks();        
+        _tasks = Activity.GetTasks();
     }
 
     private EventCallback GetOnRemoveCallback(ITask task)
@@ -92,6 +100,7 @@
         return EventCallback.Factory.Create(this, () =>
         {
             Activity.RemoveTask(task);
+            if (CurrentTaskId == task.Id) CurrentTaskId = default;
             TasksChanged();
         });
     }

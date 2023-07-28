@@ -9,7 +9,7 @@ public abstract class BaseTask : ITask
 
     public string? Name { get; set; }
 
-    public DateTime CreationDate { get; protected set; } = DateTime.Now;
+    public DateTime CreationDate { get; set; } = DateTime.Now;
 
     public abstract TaskType TaskType { get; }
 

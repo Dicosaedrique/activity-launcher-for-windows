@@ -1,9 +1,35 @@
-﻿@inject ActivityController ActivityController
+﻿@using ActivityLauncher.Client.Pages.Activities.Atoms;
+
+@inject ActivityController ActivityController
 @inject IStringLocalizer<ActivityLocales> Localize
 
 <GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" OnNameChange="OnNameChange" TaskType="Task.TaskType">
     <TaskDetailTemplate>
-
+        <div class="@(EditMode ? "mt-6" : string.Empty)">
+            @if (Task.TerminalTabs.Any())
+            {
+                @if(EditMode)
+                {
+                    <MudDynamicTabs @bind-ActivePanelIndex="_tabIndex" AddTab="AddTerminalTab" CloseTab="RemoveTerminalTab" PanelClass="pa-6" Outlined Rounded AddIconToolTip="@Localize["Activity.Dialog.Task.TerminalTask.AddTerminalTabButton"]" ApplyEffectsToContainer>
+                        @GetTabs()
+                    </MudDynamicTabs>
+                }
+                else
+                {
+                    <MudTabs PanelClass="pa-6" Outlined Rounded ApplyEffectsToContainer>
+                        @GetTabs()
+                    </MudTabs>
+                }
+            }
+            else
+            {
+                <MudText Typo="Typo.body1">@Localize["Activity.Dialog.Task.TerminalTask.TerminalTabs.Empty"]</MudText>
+            }
+            @if (EditMode)
+            {
+                <MudButton Class="mt-4" Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" OnClick="AddTerminalTab">@Localize["Activity.Dialog.Task.TerminalTask.AddTerminalTabButton"]</MudButton>
+            }
+        </div>
     </TaskDetailTemplate>
 </GenericTaskCard>
 
@@ -19,4 +45,42 @@
 
     [Parameter]
     public EventCallback OnRemove { get; set; }
+
+    private int _tabIndex;
+
+    private void AddTerminalTab()
+    {
+        if (!EditMode) return;
+
+        Task.TerminalTabs.Add(new TerminalTab());
+        _tabIndex = Task.TerminalTabs.Count - 1;
+    }
+
+    public void RemoveTerminalTab(MudTabPanel panel)
+    {
+        if (!EditMode) return;
+
+        Task.TerminalTabs.Remove((TerminalTab)panel.ID);
+    }
+
+    private void TerminalTabTitleChanged()
+    {
+        StateHasChanged();
+    }
+
+    private RenderFragment GetTabs()
+    {
+        return __builder =>
+        {
+            @for (var i = 0; i < Task.TerminalTabs.Count; i++)
+            {
+                var terminalTab = Task.TerminalTabs[i];
+                var title = string.IsNullOrWhiteSpace(terminalTab.Title) ? string.Format(Localize["Activity.Dialog.Task.TerminalTask.DefaultTabTitle"], i + 1) : terminalTab.Title;
+
+                <MudTabPanel ID="terminalTab" Text="@title" ShowCloseIcon="EditMode">
+                    <TerminalTabItem TerminalTab="terminalTab" OnTitleChange="TerminalTabTitleChanged" EditMode="EditMode" />
+                </MudTabPanel>
+            }
+        };
+    }
 }

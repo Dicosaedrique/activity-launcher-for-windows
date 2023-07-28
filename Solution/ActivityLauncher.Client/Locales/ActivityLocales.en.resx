@@ -190,7 +190,7 @@
     <value>Delete Activity</value>
   </data>
   <data name="Activity.Dialog.Description.Label" xml:space="preserve">
-    <value>Description</value>
+    <value>Activity Description</value>
   </data>
   <data name="Activity.Dialog.Edit.SubmitButton" xml:space="preserve">
     <value>Save</value>
@@ -199,7 +199,7 @@
     <value>Edit Activity</value>
   </data>
   <data name="Activity.Dialog.Name.Label" xml:space="preserve">
-    <value>Name</value>
+    <value>Activity Name</value>
   </data>
   <data name="Activity.Dialog.Name.RequiredError" xml:space="preserve">
     <value>Activity name is required!</value>
@@ -238,7 +238,7 @@
     <value>Edit activity</value>
   </data>
   <data name="Activity.Dialog.View.Description.Title" xml:space="preserve">
-    <value>Description</value>
+    <value>Activity Description</value>
   </data>
   <data name="Activity.Dialog.Tasks.AddTask" xml:space="preserve">
     <value>Add task</value>
@@ -313,7 +313,7 @@
     <value>New Task {0}</value>
   </data>
   <data name="Activity.Dialog.Task.Name.Label" xml:space="preserve">
-    <value>Name</value>
+    <value>Task name</value>
   </data>
   <data name="Activity.Dialog.Task.Name.RequiredError" xml:space="preserve">
     <value>Task name is required!</value>
@@ -386,5 +386,38 @@
   </data>
   <data name="Activity.Dialog.Tasks.NavList.Title" xml:space="preserve">
     <value>Tasks Selection</value>
+  </data>
+  <data name="Activity.Dialog.Edit.FormError" xml:space="preserve">
+    <value>One or more errors have been detected, please check the content of the activity before saving.</value>
+  </data>
+  <data name="Activity.Dialog.Task.TerminalTask.AddTerminalTabButton" xml:space="preserve">
+    <value>Add terminal tab</value>
+  </data>
+  <data name="Activity.Dialog.Task.TerminalTask.DefaultTabTitle" xml:space="preserve">
+    <value>Tab {0}</value>
+  </data>
+  <data name="Activity.Dialog.Task.TerminalTask.TerminalTab.Color.Empty" xml:space="preserve">
+    <value>No tab color entered</value>
+  </data>
+  <data name="Activity.Dialog.Task.TerminalTask.TerminalTab.Color.Label" xml:space="preserve">
+    <value>Tab color</value>
+  </data>
+  <data name="Activity.Dialog.Task.TerminalTask.TerminalTab.Command.Empty" xml:space="preserve">
+    <value>No initial command entered</value>
+  </data>
+  <data name="Activity.Dialog.Task.TerminalTask.TerminalTab.Command.Label" xml:space="preserve">
+    <value>Initial command</value>
+  </data>
+  <data name="Activity.Dialog.Task.TerminalTask.TerminalTab.LocationPath.Empty" xml:space="preserve">
+    <value>No working directory entered</value>
+  </data>
+  <data name="Activity.Dialog.Task.TerminalTask.TerminalTab.LocationPath.Label" xml:space="preserve">
+    <value>Working directory</value>
+  </data>
+  <data name="Activity.Dialog.Task.TerminalTask.TerminalTab.Title.Label" xml:space="preserve">
+    <value>Tab title</value>
+  </data>
+  <data name="Activity.Dialog.Task.TerminalTask.TerminalTabs.Empty" xml:space="preserve">
+    <value>No tabs has been added.</value>
   </data>
 </root>
