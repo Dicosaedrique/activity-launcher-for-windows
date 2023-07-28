@@ -1,5 +1,4 @@
-﻿using ActivityLauncher.Domain.Interfaces;
-using ActivityLauncher.Domain.Model;
+﻿using ActivityLauncher.Domain.Model;
 
 namespace ActivityLauncher.Domain.Services.Declarations;
 

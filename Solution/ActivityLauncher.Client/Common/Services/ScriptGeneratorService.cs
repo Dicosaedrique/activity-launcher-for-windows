@@ -22,7 +22,7 @@ public class ScriptGeneratorService : IScriptGeneratorService
 
         builder.Append(GetScriptHeader(activity));
 
-        foreach(var task in activity.GetTasks())
+        foreach (var task in activity.GetTasks())
         {
             builder.Append(GetTaskScript(task));
         }

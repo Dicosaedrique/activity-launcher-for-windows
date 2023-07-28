@@ -1,9 +1,9 @@
-﻿using CommunityToolkit.Maui;
-using ActivityLauncher.Client.Common.Controllers;
+﻿using ActivityLauncher.Client.Common.Controllers;
 using ActivityLauncher.Client.Common.Events;
 using ActivityLauncher.Client.Common.Services;
 using ActivityLauncher.Domain.Services;
 using ActivityLauncher.Domain.Services.Declarations;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using MudBlazor;
 using MudBlazor.Services;
