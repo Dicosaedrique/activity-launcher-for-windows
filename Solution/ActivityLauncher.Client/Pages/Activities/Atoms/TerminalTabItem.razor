@@ -3,17 +3,17 @@
 @if (EditMode)
 {
     <MudStack Spacing="6">
-        <MudTextField T="string" Value="TerminalTab.Title" ValueChanged="TitleChanged" Label="@Localize["Activity.Dialog.Task.TerminalTask.TerminalTab.Title.Label"]" Variant="Variant.Filled" Clearable />
-        <FolderPickerInput Label="@Localize["Activity.Dialog.Task.TerminalTask.TerminalTab.LocationPath.Label"]" @bind-FolderPath="TerminalTab.LocationPath" AllowClear />
-        <MudTextField T="string" @bind-Value="TerminalTab.Command" Label="@Localize["Activity.Dialog.Task.TerminalTask.TerminalTab.Command.Label"]" Variant="Variant.Filled" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Terminal" Clearable />
-        <MudColorPicker @bind-Text="TerminalTab.Color" Style="@TerminalTabColorStyle" Label="@Localize["Activity.Dialog.Task.TerminalTask.TerminalTab.Color.Label"]" DisableAlpha DisableModeSwitch Variant="Variant.Filled" ColorPickerMode="ColorPickerMode.HEX" Clearable />
+        <MudTextField T="string" Value="TerminalTab.Title" ValueChanged="TitleChanged" Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.Title.Label"]" Variant="Variant.Filled" Clearable />
+        <FolderPickerInput Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.LocationPath.Label"]" @bind-FolderPath="TerminalTab.LocationPath" AllowClear />
+        <MudTextField T="string" @bind-Value="TerminalTab.Command" Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.Command.Label"]" Variant="Variant.Filled" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Terminal" Clearable />
+        <MudColorPicker @bind-Text="TerminalTab.Color" Style="@TerminalTabColorStyle" Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.Color.Label"]" DisableAlpha DisableModeSwitch Variant="Variant.Filled" ColorPickerMode="ColorPickerMode.HEX" Clearable />
     </MudStack>
 }
 else
 {
     <MudStack Spacing="4">
         <MudStack Row AlignItems="AlignItems.Center">
-            <MudTooltip Text="@Localize["Activity.Dialog.Task.TerminalTask.TerminalTab.LocationPath.Label"]">
+            <MudTooltip Text="@Localize["Task.Dialog.TerminalTask.TerminalTab.LocationPath.Label"]">
                 <MudIcon Icon="@Icons.Material.Filled.Folder" />
             </MudTooltip>
             @if (!string.IsNullOrWhiteSpace(TerminalTab.LocationPath))
@@ -22,11 +22,11 @@ else
             }
             else
             {
-                <MudText Typo="Typo.body1">@Localize["Activity.Dialog.Task.TerminalTask.TerminalTab.LocationPath.Empty"]</MudText>
+                <MudText Typo="Typo.body1">@Localize["Task.Dialog.TerminalTask.TerminalTab.LocationPath.Empty"]</MudText>
             }
         </MudStack>
         <MudStack Row AlignItems="AlignItems.Center">
-            <MudTooltip Text="@Localize["Activity.Dialog.Task.TerminalTask.TerminalTab.Command.Label"]">
+            <MudTooltip Text="@Localize["Task.Dialog.TerminalTask.TerminalTab.Command.Label"]">
                 <MudIcon Icon="@Icons.Material.Filled.Terminal" />
             </MudTooltip>
             @if (!string.IsNullOrWhiteSpace(TerminalTab.Command))
@@ -35,11 +35,11 @@ else
             }
             else
             {
-                <MudText Typo="Typo.body1">@Localize["Activity.Dialog.Task.TerminalTask.TerminalTab.Command.Empty"]</MudText>
+                <MudText Typo="Typo.body1">@Localize["Task.Dialog.TerminalTask.TerminalTab.Command.Empty"]</MudText>
             }
         </MudStack>
         <MudStack Row AlignItems="AlignItems.Center">
-            <MudTooltip Text="@Localize["Activity.Dialog.Task.TerminalTask.TerminalTab.Color.Label"]">
+            <MudTooltip Text="@Localize["Task.Dialog.TerminalTask.TerminalTab.Color.Label"]">
                 <MudIcon Icon="@Icons.Material.Filled.ColorLens" />
             </MudTooltip>
             @if (!string.IsNullOrWhiteSpace(TerminalTab.Color))
@@ -48,7 +48,7 @@ else
             }
             else
             {
-                <MudText Typo="Typo.body1">@Localize["Activity.Dialog.Task.TerminalTask.TerminalTab.Color.Empty"]</MudText>
+                <MudText Typo="Typo.body1">@Localize["Task.Dialog.TerminalTask.TerminalTab.Color.Empty"]</MudText>
             }
         </MudStack>
     </MudStack>

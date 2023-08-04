@@ -6,19 +6,19 @@
         @if (EditMode)
         {
             <div class="mt-6">
-                <MudTextField T="string" Label="@Localize["Activity.Dialog.Task.ScriptTask.Script.Label"]" Variant="Variant.Filled" @bind-Text="Task.Script" Lines="5" />
+                <MudTextField T="string" Label="@Localize["Task.Dialog.ScriptTask.Script.Label"]" Variant="Variant.Filled" @bind-Text="Task.Script" Lines="5" />
             </div>
         }
         else
         {
-            <MudText Typo="Typo.body1" Class="mb-2" Style="font-weight: bold;">@Localize["Activity.Dialog.Task.ScriptTask.Script.Label"]</MudText>
+            <MudText Typo="Typo.body1" Class="mb-2" Style="font-weight: bold;">@Localize["Task.Dialog.ScriptTask.Script.Label"]</MudText>
             @if (!string.IsNullOrWhiteSpace(Task.Script))
             {
                 <PowerShellScriptDisplay Script="@Task.Script" Highlight StartChevron />
             }
             else
             {
-                <MudText Typo="Typo.body1">@Localize["Activity.Dialog.Task.ScriptTask.Script.Empty"]</MudText>
+                <MudText Typo="Typo.body1">@Localize["Task.Dialog.ScriptTask.Script.Empty"]</MudText>
 
             }
         }

@@ -273,38 +273,38 @@
   <data name="Task.EmptyName" xml:space="preserve">
     <value>Sans nom</value>
   </data>
-  <data name="Task.ExplorerFolderTask.Description" xml:space="preserve">
-    <value>Ouvrir un dossier dans une fenêtre de l'explorateur de fichier.</value>
+  <data name="Task.Dialog.ExplorerFolderTask.HelperTooltip" xml:space="preserve">
+    <value>Cette tâche vous permet d'ouvrir l'explorateur de fichier où vous le souhaitez.</value>
   </data>
   <data name="Task.ExplorerFolderTask.Title" xml:space="preserve">
     <value>Explorateur de fichier</value>
   </data>
-  <data name="Task.OpenFileTask.Description" xml:space="preserve">
-    <value>Ouvre un fichier avec son application par défaut.</value>
+  <data name="Task.Dialog.OpenFileTask.HelperTooltip" xml:space="preserve">
+    <value>Cette tâche vous permet d'ouvrir n'importe quel fichier avec son application par défaut (s'il y en a une).</value>
   </data>
   <data name="Task.OpenFileTask.Title" xml:space="preserve">
     <value>Ouverture fichier</value>
   </data>
-  <data name="Task.ProgramTask.Description" xml:space="preserve">
-    <value>Ouvrir un programme par son nom ou par le fichier d'exécutable (possibilité de modifier les paramètres de lancement).</value>
+  <data name="Task.Dialog.ProgramTask.HelperTooltip" xml:space="preserve">
+    <value>Cette tâche vous permet d'ouvrir n'importe quel programme en spécifiant son nom ou en spécifiant l'emplacement du fichier exécutable. Certains programmes peuvent être lancés avec leur nom mais certains nécessitent de spécifier un certain emplacement de fichier exécutable et des arguments supplémentaires que vous pouvez ajouter si nécessaire.</value>
   </data>
   <data name="Task.ProgramTask.Title" xml:space="preserve">
     <value>Ouvrir un programme</value>
   </data>
-  <data name="Task.ScriptTask.Description" xml:space="preserve">
-    <value>Permet l'exécution de n'importe quel script PowerShell saisie dans la tâche.</value>
+  <data name="Task.Dialog.ScriptTask.HelperTooltip" xml:space="preserve">
+    <value>Cette tâche vous permet d'ajouter n'importe quel script PowerShell que vous souhaitez.</value>
   </data>
   <data name="Task.ScriptTask.Title" xml:space="preserve">
     <value>Script PowerShell</value>
   </data>
-  <data name="Task.TerminalTask.Description" xml:space="preserve">
-    <value>Ouvre un ou plusieurs onglets dans Windows Terminal. Possibilité de choisir le repertoire de l'onglet, sa couleur, son titre et si une commande par défaut doit être exécutée au lancement.</value>
+  <data name="Task.Dialog.TerminalTask.HelperTooltip" xml:space="preserve">
+    <value>Cette tâche vous permet d'ouvrir un ou plusieurs onglets dans Windows Terminal. Pour chaque onglet, vous pouvez choisir le titre et la couleur de l'onglet, l'emplacement par défaut et la commande par défaut à exécuter dans l'onglet. Tous les paramètres sont facultatifs si vous souhaitez simplement ouvrir un onglet vide.</value>
   </data>
   <data name="Task.TerminalTask.Title" xml:space="preserve">
     <value>Windows Terminal</value>
   </data>
-  <data name="Task.VSCodeTask.Description" xml:space="preserve">
-    <value>Ouverture d'un repertoire de travail avec Visual Studio Code.</value>
+  <data name="Task.Dialog.VSCodeTask.HelperTooltip" xml:space="preserve">
+    <value>Cette tâche vous permet d'ouvrir un répertoire d'espace de travail dans Visual Studio Code.</value>
   </data>
   <data name="Task.VSCodeTask.Title" xml:space="preserve">
     <value>Visual Studio Code</value>
@@ -312,38 +312,20 @@
   <data name="Task.NewName" xml:space="preserve">
     <value>Nouvelle tâche {0}</value>
   </data>
-  <data name="Activity.Dialog.Task.Name.Label" xml:space="preserve">
+  <data name="Task.Dialog.Name.Label" xml:space="preserve">
     <value>Nom de la tâche</value>
   </data>
-  <data name="Activity.Dialog.Task.Name.RequiredError" xml:space="preserve">
+  <data name="Task.Dialog.Name.RequiredError" xml:space="preserve">
     <value>La tâche doit avoir un nom !</value>
   </data>
   <data name="Activity.Card.LaunchActivityTooltip" xml:space="preserve">
     <value>Lancer l'activité</value>
   </data>
-  <data name="Activity.Dialog.Task.DeleteHelper" xml:space="preserve">
+  <data name="Task.Dialog.DeleteHelper" xml:space="preserve">
     <value>Supprimer la tâche</value>
   </data>
-  <data name="Activity.Dialog.Task.ExplorerFolderTask.HelperTooltip" xml:space="preserve">
-    <value>todo</value>
-  </data>
-  <data name="Activity.Dialog.Task.LaunchHelper" xml:space="preserve">
+  <data name="Task.Dialog.LaunchHelper" xml:space="preserve">
     <value>Lancer la tâche</value>
-  </data>
-  <data name="Activity.Dialog.Task.OpenFileTask.HelperTooltip" xml:space="preserve">
-    <value>todo</value>
-  </data>
-  <data name="Activity.Dialog.Task.ProgramTask.HelperTooltip" xml:space="preserve">
-    <value>todo</value>
-  </data>
-  <data name="Activity.Dialog.Task.ScriptTask.HelperTooltip" xml:space="preserve">
-    <value>todo</value>
-  </data>
-  <data name="Activity.Dialog.Task.TerminalTask.HelperTooltip" xml:space="preserve">
-    <value>todo</value>
-  </data>
-  <data name="Activity.Dialog.Task.VSCodeTask.HelperTooltip" xml:space="preserve">
-    <value>todo</value>
   </data>
   <data name="Activity.Dialog.View.CreationDate" xml:space="preserve">
     <value>Créée {0}</value>
@@ -354,28 +336,28 @@
   <data name="Activity.Dialog.View.LastModifiedDate" xml:space="preserve">
     <value>Modifiée {0}</value>
   </data>
-  <data name="Activity.Dialog.Task.ExplorerFolderTask.DirectoryPath.Empty" xml:space="preserve">
+  <data name="Task.Dialog.ExplorerFolderTask.DirectoryPath.Empty" xml:space="preserve">
     <value>Aucun dossier renseigné.</value>
   </data>
-  <data name="Activity.Dialog.Task.ExplorerFolderTask.DirectoryPath.Label" xml:space="preserve">
+  <data name="Task.Dialog.ExplorerFolderTask.DirectoryPath.Label" xml:space="preserve">
     <value>Dossier à ouvrir</value>
   </data>
-  <data name="Activity.Dialog.Task.OpenFileTask.FilePath.Empty" xml:space="preserve">
+  <data name="Task.Dialog.OpenFileTask.FilePath.Empty" xml:space="preserve">
     <value>Aucun fichier renseigné.</value>
   </data>
-  <data name="Activity.Dialog.Task.OpenFileTask.FilePath.Label" xml:space="preserve">
+  <data name="Task.Dialog.OpenFileTask.FilePath.Label" xml:space="preserve">
     <value>Fichier à ouvrir</value>
   </data>
-  <data name="Activity.Dialog.Task.ScriptTask.Script.Empty" xml:space="preserve">
+  <data name="Task.Dialog.ScriptTask.Script.Empty" xml:space="preserve">
     <value>Aucun script renseigné.</value>
   </data>
-  <data name="Activity.Dialog.Task.ScriptTask.Script.Label" xml:space="preserve">
+  <data name="Task.Dialog.ScriptTask.Script.Label" xml:space="preserve">
     <value>Script PowerShell</value>
   </data>
-  <data name="Activity.Dialog.Task.VSCodeTask.DirectoryPath.Empty" xml:space="preserve">
+  <data name="Task.Dialog.VSCodeTask.DirectoryPath.Empty" xml:space="preserve">
     <value>Aucun espace de travail renseigné.</value>
   </data>
-  <data name="Activity.Dialog.Task.VSCodeTask.DirectoryPath.Label" xml:space="preserve">
+  <data name="Task.Dialog.VSCodeTask.DirectoryPath.Label" xml:space="preserve">
     <value>Dossier de l'espace de travail</value>
   </data>
   <data name="Activity.Dialog.Tasks.NavList.AllTasks" xml:space="preserve">
@@ -390,34 +372,58 @@
   <data name="Activity.Dialog.Edit.FormError" xml:space="preserve">
     <value>Une ou plusieurs erreurs ont été détectées, veuillez vérifier le contenu de l'activité avant de sauvegarder.</value>
   </data>
-  <data name="Activity.Dialog.Task.TerminalTask.AddTerminalTabButton" xml:space="preserve">
+  <data name="Task.Dialog.TerminalTask.AddTerminalTabButton" xml:space="preserve">
     <value>Ajouter un onglet de terminal</value>
   </data>
-  <data name="Activity.Dialog.Task.TerminalTask.DefaultTabTitle" xml:space="preserve">
+  <data name="Task.Dialog.TerminalTask.DefaultTabTitle" xml:space="preserve">
     <value>Onglet {0}</value>
   </data>
-  <data name="Activity.Dialog.Task.TerminalTask.TerminalTab.Color.Empty" xml:space="preserve">
+  <data name="Task.Dialog.TerminalTask.TerminalTab.Color.Empty" xml:space="preserve">
     <value>Aucune couleur d'onglet renseignée</value>
   </data>
-  <data name="Activity.Dialog.Task.TerminalTask.TerminalTab.Color.Label" xml:space="preserve">
+  <data name="Task.Dialog.TerminalTask.TerminalTab.Color.Label" xml:space="preserve">
     <value>Couleur de l'onglet</value>
   </data>
-  <data name="Activity.Dialog.Task.TerminalTask.TerminalTab.Command.Empty" xml:space="preserve">
+  <data name="Task.Dialog.TerminalTask.TerminalTab.Command.Empty" xml:space="preserve">
     <value>Aucune commande initiale renseignée</value>
   </data>
-  <data name="Activity.Dialog.Task.TerminalTask.TerminalTab.Command.Label" xml:space="preserve">
+  <data name="Task.Dialog.TerminalTask.TerminalTab.Command.Label" xml:space="preserve">
     <value>Commande initiale</value>
   </data>
-  <data name="Activity.Dialog.Task.TerminalTask.TerminalTab.LocationPath.Empty" xml:space="preserve">
+  <data name="Task.Dialog.TerminalTask.TerminalTab.LocationPath.Empty" xml:space="preserve">
     <value>Aucun repertoire de travail renseigné</value>
   </data>
-  <data name="Activity.Dialog.Task.TerminalTask.TerminalTab.LocationPath.Label" xml:space="preserve">
+  <data name="Task.Dialog.TerminalTask.TerminalTab.LocationPath.Label" xml:space="preserve">
     <value>Repertoire de travail</value>
   </data>
-  <data name="Activity.Dialog.Task.TerminalTask.TerminalTab.Title.Label" xml:space="preserve">
+  <data name="Task.Dialog.TerminalTask.TerminalTab.Title.Label" xml:space="preserve">
     <value>Titre de l'onglet</value>
   </data>
-  <data name="Activity.Dialog.Task.TerminalTask.TerminalTabs.Empty" xml:space="preserve">
+  <data name="Task.Dialog.TerminalTask.TerminalTabs.Empty" xml:space="preserve">
     <value>Aucun onglet n'a été ajouté.</value>
+  </data>
+  <data name="Activity.Card.InvalidTooltip" xml:space="preserve">
+    <value>L'activité ne peut pas être lancée car {0} tâches sont invalides</value>
+  </data>
+  <data name="Activity.Card.InvalidTooltip_one" xml:space="preserve">
+    <value>L'activité ne peut pas être lancée car une tâche est invalide</value>
+  </data>
+  <data name="Task.Dialog.ExplorerFolderTask.InvalidTooltip" xml:space="preserve">
+    <value>Tâche invalide, vous devez spécifier un emplacement de dossier valide et existant</value>
+  </data>
+  <data name="Task.Dialog.OpenFileTask.InvalidTooltip" xml:space="preserve">
+    <value>Tâche invalide, vous devez spécifier un emplacement de fichier valide et existant</value>
+  </data>
+  <data name="Task.Dialog.ProgramTask.InvalidTooltip" xml:space="preserve">
+    <value>Tâche invalide, vous devez spécifier un nom de programme ou un emplacement d'exécutable valide et existant</value>
+  </data>
+  <data name="Task.Dialog.ScriptTask.InvalidTooltip" xml:space="preserve">
+    <value>Tâche invalide</value>
+  </data>
+  <data name="Task.Dialog.TerminalTask.InvalidTooltip" xml:space="preserve">
+    <value>Un ou plusieurs onglet de terminal contiennent des paramètres invalides</value>
+  </data>
+  <data name="Task.Dialog.VSCodeTask.InvalidTooltip" xml:space="preserve">
+    <value>Tâche invalide, vous devez spécifier un emplacement de dossier valide et existant</value>
   </data>
 </root>

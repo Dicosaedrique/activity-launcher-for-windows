@@ -10,7 +10,7 @@
             {
                 @if(EditMode)
                 {
-                    <MudDynamicTabs @bind-ActivePanelIndex="_tabIndex" AddTab="AddTerminalTab" CloseTab="RemoveTerminalTab" PanelClass="pa-6" Outlined Rounded AddIconToolTip="@Localize["Activity.Dialog.Task.TerminalTask.AddTerminalTabButton"]" ApplyEffectsToContainer>
+                    <MudDynamicTabs @bind-ActivePanelIndex="_tabIndex" AddTab="AddTerminalTab" CloseTab="RemoveTerminalTab" PanelClass="pa-6" Outlined Rounded AddIconToolTip="@Localize["Task.Dialog.TerminalTask.AddTerminalTabButton"]" ApplyEffectsToContainer>
                         @GetTabs()
                     </MudDynamicTabs>
                 }
@@ -23,11 +23,11 @@
             }
             else
             {
-                <MudText Typo="Typo.body1">@Localize["Activity.Dialog.Task.TerminalTask.TerminalTabs.Empty"]</MudText>
+                <MudText Typo="Typo.body1">@Localize["Task.Dialog.TerminalTask.TerminalTabs.Empty"]</MudText>
             }
             @if (EditMode)
             {
-                <MudButton Class="mt-4" Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" OnClick="AddTerminalTab">@Localize["Activity.Dialog.Task.TerminalTask.AddTerminalTabButton"]</MudButton>
+                <MudButton Class="mt-4" Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" OnClick="AddTerminalTab">@Localize["Task.Dialog.TerminalTask.AddTerminalTabButton"]</MudButton>
             }
         </div>
     </TaskDetailTemplate>
@@ -75,7 +75,7 @@
             @for (var i = 0; i < Task.TerminalTabs.Count; i++)
             {
                 var terminalTab = Task.TerminalTabs[i];
-                var title = string.IsNullOrWhiteSpace(terminalTab.Title) ? string.Format(Localize["Activity.Dialog.Task.TerminalTask.DefaultTabTitle"], i + 1) : terminalTab.Title;
+                var title = string.IsNullOrWhiteSpace(terminalTab.Title) ? string.Format(Localize["Task.Dialog.TerminalTask.DefaultTabTitle"], i + 1) : terminalTab.Title;
 
                 <MudTabPanel ID="terminalTab" Text="@title" ShowCloseIcon="EditMode">
                     <TerminalTabItem TerminalTab="terminalTab" OnTitleChange="TerminalTabTitleChanged" EditMode="EditMode" />

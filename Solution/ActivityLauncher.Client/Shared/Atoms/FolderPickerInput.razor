@@ -1,4 +1,5 @@
-﻿@using CommunityToolkit.Maui.Storage;
+﻿@using ActivityLauncher.Domain.Common.Utils;
+@using CommunityToolkit.Maui.Storage;
 
 @inject IStringLocalizer<CommonLocales> Localize
 
@@ -42,7 +43,7 @@
 
         if (result.IsSuccessful)
         {
-            if (!string.IsNullOrWhiteSpace(result.Folder.Path) && Directory.Exists(result.Folder.Path))
+            if (ValidationHelper.IsValidDirectory(result.Folder.Path))
             {
                 _error = null;
                 FolderPath = result.Folder.Path;

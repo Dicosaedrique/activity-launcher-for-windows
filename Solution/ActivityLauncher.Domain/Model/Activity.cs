@@ -1,6 +1,5 @@
 ﻿using ActivityLauncher.Domain.Interfaces;
 using ActivityLauncher.Domain.Model.Tasks;
-using ActivityLauncher.Domain.Model.Terminal;
 
 namespace ActivityLauncher.Domain.Model;
 
@@ -28,6 +27,8 @@ public class Activity : ICloneable<Activity>
 
     public List<OpenFileTask> OpenFileTasks { get; init; } = new();
 
+    public bool IsValid => GetInvalidTaskCount() == 0;
+
     public void AddTask(ExplorerFolderTask task) => ExplorerFolderTasks.Add(task);
     public void AddTask(ProgramTask task) => ProgramTasks.Add(task);
     public void AddTask(ScriptTask task) => ScriptTasks.Add(task);
@@ -41,6 +42,8 @@ public class Activity : ICloneable<Activity>
     public bool RemoveTask(TerminalTask task) => TerminalTasks.Remove(task);
     public bool RemoveTask(VSCodeTask task) => VSCodeTasks.Remove(task);
     public bool RemoveTask(OpenFileTask task) => OpenFileTasks.Remove(task);
+
+    public int GetInvalidTaskCount() => GetTasks().Count(x => !x.IsValid());
 
     public IEnumerable<ITask> GetTasks()
     {
@@ -72,27 +75,5 @@ public class Activity : ICloneable<Activity>
             VSCodeTasks = VSCodeTasks.Select(x => x.Clone()).ToList(),
             OpenFileTasks = OpenFileTasks.Select(x => x.Clone()).ToList(),
         };
-    }
-
-    // todo: temp demo
-    public static void InitializeDemoTasks(Activity activity)
-    {
-        activity.ExplorerFolderTasks.Add(new ExplorerFolderTask() { DirectoryPath = "C:\\Dev" });
-        activity.ExplorerFolderTasks.Add(new ExplorerFolderTask() { DirectoryPath = "C:\\Dev\\Perso" });
-        activity.ExplorerFolderTasks.Add(new ExplorerFolderTask() { DirectoryPath = "C:\\Dev\\Perso" });
-        activity.ProgramTasks.Add(new ProgramTask() { ProgramName = "firefox" });
-        activity.ScriptTasks.Add(new ScriptTask() { Name = "My script to restore peace on earth", Script = "# Some big fancy script" });
-        activity.TerminalTasks.Add(new TerminalTask()
-        {
-            Name = "Open lots of tabs",
-            TerminalTabs = new()
-            {
-                new TerminalTab() { Title = "Hello world", Color = "#166af2" },
-                new TerminalTab() { Color = "#14ba0b", LocationPath = "C:\\Dev", Command = "ls" }
-            }
-        });
-        activity.TerminalTasks.Add(new TerminalTask() { TerminalTabs = new() { new() { LocationPath = "C:\\Dev\\Perso" } } });
-        activity.VSCodeTasks.Add(new VSCodeTask() { DirectoryPath = "C:\\Dev\\Perso" });
-        activity.OpenFileTasks.Add(new OpenFileTask() { FilePath = "C:\\Dev\\Perso\\activity-launcher-for-windows\\Solution\\ActivityLauncher.sln" });
     }
 }

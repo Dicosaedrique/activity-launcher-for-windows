@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using ActivityLauncher.Domain.Common.Utils;
 using ActivityLauncher.Domain.Enums;
 using ActivityLauncher.Domain.Interfaces;
 
@@ -18,7 +19,7 @@ public class ProgramTask : BaseTask, ICloneable<ProgramTask>
 
     public override bool IsValid()
     {
-        return true; // todo: validate that either programname is set or that a program file path is set and exist
+        return HasProgramName || ValidationHelper.IsValidFile(ProgramFilePath);
     }
 
     protected override string GetValidScript()

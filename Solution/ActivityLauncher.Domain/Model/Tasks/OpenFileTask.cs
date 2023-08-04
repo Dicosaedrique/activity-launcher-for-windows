@@ -1,4 +1,5 @@
-﻿using ActivityLauncher.Domain.Enums;
+﻿using ActivityLauncher.Domain.Common.Utils;
+using ActivityLauncher.Domain.Enums;
 using ActivityLauncher.Domain.Interfaces;
 
 namespace ActivityLauncher.Domain.Model.Tasks;
@@ -11,7 +12,7 @@ public class OpenFileTask : BaseTask, ICloneable<OpenFileTask>
 
     public override bool IsValid()
     {
-        return true; // todo: validate that FilePath is not null and is a *file* that exists
+        return ValidationHelper.IsValidFile(FilePath);
     }
 
     protected override string GetValidScript()

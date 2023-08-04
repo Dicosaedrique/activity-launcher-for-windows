@@ -1,4 +1,5 @@
-﻿using ActivityLauncher.Domain.Enums;
+﻿using ActivityLauncher.Domain.Common.Utils;
+using ActivityLauncher.Domain.Enums;
 using ActivityLauncher.Domain.Interfaces;
 
 namespace ActivityLauncher.Domain.Model.Tasks;
@@ -11,7 +12,7 @@ public class VSCodeTask : BaseTask, ICloneable<VSCodeTask>
 
     public override bool IsValid()
     {
-        return true; // todo: check that DirectoryPath exists and is a directory
+        return ValidationHelper.IsValidDirectory(DirectoryPath);
     }
 
     protected override string GetValidScript()

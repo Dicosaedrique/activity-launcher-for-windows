@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using ActivityLauncher.Domain.Common.Utils;
 using ActivityLauncher.Domain.Interfaces;
 
 namespace ActivityLauncher.Domain.Model.Terminal;
@@ -42,7 +43,24 @@ public class TerminalTab : ICloneable<TerminalTab>
 
     public bool IsValid()
     {
-        return true; // todo: ensure that color is a color and that location path exists and is a directory
+        var valid = true;
+
+        if (!string.IsNullOrWhiteSpace(LocationPath) && !ValidationHelper.IsValidDirectory(LocationPath))
+        {
+            valid = false;
+        }
+
+        if (!string.IsNullOrWhiteSpace(Color) && !ValidationHelper.IsValidHexaColor(Color))
+        {
+            valid = false;
+        }
+
+        if (!string.IsNullOrWhiteSpace(Title) && !ValidationHelper.IsValidTerminalTabTitle(Title))
+        {
+            valid = false;
+        }
+
+        return valid;
     }
 
     public TerminalTab Clone()

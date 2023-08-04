@@ -1,4 +1,5 @@
-﻿@using CommunityToolkit.Maui.Storage;
+﻿@using ActivityLauncher.Domain.Common.Utils;
+@using CommunityToolkit.Maui.Storage;
 
 @inject IStringLocalizer<CommonLocales> Localize
 
@@ -31,7 +32,7 @@
     {
         var result = await FilePicker.PickAsync();
 
-        if (result != null)
+        if (result != null && ValidationHelper.IsValidFile(result.FullPath))
         {
             _error = null;
             FilePath = result.FullPath;

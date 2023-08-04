@@ -27,6 +27,10 @@
                                     <MudStack Row AlignItems="AlignItems.Center">
                                         <TaskIcon TaskType="task.TaskType" Size="24" />
                                         <span>@task.Name</span>
+                                        @if (!EditMode && !task.IsValid())
+                                        {
+                                            <MudIcon Icon="@Icons.Material.Filled.Error" Color="Color.Error" />
+                                        }
                                     </MudStack>
                                 </MudListItem>
                             }

@@ -7,9 +7,18 @@
             <MudText Typo="Typo.h6" Style="font-size: 1.2rem; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; max-width: 195px;" title="@Activity.Name">@Activity.Name</MudText>
         </CardHeaderContent>
         <CardHeaderActions>
-            <MudTooltip Text="@Localize["Activity.Card.LaunchActivityTooltip"]">
-                <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Size="Size.Large" Color="Color.Success" OnClick="LaunchActivity" />
-            </MudTooltip>
+            @if (IsActivityValid)
+            {
+                <MudTooltip Text="@Localize["Activity.Card.LaunchActivityTooltip"]">
+                    <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Size="Size.Large" Color="Color.Success" OnClick="LaunchActivity" />
+                </MudTooltip>
+            }
+            else
+            {
+                <MudTooltip Text="@Localize.Pluralize("Activity.Card.InvalidTooltip", _invalidtaskCount)">
+                    <MudIconButton Icon="@Icons.Material.Filled.Error" Size="Size.Large" Color="Color.Error" />
+                </MudTooltip>
+            }
         </CardHeaderActions>
     </MudCardHeader>
     <MudCardContent>
@@ -46,9 +55,14 @@
 
     private string _humanizedLastModifiedDate = string.Empty;
 
+    private int _invalidtaskCount;
+
+    private bool IsActivityValid => _invalidtaskCount == 0;
+
     protected override void OnParametersSet()
     {
         _humanizedLastModifiedDate = Activity.LastModifiedDate.Humanize();
+        _invalidtaskCount = Activity.GetInvalidTaskCount();
     }
 
     private void MouseEnter()

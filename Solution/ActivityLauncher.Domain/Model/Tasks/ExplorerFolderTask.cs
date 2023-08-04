@@ -1,4 +1,5 @@
-﻿using ActivityLauncher.Domain.Enums;
+﻿using ActivityLauncher.Domain.Common.Utils;
+using ActivityLauncher.Domain.Enums;
 using ActivityLauncher.Domain.Interfaces;
 
 namespace ActivityLauncher.Domain.Model.Tasks;
@@ -11,7 +12,7 @@ public class ExplorerFolderTask : BaseTask, ICloneable<ExplorerFolderTask>
 
     public override bool IsValid()
     {
-        return true; // todo: validate that DirectoryPath is not null and is a *directory* that exists
+        return ValidationHelper.IsValidDirectory(DirectoryPath);
     }
 
     protected override string GetValidScript()

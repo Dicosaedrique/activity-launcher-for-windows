@@ -37,7 +37,9 @@
 
     private Activity _activity = new();
 
-    private string? FormError => _form.IsValid ? null : Localize["Activity.Dialog.Edit.FormError"].Value;
+    private bool IsFormvalid => _form.IsValid && _activity.IsValid;
+
+    private string? FormError => IsFormvalid ? null : Localize["Activity.Dialog.Edit.FormError"].Value;
 
     protected override void OnInitialized()
     {
@@ -51,12 +53,8 @@
     {
         await _form.Validate();
 
-        // todo: validate tasks
-
-        if (_form.IsValid)
+        if (IsFormvalid)
         {
-            if (string.IsNullOrWhiteSpace(_activity.Name)) return;
-
             _activity.Description = string.IsNullOrWhiteSpace(_activity.Description) ? null : _activity.Description;
 
             if (IsEdit) await Edit();
@@ -66,8 +64,6 @@
 
     private async Task Create()
     {
-        Activity.InitializeDemoTasks(_activity);
-
         var success = await ActivityController.CreateActivity(_activity);
 
         if (success)

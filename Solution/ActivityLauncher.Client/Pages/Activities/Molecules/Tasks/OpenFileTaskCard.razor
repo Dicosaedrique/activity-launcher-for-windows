@@ -6,13 +6,13 @@
         @if (EditMode)
         {
             <div class="mt-6">
-                <FilePickerInput Label="@Localize["Activity.Dialog.Task.OpenFileTask.FilePath.Label"]" @bind-FilePath="Task.FilePath" />
+                <FilePickerInput Label="@Localize["Task.Dialog.OpenFileTask.FilePath.Label"]" @bind-FilePath="Task.FilePath" />
             </div>
         }
         else
         {
             <MudStack Row AlignItems="AlignItems.Center">
-                <MudTooltip Text="@Localize["Activity.Dialog.Task.OpenFileTask.FilePath.Label"]">
+                <MudTooltip Text="@Localize["Task.Dialog.OpenFileTask.FilePath.Label"]">
                     <MudIcon Icon="@Icons.Material.Filled.FileOpen" />
                 </MudTooltip>
                 @if (!string.IsNullOrWhiteSpace(Task.FilePath))
@@ -21,7 +21,7 @@
                 }
                 else
                 {
-                    <MudText Typo="Typo.body1">@Localize["Activity.Dialog.Task.OpenFileTask.FilePath.Empty"]</MudText>
+                    <MudText Typo="Typo.body1">@Localize["Task.Dialog.OpenFileTask.FilePath.Empty"]</MudText>
                 }
             </MudStack>
         }

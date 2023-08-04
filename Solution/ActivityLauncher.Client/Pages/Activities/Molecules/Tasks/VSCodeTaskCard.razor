@@ -6,13 +6,13 @@
         @if (EditMode)
         {
             <div class="mt-6">
-                <FolderPickerInput Label="@Localize["Activity.Dialog.Task.VSCodeTask.DirectoryPath.Label"]" @bind-FolderPath="Task.DirectoryPath" />
+                <FolderPickerInput Label="@Localize["Task.Dialog.VSCodeTask.DirectoryPath.Label"]" @bind-FolderPath="Task.DirectoryPath" />
             </div>
         }
         else
         {
             <MudStack Row AlignItems="AlignItems.Center">
-                <MudTooltip Text="@Localize["Activity.Dialog.Task.VSCodeTask.DirectoryPath.Label"]">
+                <MudTooltip Text="@Localize["Task.Dialog.VSCodeTask.DirectoryPath.Label"]">
                     <MudIcon Icon="@Icons.Material.Filled.Folder" />
                 </MudTooltip>
                 @if (!string.IsNullOrWhiteSpace(Task.DirectoryPath))
@@ -21,7 +21,7 @@
                 }
                 else
                 {
-                    <MudText Typo="Typo.body1">@Localize["Activity.Dialog.Task.VSCodeTask.DirectoryPath.Empty"]</MudText>
+                    <MudText Typo="Typo.body1">@Localize["Task.Dialog.VSCodeTask.DirectoryPath.Empty"]</MudText>
                 }
             </MudStack>
         }
