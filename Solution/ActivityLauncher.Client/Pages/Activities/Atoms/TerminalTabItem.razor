@@ -4,14 +4,14 @@
 {
     <MudStack Spacing="6">
         <MudTextField T="string" Value="TerminalTab.Title" ValueChanged="TitleChanged" Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.Title.Label"]" Variant="Variant.Filled" Clearable />
-        <FolderPickerInput Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.LocationPath.Label"]" @bind-FolderPath="TerminalTab.LocationPath" AllowClear />
+        <FolderPickerInput Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.LocationPath.Label"]" @bind-FolderPath="TerminalTab.LocationPath" Clearable />
         <MudTextField T="string" @bind-Value="TerminalTab.Command" Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.Command.Label"]" Variant="Variant.Filled" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Terminal" Clearable />
         <MudColorPicker @bind-Text="TerminalTab.Color" Style="@TerminalTabColorStyle" Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.Color.Label"]" DisableAlpha DisableModeSwitch Variant="Variant.Filled" ColorPickerMode="ColorPickerMode.HEX" Clearable />
     </MudStack>
 }
 else
 {
-    <MudStack Spacing="4">
+    <MudStack Spacing="2">
         <MudStack Row AlignItems="AlignItems.Center">
             <MudTooltip Text="@Localize["Task.Dialog.TerminalTask.TerminalTab.LocationPath.Label"]">
                 <MudIcon Icon="@Icons.Material.Filled.Folder" />

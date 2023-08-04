@@ -426,4 +426,13 @@
   <data name="Task.Dialog.VSCodeTask.InvalidTooltip" xml:space="preserve">
     <value>Invalid task, you must specify a valid and existing folder location</value>
   </data>
+  <data name="Task.Dialog.ProgramTask.ArgumentList.Label" xml:space="preserve">
+    <value>Run Parameters (-ArgumentList)</value>
+  </data>
+  <data name="Task.Dialog.ProgramTask.ProgramFilePath.Label" xml:space="preserve">
+    <value>Program executable file</value>
+  </data>
+  <data name="Task.Dialog.ProgramTask.ProgramName.Label" xml:space="preserve">
+    <value>Program name</value>
+  </data>
 </root>

@@ -3,7 +3,51 @@
 
 <GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" OnNameChange="OnNameChange" TaskType="Task.TaskType">
     <TaskDetailTemplate>
-        @* todo: ajouter l'affichage et le formulaire de modification de la tâche *@
+        @if (EditMode)
+        {
+            <div class="mt-6">
+                <MudTextField T="string" @bind-Value="Task.ProgramName" Label="@Localize["Task.Dialog.ProgramTask.ProgramName.Label"]" Variant="Variant.Filled" Disabled="Task.HasProgramFilePath" Clearable />
+                <MudDivider Class="my-6" DividerType="DividerType.Middle" />
+                <FilePickerInput Label="@Localize["Task.Dialog.ProgramTask.ProgramFilePath.Label"]" @bind-FilePath="Task.ProgramFilePath" Disabled="Task.HasProgramName" Clearable />
+                <MudTextField Class="mt-4" T="string" @bind-Value="Task.ArgumentList" Label="@Localize["Task.Dialog.ProgramTask.ArgumentList.Label"]" Disabled="Task.HasProgramName" Variant="Variant.Filled" Clearable />
+            </div>
+        }
+        else
+        {
+            @if (Task.HasProgramName)
+            {
+                <MudStack Row AlignItems="AlignItems.Center">
+                    <MudTooltip Text="@Localize["Task.Dialog.ProgramTask.ProgramName.Label"]">
+                        <MudIcon Icon="@Icons.Material.Filled.Label" />
+                    </MudTooltip>
+                    <code style="font-size: 1rem;">@Task.ProgramName</code>
+                </MudStack>
+            }
+            else if (Task.HasProgramFilePath)
+            {
+                <MudStack Spacing="2">
+                    <MudStack Row AlignItems="AlignItems.Center">
+                        <MudTooltip Text="@Localize["Task.Dialog.ProgramTask.ProgramFilePath.Label"]">
+                            <MudIcon Icon="@Icons.Material.Filled.FileOpen" />
+                        </MudTooltip>
+                        <code style="font-size: 1rem;">@Task.ProgramFilePath</code>
+                    </MudStack>
+                    @if (!string.IsNullOrWhiteSpace(Task.ArgumentList))
+                    {
+                        <MudStack Row AlignItems="AlignItems.Center">
+                            <MudTooltip Text="@Localize["Task.Dialog.ProgramTask.ArgumentList.Label"]">
+                                <MudIcon Icon="@Icons.Material.Filled.Settings" />
+                            </MudTooltip>
+                            <code style="font-size: 1rem;">@Task.ArgumentList</code>
+                        </MudStack>
+                    }
+                </MudStack>
+            }
+            else
+            {
+                <MudText Typo="Typo.body1">Vide</MudText>
+            }
+        }
     </TaskDetailTemplate>
 </GenericTaskCard>
 

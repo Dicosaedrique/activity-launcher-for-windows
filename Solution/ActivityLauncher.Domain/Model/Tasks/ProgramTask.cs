@@ -15,7 +15,9 @@ public class ProgramTask : BaseTask, ICloneable<ProgramTask>
 
     public string ArgumentList { get; set; } = string.Empty;
 
-    private bool HasProgramName => !string.IsNullOrWhiteSpace(ProgramName);
+    public bool HasProgramName => !string.IsNullOrWhiteSpace(ProgramName);
+
+    public bool HasProgramFilePath => !string.IsNullOrWhiteSpace(ProgramFilePath);
 
     public override bool IsValid()
     {
