@@ -27,7 +27,7 @@
                                     <MudStack Row AlignItems="AlignItems.Center">
                                         <TaskIcon TaskType="task.TaskType" Size="24" />
                                         <span>@task.Name</span>
-                                        @if (!EditMode && !task.IsValid())
+                                        @if (!task.IsValid())
                                         {
                                             <MudIcon Icon="@Icons.Material.Filled.ErrorOutline" Color="Color.Error" />
                                         }
@@ -44,14 +44,14 @@
                     <MudStack Spacing="6">
                         @foreach (var task in _tasks)
                         {
-                            <TaskCard @key="task.Id" Task="task" EditMode="EditMode" OnNameChange="TaskNameChanged" OnRemove="GetOnRemoveCallback(task)" />
+                            <TaskCard @key="task.Id" Task="task" EditMode="EditMode" OnChange="TaskChanged" OnRemove="GetOnRemoveCallback(task)" />
                         }
                     </MudStack>
                 }
                 else
                 {
                     var task = _tasks.First(x => x.Id == CurrentTaskId);
-                    <TaskCard Task="task" EditMode="EditMode" OnNameChange="TaskNameChanged" OnRemove="GetOnRemoveCallback(task)" />
+                    <TaskCard Task="task" EditMode="EditMode" OnChange="TaskChanged" OnRemove="GetOnRemoveCallback(task)" />
                 }
             </div>
         </MudStack>
@@ -89,7 +89,7 @@
         TasksChanged();
     }
 
-    private void TaskNameChanged()
+    private void TaskChanged()
     {
         StateHasChanged();
     }

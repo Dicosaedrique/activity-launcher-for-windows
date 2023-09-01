@@ -3,7 +3,7 @@
 @inject ActivityController ActivityController
 @inject IStringLocalizer<ActivityLocales> Localize
 
-<GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" OnNameChange="OnNameChange" TaskType="Task.TaskType">
+<GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" OnChange="OnChange" TaskType="Task.TaskType">
     <TaskDetailTemplate>
         <div class="@(EditMode ? "mt-6" : string.Empty)">
             @if (Task.TerminalTabs.Any())
@@ -41,31 +41,34 @@
     public bool EditMode { get; set; } = false;
 
     [Parameter]
-    public EventCallback OnNameChange { get; set; }
+    public EventCallback OnChange { get; set; }
 
     [Parameter]
     public EventCallback OnRemove { get; set; }
 
     private int _tabIndex;
 
-    private void AddTerminalTab()
+    private async Task AddTerminalTab()
     {
         if (!EditMode) return;
 
         Task.TerminalTabs.Add(new TerminalTab());
         _tabIndex = Task.TerminalTabs.Count - 1;
+        await OnChange.InvokeAsync();
     }
 
-    public void RemoveTerminalTab(MudTabPanel panel)
+    public async Task RemoveTerminalTab(MudTabPanel panel)
     {
         if (!EditMode) return;
 
         Task.TerminalTabs.Remove((TerminalTab)panel.ID);
+        await OnChange.InvokeAsync();
     }
 
-    private void TerminalTabTitleChanged()
+    private async Task OnTerminalTabChanged()
     {
         StateHasChanged();
+        await OnChange.InvokeAsync();
     }
 
     private RenderFragment GetTabs()
@@ -78,7 +81,7 @@
                 var title = string.IsNullOrWhiteSpace(terminalTab.Title) ? string.Format(Localize["Task.Dialog.TerminalTask.DefaultTabTitle"], i + 1) : terminalTab.Title;
 
                 <MudTabPanel ID="terminalTab" Text="@title" ShowCloseIcon="EditMode">
-                    <TerminalTabItem TerminalTab="terminalTab" OnTitleChange="TerminalTabTitleChanged" EditMode="EditMode" />
+                    <TerminalTabItem TerminalTab="terminalTab" OnChange="OnTerminalTabChanged" EditMode="EditMode" />
                 </MudTabPanel>
             }
         };

@@ -20,24 +20,25 @@
             </MudStack>
         </CardHeaderContent>
         <CardHeaderActions>
-            @if (EditMode)
-            {
-                <MudTooltip Text="@Localize["Task.Dialog.DeleteHelper"]">
-                    <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="OnRemove" />
-                </MudTooltip>
-            }
-            else
-            {
-                @if (Task.IsValid())
-                {
-                    <MudTooltip Text="@Localize["Task.Dialog.LaunchHelper"]">
-                        <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="LaunchTask" />
-                    </MudTooltip>
-                }
-                else
+            @{
+                var isTaskValid = Task.IsValid();
+
+                if (!isTaskValid)
                 {
                     <MudTooltip Text="@InvalidTooltip">
                         <MudIconButton Icon="@Icons.Material.Filled.ErrorOutline" Color="Color.Error" />
+                    </MudTooltip>
+                }
+                @if (EditMode)
+                {
+                    <MudTooltip Text="@Localize["Task.Dialog.DeleteHelper"]">
+                        <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="OnRemove" />
+                    </MudTooltip>
+                }
+                else if (isTaskValid)
+                {
+                    <MudTooltip Text="@Localize["Task.Dialog.LaunchHelper"]">
+                        <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="LaunchTask" />
                     </MudTooltip>
                 }
             }
@@ -46,7 +47,7 @@
     <MudCardContent>
         @if (EditMode)
         {
-            <MudTextField T="string" Value="Task.Name" ValueChanged="NameChanged" Label="@Localize["Task.Dialog.Name.Label"]" Required RequiredError="@Localize["Task.Dialog.Name.RequiredError"]" Variant="Variant.Filled" />
+            <MudTextField T="string" Value="@Task.Name" ValueChanged="NameChanged" Label="@Localize["Task.Dialog.Name.Label"]" Required RequiredError="@Localize["Task.Dialog.Name.RequiredError"]" Variant="Variant.Filled" />
         }
         @TaskDetailTemplate
     </MudCardContent>
@@ -63,7 +64,7 @@
     public TaskType TaskType { get; set; }
 
     [Parameter]
-    public EventCallback OnNameChange { get; set; }
+    public EventCallback OnChange { get; set; }
 
     [Parameter]
     public EventCallback OnRemove { get; set; }
@@ -80,7 +81,7 @@
     private async Task NameChanged(string name)
     {
         Task.Name = name;
-        await OnNameChange.InvokeAsync();
+        await OnChange.InvokeAsync();
     }
 
     private async Task LaunchTask()

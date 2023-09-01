@@ -1,15 +1,24 @@
 ﻿@inject ActivityController ActivityController
 @inject IStringLocalizer<ActivityLocales> Localize
 
-<GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" OnNameChange="OnNameChange" TaskType="Task.TaskType">
+<GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" OnChange="OnChange" TaskType="Task.TaskType">
     <TaskDetailTemplate>
         @if (EditMode)
         {
             <div class="mt-6">
-                <MudTextField T="string" @bind-Value="Task.ProgramName" Label="@Localize["Task.Dialog.ProgramTask.ProgramName.Label"]" Variant="Variant.Filled" Disabled="Task.HasProgramFilePath" Clearable />
-                <MudDivider Class="my-6" DividerType="DividerType.Middle" />
-                <FilePickerInput Label="@Localize["Task.Dialog.ProgramTask.ProgramFilePath.Label"]" @bind-FilePath="Task.ProgramFilePath" Disabled="Task.HasProgramName" Clearable />
-                <MudTextField Class="mt-4" T="string" @bind-Value="Task.ArgumentList" Label="@Localize["Task.Dialog.ProgramTask.ArgumentList.Label"]" Disabled="Task.HasProgramName" Variant="Variant.Filled" Clearable />
+                <MudSelect T="bool" Class="mb-6" Value="_isProgramNameMode" ValueChanged="ModeChanged" Label="@Localize["Task.Dialog.ProgramTask.Mode.Label"]" Variant="Variant.Filled" AnchorOrigin="Origin.BottomCenter">
+                    <MudSelectItem Value="true">@Localize["Task.Dialog.ProgramTask.Mode.ProgramName"]</MudSelectItem>
+                    <MudSelectItem Value="false">@Localize["Task.Dialog.ProgramTask.Mode.ProgramFile"]</MudSelectItem>
+                </MudSelect>
+                @if (_isProgramNameMode)
+                {
+                    <MudTextField T="string" Value="@Task.ProgramName" ValueChanged="ProgramNameChanged" Label="@Localize["Task.Dialog.ProgramTask.ProgramName.Label"]" Variant="Variant.Filled" />
+                }
+                else
+                {
+                    <FilePickerInput Label="@Localize["Task.Dialog.ProgramTask.ProgramFilePath.Label"]" FilePath="@Task.ProgramFilePath" FilePathChanged="ProgramFilePathChanged" />
+                    <MudTextField Class="mt-4" T="string" Value="@Task.ArgumentList" ValueChanged="ArgumentListChanged" Label="@Localize["Task.Dialog.ProgramTask.ArgumentList.Label"]" Disabled="Task.HasProgramName" Variant="Variant.Filled" />
+                }
             </div>
         }
         else
@@ -59,8 +68,52 @@
     public bool EditMode { get; set; } = false;
 
     [Parameter]
-    public EventCallback OnNameChange { get; set; }
+    public EventCallback OnChange { get; set; }
 
     [Parameter]
     public EventCallback OnRemove { get; set; }
+
+    private bool _isProgramNameMode;
+
+    protected override void OnInitialized()
+    {
+        _isProgramNameMode = Task.HasProgramName || (!Task.HasProgramName && !Task.HasProgramFilePath);
+    }
+
+    private async Task ModeChanged(bool isProgramNameMode)
+    {
+        if (_isProgramNameMode == isProgramNameMode) return;
+
+        _isProgramNameMode = isProgramNameMode;
+
+        if (_isProgramNameMode)
+        {
+            Task.ProgramFilePath = string.Empty;
+            Task.ArgumentList = string.Empty;
+        }
+        else
+        {
+            Task.ProgramName = string.Empty;
+        }
+
+        await OnChange.InvokeAsync();
+    }
+
+    private async Task ProgramNameChanged(string programName)
+    {
+        Task.ProgramName = programName;
+        await OnChange.InvokeAsync();
+    }
+
+    private async Task ProgramFilePathChanged(string? programFilePath)
+    {
+        Task.ProgramFilePath = programFilePath ?? string.Empty;
+        await OnChange.InvokeAsync();
+    }
+
+    private async Task ArgumentListChanged(string argumentList)
+    {
+        Task.ArgumentList = argumentList;
+        await OnChange.InvokeAsync();
+    }
 }

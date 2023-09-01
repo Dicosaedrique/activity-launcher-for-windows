@@ -1,12 +1,12 @@
 ﻿@inject ActivityController ActivityController
 @inject IStringLocalizer<ActivityLocales> Localize
 
-<GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" OnNameChange="OnNameChange" TaskType="Task.TaskType">
+<GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" OnChange="OnChange" TaskType="Task.TaskType">
     <TaskDetailTemplate>
         @if (EditMode)
         {
             <div class="mt-6">
-                <FilePickerInput Label="@Localize["Task.Dialog.OpenFileTask.FilePath.Label"]" @bind-FilePath="Task.FilePath" />
+                <FilePickerInput Label="@Localize["Task.Dialog.OpenFileTask.FilePath.Label"]" FilePath="@Task.FilePath" FilePathChanged="FilePathChanged" />
             </div>
         }
         else
@@ -36,8 +36,14 @@
     public bool EditMode { get; set; } = false;
 
     [Parameter]
-    public EventCallback OnNameChange { get; set; }
+    public EventCallback OnChange { get; set; }
 
     [Parameter]
     public EventCallback OnRemove { get; set; }
+
+    private async Task FilePathChanged(string? filePath)
+    {
+        Task.FilePath = filePath ?? string.Empty;
+        await OnChange.InvokeAsync();
+    }
 }

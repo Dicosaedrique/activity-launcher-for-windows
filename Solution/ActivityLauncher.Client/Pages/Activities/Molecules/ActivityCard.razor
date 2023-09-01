@@ -16,7 +16,7 @@
             else
             {
                 <MudTooltip Text="@Localize.Pluralize("Activity.Card.InvalidTooltip", _invalidtaskCount)">
-                    <MudIconButton Icon="@Icons.Material.Filled.ErrorOutline" Size="Size.Large" Color="Color.Error" />
+                    <MudIconButton Icon="@Icons.Material.Filled.ErrorOutline" Size="Size.Large" Color="Color.Error" OnClick="Edit" />
                 </MudTooltip>
             }
         </CardHeaderActions>
@@ -40,7 +40,10 @@
             <MudIconButton Icon="@Icons.Material.Filled.Edit" OnClick="Edit" />
         </MudTooltip>
         <MudMenu Icon="@Icons.Material.Filled.MoreVert">
-            <MudMenuItem Icon="@Icons.Material.Filled.Code" OnClick="OpenScript">@Localize["Activity.Card.OpenScriptMenu"]</MudMenuItem>
+            @if (IsActivityValid)
+            {
+                <MudMenuItem Icon="@Icons.Material.Filled.Code" OnClick="OpenScript">@Localize["Activity.Card.OpenScriptMenu"]</MudMenuItem>
+            }
             <MudMenuItem Icon="@Icons.Material.Filled.ContentCopy" OnClick="Duplicate">@Localize["Activity.Card.DuplicateMenu"]</MudMenuItem>
             <MudMenuItem Icon="@Icons.Material.Filled.Delete" OnClick="Delete">@Localize["Activity.Card.DeleteMenu"]</MudMenuItem>
         </MudMenu>

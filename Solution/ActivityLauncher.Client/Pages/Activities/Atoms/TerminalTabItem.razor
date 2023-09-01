@@ -3,10 +3,10 @@
 @if (EditMode)
 {
     <MudStack Spacing="6">
-        <MudTextField T="string" Value="TerminalTab.Title" ValueChanged="TitleChanged" Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.Title.Label"]" Variant="Variant.Filled" Clearable />
-        <FolderPickerInput Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.LocationPath.Label"]" @bind-FolderPath="TerminalTab.LocationPath" Clearable />
-        <MudTextField T="string" @bind-Value="TerminalTab.Command" Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.Command.Label"]" Variant="Variant.Filled" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Terminal" Clearable />
-        <MudColorPicker @bind-Text="TerminalTab.Color" Style="@TerminalTabColorStyle" Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.Color.Label"]" DisableAlpha DisableModeSwitch Variant="Variant.Filled" ColorPickerMode="ColorPickerMode.HEX" Clearable />
+        <MudTextField T="string" Value="@TerminalTab.Title" ValueChanged="TitleChanged" Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.Title.Label"]" Variant="Variant.Filled" Clearable />
+        <FolderPickerInput Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.LocationPath.Label"]" FolderPath="@TerminalTab.LocationPath" FolderPathChanged="LocationPathChanged" Clearable />
+        <MudTextField T="string" Value="TerminalTab.Command" ValueChanged="CommandChanged" Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.Command.Label"]" Variant="Variant.Filled" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Terminal" Clearable />
+        <MudColorPicker Text="@TerminalTab.Color" TextChanged="ColorChanged" DisableDragEffect Style="@TerminalTabColorStyle" Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.Color.Label"]" DisableAlpha DisableModeSwitch Variant="Variant.Filled" ColorPickerMode="ColorPickerMode.HEX" Clearable />
     </MudStack>
 }
 else
@@ -65,12 +65,30 @@ else
     public bool EditMode { get; set; } = false;
 
     [Parameter]
-    public EventCallback OnTitleChange { get; set; }
+    public EventCallback OnChange { get; set; }
 
     private async Task TitleChanged(string title)
     {
         TerminalTab.Title = title;
-        await OnTitleChange.InvokeAsync();
+        await OnChange.InvokeAsync();
+    }
+
+    private async Task LocationPathChanged(string? folderPath)
+    {
+        TerminalTab.LocationPath = folderPath ?? string.Empty;
+        await OnChange.InvokeAsync();
+    }
+
+    private async Task CommandChanged(string command)
+    {
+        TerminalTab.Command = command;
+        await OnChange.InvokeAsync();
+    }
+
+    private async Task ColorChanged(string color)
+    {
+        TerminalTab.Color = color;
+        await OnChange.InvokeAsync();
     }
 
     private string TerminalTabColorStyle => string.IsNullOrWhiteSpace(TerminalTab.Color) ? string.Empty : $"color: {TerminalTab.Color};";

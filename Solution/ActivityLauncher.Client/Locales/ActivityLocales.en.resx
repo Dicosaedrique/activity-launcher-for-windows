@@ -447,4 +447,13 @@
   <data name="Activity.Dialog.Edit.ConfirmSaveErrors.Title" xml:space="preserve">
     <value>Are you sure you want to save?</value>
   </data>
+  <data name="Task.Dialog.ProgramTask.Mode.Label" xml:space="preserve">
+    <value>Execution mode</value>
+  </data>
+  <data name="Task.Dialog.ProgramTask.Mode.ProgramFile" xml:space="preserve">
+    <value>Executable file</value>
+  </data>
+  <data name="Task.Dialog.ProgramTask.Mode.ProgramName" xml:space="preserve">
+    <value>Program name</value>
+  </data>
 </root>

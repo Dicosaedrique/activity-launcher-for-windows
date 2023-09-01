@@ -1,12 +1,12 @@
 ﻿@inject ActivityController ActivityController
 @inject IStringLocalizer<ActivityLocales> Localize
 
-<GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" OnNameChange="OnNameChange" TaskType="Task.TaskType">
+<GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" OnChange="OnChange" TaskType="Task.TaskType">
     <TaskDetailTemplate>
         @if (EditMode)
         {
             <div class="mt-6">
-                <FolderPickerInput Label="@Localize["Task.Dialog.VSCodeTask.DirectoryPath.Label"]" @bind-FolderPath="Task.DirectoryPath" />
+                <FolderPickerInput Label="@Localize["Task.Dialog.VSCodeTask.DirectoryPath.Label"]" FolderPath="@Task.DirectoryPath" FolderPathChanged="DirectoryPathChanged" />
             </div>
         }
         else
@@ -36,8 +36,14 @@
     public bool EditMode { get; set; } = false;
 
     [Parameter]
-    public EventCallback OnNameChange { get; set; }
+    public EventCallback OnChange { get; set; }
 
     [Parameter]
     public EventCallback OnRemove { get; set; }
+
+    private async Task DirectoryPathChanged(string? directoryPath)
+    {
+        Task.DirectoryPath = directoryPath ?? string.Empty;
+        await OnChange.InvokeAsync();
+    }
 }
