@@ -369,9 +369,6 @@
   <data name="Activity.Dialog.Tasks.NavList.Title" xml:space="preserve">
     <value>Selection tâches</value>
   </data>
-  <data name="Activity.Dialog.Edit.FormError" xml:space="preserve">
-    <value>Une ou plusieurs erreurs ont été détectées, veuillez vérifier le contenu de l'activité avant de sauvegarder.</value>
-  </data>
   <data name="Task.Dialog.TerminalTask.AddTerminalTabButton" xml:space="preserve">
     <value>Ajouter un onglet de terminal</value>
   </data>
@@ -434,5 +431,20 @@
   </data>
   <data name="Task.Dialog.ProgramTask.ProgramName.Label" xml:space="preserve">
     <value>Nom du programme</value>
+  </data>
+  <data name="Activity.Dialog.ActivityNameError" xml:space="preserve">
+    <value>Vous ne pouvez pas sauvegarder une activité sans nom !</value>
+  </data>
+  <data name="Activity.Dialog.Edit.ConfirmSaveErrors.CancelButton" xml:space="preserve">
+    <value>Retourner au formulaire</value>
+  </data>
+  <data name="Activity.Dialog.Edit.ConfirmSaveErrors.ConfirmButton" xml:space="preserve">
+    <value>Sauvegarder quand même</value>
+  </data>
+  <data name="Activity.Dialog.Edit.ConfirmSaveErrors.Message" xml:space="preserve">
+    <value>Une ou plusieurs erreurs ont été détectées dans l'activité, elle ne sera pas utilisable tant que vous n'aurez pas réglé toutes les erreurs.</value>
+  </data>
+  <data name="Activity.Dialog.Edit.ConfirmSaveErrors.Title" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir sauvegarder ?</value>
   </data>
 </root>

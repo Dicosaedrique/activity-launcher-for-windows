@@ -1,4 +1,5 @@
-﻿@inject ActivityController ActivityController
+﻿@inject IDialogService DialogService
+@inject ActivityController ActivityController
 @inject IStringLocalizer<ActivityLocales> Localize
 
 <MudDialog DisableSidePadding>
@@ -11,10 +12,10 @@
                         <MudTextField T="string" @bind-Value="_activity.Description" Label="@Localize["Activity.Dialog.Description.Label"]" Lines="2" Variant="Variant.Filled" />
                     </MudStack>
                     <TasksDialogSection Class="my-12" Activity="_activity" EditMode />
-                    <ErrorText Class="mb-6" Error="@FormError" />
+                    <ErrorText Class="mb-6" Error="@ActivityNameError" />
                     <MudStack Row Justify="Justify.FlexEnd">
                         <MudButton Variant="Variant.Filled" OnClick="MudDialog.Cancel">@Localize["Activity.Dialog.CancelButton"]</MudButton>
-                        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Submit">@SubmitButtonLabel</MudButton>
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Submit" Disabled="!ActivityHasName">@SubmitButtonLabel</MudButton>
                     </MudStack>
                 </MudForm>
             </MudContainer>
@@ -37,9 +38,11 @@
 
     private Activity _activity = new();
 
-    private bool IsFormvalid => _form.IsValid && _activity.IsValid;
+    private bool IsFormValid => _form.IsValid && _activity.IsValid;
 
-    private string? FormError => IsFormvalid ? null : Localize["Activity.Dialog.Edit.FormError"].Value;
+    private bool ActivityHasName => !string.IsNullOrWhiteSpace(_activity.Name);
+
+    private string? ActivityNameError => ActivityHasName ? null : Localize["Activity.Dialog.ActivityNameError"].Value;
 
     protected override void OnInitialized()
     {
@@ -53,7 +56,22 @@
     {
         await _form.Validate();
 
-        if (IsFormvalid)
+        if (!ActivityHasName) return;
+
+        bool ready = IsFormValid;
+
+        if (!ready)
+        {
+            bool? result = await DialogService.ShowMessageBox(
+                Localize["Activity.Dialog.Edit.ConfirmSaveErrors.Title"],
+                Localize["Activity.Dialog.Edit.ConfirmSaveErrors.Message"],
+                yesText: Localize["Activity.Dialog.Edit.ConfirmSaveErrors.ConfirmButton"],
+                cancelText: Localize["Activity.Dialog.Edit.ConfirmSaveErrors.CancelButton"]);
+
+            ready = result.HasValue && result.Value;
+        }
+
+        if (ready)
         {
             _activity.Description = string.IsNullOrWhiteSpace(_activity.Description) ? null : _activity.Description;
 

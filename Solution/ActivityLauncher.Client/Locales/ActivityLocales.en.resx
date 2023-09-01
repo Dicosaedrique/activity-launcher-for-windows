@@ -369,9 +369,6 @@
   <data name="Activity.Dialog.Tasks.NavList.Title" xml:space="preserve">
     <value>Tasks Selection</value>
   </data>
-  <data name="Activity.Dialog.Edit.FormError" xml:space="preserve">
-    <value>One or more errors have been detected, please check the content of the activity before saving.</value>
-  </data>
   <data name="Task.Dialog.TerminalTask.AddTerminalTabButton" xml:space="preserve">
     <value>Add terminal tab</value>
   </data>
@@ -434,5 +431,20 @@
   </data>
   <data name="Task.Dialog.ProgramTask.ProgramName.Label" xml:space="preserve">
     <value>Program name</value>
+  </data>
+  <data name="Activity.Dialog.ActivityNameError" xml:space="preserve">
+    <value>You cannot save an activity without a name!</value>
+  </data>
+  <data name="Activity.Dialog.Edit.ConfirmSaveErrors.CancelButton" xml:space="preserve">
+    <value>Return to form</value>
+  </data>
+  <data name="Activity.Dialog.Edit.ConfirmSaveErrors.ConfirmButton" xml:space="preserve">
+    <value>Save anyway</value>
+  </data>
+  <data name="Activity.Dialog.Edit.ConfirmSaveErrors.Message" xml:space="preserve">
+    <value>One or more errors were detected in the activity, it will not be usable until you have fixed all the errors.</value>
+  </data>
+  <data name="Activity.Dialog.Edit.ConfirmSaveErrors.Title" xml:space="preserve">
+    <value>Are you sure you want to save?</value>
   </data>
 </root>
