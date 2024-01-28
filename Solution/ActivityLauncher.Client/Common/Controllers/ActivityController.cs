@@ -250,6 +250,21 @@ public class ActivityController : ApplicationController, IDisposable
         return _dialogService.Show<ActivityScriptDialog>(activity.Name, parameters, options);
     }
 
+    public async Task<bool> DisableLaunchAtStartup(Activity activity)
+    {
+        var activityToUpdate = activity.Clone();
+        activityToUpdate.LaunchAtStartup = false;
+        return await UpdateActivity(activityToUpdate);
+    }
+
+    public async Task<bool> PromptEnableLaunchAtStartup(Activity activity)
+    {
+        // todo: add a prompt confirmation dialog here
+        var activityToUpdate = activity.Clone();
+        activityToUpdate.LaunchAtStartup = true;
+        return await UpdateActivity(activityToUpdate);
+    }
+
     private async Task EventPublish(object sender, ApplicationEvent applicationEvent)
     {
         if (applicationEvent.Type is ApplicationEventType.ActivityCreated or ApplicationEventType.ActivityUpdated or ApplicationEventType.ActivityDeleted)

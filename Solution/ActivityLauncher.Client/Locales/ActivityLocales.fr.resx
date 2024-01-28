@@ -456,4 +456,16 @@
   <data name="Task.Dialog.ProgramTask.Mode.ProgramName" xml:space="preserve">
     <value>Nom de programme</value>
   </data>
+  <data name="Activity.Card.DisableLaunchAtStartupMenu" xml:space="preserve">
+    <value>Retirer du lancement au démarrage</value>
+  </data>
+  <data name="Activity.Card.EnableLaunchAtStartup" xml:space="preserve">
+    <value>Lancer au démarrage</value>
+  </data>
+  <data name="Activity.Card.LaunchAtStartupEnabledTooltip" xml:space="preserve">
+    <value>Cette activité est lancée au démarrage de l'ordinateur</value>
+  </data>
+  <data name="Activity.Dialog.LaunchAtStartup.Label" xml:space="preserve">
+    <value>Lancement au démarrage</value>
+  </data>
 </root>

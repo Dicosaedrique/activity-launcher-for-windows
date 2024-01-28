@@ -11,6 +11,8 @@ public class Activity : ICloneable<Activity>
 
     public string? Description { get; set; }
 
+    public bool LaunchAtStartup { get; set; } = false;
+
     public DateTime CreationDate { get; set; } = DateTime.Now;
 
     public DateTime LastModifiedDate { get; set; } = DateTime.Now;
@@ -66,6 +68,7 @@ public class Activity : ICloneable<Activity>
             Id = Id,
             Name = Name,
             Description = Description,
+            LaunchAtStartup = LaunchAtStartup,
             CreationDate = CreationDate,
             LastModifiedDate = LastModifiedDate,
             ExplorerFolderTasks = ExplorerFolderTasks.Select(x => x.Clone()).ToList(),

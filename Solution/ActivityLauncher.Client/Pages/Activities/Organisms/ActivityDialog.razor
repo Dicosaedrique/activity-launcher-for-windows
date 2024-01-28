@@ -12,7 +12,6 @@
                     <div style="width: 70%;">
                         <MudText Typo="Typo.h5" Class="mb-2">@Localize["Activity.Dialog.View.Description.Title"]</MudText>
                         <MudText Typo="Typo.body2">@InternalDescription</MudText>
-                        
                     </div>
                     <MudStack>
                         <MudButton IconClass="@Icons.Material.Filled.Edit" Color="Color.Primary" Variant="Variant.Filled" OnClick="Edit">@Localize["Activity.Dialog.View.EditButton"]</MudButton>
@@ -22,6 +21,13 @@
                         </div>
                     </MudStack>
                 </MudStack>
+                @if (Activity.LaunchAtStartup)
+                {
+                    <MudStack Row Class="my-4" Style="opacity: 0.8;">
+                         <MudIcon Icon="@Icons.Material.Filled.PowerSettingsNew" Size="Size.Small" />
+                         <MudText Typo="Typo.body2">@Localize["Activity.Card.LaunchAtStartupEnabledTooltip"]</MudText>
+                     </MudStack>
+                }
                 <TasksDialogSection Class="mt-12" Activity="Activity" />
             </MudContainer>
         </div>

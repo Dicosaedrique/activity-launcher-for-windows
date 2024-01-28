@@ -456,4 +456,16 @@
   <data name="Task.Dialog.ProgramTask.Mode.ProgramName" xml:space="preserve">
     <value>Program name</value>
   </data>
+  <data name="Activity.Card.DisableLaunchAtStartupMenu" xml:space="preserve">
+    <value>Remove from launch at startup</value>
+  </data>
+  <data name="Activity.Card.EnableLaunchAtStartup" xml:space="preserve">
+    <value>Launch at startup</value>
+  </data>
+  <data name="Activity.Card.LaunchAtStartupEnabledTooltip" xml:space="preserve">
+    <value>This activity is launched at startup</value>
+  </data>
+  <data name="Activity.Dialog.LaunchAtStartup.Label" xml:space="preserve">
+    <value>Launch at startup</value>
+  </data>
 </root>
