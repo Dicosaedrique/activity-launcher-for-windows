@@ -4,22 +4,21 @@ public class ErrorEventDetails
 {
     public string Title { get; }
 
-    public string? Detail { get; }
+    public string? Detail => Exception?.Message;
 
     public Exception? Exception { get; }
 
-    public ErrorEventDetails(string title, string? detail = null, Exception? exception = null)
+    public ErrorEventDetails(string title, Exception? exception = null)
     {
         Title = title;
-        Detail = detail;
         Exception = exception;
     }
 }
 
 public static class ErrorEventDetailsExtensions
 {
-    public static ErrorEventDetails ToErrorEventDetails(this Exception response, string title)
+    public static ErrorEventDetails ToErrorEventDetails(this Exception exception, string title)
     {
-        return new ErrorEventDetails(title, response.Message, response);
+        return new ErrorEventDetails(title, exception);
     }
 }

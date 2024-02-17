@@ -13,6 +13,11 @@ public class Result
         Exception = exception;
     }
 
+    public void Ensure()
+    {
+        if (Failure) throw Exception!;
+    }
+
     public static Result SuccessResult => new Result();
 }
 

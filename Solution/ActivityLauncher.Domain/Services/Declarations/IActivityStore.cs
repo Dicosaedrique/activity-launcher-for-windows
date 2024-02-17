@@ -13,5 +13,5 @@ public interface IActivityStore
 
     public Task<Result> DeleteAsync(Activity activity);
 
-    public void SetupStore();
+    public Result SetupStore();
 }

@@ -18,5 +18,7 @@ public interface IFileStorage
 
     public string GetStorageFilePath(params string[] relativePaths);
 
-    public void CreateDirectoryIfNotExists(string directory);
+    public ResultWithContent<bool> CreateDirectory(string directory);
+
+    public ResultWithContent<bool> DeleteDirectory(string directory);
 }

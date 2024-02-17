@@ -58,9 +58,9 @@ public class ActivityStore : IActivityStore
         return Task.FromResult(_fileStorage.DeleteFile(GetActivityFilePath(activity)));
     }
 
-    public void SetupStore()
+    public Result SetupStore()
     {
-        _fileStorage.CreateDirectoryIfNotExists(ActivityDirectory);
+        return _fileStorage.CreateDirectory(ActivityDirectory);
     }
 
     private string GetActivityStorageDirectoryPath()

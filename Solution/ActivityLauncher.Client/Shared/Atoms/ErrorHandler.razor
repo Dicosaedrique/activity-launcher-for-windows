@@ -14,19 +14,10 @@
 
     private Task HandleApplicationEvent(object sender, ApplicationEvent applicationEvent)
     {
-        if (applicationEvent.Type is ApplicationEventType.ErrorOccurred)
+        if (applicationEvent.Type is ApplicationEventType.ErrorOccurred && applicationEvent.Data is ErrorEventDetails errorEventDetails)
         {
-            try
-            {
-                var details = (ErrorEventDetails)applicationEvent.Data!;
-
-                ApplicationController.NotifyError(details.Title);
-                Logger.LogError(details.Exception, $"{details.Title}. {details.Detail}");
-            }
-            catch(Exception exception)
-            {
-                Logger.LogError(exception, "An error occurred while handling the error notification!");
-            }
+            ApplicationController.NotifyError(errorEventDetails);
+            Logger.LogError(details.Exception, $"{details.Title}. {details.Detail}");
         }
 
         return Task.CompletedTask;

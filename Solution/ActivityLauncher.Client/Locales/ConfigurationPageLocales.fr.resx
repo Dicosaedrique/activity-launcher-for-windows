@@ -123,6 +123,9 @@
   <data name="Errors.InvalidFileStorage" xml:space="preserve">
     <value>Veuillez choisir un dossier existant pour la sauvegarde des données de l'application !</value>
   </data>
+  <data name="Errors.SetupActivitiesStoreFailed" xml:space="preserve">
+    <value>Une erreur est survenue lors de la création du dossier contenant les activités. Il est possible que le dossier de sauvegarde que vous avez choisi ne permette pas la modification de son contenu par l'application. Détails : {0}</value>
+  </data>
   <data name="FileStorage.FolderPicker.Label" xml:space="preserve">
     <value>Choisir un dossier</value>
   </data>

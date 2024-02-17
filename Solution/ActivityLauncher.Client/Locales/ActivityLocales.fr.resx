@@ -468,4 +468,7 @@
   <data name="Activity.Dialog.LaunchAtStartup.Label" xml:space="preserve">
     <value>Lancement au démarrage</value>
   </data>
+  <data name="Notifications.Errors.ManageStartupActivities" xml:space="preserve">
+    <value>Une erreur est survenue lors de la mise en place des scripts permettant le lancement des activités au démarrage de l'ordinateur</value>
+  </data>
 </root>

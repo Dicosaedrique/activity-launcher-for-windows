@@ -90,7 +90,15 @@
 
         if (AppConfiguration.SetFileStorageDirectoryPath(_fileStorageDirectoryPath))
         {
-            ActivityStore.SetupStore();
+            var result = ActivityStore.SetupStore();
+
+            if (result.Failure)
+            {
+                AppConfiguration.Reset();
+                _error = Localize["Errors.SetupActivitiesStoreFailed", result.Exception!.Message];
+                return;
+            }
+
             AppConfiguration.SetLanguage(_language);
             AppConfiguration.SetTheme(_theme);
             Navigation.NavigateTo(Routes.ActivitiesPage, replace: true);

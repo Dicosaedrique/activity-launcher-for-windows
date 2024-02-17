@@ -40,6 +40,7 @@ public static class MauiProgram
         builder.Services.AddTransient<IAppConfiguration, AppConfiguration>();
         builder.Services.AddTransient<IFileStorage, DataFileStore>();
         builder.Services.AddTransient<IActivityStore, ActivityStore>();
+        builder.Services.AddTransient<IActivitiesStartupService, ActivitiesStartupService>();
         builder.Services.AddTransient<IMauiInitializeService, ApplicationInitializeService>();
         builder.Services.AddTransient<IScriptGeneratorService, ScriptGeneratorService>();
         builder.Services.AddTransient<IPowerShellScriptRunner, PowerShellScriptRunner>();

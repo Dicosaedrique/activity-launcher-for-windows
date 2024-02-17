@@ -1,0 +1,22 @@
+﻿@inject IStringLocalizer<CommonLocales> Localize
+
+<MudDialog>
+    <DialogContent>
+        <MudText Class="mb-2" Color="Color.Error" Typo="Typo.body1"><b>@(Exception.GetType().Name)</b></MudText>
+        <MudText Class="mb-4" Typo="Typo.body1" Color="Color.Error">@(Exception.Message)</MudText>
+        <MudText Typo="Typo.body2" Color="Color.Error">@(Exception.ToString())</MudText>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Color="Color.Primary" OnClick="Close">@Localize["ErrorDetailsDialog.CloseButton"]</MudButton>
+    </DialogActions>
+</MudDialog>
+
+    @code {
+    [CascadingParameter]
+    public MudDialogInstance MudDialog { get; set; } = null!;
+
+    [Parameter]
+    public Exception Exception { get; set; } = null!;
+
+    private void Close() => MudDialog.Close();
+}

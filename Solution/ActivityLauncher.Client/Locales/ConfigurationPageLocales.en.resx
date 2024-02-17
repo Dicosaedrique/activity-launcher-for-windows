@@ -123,6 +123,9 @@
   <data name="Errors.InvalidFileStorage" xml:space="preserve">
     <value>Please choose an existing folder for this applications data!</value>
   </data>
+  <data name="Errors.SetupActivitiesStoreFailed" xml:space="preserve">
+    <value>An error occurred while creating the folder containing the activities. It is possible that the data folder you have chosen does not allow its contents to be modified by the application.. Details: {0}</value>
+  </data>
   <data name="FileStorage.FolderPicker.Label" xml:space="preserve">
     <value>Select a folder</value>
   </data>

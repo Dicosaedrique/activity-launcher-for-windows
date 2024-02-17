@@ -468,4 +468,7 @@
   <data name="Activity.Dialog.LaunchAtStartup.Label" xml:space="preserve">
     <value>Launch at startup</value>
   </data>
+  <data name="Notifications.Errors.ManageStartupActivities" xml:space="preserve">
+    <value>An error occurred while setting up the scripts allowing activities to be launched when the computer starts up</value>
+  </data>
 </root>

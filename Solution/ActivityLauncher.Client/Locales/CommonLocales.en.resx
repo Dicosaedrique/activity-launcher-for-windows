@@ -144,4 +144,10 @@
   <data name="Navigation.About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="NotifyError.DetailsButtonLabel" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="ErrorDetailsDialog.CloseButton" xml:space="preserve">
+    <value>Close</value>
+  </data>
 </root>

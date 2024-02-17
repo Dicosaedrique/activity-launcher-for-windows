@@ -1,5 +1,7 @@
 ﻿using ActivityLauncher.Client.Common.Events;
 using ActivityLauncher.Client.Locales;
+using ActivityLauncher.Client.Pages.Activities.Organisms;
+using ActivityLauncher.Client.Shared.Organisms;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using MudBlazor;
@@ -37,9 +39,9 @@ public class ApplicationController
         await _eventManager.PublishError(this, details);
     }
 
-    public void Notify(string title, Severity severity = Severity.Normal)
+    public void Notify(string title, Severity severity = Severity.Normal, Action<SnackbarOptions>? configure = null)
     {
-        _notificationService.Add(title, severity);
+        _notificationService.Add(title, severity, configure);
     }
 
     public void NotifySuccess(string title)
@@ -50,5 +52,33 @@ public class ApplicationController
     public void NotifyError(string title)
     {
         Notify(title, Severity.Error);
+    }
+
+    public void NotifyError(ErrorEventDetails errorEventDetails)
+    {
+        if (errorEventDetails.Exception == null)
+        {
+            NotifyError(errorEventDetails.Title);
+        }
+        else
+        {
+            Notify(errorEventDetails.Title, Severity.Error, options =>
+            {
+                options.RequireInteraction = true;
+                options.Action = _commonLocalize["NotifyError.DetailsButtonLabel"];
+                options.ActionColor = MudBlazor.Color.Error;
+                options.Onclick = snackbar =>
+                {
+                    var dialogParameters = new DialogParameters<ErrorDetailsDialog>();
+                    dialogParameters.Add(x => x.Exception, errorEventDetails.Exception);
+
+                    var dialogOptions = new DialogOptions() { CloseButton = true, CloseOnEscapeKey = true };
+
+                    _dialogService.Show<ErrorDetailsDialog>(errorEventDetails.Title, dialogParameters, dialogOptions);
+
+                    return Task.CompletedTask;
+                };
+            });
+        }
     }
 }

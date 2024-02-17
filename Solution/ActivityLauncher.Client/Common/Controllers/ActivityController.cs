@@ -16,16 +16,19 @@ public class ActivityController : ApplicationController, IDisposable
 
     private readonly IActivityStore _store;
 
+    private readonly IActivitiesStartupService _startupService;
+
     private readonly IPowerShellScriptRunner _powerShellScriptRunner;
 
     private readonly IStringLocalizer<ActivityLocales> _localize;
 
     private readonly List<ActivitiesChangedHandler> _activitiesChangedHandlers = new();
 
-    public ActivityController(ApplicationEventManager eventManager, ISnackbar notificationService, IDialogService dialogService, IStringLocalizer<CommonLocales> commonLocalize, ILogger<ApplicationController> logger, IActivityStore store, IPowerShellScriptRunner powerShellScriptRunner, IStringLocalizer<ActivityLocales> localize)
+    public ActivityController(ApplicationEventManager eventManager, ISnackbar notificationService, IDialogService dialogService, IStringLocalizer<CommonLocales> commonLocalize, ILogger<ApplicationController> logger, IActivityStore store, IActivitiesStartupService startupService, IPowerShellScriptRunner powerShellScriptRunner, IStringLocalizer<ActivityLocales> localize)
         : base(eventManager, notificationService, dialogService, commonLocalize, logger)
     {
         _store = store;
+        _startupService = startupService;
         _powerShellScriptRunner = powerShellScriptRunner;
         _localize = localize;
 
@@ -101,6 +104,7 @@ public class ActivityController : ApplicationController, IDisposable
         if (result.Success)
         {
             NotifySuccess(_localize["Notifications.Success.UpdateActivity"]);
+            await ManageStartupActivities();
             await PublishEvent(ApplicationEventType.ActivityUpdated, activity);
             return true;
         }
@@ -108,6 +112,20 @@ public class ActivityController : ApplicationController, IDisposable
         {
             await PublishError(result.Exception!.ToErrorEventDetails(_localize["Notifications.Errors.UpdateActivity"]));
             return false;
+        }
+    }
+
+    private async Task ManageStartupActivities()
+    {
+        var activities = await GetActivities();
+
+        if (activities == null) return;
+
+        var result = await _startupService.UpdateActivitiesStartup(activities);
+        
+        if (result.Failure)
+        {
+            await PublishError(result.Exception!.ToErrorEventDetails(_localize["Notifications.Errors.ManageStartupActivities"]));
         }
     }
 
@@ -138,7 +156,7 @@ public class ActivityController : ApplicationController, IDisposable
 
     public IDialogReference OpenCreateActivityDialog()
     {
-        var options = new DialogOptions() { CloseButton = true, CloseOnEscapeKey = true, FullWidth = true, FullScreen = true };
+        var options = new DialogOptions() { CloseButton = true, CloseOnEscapeKey = false, FullWidth = true, FullScreen = true };
         return _dialogService.Show<ActivityDialogEdit>(_localize["Activity.Dialog.Create.Title"], options);
     }
 
@@ -146,7 +164,7 @@ public class ActivityController : ApplicationController, IDisposable
     {
         var parameters = new DialogParameters<ActivityDialogEdit>();
         parameters.Add(x => x.ActivityToEdit, activity);
-        var options = new DialogOptions() { CloseButton = true, CloseOnEscapeKey = true, FullWidth = true, FullScreen = true };
+        var options = new DialogOptions() { CloseButton = true, CloseOnEscapeKey = false, FullWidth = true, FullScreen = true };
         return _dialogService.Show<ActivityDialogEdit>(_localize["Activity.Dialog.Edit.Title"], parameters, options);
     }
 

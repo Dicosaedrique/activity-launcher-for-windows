@@ -102,13 +102,49 @@ public class DataFileStore : IFileStorage
         return Path.Combine(paths.ToArray());
     }
 
-    public void CreateDirectoryIfNotExists(string directory)
+    public ResultWithContent<bool> CreateDirectory(string directory)
     {
         var path = GetStorageFilePath(directory);
 
-        if (!Directory.Exists(path))
+        var exists = Directory.Exists(path);
+
+        if (!exists)
         {
-            Directory.CreateDirectory(path);
+            try
+            {
+                Directory.CreateDirectory(path);
+                return new ResultWithContent<bool>(true);
+            }
+            catch (Exception exception)
+            {
+                return exception.AsResult<bool>();
+            }
+            
         }
+
+        return new ResultWithContent<bool>(false);
+    }
+
+    public ResultWithContent<bool> DeleteDirectory(string directory)
+    {
+        var path = GetStorageFilePath(directory);
+
+        var exists = Directory.Exists(path);
+
+        if (exists)
+        {
+            try
+            {
+                Directory.Delete(path, true);
+                return new ResultWithContent<bool>(true);
+            }
+            catch (Exception exception)
+            {
+                return exception.AsResult<bool>();
+            }
+
+        }
+
+        return new ResultWithContent<bool>(false);
     }
 }

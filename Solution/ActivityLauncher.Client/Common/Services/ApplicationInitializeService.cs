@@ -22,7 +22,8 @@ public class ApplicationInitializeService : IMauiInitializeService
     {
         if (_appConfiguration.GetFileStorageDirectoryPath() != null)
         {
-            _activityStore.SetupStore();
+            var result = _activityStore.SetupStore();
+            result.Ensure();
         }
     }
 
