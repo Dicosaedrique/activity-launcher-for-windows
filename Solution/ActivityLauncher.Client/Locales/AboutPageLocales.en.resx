@@ -117,41 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Credits.Description" xml:space="preserve">
-    <value>Free open-source application, created and maintained by &lt;a class="mud-link mud-primary-text mud-link-underline-hover" href="https://dicosaedrique.fr"&gt;Dicosaedrique (Antoine Bouabana)&lt;/a&gt;. The source code is available on &lt;a class="mud-link mud-primary-text mud-link-underline-hover" href="https://github.com/Dicosaedrique/activity-launcher-for-windows"&gt;GitHub (activity-launcher-for-windows)&lt;/a&gt;. To report a bug or suggest an improvement, go to the &lt;a class="mud-link mud-primary-text mud-link-underline-hover" href="https://github.com/Dicosaedrique/activity- launcher-for-windows/issues"&gt;GitHub Issues&lt;/a&gt; of the project. Thank you for using this application and do not hesitate to recommend it around you if you find it useful!</value>
+  <data name="About.Description" xml:space="preserve">
+    <value>Free open-source application, created and maintained by &lt;a class="mud-link mud-primary-text mud-link-underline-hover" href="https://dicosaedrique.fr"&gt;Dicosaedrique (Antoine Bouabana)&lt;/a&gt;. The source code is available on &lt;a class="mud-link mud-primary-text mud-link-underline-hover" href="https://github.com/Dicosaedrique/activity-launcher-for-windows"&gt;GitHub (activity-launcher-for-windows)&lt;/a&gt;. To report a bug or suggest an improvement, go to the &lt;a class="mud-link mud-primary-text mud-link-underline-hover" href="https://github.com/Dicosaedrique/activity- launcher-for-windows/issues"&gt;GitHub Issues&lt;/a&gt; of the project. Thank you for using this application and do not hesitate to recommend it around you if you find it useful!&lt;br/&gt;</value>
   </data>
-  <data name="Credits.Title" xml:space="preserve">
+  <data name="About.Title" xml:space="preserve">
     <value>Created by a dev for devs</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Activity Launcher for Windows is the ultimate tool to optimize your computer productivity! Save valuable time by instantly launching preconfigured activities for your work, development, design, and more. Create custom task sets to streamline your workflows and quickly open essential folders, apps, and files with a single click. Whether you are a developer, a creative or simply a user wishing to optimize his time, this free and exclusive application on Windows is made for you!</value>
+    <value>Activity Launcher for Windows is a tool designed for Windows and for developers or advanced users wanting to speed up their workflow and activities on their machine. Create activities in just a few clicks to launch all kinds of tasks quickly or when your machine starts up. A few predefined tasks are available but the application gives you the flexibility to define the tasks you want thanks to the power of PowerShell scripts.</value>
   </data>
-  <data name="SellingPoint.1" xml:space="preserve">
-    <value>&lt;b&gt;Create custom activities:&lt;/b&gt; Group related tasks for specific projects and simplify your daily routine.</value>
+  <data name="Disclaimer.Content" xml:space="preserve">
+    <value>TODO</value>
   </data>
-  <data name="SellingPoint.2" xml:space="preserve">
-    <value>&lt;b&gt;Versatile Tasks:&lt;/b&gt; Open folders, launch apps, access workspaces in Visual Studio Code or Windows Terminal, and more.</value>
+  <data name="Disclaimer.Title" xml:space="preserve">
+    <value>Disclaimers</value>
   </data>
-  <data name="SellingPoint.3" xml:space="preserve">
-    <value>&lt;b&gt;Unlimited flexibility:&lt;/b&gt; Use PowerShell to create custom scripts and perform tasks tailored to your unique needs.</value>
+  <data name="Startup.Setup" xml:space="preserve">
+    <value>Setting up launch at startup</value>
   </data>
-  <data name="SellingPoint.4" xml:space="preserve">
-    <value>&lt;b&gt;Autostart:&lt;/b&gt; Configure activities to run when your computer starts, providing a quick launch to your favorite work environments.</value>
-  </data>
-  <data name="SellingPoint.5" xml:space="preserve">
-    <value>&lt;b&gt;User friendliness first:&lt;/b&gt; The intuitive interface makes using the app as easy as possible, even for beginners.</value>
-  </data>
-  <data name="Target.1.Description" xml:space="preserve">
-    <value>Developers, this application is designed especially for you! Get your projects started in a snap with pre-built activities for major development apps, like Visual Studio Code and Windows Terminal. Improve your workflow by grouping common tasks and creating custom PowerShell scripts for complex processes. Gain efficiency and spend more time creating rather than configuring.</value>
-  </data>
-  <data name="Target.1.Title" xml:space="preserve">
-    <value>For Developers</value>
-  </data>
-  <data name="Target.2.Description" xml:space="preserve">
-    <value>Whether you are a professional, a student or a passionate hobbyist, Activity Launcher for Windows is the perfect tool to improve your productivity. Free yourself from the tedious search for files and applications by grouping everything you need into predefined activities. Enjoy a quick and effortless launch for your daily tasks, whether for work, play or study.</value>
-  </data>
-  <data name="Target.2.Title" xml:space="preserve">
-    <value>Also for all Windows users</value>
+  <data name="Startup.Setup.Instructions" xml:space="preserve">
+    <value>TODO</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>About</value>

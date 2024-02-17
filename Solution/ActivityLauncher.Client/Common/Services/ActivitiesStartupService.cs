@@ -92,7 +92,7 @@ public class ActivitiesStartupService : IActivitiesStartupService
 
         foreach (var activity in activities)
         {
-            builder.AppendLine($"powerShell {GetActivityStartupScriptFilePath(activity)};");
+            builder.AppendLine($"powerShell -windowstyle hidden {GetActivityStartupScriptFilePath(activity)};");
         }
 
         return builder.ToString();

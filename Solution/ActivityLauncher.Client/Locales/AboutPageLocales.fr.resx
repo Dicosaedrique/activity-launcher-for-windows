@@ -117,41 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Credits.Description" xml:space="preserve">
+  <data name="About.Description" xml:space="preserve">
     <value>Application open-source, gratuite, créée et maintenue par &lt;a class="mud-link mud-primary-text mud-link-underline-hover" href="https://dicosaedrique.fr"&gt;Dicosaedrique (Antoine Bouabana)&lt;/a&gt;. Le code source est disponible à sur &lt;a class="mud-link mud-primary-text mud-link-underline-hover" href="https://github.com/Dicosaedrique/activity-launcher-for-windows"&gt;GitHub (activity-launcher-for-windows)&lt;/a&gt;. Pour signaler un bug ou suggérer une amélioration, rendez-vous dans les &lt;a class="mud-link mud-primary-text mud-link-underline-hover" href="https://github.com/Dicosaedrique/activity-launcher-for-windows/issues"&gt;GitHub Issues&lt;/a&gt; du projet. Merci d'utiliser cette application et n'hésitez pas à la recommender autour de vous si vous la trouvez utile !</value>
   </data>
-  <data name="Credits.Title" xml:space="preserve">
+  <data name="About.Title" xml:space="preserve">
     <value>Créer par un dev pour des devs</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Activity Launcher pour Windows est l'outil ultime pour optimiser votre productivité sur ordinateur ! Gagnez un temps précieux en lançant instantanément des activités préconfigurées pour votre travail, développement, design, et bien plus encore. Créez des ensembles de tâches personnalisés pour rationaliser vos flux de travail et ouvrez rapidement des dossiers, des applications et des fichiers essentiels en un seul clic. Que vous soyez un développeur, un créatif ou simplement un utilisateur désireux d'optimiser son temps, cette application gratuite et exclusive sur Windows est faite pour vous !</value>
+    <value>Activity Launcher pour Windows est un outil conçu pour Windows et pour les développeurs ou utilisateurs avancés voulant accélérer leur flux de travail et activités sur leur machine. Créez des activités en quelques clics pour lancer toutes sortes de tâches rapidement ou au démarrage de votre machine. Quelques tâches prédéfinies sont disponibles mais l'application vous laisse la flexibilité de définir les tâches que vous voulez grâce à la puissance des scripts PowerShell.</value>
   </data>
-  <data name="SellingPoint.1" xml:space="preserve">
-    <value>&lt;b&gt;Créez des activités personnalisées :&lt;/b&gt; Regroupez des tâches liées pour des projets spécifiques et simplifiez votre routine quotidienne.</value>
+  <data name="Disclaimer.Content" xml:space="preserve">
+    <value>Cette application ne va créer ou modifier des fichiers que dans le repertoire que vous lui fournissez dans la page de configuration. En revanche, il est de votre responsabilité de vérifier que les scripts que vous ajoutez dans vos activités sont sans risque pour votre machine. Pour que l'application fonctionne, vous devez avoir un version récente de PowerShell installé sur votre machine.</value>
   </data>
-  <data name="SellingPoint.2" xml:space="preserve">
-    <value>&lt;b&gt;Tâches polyvalentes :&lt;/b&gt; Ouvrez des dossiers, lancez des applications, accédez à des espaces de travail dans Visual Studio Code ou Windows Terminal, et bien plus encore.</value>
+  <data name="Disclaimer.Title" xml:space="preserve">
+    <value>Avertissements</value>
   </data>
-  <data name="SellingPoint.3" xml:space="preserve">
-    <value>&lt;b&gt;Flexibilité sans limites :&lt;/b&gt; Utilisez PowerShell pour créer des scripts personnalisés et exécuter des tâches adaptées à vos besoins uniques.</value>
+  <data name="Startup.Setup" xml:space="preserve">
+    <value>Mise en place du lancement au démarrage</value>
   </data>
-  <data name="SellingPoint.4" xml:space="preserve">
-    <value>&lt;b&gt;Démarrage automatique :&lt;/b&gt; Configurez des activités pour s'exécuter au démarrage de votre ordinateur, offrant ainsi un lancement rapide de vos environnements de travail préférés.</value>
-  </data>
-  <data name="SellingPoint.5" xml:space="preserve">
-    <value>&lt;b&gt;Convivialité avant tout :&lt;/b&gt; L'interface intuitive rend l'utilisation de l'application aussi simple que possible, même pour les débutants.</value>
-  </data>
-  <data name="Target.1.Description" xml:space="preserve">
-    <value>Développeurs, cette application est conçue spécialement pour vous ! Lancez vos projets en un clin d'œil avec des activités prédéfinies pour les principales applications de développement, telles que Visual Studio Code et Windows Terminal. Améliorez votre flux de travail en regroupant des tâches courantes et en créant des scripts PowerShell personnalisés pour des processus complexes. Gagnez en efficacité et consacrez plus de temps à la création plutôt qu'à la configuration.</value>
-  </data>
-  <data name="Target.1.Title" xml:space="preserve">
-    <value>Pour les développeurs</value>
-  </data>
-  <data name="Target.2.Description" xml:space="preserve">
-    <value>Que vous soyez un professionnel, un étudiant ou un amateur passionné, Activity Launcher pour Windows est l'outil idéal pour améliorer votre productivité. Libérez-vous de la recherche fastidieuse de fichiers et d'applications en regroupant tout ce dont vous avez besoin dans des activités prédéfinies. Profitez d'un lancement rapide et sans effort pour vos tâches quotidiennes, que ce soit pour le travail, les loisirs ou les études.</value>
-  </data>
-  <data name="Target.2.Title" xml:space="preserve">
-    <value>Mais aussi pour tous les utilisateurs Windows</value>
+  <data name="Startup.Setup.Instructions" xml:space="preserve">
+    <value>TODO</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>À propos</value>

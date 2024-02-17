@@ -298,13 +298,13 @@
     <value>PowerShell Script</value>
   </data>
   <data name="Task.Dialog.TerminalTask.HelperTooltip" xml:space="preserve">
-    <value>This tasks allows you to open one or more tab in Windows Terminal. For each tab you can choose the title and the color of the tabs, the default location and the default command to execute in the tab. All the parameters are optionnal if you just wanna open an empty tab.</value>
+    <value>This tasks allows you to open one or more tab in Windows Terminal (Windows Terminal must be installed on your machine for the feature to be available). For each tab you can choose the title and the color of the tabs, the default location and the default command to execute in the tab. All the parameters are optionnal if you just wanna open an empty tab.</value>
   </data>
   <data name="Task.TerminalTask.Title" xml:space="preserve">
     <value>Windows Terminal</value>
   </data>
   <data name="Task.Dialog.VSCodeTask.HelperTooltip" xml:space="preserve">
-    <value>This task allows you to open a workspace directory in Visual Studio Code.</value>
+    <value>This task allows you to open a workspace directory in Visual Studio Code (Visual Studio Code must be installed on your machine for the feature to be available).</value>
   </data>
   <data name="Task.VSCodeTask.Title" xml:space="preserve">
     <value>Visual Studio Code</value>
