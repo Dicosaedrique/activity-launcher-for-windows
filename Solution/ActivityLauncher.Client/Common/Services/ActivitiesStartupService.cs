@@ -1,57 +1,76 @@
 ﻿using System.Text;
+using ActivityLauncher.Client.Locales;
 using ActivityLauncher.Domain.Common.Utils;
 using ActivityLauncher.Domain.Model;
 using ActivityLauncher.Domain.Services.Declarations;
+using Microsoft.Extensions.Localization;
 
 namespace ActivityLauncher.Client.Common.Services;
 
 public class ActivitiesStartupService : IActivitiesStartupService
 {
     private const string StartupDirectory = "Startup";
-    private const string StartupFileName = "ActivityLauncherForWindows_StartupScriptFile.ps1";
+    private const string StartupScriptFileName = "Startup.ps1";
+    private const string StartupDemoFileName = "ActivityLauncherForWindowsStartup.cmd";
 
     private readonly IFileStorage _fileStorage;
 
     private readonly IScriptGeneratorService _scriptGenerator;
 
-    public ActivitiesStartupService(IFileStorage fileStorage, IScriptGeneratorService scriptGenerator)
+    private readonly IStringLocalizer<CommonLocales> _localize;
+
+    public ActivitiesStartupService(IFileStorage fileStorage, IScriptGeneratorService scriptGenerator, IStringLocalizer<CommonLocales> localize)
     {
         _fileStorage = fileStorage;
         _scriptGenerator = scriptGenerator;
+        _localize = localize;
     }
 
     public string GetStartupScriptFilePath()
     {
-        return Path.Combine(GetStartupStorageDirectoryPath(), StartupFileName);
+        return Path.Combine(GetStartupStorageDirectoryPath(), StartupScriptFileName);
     }
 
-    public async Task<Result> UpdateActivitiesStartup(IEnumerable<Activity> activities)
+    public Result UpdateActivitiesStartup(IEnumerable<Activity> activities)
     {
         var result = ResetStartupDirectory();
         if (result.Failure) return result;
-
-        var tasks = new List<Task>();
 
         var activitiesAtStartup = activities.Where(x => x.LaunchAtStartup);
 
         if (!activitiesAtStartup.Any()) return Result.SuccessResult;
 
+        var results = new List<Result>();
+
         foreach (var activity in activitiesAtStartup)
         {
-            tasks.Add(_fileStorage.WriteTextToFileAsync(GetActivityStartupScriptFilePath(activity), _scriptGenerator.GetScript(activity)));
+            results.Add(_fileStorage.WriteTextToFile(GetActivityStartupScriptFilePath(activity), _scriptGenerator.GetScript(activity)));
         }
 
-        tasks.Add(_fileStorage.WriteTextToFileAsync(GetStartupScriptFilePath(), GetStartupScriptFileContent(activitiesAtStartup)));
+        results.Add(_fileStorage.WriteTextToFile(GetStartupScriptFilePath(), GetStartupScriptFileContent(activitiesAtStartup)));
 
-        try
+        if (results.All(x => x.Success))
         {
-            await Task.WhenAll(tasks);
             return Result.SuccessResult;
         }
-        catch (Exception exception)
+        else
         {
-            return exception.AsResult();
+            return new AggregateException(results.Where(x => x.Failure).Select(x => x.Exception!)).AsResult();
         }
+    }
+
+    public Result CreateStartupFileDemo()
+    {
+        var builder = new StringBuilder();
+
+        var startupScriptFilePath = GetStartupScriptFilePath();
+
+        builder.AppendLine($":: {_localize["StartupFile.FileDescription"]}\n");
+        builder.AppendLine($":: {_localize["StartupFile.HelperText", "C:\\Users\\{YOUR_USER}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"]}\n");
+        builder.Append($":: {FileSystem.Current.AppDataDirectory}\n"); // temp
+        builder.AppendLine($"IF EXIST {startupScriptFilePath} powerShell -windowstyle hidden {startupScriptFilePath}");
+
+        return _fileStorage.WriteTextToFile(Path.Combine(GetStartupStorageDirectoryPath(), StartupDemoFileName), builder.ToString());
     }
 
     private Result ResetStartupDirectory()
@@ -68,6 +87,9 @@ public class ActivitiesStartupService : IActivitiesStartupService
     private string GetStartupScriptFileContent(IEnumerable<Activity> activities)
     {
         var builder = new StringBuilder();
+
+        builder.AppendLine($"# {_localize["StartupScriptFile.FileDescription"]}");
+        builder.AppendLine($"# {_localize["StartupScriptFile.HelpText"]}\n");
 
         foreach (var activity in activities)
         {

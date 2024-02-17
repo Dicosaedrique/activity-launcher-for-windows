@@ -153,4 +153,17 @@
   <data name="NotifyError.DialogTitle" xml:space="preserve">
     <value>Error details</value>
   </data>
+  <data name="StartupFile.FileDescription" xml:space="preserve">
+    <value>This script executes the Startup powershell script of the Activity Launcher For Windows application if it exists</value>
+  </data>
+  <data name="StartupFile.HelperText" xml:space="preserve">
+    <value>This file must be placed in the "{0}" folder to run when Windows launches
+​</value>
+  </data>
+  <data name="StartupScriptFile.FileDescription" xml:space="preserve">
+    <value>This script takes care of executing your activity scripts when Windows starts</value>
+  </data>
+  <data name="StartupScriptFile.HelpText" xml:space="preserve">
+    <value>To ensure that the launch of activities at startup is functional, don't forget to follow the procedure detailed in the "About" page of Activity Launcher For Windows app</value>
+  </data>
 </root>

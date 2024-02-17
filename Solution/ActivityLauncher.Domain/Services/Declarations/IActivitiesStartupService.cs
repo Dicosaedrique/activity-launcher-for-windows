@@ -5,7 +5,9 @@ namespace ActivityLauncher.Domain.Services.Declarations;
 
 public interface IActivitiesStartupService
 {
-    public Task<Result> UpdateActivitiesStartup(IEnumerable<Activity> activities);
+    public Result UpdateActivitiesStartup(IEnumerable<Activity> activities);
 
     public string GetStartupScriptFilePath();
+
+    public Result CreateStartupFileDemo();
 }

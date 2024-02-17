@@ -6,6 +6,7 @@
 @implements IAsyncDisposable
 
 @inject IActivityStore ActivityStore
+@inject IActivitiesStartupService StartupService
 @inject IAppConfiguration AppConfiguration
 @inject NavigationManager Navigation
 @inject IStringLocalizer<ConfigurationPageLocales> Localize
@@ -81,7 +82,7 @@
         await ThemeSettingValueHolder.SetValue(new ThemeSettings(ThemeSettingValueHolder.Value.Theme, _theme == Theme.Dark));
     }
 
-    private void Save()
+    private async Task Save()
     {
         if (string.IsNullOrWhiteSpace(_fileStorageDirectoryPath))
         {
@@ -90,18 +91,26 @@
 
         if (AppConfiguration.SetFileStorageDirectoryPath(_fileStorageDirectoryPath))
         {
-            var result = ActivityStore.SetupStore();
+            var success = true;
 
-            if (result.Failure)
+            var setupStoreresult = ActivityStore.SetupStore();
+            if (setupStoreresult.Failure) success = false;
+
+            var createStartupFileresult = StartupService.CreateStartupFileDemo();
+            if (createStartupFileresult.Failure) success = false;
+
+            if (success)
+            {
+                AppConfiguration.SetLanguage(_language);
+                AppConfiguration.SetTheme(_theme);
+                Navigation.NavigateTo(Routes.ActivitiesPage, replace: true);
+            }
+            else
             {
                 AppConfiguration.Reset();
                 _error = Localize["Errors.SetupActivitiesStoreFailed", result.Exception!.Message];
                 return;
             }
-
-            AppConfiguration.SetLanguage(_language);
-            AppConfiguration.SetTheme(_theme);
-            Navigation.NavigateTo(Routes.ActivitiesPage, replace: true);
         }
         else
         {

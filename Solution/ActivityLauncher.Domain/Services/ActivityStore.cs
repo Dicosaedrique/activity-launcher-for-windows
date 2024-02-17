@@ -15,14 +15,14 @@ public class ActivityStore : IActivityStore
         _fileStorage = fileStorage;
     }
 
-    public async Task<ResultWithContent<IEnumerable<Activity>>> GetAllAsync()
+    public ResultWithContent<IEnumerable<Activity>> GetAll()
     {
         var errors = new List<Exception>();
         var activities = new List<Activity>();
 
         foreach (var activityFilePath in GetActivityFilePaths())
         {
-            var result = await _fileStorage.ReadFileAsync<Activity>(activityFilePath);
+            var result = _fileStorage.ReadFile<Activity>(activityFilePath);
 
             if (result.Success)
             {
@@ -43,19 +43,19 @@ public class ActivityStore : IActivityStore
 
     }
 
-    public Task<ResultWithContent<Activity>> GetByIdAsync(Guid id)
+    public ResultWithContent<Activity> GetById(Guid id)
     {
-        return _fileStorage.ReadFileAsync<Activity>(GetActivityFilePathById(id));
+        return _fileStorage.ReadFile<Activity>(GetActivityFilePathById(id));
     }
 
-    public Task<Result> AddOrUpdateAsync(Activity activity)
+    public Result AddOrUpdate(Activity activity)
     {
-        return _fileStorage.WriteFileAsync(GetActivityFilePath(activity), activity);
+        return _fileStorage.WriteFile(GetActivityFilePath(activity), activity);
     }
 
-    public Task<Result> DeleteAsync(Activity activity)
+    public Result Delete(Activity activity)
     {
-        return Task.FromResult(_fileStorage.DeleteFile(GetActivityFilePath(activity)));
+        return _fileStorage.DeleteFile(GetActivityFilePath(activity));
     }
 
     public Result SetupStore()

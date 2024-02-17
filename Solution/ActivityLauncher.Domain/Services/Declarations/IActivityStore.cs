@@ -5,13 +5,13 @@ namespace ActivityLauncher.Domain.Services.Declarations;
 
 public interface IActivityStore
 {
-    public Task<ResultWithContent<IEnumerable<Activity>>> GetAllAsync();
+    public ResultWithContent<IEnumerable<Activity>> GetAll();
 
-    public Task<ResultWithContent<Activity>> GetByIdAsync(Guid id);
+    public ResultWithContent<Activity> GetById(Guid id);
 
-    public Task<Result> AddOrUpdateAsync(Activity activity);
+    public Result AddOrUpdate(Activity activity);
 
-    public Task<Result> DeleteAsync(Activity activity);
+    public Result Delete(Activity activity);
 
     public Result SetupStore();
 }

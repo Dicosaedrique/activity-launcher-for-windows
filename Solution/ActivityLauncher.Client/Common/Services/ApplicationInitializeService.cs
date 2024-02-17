@@ -8,22 +8,27 @@ public class ApplicationInitializeService : IMauiInitializeService
 {
     private IAppConfiguration _appConfiguration = null!;
     private IActivityStore _activityStore = null!;
+    private IActivitiesStartupService _startupService = null!;
 
     public void Initialize(IServiceProvider services)
     {
         _appConfiguration = services.GetRequiredService<IAppConfiguration>();
         _activityStore = services.GetRequiredService<IActivityStore>();
+        _startupService = services.GetRequiredService<IActivitiesStartupService>();
 
-        SetupStores();
+        SetupData();
         SetupApplicationLanguage();
     }
 
-    private void SetupStores()
+    private void SetupData()
     {
         if (_appConfiguration.GetFileStorageDirectoryPath() != null)
         {
-            var result = _activityStore.SetupStore();
-            result.Ensure();
+            var setupStoreresult = _activityStore.SetupStore();
+            setupStoreresult.Ensure();
+
+            var createStartupFileresult = _startupService.CreateStartupFileDemo();
+            createStartupFileresult.Ensure();
         }
     }
 

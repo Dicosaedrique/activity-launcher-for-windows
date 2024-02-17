@@ -37,7 +37,7 @@ public class ActivityController : ApplicationController, IDisposable
 
     public async Task<IEnumerable<Activity>?> GetActivities()
     {
-        var result = await _store.GetAllAsync();
+        var result = _store.GetAll();
 
         if (result.Success)
         {
@@ -55,7 +55,7 @@ public class ActivityController : ApplicationController, IDisposable
         activity.CreationDate = DateTime.Now;
         activity.LastModifiedDate = activity.CreationDate;
 
-        var result = await _store.AddOrUpdateAsync(activity);
+        var result = _store.AddOrUpdate(activity);
 
         if (result.Success)
         {
@@ -80,7 +80,7 @@ public class ActivityController : ApplicationController, IDisposable
         duplicatedActivity.CreationDate = DateTime.Now;
         duplicatedActivity.LastModifiedDate = duplicatedActivity.CreationDate;
 
-        var result = await _store.AddOrUpdateAsync(duplicatedActivity);
+        var result = _store.AddOrUpdate(duplicatedActivity);
 
         if (result.Success)
         {
@@ -99,7 +99,7 @@ public class ActivityController : ApplicationController, IDisposable
     {
         activity.LastModifiedDate = DateTime.Now;
 
-        var result = await _store.AddOrUpdateAsync(activity);
+        var result = _store.AddOrUpdate(activity);
 
         if (result.Success)
         {
@@ -121,7 +121,7 @@ public class ActivityController : ApplicationController, IDisposable
 
         if (activities == null) return;
 
-        var result = await _startupService.UpdateActivitiesStartup(activities);
+        var result = _startupService.UpdateActivitiesStartup(activities);
         
         if (result.Failure)
         {
@@ -131,7 +131,7 @@ public class ActivityController : ApplicationController, IDisposable
 
     public async Task<bool> DeleteActivity(Activity activity)
     {
-        var result = await _store.DeleteAsync(activity);
+        var result = _store.Delete(activity);
 
         if (result.Success)
         {

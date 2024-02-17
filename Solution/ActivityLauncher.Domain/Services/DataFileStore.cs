@@ -13,11 +13,11 @@ public class DataFileStore : IFileStorage
         _configuration = configuration;
     }
 
-    public async Task<ResultWithContent<string>> ReadFileTextAsync(string filePath)
+    public ResultWithContent<string> ReadFileText(string filePath)
     {
         try
         {
-            return new ResultWithContent<string>(await File.ReadAllTextAsync(filePath));
+            return new ResultWithContent<string>(File.ReadAllText(filePath));
         }
         catch (Exception exception)
         {
@@ -26,11 +26,11 @@ public class DataFileStore : IFileStorage
         }
     }
 
-    public async Task<ResultWithContent<TResult>> ReadFileAsync<TResult>(string filePath)
+    public ResultWithContent<TResult> ReadFile<TResult>(string filePath)
     {
         try
         {
-            var result = await ReadFileTextAsync(filePath);
+            var result = ReadFileText(filePath);
 
             if (result.Success)
             {
@@ -48,11 +48,11 @@ public class DataFileStore : IFileStorage
         }
     }
 
-    public async Task<Result> WriteTextToFileAsync(string filePath, string content)
+    public Result WriteTextToFile(string filePath, string content)
     {
         try
         {
-            await File.WriteAllTextAsync(filePath, content);
+            File.WriteAllText(filePath, content);
             return Result.SuccessResult;
         }
         catch (Exception exception)
@@ -62,11 +62,11 @@ public class DataFileStore : IFileStorage
         }
     }
 
-    public async Task<Result> WriteFileAsync(string filePath, object content)
+    public Result WriteFile(string filePath, object content)
     {
         try
         {
-            return await WriteTextToFileAsync(filePath, JsonConvert.SerializeObject(content, Formatting.Indented));
+            return WriteTextToFile(filePath, JsonConvert.SerializeObject(content, Formatting.Indented));
         }
         catch (Exception exception)
         {
