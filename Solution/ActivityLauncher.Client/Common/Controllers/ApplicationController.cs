@@ -1,6 +1,5 @@
 ﻿using ActivityLauncher.Client.Common.Events;
 using ActivityLauncher.Client.Locales;
-using ActivityLauncher.Client.Pages.Activities.Organisms;
 using ActivityLauncher.Client.Shared.Organisms;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;

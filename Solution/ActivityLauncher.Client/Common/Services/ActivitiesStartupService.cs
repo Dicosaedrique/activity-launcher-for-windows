@@ -65,12 +65,11 @@ public class ActivitiesStartupService : IActivitiesStartupService
 
         var startupScriptFilePath = GetStartupScriptFilePath();
 
-        builder.AppendLine($":: {_localize["StartupFile.FileDescription"]}\n");
+        builder.AppendLine($":: {_localize["StartupFile.FileDescription"]}");
         builder.AppendLine($":: {_localize["StartupFile.HelperText", "C:\\Users\\{YOUR_USER}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"]}\n");
-        builder.Append($":: {FileSystem.Current.AppDataDirectory}\n"); // temp
         builder.AppendLine($"IF EXIST {startupScriptFilePath} powerShell -windowstyle hidden {startupScriptFilePath}");
 
-        return _fileStorage.WriteTextToFile(Path.Combine(GetStartupStorageDirectoryPath(), StartupDemoFileName), builder.ToString());
+        return _fileStorage.WriteTextToFile(Path.Combine(_fileStorage.GetStorageFilePath(StartupDemoFileName)), builder.ToString());
     }
 
     private Result ResetStartupDirectory()
@@ -93,7 +92,7 @@ public class ActivitiesStartupService : IActivitiesStartupService
 
         foreach (var activity in activities)
         {
-            builder.AppendLine($".\\{GetActivityStartupScriptFileName(activity)};");
+            builder.AppendLine($"powerShell {GetActivityStartupScriptFilePath(activity)};");
         }
 
         return builder.ToString();

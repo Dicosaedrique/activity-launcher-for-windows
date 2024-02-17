@@ -122,7 +122,7 @@ public class ActivityController : ApplicationController, IDisposable
         if (activities == null) return;
 
         var result = _startupService.UpdateActivitiesStartup(activities);
-        
+
         if (result.Failure)
         {
             await PublishError(result.Exception!.ToErrorEventDetails(_localize["Notifications.Errors.ManageStartupActivities"]));

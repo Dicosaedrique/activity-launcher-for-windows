@@ -119,7 +119,7 @@ public class DataFileStore : IFileStorage
             {
                 return exception.AsResult<bool>();
             }
-            
+
         }
 
         return new ResultWithContent<bool>(false);
