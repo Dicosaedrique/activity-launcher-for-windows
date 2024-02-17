@@ -70,11 +70,12 @@ public class ApplicationController
                 options.Onclick = snackbar =>
                 {
                     var dialogParameters = new DialogParameters<ErrorDetailsDialog>();
+                    dialogParameters.Add(x => x.Message, errorEventDetails.Title);
                     dialogParameters.Add(x => x.Exception, errorEventDetails.Exception);
 
                     var dialogOptions = new DialogOptions() { CloseButton = true, CloseOnEscapeKey = true };
 
-                    _dialogService.Show<ErrorDetailsDialog>(errorEventDetails.Title, dialogParameters, dialogOptions);
+                    _dialogService.Show<ErrorDetailsDialog>(_commonLocalize["NotifyError.DialogTitle"], dialogParameters, dialogOptions);
 
                     return Task.CompletedTask;
                 };

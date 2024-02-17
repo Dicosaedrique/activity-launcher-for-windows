@@ -150,4 +150,7 @@
   <data name="ErrorDetailsDialog.CloseButton" xml:space="preserve">
     <value>Fermer</value>
   </data>
+  <data name="NotifyError.DialogTitle" xml:space="preserve">
+    <value>Détails de l'erreur</value>
+  </data>
 </root>

@@ -46,7 +46,7 @@ public class ActivitiesStartupService : IActivitiesStartupService
         try
         {
             await Task.WhenAll(tasks);
-            return new NotImplementedException().AsResult();
+            return Result.SuccessResult;
         }
         catch (Exception exception)
         {

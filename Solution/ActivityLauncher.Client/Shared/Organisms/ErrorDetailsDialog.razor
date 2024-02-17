@@ -2,9 +2,9 @@
 
 <MudDialog>
     <DialogContent>
-        <MudText Class="mb-2" Color="Color.Error" Typo="Typo.body1"><b>@(Exception.GetType().Name)</b></MudText>
-        <MudText Class="mb-4" Typo="Typo.body1" Color="Color.Error">@(Exception.Message)</MudText>
-        <MudText Typo="Typo.body2" Color="Color.Error">@(Exception.ToString())</MudText>
+        <MudText Class="mb-2" Color="Color.Error" Typo="Typo.body1"><b>@Message</b></MudText>
+        <MudText Class="mb-6" Color="Color.Error" Typo="Typo.body1"><b>[@(Exception.GetType().Name)]</b> @(Exception.Message)</MudText>
+        <MudText Color="Color.Error" Typo="Typo.body2">@(Exception.ToString())</MudText>
     </DialogContent>
     <DialogActions>
         <MudButton Color="Color.Primary" OnClick="Close">@Localize["ErrorDetailsDialog.CloseButton"]</MudButton>
@@ -14,6 +14,9 @@
     @code {
     [CascadingParameter]
     public MudDialogInstance MudDialog { get; set; } = null!;
+
+    [Parameter]
+    public string Message { get; set; } = string.Empty;
 
     [Parameter]
     public Exception Exception { get; set; } = null!;
