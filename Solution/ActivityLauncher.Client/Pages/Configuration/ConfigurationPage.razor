@@ -94,23 +94,26 @@
             var success = true;
 
             var setupStoreresult = ActivityStore.SetupStore();
-            if (setupStoreresult.Failure) success = false;
 
-            var createStartupFileresult = StartupService.CreateStartupFileDemo();
-            if (createStartupFileresult.Failure) success = false;
-
-            if (success)
-            {
-                AppConfiguration.SetLanguage(_language);
-                AppConfiguration.SetTheme(_theme);
-                Navigation.NavigateTo(Routes.ActivitiesPage, replace: true);
-            }
-            else
+            if (setupStoreresult.Failure)
             {
                 AppConfiguration.Reset();
-                _error = Localize["Errors.SetupActivitiesStoreFailed", result.Exception!.Message];
+                _error = Localize["Errors.SetupActivitiesStoreFailed", setupStoreresult.Exception!.Message];
                 return;
             }
+
+            var createStartupFileresult = StartupService.CreateStartupFileDemo();
+
+            if (createStartupFileresult.Failure)
+            {
+                AppConfiguration.Reset();
+                _error = Localize["Errors.CreateStartupFileDemoFailed", createStartupFileresult.Exception!.Message];
+                return;
+            }
+
+            AppConfiguration.SetLanguage(_language);
+            AppConfiguration.SetTheme(_theme);
+            Navigation.NavigateTo(Routes.ActivitiesPage, replace: true);
         }
         else
         {
