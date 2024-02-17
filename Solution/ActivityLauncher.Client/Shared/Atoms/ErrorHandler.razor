@@ -17,7 +17,7 @@
         if (applicationEvent.Type is ApplicationEventType.ErrorOccurred && applicationEvent.Data is ErrorEventDetails errorEventDetails)
         {
             ApplicationController.NotifyError(errorEventDetails);
-            Logger.LogError(details.Exception, $"{details.Title}. {details.Detail}");
+            Logger.LogError(errorEventDetails.Exception, $"{errorEventDetails.Title}. {errorEventDetails.Detail}");
         }
 
         return Task.CompletedTask;
