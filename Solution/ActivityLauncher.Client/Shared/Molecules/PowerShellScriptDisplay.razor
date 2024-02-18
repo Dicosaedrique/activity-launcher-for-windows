@@ -1,0 +1,28 @@
+﻿@inject HighlighterService HighlighterService
+
+<div class="@Class">@_displayableScript</div>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = string.Empty;
+
+    [Parameter]
+    public Activity? Activity { get; set; } = null;
+
+    [Parameter]
+    public string Script { get; set; } = string.Empty;
+
+    [Parameter]
+    public bool Highlight { get; set; } = true;
+
+    [Parameter]
+    public bool StartChevron { get; set; } = true;
+
+    private MarkupString _displayableScript;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Activity != null) _displayableScript = await HighlighterService.GetDisplayableScriptAsync(Activity, Highlight, StartChevron);
+        else _displayableScript = await HighlighterService.GetDisplayableScriptAsync(Script, Highlight, StartChevron);
+    }
+}

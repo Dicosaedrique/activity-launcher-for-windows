@@ -1,0 +1,63 @@
+﻿@using ActivityLauncher.Domain.Common.Utils;
+@using CommunityToolkit.Maui.Storage;
+
+@inject IStringLocalizer<CommonLocales> Localize
+
+<div>
+    <MudStack Class="mb-1">
+        <div>
+            <MudButton Disabled="Disabled" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.FileOpen" Color="Color.Primary" Size="Size.Small" OnClick="PickFile">@Label</MudButton>
+        </div>
+        @if (!string.IsNullOrWhiteSpace(FilePath))
+        {
+            <MudStack Row Spacing="2" AlignItems="AlignItems.Center">
+                <code style="font-size: 1rem; overflow-wrap: anywhere;">@FilePath</code>
+                @if (Clearable)
+                {
+                    <MudIconButton Icon="@Icons.Material.Filled.Close" Size="Size.Small" OnClick="Clear" />
+                }
+            </MudStack>
+        }
+    </MudStack>
+    <ErrorText Error="@_error" />
+</div>
+
+@code {
+    [Parameter]
+    public string Label { get; set; } = string.Empty;
+
+    [Parameter]
+    public string? FilePath { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> FilePathChanged { get; set; }
+
+    [Parameter]
+    public bool Disabled { get; set; } = false;
+
+    [Parameter]
+    public bool Clearable { get; set; } = false;
+
+    private string? _error;
+
+    private async Task PickFile()
+    {
+        var result = await FilePicker.PickAsync();
+
+        if (result != null && ValidationHelper.IsValidFile(result.FullPath))
+        {
+            _error = null;
+            FilePath = result.FullPath;
+            await FilePathChanged.InvokeAsync(FilePath);
+        }
+    }
+
+    private async Task Clear()
+    {
+        if (Clearable)
+        {
+            FilePath = null;
+            await FilePathChanged.InvokeAsync(null);
+        }
+    }
+}

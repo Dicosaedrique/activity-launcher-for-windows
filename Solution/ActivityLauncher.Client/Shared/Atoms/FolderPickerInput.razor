@@ -1,0 +1,67 @@
+﻿@using ActivityLauncher.Domain.Common.Utils;
+@using CommunityToolkit.Maui.Storage;
+
+@inject IStringLocalizer<CommonLocales> Localize
+
+<div>
+    <MudStack Spacing="1">
+        <div>
+            <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Folder" Color="Color.Primary" Size="Size.Small" OnClick="PickFolder">@Label</MudButton>
+        </div>
+        @if (!string.IsNullOrWhiteSpace(FolderPath))
+        {
+            <MudStack Row Spacing="2" AlignItems="AlignItems.Center">
+                <code style="font-size: 1rem; overflow-wrap: anywhere;">@FolderPath</code>
+                @if (Clearable)
+                {
+                    <MudIconButton Icon="@Icons.Material.Filled.Close" Size="Size.Small" OnClick="Clear" />
+                }
+            </MudStack>
+        }
+    </MudStack>
+    <ErrorText Class="mt-1" Error="@_error" />
+</div>
+
+@code {
+    [Parameter]
+    public string Label { get; set; } = string.Empty;
+
+    [Parameter]
+    public string? FolderPath { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> FolderPathChanged { get; set; }
+
+    [Parameter]
+    public bool Clearable { get; set; } = false;
+
+    private string? _error;
+
+    private async Task PickFolder()
+    {
+        var result = await FolderPicker.PickAsync(CancellationToken.None);
+
+        if (result.IsSuccessful)
+        {
+            if (ValidationHelper.IsValidDirectory(result.Folder.Path))
+            {
+                _error = null;
+                FolderPath = result.Folder.Path;
+                await FolderPathChanged.InvokeAsync(FolderPath);
+            }
+            else
+            {
+                _error = Localize["FolderPickerInput.Error"];
+            }
+        }
+    }
+
+    private async Task Clear()
+    {
+        if (Clearable)
+        {
+            FolderPath = null;
+            await FolderPathChanged.InvokeAsync(null);
+        }
+    }
+}

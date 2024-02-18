@@ -1,6 +1,38 @@
-﻿<Router AppAssembly="@typeof(MauiProgram).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(Components.Layout.MainLayout)" />
-        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
-    </Found>
-</Router>
+﻿@inject IAppConfiguration AppConfiguration
+
+<MudThemeProvider IsDarkMode="_themeSettings.IsDarkMode" Theme="_themeSettings.Theme" />
+
+<GlobalErrorBoundary>
+    <MudDialogProvider />
+    <MudSnackbarProvider />
+    <ErrorHandler />
+
+    <CascadingValue Value="_cascadingThemeSettings">
+        <Router AppAssembly="@typeof(Main).Assembly">
+            <Found Context="routeData">
+                <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+            </Found>
+            <NotFound>
+                <Redirect Url="@Routes.Index" />
+            </NotFound>
+        </Router>
+    </CascadingValue>
+</GlobalErrorBoundary>
+
+@code {
+    private ThemeSettings _themeSettings = null!;
+    private ValueHolder<ThemeSettings> _cascadingThemeSettings = null!;
+
+    protected override void OnInitialized()
+    {
+        _themeSettings = new ThemeSettings(new MudTheme(), AppConfiguration.GetTheme() == Theme.Dark);
+
+        _cascadingThemeSettings = new ValueHolder<ThemeSettings>(_themeSettings, ThemeSettingsChange);
+    }
+
+    private void ThemeSettingsChange(ThemeSettings themeSettings)
+    {
+        _themeSettings = themeSettings;
+        StateHasChanged();
+    }
+}

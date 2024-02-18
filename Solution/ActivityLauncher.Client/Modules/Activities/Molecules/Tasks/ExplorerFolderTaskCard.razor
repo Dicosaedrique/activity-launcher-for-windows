@@ -1,0 +1,49 @@
+﻿@inject ActivityController ActivityController
+@inject IStringLocalizer<ActivityLocales> Localize
+
+<GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" OnChange="OnChange" TaskType="Task.TaskType">
+    <TaskDetailTemplate>
+        @if (EditMode)
+        {
+            <div class="mt-6">
+                <FolderPickerInput Label="@Localize["Task.Dialog.ExplorerFolderTask.DirectoryPath.Label"]" FolderPath="@Task.DirectoryPath" FolderPathChanged="DirectoryPathChanged" />
+            </div>
+        }
+        else
+        {
+            <MudStack Row AlignItems="AlignItems.Center">
+                <MudTooltip Text="@Localize["Task.Dialog.ExplorerFolderTask.DirectoryPath.Label"]">
+                    <MudIcon Icon="@Icons.Material.Filled.Folder" />
+                </MudTooltip>
+                @if (!string.IsNullOrWhiteSpace(Task.DirectoryPath))
+                {
+                    <code style="font-size: 1rem;">@Task.DirectoryPath</code>
+                }
+                else
+                {
+                    <MudText Typo="Typo.body1">@Localize["Task.Dialog.ExplorerFolderTask.DirectoryPath.Empty"]</MudText>
+                }
+            </MudStack>
+        }
+    </TaskDetailTemplate>
+</GenericTaskCard>
+
+@code {
+    [Parameter]
+    public ExplorerFolderTask Task { get; set; } = null!;
+
+    [Parameter]
+    public bool EditMode { get; set; } = false;
+
+    [Parameter]
+    public EventCallback OnChange { get; set; }
+
+    [Parameter]
+    public EventCallback OnRemove { get; set; }
+
+    private async Task DirectoryPathChanged(string? directoryPath)
+    {
+        Task.DirectoryPath = directoryPath ?? string.Empty;
+        await OnChange.InvokeAsync();
+    }
+}

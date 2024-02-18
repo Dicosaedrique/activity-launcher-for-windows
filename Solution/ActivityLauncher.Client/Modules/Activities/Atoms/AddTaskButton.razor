@@ -1,0 +1,55 @@
+﻿@inject IStringLocalizer<ActivityLocales> Localize
+
+<MudMenu Label="@Localize["Activity.Dialog.Tasks.AddTask"]" Variant="Variant.Filled" Color="Color.Primary" AnchorOrigin="Origin.BottomLeft">
+    <MudMenuItem OnClick="() => AddTask(new ExplorerFolderTask())">
+        <MudStack Row AlignItems="AlignItems.Center">
+            <TaskIcon TaskType="TaskType.ExplorerFolderTask" Size="24" />
+            <span>@Localize["Task.ExplorerFolderTask.Title"]</span>
+        </MudStack>
+    </MudMenuItem>
+    <MudMenuItem OnClick="() => AddTask(new ProgramTask())">
+        <MudStack Row AlignItems="AlignItems.Center">
+            <TaskIcon TaskType="TaskType.ProgramTask" Size="24" />
+            <span>@Localize["Task.ProgramTask.Title"]</span>
+        </MudStack>
+    </MudMenuItem>
+    <MudMenuItem OnClick="() => AddTask(new ScriptTask())">
+        <MudStack Row AlignItems="AlignItems.Center">
+            <TaskIcon TaskType="TaskType.ScriptTask" Size="24" />
+            <span>@Localize["Task.ScriptTask.Title"]</span>
+        </MudStack>
+    </MudMenuItem>
+    <MudMenuItem OnClick="() => AddTask(new TerminalTask())">
+        <MudStack Row AlignItems="AlignItems.Center">
+            <TaskIcon TaskType="TaskType.TerminalTask" Size="24" />
+            <span>@Localize["Task.TerminalTask.Title"]</span>
+        </MudStack>
+    </MudMenuItem>
+    <MudMenuItem OnClick="() => AddTask(new VSCodeTask())">
+        <MudStack Row AlignItems="AlignItems.Center">
+            <TaskIcon TaskType="TaskType.VSCodeTask" Size="24" />
+            <span>@Localize["Task.VSCodeTask.Title"]</span>
+        </MudStack>
+    </MudMenuItem>
+    <MudMenuItem OnClick="() => AddTask(new OpenFileTask())">
+        <MudStack Row AlignItems="AlignItems.Center">
+            <TaskIcon TaskType="TaskType.OpenFileTask" Size="24" />
+            <span>@Localize["Task.OpenFileTask.Title"]</span>
+        </MudStack>
+    </MudMenuItem>
+</MudMenu>
+
+@code {
+    [Parameter]
+    public Activity Activity { get; set; } = null!;
+
+    [Parameter]
+    public EventCallback OnChange { get; set; }
+
+    private async Task AddTask(ITask task)
+    {
+        task.Name = string.Format(Localize["Task.NewName"], Activity.GetTasks().Count() + 1);
+        Activity.AddTask(task);
+        await OnChange.InvokeAsync();
+    }
+}

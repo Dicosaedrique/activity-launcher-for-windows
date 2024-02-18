@@ -1,0 +1,91 @@
+﻿@inject ActivityController ActivityController
+@inject IStringLocalizer<ActivityLocales> Localize
+
+<MudCard Elevation="4">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudStack Row AlignItems="AlignItems.Center" Spacing="4">
+                <TaskIcon TaskType="TaskType" Size="30" />
+                <MudText Typo="Typo.body1" Style="font-weight: bold;">@DisplayName</MudText>
+                <MudTooltip Arrow ShowOnHover ShowOnClick="false" ShowOnFocus="false" >
+                    <ChildContent>
+                        <MudIconButton Class="pa-0" Icon="@Icons.Material.Filled.HelpOutline" />
+                    </ChildContent>
+                    <TooltipContent>
+                        <div style="max-width: 400px;">
+                            @(new MarkupString(HelperTooltip))
+                        </div>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudStack>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            @{
+                var isTaskValid = Task.IsValid();
+
+                if (!isTaskValid)
+                {
+                    <MudTooltip Text="@InvalidTooltip">
+                        <MudIconButton Icon="@Icons.Material.Filled.ErrorOutline" Color="Color.Error" />
+                    </MudTooltip>
+                }
+                @if (EditMode)
+                {
+                    <MudTooltip Text="@Localize["Task.Dialog.DeleteHelper"]">
+                        <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="OnRemove" />
+                    </MudTooltip>
+                }
+                else if (isTaskValid)
+                {
+                    <MudTooltip Text="@Localize["Task.Dialog.LaunchHelper"]">
+                        <MudIconButton Icon="@Icons.Material.Filled.PlayArrow" Color="Color.Success" OnClick="LaunchTask" />
+                    </MudTooltip>
+                }
+            }
+        </CardHeaderActions>
+    </MudCardHeader>
+    <MudCardContent>
+        @if (EditMode)
+        {
+            <MudTextField T="string" Value="@Task.Name" ValueChanged="NameChanged" Label="@Localize["Task.Dialog.Name.Label"]" Required RequiredError="@Localize["Task.Dialog.Name.RequiredError"]" Variant="Variant.Filled" />
+        }
+        @TaskDetailTemplate
+    </MudCardContent>
+</MudCard>
+
+@code {
+    [Parameter]
+    public ITask Task { get; set; } = null!;
+
+    [Parameter]
+    public bool EditMode { get; set; } = false;
+
+    [Parameter]
+    public TaskType TaskType { get; set; }
+
+    [Parameter]
+    public EventCallback OnChange { get; set; }
+
+    [Parameter]
+    public EventCallback OnRemove { get; set; }
+
+    [Parameter]
+    public RenderFragment TaskDetailTemplate { get; set; } = null!;
+
+    private string DisplayName => string.IsNullOrWhiteSpace(Task.Name) ? Localize["Task.EmptyName"] : Task.Name;
+
+    private string HelperTooltip => Localize[$"Task.Dialog.{TaskType}.HelperTooltip"];
+
+    private string InvalidTooltip => Localize[$"Task.Dialog.{TaskType}.InvalidTooltip"];
+
+    private async Task NameChanged(string name)
+    {
+        Task.Name = name;
+        await OnChange.InvokeAsync();
+    }
+
+    private async Task LaunchTask()
+    {
+        await ActivityController.PromptLaunchTask(Task);
+    }
+}

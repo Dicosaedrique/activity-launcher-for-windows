@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About.Description" xml:space="preserve">
+    <value>Free open-source application, created and maintained by &lt;a class="mud-link mud-primary-text mud-link-underline-hover" href="https://dicosaedrique.fr"&gt;Dicosaedrique (Antoine Bouabana)&lt;/a&gt;. The source code is available on &lt;a class="mud-link mud-primary-text mud-link-underline-hover" href="https://github.com/Dicosaedrique/activity-launcher-for-windows"&gt;GitHub (activity-launcher-for-windows)&lt;/a&gt;. To report a bug or suggest an improvement, go to the &lt;a class="mud-link mud-primary-text mud-link-underline-hover" href="https://github.com/Dicosaedrique/activity- launcher-for-windows/issues"&gt;GitHub Issues&lt;/a&gt; of the project. Thank you for using this application and do not hesitate to recommend it around you if you find it useful!&lt;br/&gt;</value>
+  </data>
+  <data name="About.Title" xml:space="preserve">
+    <value>Created by a dev for devs</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Activity Launcher for Windows is a tool designed for Windows and for developers or advanced users wanting to speed up their workflow and activities on their machine. Create activities in just a few clicks to launch all kinds of tasks quickly or when your machine starts up. A few predefined tasks are available but the application gives you the flexibility to define the tasks you want thanks to the power of PowerShell scripts.</value>
+  </data>
+  <data name="Disclaimer.Content" xml:space="preserve">
+    <value>This application is designed to run create and execute scripts only in the directory specified in the configuration page. However, the user's use of scripts is their own responsibility. We assume no responsibility for any consequences arising from the execution of user-provided scripts. It is recommended that the user exercise caution and diligence when executing any script, and ensure that they fully understand how it works and its implications before running it (you can always check the contents of the generated script before launching it).</value>
+  </data>
+  <data name="Disclaimer.OptionalSoftware" xml:space="preserve">
+    <value>Some preconfigured tasks use applications such as Windows Terminal or Visual Studio Code to work, however, their installation is only required if you want to run those specific tasks.</value>
+  </data>
+  <data name="Disclaimer.Requirements" xml:space="preserve">
+    <value>For the application to work, you must have a recent version of PowerShell installed on your machine (required).</value>
+  </data>
+  <data name="Disclaimer.Title" xml:space="preserve">
+    <value>Disclaimers</value>
+  </data>
+  <data name="Startup.Setup" xml:space="preserve">
+    <value>Setting up launch at startup</value>
+  </data>
+  <data name="Startup.Setup.Instructions" xml:space="preserve">
+    <value>For activities to run at startup, you must make sure the file &lt;i&gt;&lt;b&gt;{0}&lt;/b&gt;&lt;/i&gt; is executed when Windows starts. To do this, you can simply copy/paste the file it into the directory that Windows uses to launch applications at startup (this folder is specific to your user, so replace &lt;i&gt;{{YOUR_USER}}&lt;/i&gt; with your user name), the directory in question should be &lt;i&gt;&lt;b&gt;{1}&lt;/b&gt;&lt;/i&gt;.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>About</value>
+  </data>
+</root>

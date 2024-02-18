@@ -1,0 +1,46 @@
+﻿@inject ActivityController ActivityController
+@inject IStringLocalizer<ActivityLocales> Localize
+
+<GenericTaskCard Task="Task" EditMode="EditMode" OnRemove="OnRemove" OnChange="OnChange" TaskType="Task.TaskType">
+    <TaskDetailTemplate>
+        @if (EditMode)
+        {
+            <div class="mt-6">
+                <MudTextField T="string" Label="@Localize["Task.Dialog.ScriptTask.Script.Label"]" Variant="Variant.Filled" Text="@Task.Script" TextChanged="ScriptChanged" Lines="5" />
+            </div>
+        }
+        else
+        {
+            <MudText Typo="Typo.body1" Class="mb-2" Style="font-weight: bold;">@Localize["Task.Dialog.ScriptTask.Script.Label"]</MudText>
+            @if (!string.IsNullOrWhiteSpace(Task.Script))
+            {
+                <PowerShellScriptDisplay Script="@Task.Script" Highlight StartChevron />
+            }
+            else
+            {
+                <MudText Typo="Typo.body1">@Localize["Task.Dialog.ScriptTask.Script.Empty"]</MudText>
+
+            }
+        }
+    </TaskDetailTemplate>
+</GenericTaskCard>
+
+@code {
+    [Parameter]
+    public ScriptTask Task { get; set; } = null!;
+
+    [Parameter]
+    public bool EditMode { get; set; } = false;
+
+    [Parameter]
+    public EventCallback OnChange { get; set; }
+
+    [Parameter]
+    public EventCallback OnRemove { get; set; }
+
+    private async Task ScriptChanged(string text)
+    {
+        Task.Script = text;
+        await OnChange.InvokeAsync();
+    }
+}

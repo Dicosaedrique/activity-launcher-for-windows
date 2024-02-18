@@ -1,0 +1,92 @@
+﻿@inject IStringLocalizer<ActivityLocales> Localize
+
+@if (EditMode)
+{
+    <MudStack Spacing="6">
+        <MudTextField T="string" Value="@TerminalTab.Title" ValueChanged="TitleChanged" Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.Title.Label"]" Variant="Variant.Filled" Clearable />
+        <FolderPickerInput Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.LocationPath.Label"]" FolderPath="@TerminalTab.LocationPath" FolderPathChanged="LocationPathChanged" Clearable />
+        <MudTextField T="string" Value="TerminalTab.Command" ValueChanged="CommandChanged" Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.Command.Label"]" Variant="Variant.Filled" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Terminal" Clearable />
+        <MudColorPicker Text="@TerminalTab.Color" TextChanged="ColorChanged" DisableDragEffect Style="@TerminalTabColorStyle" Label="@Localize["Task.Dialog.TerminalTask.TerminalTab.Color.Label"]" DisableAlpha DisableModeSwitch Variant="Variant.Filled" ColorPickerMode="ColorPickerMode.HEX" Clearable />
+    </MudStack>
+}
+else
+{
+    <MudStack Spacing="2">
+        <MudStack Row AlignItems="AlignItems.Center">
+            <MudTooltip Text="@Localize["Task.Dialog.TerminalTask.TerminalTab.LocationPath.Label"]">
+                <MudIcon Icon="@Icons.Material.Filled.Folder" />
+            </MudTooltip>
+            @if (!string.IsNullOrWhiteSpace(TerminalTab.LocationPath))
+            {
+                <code style="font-size: 1rem;">@TerminalTab.LocationPath</code>
+            }
+            else
+            {
+                <MudText Typo="Typo.body1">@Localize["Task.Dialog.TerminalTask.TerminalTab.LocationPath.Empty"]</MudText>
+            }
+        </MudStack>
+        <MudStack Row AlignItems="AlignItems.Center">
+            <MudTooltip Text="@Localize["Task.Dialog.TerminalTask.TerminalTab.Command.Label"]">
+                <MudIcon Icon="@Icons.Material.Filled.Terminal" />
+            </MudTooltip>
+            @if (!string.IsNullOrWhiteSpace(TerminalTab.Command))
+            {
+                <code style="font-size: 1rem;">@TerminalTab.Command</code>
+            }
+            else
+            {
+                <MudText Typo="Typo.body1">@Localize["Task.Dialog.TerminalTask.TerminalTab.Command.Empty"]</MudText>
+            }
+        </MudStack>
+        <MudStack Row AlignItems="AlignItems.Center">
+            <MudTooltip Text="@Localize["Task.Dialog.TerminalTask.TerminalTab.Color.Label"]">
+                <MudIcon Icon="@Icons.Material.Filled.ColorLens" />
+            </MudTooltip>
+            @if (!string.IsNullOrWhiteSpace(TerminalTab.Color))
+            {
+                <code style="@($"font-size: 1rem; {TerminalTabColorStyle}")">@TerminalTab.Color</code>
+            }
+            else
+            {
+                <MudText Typo="Typo.body1">@Localize["Task.Dialog.TerminalTask.TerminalTab.Color.Empty"]</MudText>
+            }
+        </MudStack>
+    </MudStack>
+}
+
+@code {
+    [Parameter]
+    public TerminalTab TerminalTab { get; set; } = null!;
+
+    [Parameter]
+    public bool EditMode { get; set; } = false;
+
+    [Parameter]
+    public EventCallback OnChange { get; set; }
+
+    private async Task TitleChanged(string title)
+    {
+        TerminalTab.Title = title;
+        await OnChange.InvokeAsync();
+    }
+
+    private async Task LocationPathChanged(string? folderPath)
+    {
+        TerminalTab.LocationPath = folderPath ?? string.Empty;
+        await OnChange.InvokeAsync();
+    }
+
+    private async Task CommandChanged(string command)
+    {
+        TerminalTab.Command = command;
+        await OnChange.InvokeAsync();
+    }
+
+    private async Task ColorChanged(string color)
+    {
+        TerminalTab.Color = color;
+        await OnChange.InvokeAsync();
+    }
+
+    private string TerminalTabColorStyle => string.IsNullOrWhiteSpace(TerminalTab.Color) ? string.Empty : $"color: {TerminalTab.Color};";
+}

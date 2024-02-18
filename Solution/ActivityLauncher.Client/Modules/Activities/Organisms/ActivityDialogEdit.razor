@@ -1,0 +1,104 @@
+﻿@inject IDialogService DialogService
+@inject ActivityController ActivityController
+@inject IStringLocalizer<ActivityLocales> Localize
+
+<MudDialog DisableSidePadding>
+    <DialogContent>
+        <div style="max-height: calc(100vh - 64px); overflow-y: scroll">
+            <MudContainer Class="mb-16">
+                <MudForm @ref="_form">
+                    <MudStack Spacing="4">
+                        <MudTextField T="string" Style="width: 50%;" @bind-Value="_activity.Name" Label="@Localize["Activity.Dialog.Name.Label"]" Required RequiredError="@Localize["Activity.Dialog.Name.RequiredError"]" Variant="Variant.Filled" />
+                         <MudTextField T="string" @bind-Value="_activity.Description" Label="@Localize["Activity.Dialog.Description.Label"]" Lines="2" Variant="Variant.Filled" AutoGrow />
+                        <MudCheckBox @bind-Checked="_activity.LaunchAtStartup" Color="Color.Primary">@Localize["Activity.Dialog.LaunchAtStartup.Label"]</MudCheckBox>
+                    </MudStack>
+                    <TasksDialogSection Class="my-12" Activity="_activity" EditMode />
+                    <ErrorText Class="mb-6" Error="@ActivityNameError" />
+                    <MudStack Row Justify="Justify.FlexEnd">
+                        <MudButton Variant="Variant.Filled" OnClick="MudDialog.Cancel">@Localize["Activity.Dialog.CancelButton"]</MudButton>
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Submit" Disabled="!ActivityHasName">@SubmitButtonLabel</MudButton>
+                    </MudStack>
+                </MudForm>
+            </MudContainer>
+        </div>
+    </DialogContent>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    public MudDialogInstance MudDialog { get; set; } = null!;
+
+    [Parameter]
+    public Activity? ActivityToEdit { get; set; }
+
+    private bool IsEdit => ActivityToEdit != null;
+
+    private string SubmitButtonLabel => IsEdit ? Localize["Activity.Dialog.Edit.SubmitButton"] : Localize["Activity.Dialog.Create.SubmitButton"];
+
+    private MudForm _form = null!;
+
+    private Activity _activity = new();
+
+    private bool IsFormValid => _form.IsValid && _activity.IsValid;
+
+    private bool ActivityHasName => !string.IsNullOrWhiteSpace(_activity.Name);
+
+    private string? ActivityNameError => ActivityHasName ? null : Localize["Activity.Dialog.ActivityNameError"].Value;
+
+    protected override void OnInitialized()
+    {
+        if (IsEdit)
+        {
+            _activity = ActivityToEdit!.Clone();
+        }
+    }
+
+    private async Task Submit()
+    {
+        await _form.Validate();
+
+        if (!ActivityHasName) return;
+
+        bool ready = IsFormValid;
+
+        if (!ready)
+        {
+            bool? result = await DialogService.ShowMessageBox(
+                Localize["Activity.Dialog.Edit.ConfirmSaveErrors.Title"],
+                Localize["Activity.Dialog.Edit.ConfirmSaveErrors.Message"],
+                yesText: Localize["Activity.Dialog.Edit.ConfirmSaveErrors.ConfirmButton"],
+                cancelText: Localize["Activity.Dialog.Edit.ConfirmSaveErrors.CancelButton"]);
+
+            ready = result.HasValue && result.Value;
+        }
+
+        if (ready)
+        {
+            _activity.Description = string.IsNullOrWhiteSpace(_activity.Description) ? null : _activity.Description;
+
+            if (IsEdit) await Edit();
+            else await Create();
+        }
+    }
+
+    private async Task Create()
+    {
+        var success = await ActivityController.CreateActivity(_activity);
+
+        if (success)
+        {
+            MudDialog.Close(DialogResult.Ok(true));
+        }
+    }
+
+    private async Task Edit()
+    {
+        var success = await ActivityController.UpdateActivity(_activity);
+
+        if (success)
+        {
+            MudDialog.Close(DialogResult.Ok(true));
+            MudDialog.CancelAll();
+        }
+    }
+}

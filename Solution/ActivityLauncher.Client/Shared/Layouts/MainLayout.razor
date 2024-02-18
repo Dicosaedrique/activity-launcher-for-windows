@@ -1,0 +1,16 @@
+﻿@inherits LayoutComponentBase
+
+@inject IAppConfiguration AppConfiguration
+
+<MudLayout>
+    @if (AppConfiguration.IsAppReady())
+    {
+        <MudDrawer Open>
+            <MudText Typo="Typo.h6" Align="Align.Center" Class="mt-4">Activity Launcher</MudText>
+            <NavMenu />
+        </MudDrawer>
+    }
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
