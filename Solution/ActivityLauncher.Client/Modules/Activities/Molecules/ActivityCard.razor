@@ -123,13 +123,6 @@
 
     private async Task ToggleLaunchAtStartup()
     {
-        if (Activity.LaunchAtStartup)
-        {
-            await ActivityController.DisableLaunchAtStartup(Activity);
-        }
-        else
-        {
-            await ActivityController.PromptEnableLaunchAtStartup(Activity);
-        }
+        await ActivityController.SetActivityLaunchAtStartup(Activity, !Activity.LaunchAtStartup);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using ActivityLauncher.Client.Core.Events;
 using ActivityLauncher.Client.Locales;
-using ActivityLauncher.Client.Pages.Activities.Organisms;
+using ActivityLauncher.Client.Modules.Activities.Organisms;
 using ActivityLauncher.Domain.Interfaces;
 using ActivityLauncher.Domain.Model;
 using ActivityLauncher.Domain.Services.Declarations;
@@ -107,7 +107,6 @@ public class ActivityController : ApplicationController, IDisposable
         if (result.Success)
         {
             NotifySuccess(_localize["Notifications.Success.UpdateActivity"]);
-            await ManageStartupActivities();
             await PublishEvent(ApplicationEventType.ActivityUpdated, activity);
             return true;
         }
@@ -257,18 +256,10 @@ public class ActivityController : ApplicationController, IDisposable
         return _dialogService.Show<ActivityScriptDialog>(activity.Name, parameters, options);
     }
 
-    public async Task<bool> DisableLaunchAtStartup(Activity activity)
+    public async Task<bool> SetActivityLaunchAtStartup(Activity activity, bool launchAtStartup)
     {
         var activityToUpdate = activity.Clone();
-        activityToUpdate.LaunchAtStartup = false;
-        return await UpdateActivity(activityToUpdate);
-    }
-
-    public async Task<bool> PromptEnableLaunchAtStartup(Activity activity)
-    {
-        // todo: add a prompt confirmation dialog here
-        var activityToUpdate = activity.Clone();
-        activityToUpdate.LaunchAtStartup = true;
+        activityToUpdate.LaunchAtStartup = launchAtStartup;
         return await UpdateActivity(activityToUpdate);
     }
 
@@ -313,6 +304,7 @@ public class ActivityController : ApplicationController, IDisposable
     {
         if (applicationEvent.Type is ApplicationEventType.ActivityCreated or ApplicationEventType.ActivityUpdated or ApplicationEventType.ActivityDeleted)
         {
+            await ManageStartupActivities();
             await Task.WhenAll(_activitiesChangedHandlers.Select(handler => handler()));
         }
     }
