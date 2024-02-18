@@ -1,20 +1,12 @@
-﻿namespace ActivityLauncher.Client;
-
-public partial class App : Application
+﻿namespace ActivityLauncher.Client
 {
-    public App()
+    public partial class App : Application
     {
-        InitializeComponent();
+        public App()
+        {
+            InitializeComponent();
 
-        MainPage = new MainPage();
-    }
-
-    protected override Window CreateWindow(IActivationState? activationState)
-    {
-        Window window = base.CreateWindow(activationState);
-
-        window.Title = "Activity Launcher for Windows";
-
-        return window;
+            MainPage = new MainPage();
+        }
     }
 }

@@ -1,9 +1,10 @@
-﻿namespace ActivityLauncher.Client;
-
-public partial class MainPage : ContentPage
+﻿namespace ActivityLauncher.Client
 {
-    public MainPage()
+    public partial class MainPage : ContentPage
     {
-        InitializeComponent();
+        public MainPage()
+        {
+            InitializeComponent();
+        }
     }
 }
