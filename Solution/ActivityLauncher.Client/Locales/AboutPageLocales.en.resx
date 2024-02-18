@@ -142,7 +142,7 @@
     <value>Setting up launch at startup</value>
   </data>
   <data name="Startup.Setup.Instructions" xml:space="preserve">
-    <value>So that all the activities you have set to run at startup are launched when your machine starts up, you must ensure that the file &lt;code style="font-weight: bold;"&gt;{0}&lt;/code&gt; is executed when Windows starts. To do this, you can simply copy/paste the file it into the directory that Windows uses to launch applications at startup (this folder is specific to your user, so replace &lt;i&gt;{{YOUR_USER}}&lt;/i&gt; with your user name), the directory in question should be &lt;code style="font-weight: bold;"&gt;{1}&lt;/code&gt;.</value>
+    <value>For activities to run at startup, you must make sure the file &lt;i&gt;&lt;b&gt;{0}&lt;/b&gt;&lt;/i&gt; is executed when Windows starts. To do this, you can simply copy/paste the file it into the directory that Windows uses to launch applications at startup (this folder is specific to your user, so replace &lt;i&gt;{{YOUR_USER}}&lt;/i&gt; with your user name), the directory in question should be &lt;i&gt;&lt;b&gt;{1}&lt;/b&gt;&lt;/i&gt;.</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>About</value>

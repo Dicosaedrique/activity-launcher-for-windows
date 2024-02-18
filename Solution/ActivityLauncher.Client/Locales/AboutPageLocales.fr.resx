@@ -142,7 +142,7 @@
     <value>Mise en place du lancement au démarrage</value>
   </data>
   <data name="Startup.Setup.Instructions" xml:space="preserve">
-    <value>Pour que toutes les activités que vous avez paramétrées pour s'exécuter au démarrage soient lançées lors de la mise en route de votre machine, vous devez faire en sorte que le fichier &lt;code style="font-weight: bold;"&gt;{0}&lt;/code&gt; soit exécuté au lancement de Windows. Pour cela, vous pouvez simplement le copier/coller le fichier dans le repertoire que Windows utilise pour lancer des applications au démarage (ce dossier est spécifique à votre utilisateur, remplacez donc &lt;i&gt;{{YOUR_USER}}&lt;/i&gt; par votre nom d'utilisateur), le repertoire en question devrait être &lt;code style="font-weight: bold;"&gt;{1}&lt;/code&gt;.</value>
+    <value>Pour que les activités puissent s'exécuter au démarrage, vous devez faire en sorte que le fichier &lt;i&gt;&lt;b&gt;{0}&lt;/b&gt;&lt;/i&gt; soit exécuté au lancement de Windows. Pour cela, vous pouvez simplement le copier/coller le fichier dans le repertoire que Windows utilise pour lancer des applications au démarage (ce dossier est spécifique à votre utilisateur, remplacez donc &lt;i&gt;{{YOUR_USER}}&lt;/i&gt; par votre nom d'utilisateur), le repertoire en question devrait être &lt;i&gt;&lt;b&gt;{1}&lt;/b&gt;&lt;/i&gt;.</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>À propos</value>

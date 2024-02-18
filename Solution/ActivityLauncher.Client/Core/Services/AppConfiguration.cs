@@ -87,5 +87,6 @@ public class AppConfiguration : IAppConfiguration
         Preferences.Remove(AppDataDirectoryPathConfigKey);
         Preferences.Remove(LanguageConfigKey);
         Preferences.Remove(ThemeConfigKey);
+        Preferences.Remove(ShowActivityStartupInfoDialogConfigKey);
     }
 }
