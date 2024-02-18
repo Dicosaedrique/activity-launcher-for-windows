@@ -471,4 +471,13 @@
   <data name="Notifications.Errors.ManageStartupActivities" xml:space="preserve">
     <value>Une erreur est survenue lors de la mise en place des scripts permettant le lancement des activités au démarrage de l'ordinateur</value>
   </data>
+  <data name="ActivityStartupInfoDialog.DoNotShowAgain" xml:space="preserve">
+    <value>Ne plus montrer ce message</value>
+  </data>
+  <data name="ActivityStartupInfoDialog.OkButton" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="ActivityStartupInfoDialog.Title" xml:space="preserve">
+    <value>Mise en place du lancement au démarrage</value>
+  </data>
 </root>

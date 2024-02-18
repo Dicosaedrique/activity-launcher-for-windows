@@ -1,4 +1,4 @@
-﻿namespace ActivityLauncher.Client.Common.Navigation;
+﻿namespace ActivityLauncher.Client.Core.Navigation;
 
 public static class Routes
 {

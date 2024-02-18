@@ -4,7 +4,7 @@ using ActivityLauncher.Domain.Model;
 using ActivityLauncher.Domain.Services.Declarations;
 using Microsoft.AspNetCore.Components;
 
-namespace ActivityLauncher.Client.Common.Services;
+namespace ActivityLauncher.Client.Core.Services;
 
 public class HighlighterService
 {

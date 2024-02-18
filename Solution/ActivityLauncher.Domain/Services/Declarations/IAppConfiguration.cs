@@ -18,5 +18,9 @@ public interface IAppConfiguration
 
     public void SetTheme(Theme theme);
 
+    public bool GetShowActivityStartupInfoDialog();
+
+    public void SetShowActivityStartupInfoDialog(bool value);
+
     public void Reset();
 }

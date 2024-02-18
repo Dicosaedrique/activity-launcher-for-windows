@@ -10,8 +10,12 @@
                     <MudTooltip Text="@Localize["Activity.Card.LaunchAtStartupEnabledTooltip"]">
                         <MudIcon Icon="@Icons.Material.Filled.PowerSettingsNew" />
                     </MudTooltip>
+                    <MudText Typo="Typo.h6" Style="font-size: 1.2rem; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; max-width: 165px;" title="@Activity.Name">@Activity.Name</MudText>
                 }
-                <MudText Typo="Typo.h6" Style="font-size: 1.2rem; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; max-width: 195px;" title="@Activity.Name">@Activity.Name</MudText>
+                else
+                {
+                    <MudText Typo="Typo.h6" Style="font-size: 1.2rem; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; max-width: 190px;" title="@Activity.Name">@Activity.Name</MudText>
+                }
             </MudStack>
         </CardHeaderContent>
         <CardHeaderActions>

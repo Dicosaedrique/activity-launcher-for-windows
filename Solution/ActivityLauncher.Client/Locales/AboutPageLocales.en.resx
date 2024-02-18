@@ -127,7 +127,13 @@
     <value>Activity Launcher for Windows is a tool designed for Windows and for developers or advanced users wanting to speed up their workflow and activities on their machine. Create activities in just a few clicks to launch all kinds of tasks quickly or when your machine starts up. A few predefined tasks are available but the application gives you the flexibility to define the tasks you want thanks to the power of PowerShell scripts.</value>
   </data>
   <data name="Disclaimer.Content" xml:space="preserve">
-    <value>TODO</value>
+    <value>This application is designed to run create and execute scripts only in the directory specified in the configuration page. However, the user's use of scripts is their own responsibility. We assume no responsibility for any consequences arising from the execution of user-provided scripts. It is recommended that the user exercise caution and diligence when executing any script, and ensure that they fully understand how it works and its implications before running it (you can always check the contents of the generated script before launching it).</value>
+  </data>
+  <data name="Disclaimer.OptionalSoftware" xml:space="preserve">
+    <value>Some preconfigured tasks use applications such as Windows Terminal or Visual Studio Code to work, however, their installation is only required if you want to run those specific tasks.</value>
+  </data>
+  <data name="Disclaimer.Requirements" xml:space="preserve">
+    <value>For the application to work, you must have a recent version of PowerShell installed on your machine (required).</value>
   </data>
   <data name="Disclaimer.Title" xml:space="preserve">
     <value>Disclaimers</value>
@@ -136,7 +142,7 @@
     <value>Setting up launch at startup</value>
   </data>
   <data name="Startup.Setup.Instructions" xml:space="preserve">
-    <value>TODO</value>
+    <value>So that all the activities you have set to run at startup are launched when your machine starts up, you must ensure that the file &lt;code style="font-weight: bold;"&gt;{0}&lt;/code&gt; is executed when Windows starts. To do this, you can simply copy/paste the file it into the directory that Windows uses to launch applications at startup (this folder is specific to your user, so replace &lt;i&gt;{{YOUR_USER}}&lt;/i&gt; with your user name), the directory in question should be &lt;code style="font-weight: bold;"&gt;{1}&lt;/code&gt;.</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>About</value>

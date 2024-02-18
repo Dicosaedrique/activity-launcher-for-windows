@@ -5,7 +5,7 @@ using ActivityLauncher.Domain.Model;
 using ActivityLauncher.Domain.Services.Declarations;
 using Microsoft.Extensions.Localization;
 
-namespace ActivityLauncher.Client.Common.Services;
+namespace ActivityLauncher.Client.Core.Services;
 
 public class ScriptGeneratorService : IScriptGeneratorService
 {

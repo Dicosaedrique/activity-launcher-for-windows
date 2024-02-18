@@ -1,4 +1,4 @@
-namespace ActivityLauncher.Client.Common.Events;
+namespace ActivityLauncher.Client.Core.Events;
 
 public enum ApplicationEventType
 {

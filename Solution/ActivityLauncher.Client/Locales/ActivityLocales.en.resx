@@ -471,4 +471,13 @@
   <data name="Notifications.Errors.ManageStartupActivities" xml:space="preserve">
     <value>An error occurred while setting up the scripts allowing activities to be launched when the computer starts up</value>
   </data>
+  <data name="ActivityStartupInfoDialog.DoNotShowAgain" xml:space="preserve">
+    <value>Do not show this message again</value>
+  </data>
+  <data name="ActivityStartupInfoDialog.OkButton" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ActivityStartupInfoDialog.Title" xml:space="preserve">
+    <value>Setting up launch at startup</value>
+  </data>
 </root>

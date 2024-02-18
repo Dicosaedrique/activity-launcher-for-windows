@@ -1,6 +1,6 @@
-﻿using ActivityLauncher.Client.Common.Controllers;
-using ActivityLauncher.Client.Common.Events;
-using ActivityLauncher.Client.Common.Services;
+﻿using ActivityLauncher.Client.Core.Controllers;
+using ActivityLauncher.Client.Core.Events;
+using ActivityLauncher.Client.Core.Services;
 using ActivityLauncher.Domain.Services;
 using ActivityLauncher.Domain.Services.Declarations;
 using CommunityToolkit.Maui;

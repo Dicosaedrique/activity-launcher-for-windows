@@ -1,6 +1,6 @@
 ﻿using ActivityLauncher.Domain.Enums;
 
-namespace ActivityLauncher.Client.Common.Utils;
+namespace ActivityLauncher.Client.Core.Utils;
 
 public static class TaskTypeExtensions
 {

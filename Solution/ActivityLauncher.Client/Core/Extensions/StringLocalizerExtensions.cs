@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Microsoft.Extensions.Localization;
 
-namespace ActivityLauncher.Client.Common.Extensions;
+namespace ActivityLauncher.Client.Core.Extensions;
 
 public static class StringLocalizerExtensions
 {

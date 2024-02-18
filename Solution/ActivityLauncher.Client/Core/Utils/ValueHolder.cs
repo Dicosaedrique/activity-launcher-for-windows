@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace ActivityLauncher.Client.Common.Utils;
+namespace ActivityLauncher.Client.Core.Utils;
 
 public class ValueHolder<TValue>
 {

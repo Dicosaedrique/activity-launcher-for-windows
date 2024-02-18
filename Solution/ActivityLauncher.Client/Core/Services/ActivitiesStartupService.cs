@@ -5,7 +5,7 @@ using ActivityLauncher.Domain.Model;
 using ActivityLauncher.Domain.Services.Declarations;
 using Microsoft.Extensions.Localization;
 
-namespace ActivityLauncher.Client.Common.Services;
+namespace ActivityLauncher.Client.Core.Services;
 
 public class ActivitiesStartupService : IActivitiesStartupService
 {
@@ -29,6 +29,16 @@ public class ActivitiesStartupService : IActivitiesStartupService
     public string GetStartupScriptFilePath()
     {
         return Path.Combine(GetStartupStorageDirectoryPath(), StartupScriptFileName);
+    }
+
+    public string GetStartupFilePath()
+    {
+        return _fileStorage.GetStorageFilePath(StartupDemoFileName);
+    }
+
+    public string GetDemoStartupDirectoryPath()
+    {
+        return "C:\\Users\\{YOUR_USER}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup";
     }
 
     public Result UpdateActivitiesStartup(IEnumerable<Activity> activities)
@@ -66,10 +76,10 @@ public class ActivitiesStartupService : IActivitiesStartupService
         var startupScriptFilePath = GetStartupScriptFilePath();
 
         builder.AppendLine($":: {_localize["StartupFile.FileDescription"]}");
-        builder.AppendLine($":: {_localize["StartupFile.HelperText", "C:\\Users\\{YOUR_USER}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"]}\n");
+        builder.AppendLine($":: {_localize["StartupFile.HelperText", GetDemoStartupDirectoryPath()]}\n");
         builder.AppendLine($"IF EXIST {startupScriptFilePath} powerShell -windowstyle hidden {startupScriptFilePath}");
 
-        return _fileStorage.WriteTextToFile(Path.Combine(_fileStorage.GetStorageFilePath(StartupDemoFileName)), builder.ToString());
+        return _fileStorage.WriteTextToFile(GetStartupFilePath(), builder.ToString());
     }
 
     private Result ResetStartupDirectory()

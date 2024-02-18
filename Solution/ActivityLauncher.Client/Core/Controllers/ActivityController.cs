@@ -1,4 +1,4 @@
-﻿using ActivityLauncher.Client.Common.Events;
+﻿using ActivityLauncher.Client.Core.Events;
 using ActivityLauncher.Client.Locales;
 using ActivityLauncher.Client.Pages.Activities.Organisms;
 using ActivityLauncher.Domain.Interfaces;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using MudBlazor;
 
-namespace ActivityLauncher.Client.Common.Controllers;
+namespace ActivityLauncher.Client.Core.Controllers;
 
 public class ActivityController : ApplicationController, IDisposable
 {
@@ -20,16 +20,19 @@ public class ActivityController : ApplicationController, IDisposable
 
     private readonly IPowerShellScriptRunner _powerShellScriptRunner;
 
+    private readonly IAppConfiguration _appConfiguration;
+
     private readonly IStringLocalizer<ActivityLocales> _localize;
 
     private readonly List<ActivitiesChangedHandler> _activitiesChangedHandlers = new();
 
-    public ActivityController(ApplicationEventManager eventManager, ISnackbar notificationService, IDialogService dialogService, IStringLocalizer<CommonLocales> commonLocalize, ILogger<ApplicationController> logger, IActivityStore store, IActivitiesStartupService startupService, IPowerShellScriptRunner powerShellScriptRunner, IStringLocalizer<ActivityLocales> localize)
+    public ActivityController(ApplicationEventManager eventManager, ISnackbar notificationService, IDialogService dialogService, IStringLocalizer<CommonLocales> commonLocalize, ILogger<ApplicationController> logger, IActivityStore store, IActivitiesStartupService startupService, IPowerShellScriptRunner powerShellScriptRunner, IAppConfiguration appConfiguration, IStringLocalizer<ActivityLocales> localize)
         : base(eventManager, notificationService, dialogService, commonLocalize, logger)
     {
         _store = store;
         _startupService = startupService;
         _powerShellScriptRunner = powerShellScriptRunner;
+        _appConfiguration = appConfiguration;
         _localize = localize;
 
         _eventManager.OnEvent += EventPublish;
@@ -112,20 +115,6 @@ public class ActivityController : ApplicationController, IDisposable
         {
             await PublishError(result.Exception!.ToErrorEventDetails(_localize["Notifications.Errors.UpdateActivity"]));
             return false;
-        }
-    }
-
-    private async Task ManageStartupActivities()
-    {
-        var activities = await GetActivities();
-
-        if (activities == null) return;
-
-        var result = _startupService.UpdateActivitiesStartup(activities);
-
-        if (result.Failure)
-        {
-            await PublishError(result.Exception!.ToErrorEventDetails(_localize["Notifications.Errors.ManageStartupActivities"]));
         }
     }
 
@@ -281,6 +270,43 @@ public class ActivityController : ApplicationController, IDisposable
         var activityToUpdate = activity.Clone();
         activityToUpdate.LaunchAtStartup = true;
         return await UpdateActivity(activityToUpdate);
+    }
+
+    private async Task ManageStartupActivities()
+    {
+        var activities = await GetActivities();
+
+        if (activities == null) return;
+
+        var result = _startupService.UpdateActivitiesStartup(activities);
+
+        if (result.Success)
+        {
+            await PromptActivityStartupInfoDialog(activities);
+        }
+        else
+        {
+            await PublishError(result.Exception!.ToErrorEventDetails(_localize["Notifications.Errors.ManageStartupActivities"]));
+        }
+    }
+
+    private async Task PromptActivityStartupInfoDialog(IEnumerable<Activity> activities)
+    {
+        if (_appConfiguration.GetShowActivityStartupInfoDialog() && activities.Any(x => x.LaunchAtStartup))
+        {
+            var reference = _dialogService.Show<ActivityStartupInfoDialog>(_localize["ActivityStartupInfoDialog.Title"], new DialogOptions()
+            {
+                CloseOnEscapeKey = true,
+                CloseButton = true,
+            });
+
+            var doNotShowAgain = await reference.GetReturnValueAsync<bool?>();
+
+            if (doNotShowAgain == true)
+            {
+                _appConfiguration.SetShowActivityStartupInfoDialog(false);
+            }
+        }
     }
 
     private async Task EventPublish(object sender, ApplicationEvent applicationEvent)

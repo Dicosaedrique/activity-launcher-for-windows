@@ -2,7 +2,7 @@
 using ActivityLauncher.Domain.Common.Localization;
 using ActivityLauncher.Domain.Services.Declarations;
 
-namespace ActivityLauncher.Client.Common.Services;
+namespace ActivityLauncher.Client.Core.Services;
 
 public class ApplicationInitializeService : IMauiInitializeService
 {

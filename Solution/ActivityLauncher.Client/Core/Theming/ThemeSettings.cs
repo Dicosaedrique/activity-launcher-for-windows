@@ -1,5 +1,5 @@
 ﻿using MudBlazor;
 
-namespace ActivityLauncher.Client.Common.Theming;
+namespace ActivityLauncher.Client.Core.Theming;
 
 public record ThemeSettings(MudTheme Theme, bool IsDarkMode);

@@ -1,11 +1,11 @@
-﻿using ActivityLauncher.Client.Common.Events;
+﻿using ActivityLauncher.Client.Core.Events;
 using ActivityLauncher.Client.Locales;
 using ActivityLauncher.Client.Shared.Organisms;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using MudBlazor;
 
-namespace ActivityLauncher.Client.Common.Controllers;
+namespace ActivityLauncher.Client.Core.Controllers;
 
 public class ApplicationController
 {

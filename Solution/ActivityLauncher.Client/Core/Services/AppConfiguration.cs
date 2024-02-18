@@ -3,13 +3,14 @@ using ActivityLauncher.Domain.Common.Localization;
 using ActivityLauncher.Domain.Enums;
 using ActivityLauncher.Domain.Services.Declarations;
 
-namespace ActivityLauncher.Client.Common.Services;
+namespace ActivityLauncher.Client.Core.Services;
 
 public class AppConfiguration : IAppConfiguration
 {
     private const string AppDataDirectoryPathConfigKey = "AppDataDirectoryPathConfigKey";
     private const string LanguageConfigKey = "LanguageConfigKey";
     private const string ThemeConfigKey = "ThemeConfigKey";
+    private const string ShowActivityStartupInfoDialogConfigKey = "ShowActivityStartupInfoDialogConfigKey";
 
     public bool IsAppReady()
     {
@@ -68,6 +69,17 @@ public class AppConfiguration : IAppConfiguration
     public void SetTheme(Theme theme)
     {
         Preferences.Set(ThemeConfigKey, ((int)theme).ToString());
+    }
+
+    public bool GetShowActivityStartupInfoDialog()
+    {
+        var value = Preferences.Get(ShowActivityStartupInfoDialogConfigKey, bool.TrueString);
+        return bool.Parse(value);
+    }
+
+    public void SetShowActivityStartupInfoDialog(bool value)
+    {
+        Preferences.Set(ShowActivityStartupInfoDialogConfigKey, value.ToString());
     }
 
     public void Reset()

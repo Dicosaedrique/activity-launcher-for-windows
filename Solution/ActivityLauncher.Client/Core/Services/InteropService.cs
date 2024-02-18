@@ -1,6 +1,6 @@
 ﻿using Microsoft.JSInterop;
 
-namespace ActivityLauncher.Client.Common.Services;
+namespace ActivityLauncher.Client.Core.Services;
 
 public class InteropService
 {

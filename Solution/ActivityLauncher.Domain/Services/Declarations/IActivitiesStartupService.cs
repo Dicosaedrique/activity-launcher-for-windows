@@ -9,5 +9,9 @@ public interface IActivitiesStartupService
 
     public string GetStartupScriptFilePath();
 
+    public string GetStartupFilePath();
+
+    public string GetDemoStartupDirectoryPath();
+
     public Result CreateStartupFileDemo();
 }
