@@ -1,5 +1,5 @@
-﻿using System.Globalization;
-using ActivityLauncher.Domain.Enums;
+﻿using ActivityLauncher.Domain.Enums;
+using System.Globalization;
 
 namespace ActivityLauncher.Domain.Common.Localization;
 

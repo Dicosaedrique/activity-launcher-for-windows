@@ -1,6 +1,6 @@
-﻿using System.Globalization;
-using ActivityLauncher.Domain.Common.Localization;
+﻿using ActivityLauncher.Domain.Common.Localization;
 using ActivityLauncher.Domain.Services.Declarations;
+using System.Globalization;
 
 namespace ActivityLauncher.Client.Core.Services;
 

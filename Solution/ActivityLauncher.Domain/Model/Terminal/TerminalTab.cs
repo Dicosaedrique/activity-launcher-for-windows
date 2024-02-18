@@ -1,6 +1,6 @@
-﻿using System.Text;
-using ActivityLauncher.Domain.Common.Utils;
+﻿using ActivityLauncher.Domain.Common.Utils;
 using ActivityLauncher.Domain.Interfaces;
+using System.Text;
 
 namespace ActivityLauncher.Domain.Model.Terminal;
 

@@ -1,8 +1,8 @@
-﻿using System.Text;
-using ActivityLauncher.Domain.Enums;
+﻿using ActivityLauncher.Domain.Enums;
 using ActivityLauncher.Domain.Model;
 using ActivityLauncher.Domain.Services.Declarations;
 using Microsoft.AspNetCore.Components;
+using System.Text;
 
 namespace ActivityLauncher.Client.Core.Services;
 

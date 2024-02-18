@@ -1,7 +1,7 @@
-﻿using System.Text;
-using ActivityLauncher.Domain.Enums;
+﻿using ActivityLauncher.Domain.Enums;
 using ActivityLauncher.Domain.Interfaces;
 using ActivityLauncher.Domain.Model.Terminal;
+using System.Text;
 
 namespace ActivityLauncher.Domain.Model.Tasks;
 

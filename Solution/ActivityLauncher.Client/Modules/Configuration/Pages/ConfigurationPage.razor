@@ -12,7 +12,7 @@
 @inject IStringLocalizer<ConfigurationPageLocales> Localize
 @inject ApplicationEventManager EventManager
 
-@attribute [Route(Routes.ConfigurationPage)]
+@attribute [Route(NavigationRoutes.ConfigurationPage)]
 
 <MudContainer MaxWidth="MaxWidth.Medium">
     <MudText Typo="Typo.h4" Class="mb-8">@Localize["Title"]</MudText>
@@ -113,7 +113,7 @@
 
             AppConfiguration.SetLanguage(_language);
             AppConfiguration.SetTheme(_theme);
-            Navigation.NavigateTo(Routes.AboutPage, replace: true);
+            Navigation.NavigateTo(NavigationRoutes.AboutPage, replace: true);
         }
         else
         {
@@ -124,7 +124,7 @@
     private void Reset()
     {
         AppConfiguration.Reset();
-        Navigation.NavigateTo(Routes.Index, forceLoad: true, replace: true);
+        Navigation.NavigateTo(NavigationRoutes.Index, forceLoad: true, replace: true);
     }
 
     public async ValueTask DisposeAsync()

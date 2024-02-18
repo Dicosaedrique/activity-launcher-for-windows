@@ -1,9 +1,9 @@
-﻿using System.Text;
-using ActivityLauncher.Client.Locales;
+﻿using ActivityLauncher.Client.Locales;
 using ActivityLauncher.Domain.Common.Utils;
 using ActivityLauncher.Domain.Model;
 using ActivityLauncher.Domain.Services.Declarations;
 using Microsoft.Extensions.Localization;
+using System.Text;
 
 namespace ActivityLauncher.Client.Core.Services;
 

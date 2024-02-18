@@ -8,12 +8,12 @@
     <ErrorHandler />
 
     <CascadingValue Value="_cascadingThemeSettings">
-        <Router AppAssembly="@typeof(Main).Assembly">
+        <Router AppAssembly="@typeof(Routes).Assembly">
             <Found Context="routeData">
                 <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
             </Found>
             <NotFound>
-                <Redirect Url="@Routes.Index" />
+                <Redirect Url="@NavigationRoutes.Index" />
             </NotFound>
         </Router>
     </CascadingValue>

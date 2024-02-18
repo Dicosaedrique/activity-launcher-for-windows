@@ -1,9 +1,9 @@
-﻿using System.Management.Automation;
-using ActivityLauncher.Domain.Common.Utils;
+﻿using ActivityLauncher.Domain.Common.Utils;
 using ActivityLauncher.Domain.Exceptions;
 using ActivityLauncher.Domain.Interfaces;
 using ActivityLauncher.Domain.Model;
 using ActivityLauncher.Domain.Services.Declarations;
+using System.Management.Automation;
 
 namespace ActivityLauncher.Domain.Services;
 

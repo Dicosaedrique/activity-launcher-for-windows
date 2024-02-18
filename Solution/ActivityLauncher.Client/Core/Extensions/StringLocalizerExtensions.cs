@@ -1,5 +1,5 @@
-﻿using System.Text;
-using Microsoft.Extensions.Localization;
+﻿using Microsoft.Extensions.Localization;
+using System.Text;
 
 namespace ActivityLauncher.Client.Core.Extensions;
 

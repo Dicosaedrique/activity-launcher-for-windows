@@ -1,12 +1,12 @@
 ﻿@inject IAppConfiguration AppConfiguration
 
-@attribute [Route(Routes.Index)]
+@attribute [Route(NavigationRoutes.Index)]
 
 @if (AppConfiguration.IsAppReady())
 {
-    <Redirect Url="@Routes.ActivitiesPage" />
+    <Redirect Url="@NavigationRoutes.ActivitiesPage" />
 }
 else
 {
-    <Redirect Url="@Routes.ConfigurationPage" />
+    <Redirect Url="@NavigationRoutes.ConfigurationPage" />
 }

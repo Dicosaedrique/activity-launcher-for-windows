@@ -1,6 +1,6 @@
 ﻿namespace ActivityLauncher.Client.Core.Navigation;
 
-public static class Routes
+public static class NavigationRoutes
 {
     public const string Index = "/";
 
