@@ -63,7 +63,7 @@ public class ActivityController : ApplicationController, IDisposable
         if (result.Success)
         {
             NotifySuccess(_localize["Notifications.Success.CreateActivity"]);
-            await ManageStartupActivities();
+            await ManageStartupActivities(activity.LaunchAtStartup);
             await PublishEvent(ApplicationEventType.ActivityCreated, activity);
             return true;
         }
@@ -109,7 +109,7 @@ public class ActivityController : ApplicationController, IDisposable
         if (result.Success)
         {
             NotifySuccess(_localize["Notifications.Success.UpdateActivity"]);
-            await ManageStartupActivities();
+            await ManageStartupActivities(activity.LaunchAtStartup);
             await PublishEvent(ApplicationEventType.ActivityUpdated, activity);
             return true;
         }
@@ -267,7 +267,7 @@ public class ActivityController : ApplicationController, IDisposable
         return await UpdateActivity(activityToUpdate);
     }
 
-    private async Task ManageStartupActivities()
+    private async Task ManageStartupActivities(bool shouldPrompInfoDialog = false)
     {
         var activities = await GetActivities();
 
@@ -275,7 +275,7 @@ public class ActivityController : ApplicationController, IDisposable
 
         var result = _startupService.UpdateActivitiesStartup(activities);
 
-        if (result.Success)
+        if (result.Success && shouldPrompInfoDialog)
         {
             await PromptActivityStartupInfoDialog(activities);
         }
