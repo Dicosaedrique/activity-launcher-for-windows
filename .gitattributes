@@ -12,3 +12,4 @@
 *.md text
 
 *.ico binary
+*.png binary
