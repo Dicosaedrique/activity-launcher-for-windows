@@ -63,6 +63,7 @@ public class ActivityController : ApplicationController, IDisposable
         if (result.Success)
         {
             NotifySuccess(_localize["Notifications.Success.CreateActivity"]);
+            await ManageStartupActivities();
             await PublishEvent(ApplicationEventType.ActivityCreated, activity);
             return true;
         }
@@ -88,6 +89,7 @@ public class ActivityController : ApplicationController, IDisposable
         if (result.Success)
         {
             NotifySuccess(_localize["Notifications.Success.DuplicateActivity"]);
+            await ManageStartupActivities();
             await PublishEvent(ApplicationEventType.ActivityCreated, duplicatedActivity);
             return duplicatedActivity;
         }
@@ -107,6 +109,7 @@ public class ActivityController : ApplicationController, IDisposable
         if (result.Success)
         {
             NotifySuccess(_localize["Notifications.Success.UpdateActivity"]);
+            await ManageStartupActivities();
             await PublishEvent(ApplicationEventType.ActivityUpdated, activity);
             return true;
         }
@@ -124,6 +127,7 @@ public class ActivityController : ApplicationController, IDisposable
         if (result.Success)
         {
             NotifySuccess(_localize["Notifications.Success.DeleteActivity"]);
+            await ManageStartupActivities();
             await PublishEvent(ApplicationEventType.ActivityDeleted, activity);
             return true;
         }
@@ -304,7 +308,6 @@ public class ActivityController : ApplicationController, IDisposable
     {
         if (applicationEvent.Type is ApplicationEventType.ActivityCreated or ApplicationEventType.ActivityUpdated or ApplicationEventType.ActivityDeleted)
         {
-            await ManageStartupActivities();
             await Task.WhenAll(_activitiesChangedHandlers.Select(handler => handler()));
         }
     }
