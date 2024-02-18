@@ -275,9 +275,9 @@ public class ActivityController : ApplicationController, IDisposable
 
         var result = _startupService.UpdateActivitiesStartup(activities);
 
-        if (result.Success && shouldPrompInfoDialog)
+        if (result.Success)
         {
-            await PromptActivityStartupInfoDialog(activities);
+            if (shouldPrompInfoDialog) await PromptActivityStartupInfoDialog(activities);
         }
         else
         {
