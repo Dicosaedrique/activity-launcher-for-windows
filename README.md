@@ -42,5 +42,11 @@ Activities will be saved as JSON files and will be loaded when launching the app
 - [x] Allow the user to set up the activity to launch at startup
 - [ ] Publish the application to the public
 
+## Screenshots
+
+<img src="./Infos//screenshots//activities_list_en.png" height="450px" />
+<img src="./Infos//screenshots//activities_edit_en.png" height="450px" />
+<img src="./Infos//screenshots//display_script_en.png" height="450px" />
+
 <sub>Application icon uses free icon found on [flaticon (rocket)](https://www.flaticon.com/fr/icone-gratuite/fusee_4710098?related_id=4710098).</sub><br/>
 <sub>Some of the texts in this project are generated using [Chat GPT](https://openai.com/blog/chatgpt).</sub>
