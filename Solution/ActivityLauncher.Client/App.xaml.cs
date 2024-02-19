@@ -8,5 +8,14 @@
 
             MainPage = new MainPage();
         }
+
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            var window = base.CreateWindow(activationState);
+
+            window.Title = "Activity Launcher for Windows";
+
+            return window;
+        }
     }
 }
